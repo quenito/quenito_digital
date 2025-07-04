@@ -1,0 +1,43 @@
+================================================================================
+📊 ENHANCED SURVEY AUTOMATION REPORT
+================================================================================
+⏱️ SESSION TIMING:
+   • Total Session Time: 3.0 minutes
+   • Manual Navigation: 1.7 minutes
+   • Automation Time: 0.0 minutes
+
+🌐 SESSION DETAILS:
+   • Dashboard URL: https://www.myopinions.com.au/auth/dashboard
+   • Survey URL: None
+   • Session Transfers: 0
+   • Session Mode: Persistent
+
+📈 SUMMARY STATISTICS:
+   • Total Questions Processed: 2
+   • Automated Successfully: 1
+   • Manual Interventions: 1
+   • Automation Rate: 50.0%
+   • Research Operations: 0
+   • Total Time: 3.0 minutes
+
+🔧 HANDLER USAGE ANALYSIS:
+   No handler usage data available
+
+🚫 MANUAL INTERVENTION ANALYSIS:
+   Interventions by type:
+   • unknown: 1 times (100.0%)
+   • Average intervention time: 37.4 seconds
+
+🔍 RESEARCH OPERATIONS:
+   No research operations performed
+
+⚡ PERFORMANCE METRICS:
+   • Questions per minute: 0.7
+   • Automation efficiency: 50.0%
+   • Intervention rate: 50.0%
+
+💡 IMPROVEMENT RECOMMENDATIONS:
+   • Priority: Improve handler confidence scoring
+   • Add more question patterns to knowledge base
+
+================================================================================
