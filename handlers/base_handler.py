@@ -145,62 +145,63 @@ class BaseQuestionHandler(ABC):
     
     # FIX 3: Enhanced Radio Button Clicking Method
     def click_radio_button_safely(self, radio_element, description="radio button"):
-        """
-        Safely click radio buttons with label interference handling.
-        """
-        try:
-            if not radio_element:
-                self.log_failure(f"Radio element not found for {description}")
-                return False
-            
-            # Method 1: Try direct click on radio input
+            """
+            Safely click radio buttons with label interference handling and TIMEOUT FIX.
+            """
             try:
-                if radio_element.is_visible() and not radio_element.is_disabled():
-                    radio_element.click()
-                    self.human_like_delay(300, 800)
-                    self.log_success(f"Clicked {description} (direct)")
-                    return True
-            except Exception as e:
-                self.log_attempt(f"Direct click failed for {description}: {e}")
-            
-            # Method 2: Try clicking associated label
-            try:
-                radio_id = radio_element.get_attribute('id')
-                if radio_id:
-                    label = self.find_element_safely(f"label[for='{radio_id}']")
-                    if label and label.is_visible():
-                        label.click()
+                if not radio_element:
+                    self.log_failure(f"Radio element not found for {description}")
+                    return False
+                
+                # Method 1: Try direct click with timeout
+                try:
+                    if radio_element.is_visible() and not radio_element.is_disabled():
+                        # TIMEOUT FIX: Use shorter timeout
+                        radio_element.click(timeout=3000)  # 3 seconds instead of 30
                         self.human_like_delay(300, 800)
-                        self.log_success(f"Clicked {description} (via label)")
+                        self.log_success(f"Clicked {description} (direct)")
                         return True
+                except Exception as e:
+                    self.log_attempt(f"Direct click failed for {description}: {e}")
+                
+                # Method 2: Try clicking associated label with timeout
+                try:
+                    radio_id = radio_element.get_attribute('id')
+                    if radio_id:
+                        label = self.find_element_safely(f"label[for='{radio_id}']")
+                        if label and label.is_visible():
+                            label.click(timeout=3000)  # TIMEOUT FIX
+                            self.human_like_delay(300, 800)
+                            self.log_success(f"Clicked {description} (via label)")
+                            return True
+                except Exception as e:
+                    self.log_attempt(f"Label click failed for {description}: {e}")
+                
+                # Method 3: Force click using JavaScript (no timeout issues)
+                try:
+                    self.page.evaluate("(element) => element.click()", radio_element)
+                    self.human_like_delay(300, 800)
+                    self.log_success(f"Clicked {description} (JavaScript)")
+                    return True
+                except Exception as e:
+                    self.log_attempt(f"JavaScript click failed for {description}: {e}")
+                
+                # Method 4: Try checking the radio button programmatically
+                try:
+                    self.page.evaluate("(element) => element.checked = true", radio_element)
+                    # Trigger change event
+                    self.page.evaluate("(element) => element.dispatchEvent(new Event('change', { bubbles: true }))", radio_element)
+                    self.human_like_delay(300, 800)
+                    self.log_success(f"Checked {description} (programmatic)")
+                    return True
+                except Exception as e:
+                    self.log_failure(f"All click methods failed for {description}: {e}")
+                
+                return False
+                
             except Exception as e:
-                self.log_attempt(f"Label click failed for {description}: {e}")
-            
-            # Method 3: Force click using JavaScript
-            try:
-                self.page.evaluate("(element) => element.click()", radio_element)
-                self.human_like_delay(300, 800)
-                self.log_success(f"Clicked {description} (JavaScript)")
-                return True
-            except Exception as e:
-                self.log_attempt(f"JavaScript click failed for {description}: {e}")
-            
-            # Method 4: Try checking the radio button
-            try:
-                self.page.evaluate("(element) => element.checked = true", radio_element)
-                # Trigger change event
-                self.page.evaluate("(element) => element.dispatchEvent(new Event('change', { bubbles: true }))", radio_element)
-                self.human_like_delay(300, 800)
-                self.log_success(f"Checked {description} (programmatic)")
-                return True
-            except Exception as e:
-                self.log_failure(f"All click methods failed for {description}: {e}")
-            
-            return False
-            
-        except Exception as e:
-            self.log_failure(f"Error clicking radio button {description}: {e}")
-            return False
+                self.log_failure(f"Error clicking radio button {description}: {e}")
+                return False
     
     def fill_input_safely(self, element, text, description="input"):
         """Safely fill a text input with error handling."""

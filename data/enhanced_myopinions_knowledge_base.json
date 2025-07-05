@@ -28,6 +28,12 @@
     "household_size": "4",
     "marital_status": "Married",
     "employment": "Full-time Salaried",
+    "occupation": "Data Analyst",
+    "job_title": "Data Analyst",
+    "industry": "Retail",
+    "sub_industry": "Supermarkets",
+    "industry_full": "Retail - Supermarkets",
+    "work_sector": "Private Sector",
     "income": "$100,000 to $149,999 AUD",
     "education": "High school education (Year 11 or Year 12)"
   },

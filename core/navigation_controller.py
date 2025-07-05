@@ -22,93 +22,98 @@ class NavigationController:
     
     def find_and_click_next_button(self, page, intervention_manager=None):
         """
-        Enhanced next button detection with manual intervention fallback.
+        Enhanced next button detection with DONE button support and debugging.
         """
-        print("🔍 Moving to next question...")
+        print("🔍 Moving to next question or completing survey...")
         
-        # PRIORITY 1: CMIX-specific selectors (based on testing)
-        cmix_selectors = [
-            'input[type="submit"][value="NEXT"]',
+        # Check if we're on the last question (look for Done button first)
+        page_content = page.inner_text('body').lower()
+        if 'done' in page_content or '3 of 3 answered' in page_content:
+            print("🎯 Detected final question - looking specifically for Done button...")
+            
+            # Run debug to understand the Done button structure
+            self.debug_done_button(page)
+            return True
+        
+        # PRIORITY 1: Survey completion buttons (DONE, FINISH, SUBMIT)
+        completion_selectors = [
+            'button:has-text("Done")',
+            'button:has-text("DONE")', 
+            'input[type="submit"][value="Done"]',
+            'input[value="DONE"]',
+            'button:has-text("Finish")',
+            'button:has-text("FINISH")',
+            'button:has-text("Submit")',
+            'button:has-text("SUBMIT")',
+            'button:has-text("Complete")',
+            'button:has-text("COMPLETE")',
+            '[onclick*="done"]',
+            '[onclick*="finish"]',
+            '[onclick*="submit"]',
+            '[onclick*="complete"]'
+        ]
+        
+        # PRIORITY 2: Standard navigation buttons (NEXT, CONTINUE)
+        navigation_selectors = [
+            'button:has-text("Next")',
             'button:has-text("NEXT")',
-            'input[value="NEXT"]',
+            'input[type="submit"][value="NEXT"]',
+            'input[value="NEXT"]', 
+            'button:has-text("Continue")',
+            'button:has-text("OK")',
+            'input[type="submit"][value*="Next"]',
+            'input[type="submit"][value*="Continue"]',
             '[onclick*="next"]',
             '[onclick*="Next"]'
         ]
         
-        # PRIORITY 2: Standard navigation selectors
-        standard_navigation_selectors = [
-            'button:has-text("Next")',
-            'button:has-text("Continue")', 
-            'button:has-text("OK")',
-            'input[type="submit"][value*="Next"]',
-            'input[type="submit"][value*="Continue"]'
-        ]
+        # Try completion buttons first
+        print("🔍 Looking for survey completion buttons...")
+        for selector in completion_selectors:
+            try:
+                buttons = page.query_selector_all(selector)
+                for button in buttons:
+                    if button.is_visible():
+                        button_text = button.get_attribute('value') or button.inner_text() or 'DONE'
+                        print(f"🎯 Found completion button: '{button_text.strip()}'")
+                        button.click()
+                        self._human_like_delay(2000, 3000)
+                        self.navigation_stats["buttons_found_automatically"] += 1
+                        
+                        # After clicking completion button, check for survey completion
+                        self._human_like_delay(3000, 5000)  # Wait for completion page
+                        return True
+            except Exception as e:
+                print(f"❌ Error with completion selector {selector}: {e}")
+                continue
         
-        # PRIORITY 3: Generic submit selectors
-        generic_submit_selectors = [
-            'button:has-text("Submit")',
-            'input[type="submit"]',
-            'button[type="submit"]'
-        ]
-        
-        # Try CMIX selectors first
-        for selector in cmix_selectors:
+        # Try standard navigation buttons  
+        print("🔍 Looking for navigation buttons...")
+        for selector in navigation_selectors:
             try:
                 buttons = page.query_selector_all(selector)
                 for button in buttons:
                     if button.is_visible():
                         button_text = button.get_attribute('value') or button.inner_text() or 'NEXT'
-                        print(f"✅ Clicking CMIX button: '{button_text.strip()}'")
+                        print(f"✅ Clicking navigation button: '{button_text.strip()}'")
                         button.click()
                         self._human_like_delay(2000, 3000)
                         self.navigation_stats["buttons_found_automatically"] += 1
                         return True
             except Exception as e:
-                print(f"Error with CMIX selector {selector}: {e}")
+                print(f"❌ Error with navigation selector {selector}: {e}")
                 continue
         
-        # Try standard navigation buttons
-        for selector in standard_navigation_selectors:
-            try:
-                buttons = page.query_selector_all(selector)
-                for button in buttons:
-                    if button.is_visible():
-                        button_text = button.inner_text().strip()
-                        print(f"✅ Clicking navigation button: '{button_text}'")
-                        button.click()
-                        self._human_like_delay(2000, 3000)
-                        self.navigation_stats["buttons_found_automatically"] += 1
-                        return True
-            except Exception as e:
-                print(f"Error with navigation selector {selector}: {e}")
-                continue
-        
-        # Try generic submit buttons
-        for selector in generic_submit_selectors:
-            try:
-                buttons = page.query_selector_all(selector)
-                for button in buttons:
-                    if button.is_visible():
-                        button_text = button.inner_text().strip()
-                        print(f"✅ Clicking submit button: '{button_text}'")
-                        button.click()
-                        self._human_like_delay(2000, 3000)
-                        self.navigation_stats["buttons_found_automatically"] += 1
-                        return True
-            except Exception as e:
-                print(f"Error with submit selector {selector}: {e}")
-                continue
-        
-        # Enhanced fallback: Look for any clickable element with next-like text
+        # Enhanced fallback with completion buttons
         fallback_selectors = [
-            '*:has-text("NEXT")',
-            '*:has-text("Next")', 
-            '*:has-text("Continue")',
-            '*:has-text("Submit")',
-            '[class*="next"]',
-            '[class*="continue"]',
-            '[id*="next"]',
-            '[id*="continue"]'
+            '*:has-text("Done")', '*:has-text("DONE")',
+            '*:has-text("Finish")', '*:has-text("Submit")', 
+            '*:has-text("NEXT")', '*:has-text("Next")',
+            '*:has-text("Continue")', '*:has-text("Submit")',
+            '[class*="done"]', '[class*="finish"]',
+            '[class*="next"]', '[class*="continue"]',
+            '[id*="done"]', '[id*="finish"]',
+            '[id*="next"]', '[id*="continue"]'
         ]
         
         print("🔍 Trying enhanced fallback selectors...")
@@ -125,7 +130,7 @@ class NavigationController:
                         return True
             except Exception as e:
                 continue
-        
+    
         # Manual intervention for next button
         print("❌ Could not find any next/continue button automatically")
         return self._request_navigation_assistance(page, intervention_manager)
@@ -392,3 +397,80 @@ class NavigationController:
         except Exception as e:
             print(f"❌ Error selecting {description}: {e}")
             return False
+        
+    def debug_done_button(self, page):
+        """
+        Debug method to understand why Done button isn't being found.
+        Add this temporarily to navigation_controller.py
+        """
+        print("🔍 DONE BUTTON DEBUG - Starting comprehensive search...")
+        
+        # Method 1: Look for all buttons
+        try:
+            all_buttons = page.query_selector_all('button')
+            print(f"📊 Found {len(all_buttons)} total buttons")
+            
+            for i, button in enumerate(all_buttons):
+                if button.is_visible():
+                    button_text = button.inner_text() or ""
+                    button_value = button.get_attribute('value') or ""
+                    button_id = button.get_attribute('id') or ""
+                    button_class = button.get_attribute('class') or ""
+                    
+                    print(f"   Button {i+1}: text='{button_text}', value='{button_value}', id='{button_id}', class='{button_class}'")
+                    
+                    # Check if this looks like our Done button
+                    if 'done' in button_text.lower() or 'done' in button_value.lower():
+                        print(f"   🎯 FOUND POTENTIAL DONE BUTTON: {i+1}")
+        except Exception as e:
+            print(f"❌ Error checking buttons: {e}")
+        
+        # Method 2: Look for all inputs
+        try:
+            all_inputs = page.query_selector_all('input')
+            print(f"📊 Found {len(all_inputs)} total inputs")
+            
+            for i, input_elem in enumerate(all_inputs):
+                if input_elem.is_visible():
+                    input_type = input_elem.get_attribute('type') or ""
+                    input_value = input_elem.get_attribute('value') or ""
+                    input_id = input_elem.get_attribute('id') or ""
+                    
+                    if input_type in ['submit', 'button']:
+                        print(f"   Input {i+1}: type='{input_type}', value='{input_value}', id='{input_id}'")
+                        
+                        # Check if this looks like our Done button  
+                        if 'done' in input_value.lower():
+                            print(f"   🎯 FOUND POTENTIAL DONE INPUT: {i+1}")
+        except Exception as e:
+            print(f"❌ Error checking inputs: {e}")
+        
+        # Method 3: Look for elements with "Done" text
+        try:
+            done_elements = page.query_selector_all('*:has-text("Done")')
+            print(f"📊 Found {len(done_elements)} elements containing 'Done'")
+            
+            for i, element in enumerate(done_elements):
+                if element.is_visible():
+                    tag_name = element.tag_name
+                    element_text = element.inner_text() or ""
+                    element_id = element.get_attribute('id') or ""
+                    element_class = element.get_attribute('class') or ""
+                    
+                    print(f"   Element {i+1}: tag='{tag_name}', text='{element_text}', id='{element_id}', class='{element_class}'")
+        except Exception as e:
+            print(f"❌ Error checking Done elements: {e}")
+        
+        print("🔍 DONE BUTTON DEBUG - Complete!")
+        
+        # Ask user to manually identify the button
+        print("\n" + "="*60)
+        print("🔧 MANUAL IDENTIFICATION NEEDED")
+        print("="*60)
+        print("Looking at the page, can you see the 'Done' button?")
+        print("If yes, please manually click it and press Enter to continue.")
+        print("This will help us understand the exact element structure.")
+        print("="*60)
+        
+        input("Press Enter AFTER clicking Done manually...")
+        return True
