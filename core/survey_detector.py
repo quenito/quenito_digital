@@ -452,7 +452,7 @@ class SurveyDetector:
     
     def is_survey_complete(self, page):
         """
-        Enhanced survey completion detection with MyOpinions-specific triggers.
+        Enhanced survey completion detection with Universal + MyOpinions-specific triggers.
         """
         try:
             current_url = page.url
@@ -461,15 +461,19 @@ class SurveyDetector:
             
             print(f"🔍 Checking completion for URL: {current_url}")
             
-            # PRIORITY 1: MyOpinions specific completion detection
+            # PRIORITY 1: Universal completion detection (NEW - works for ANY platform)
+            if self._check_universal_completion(current_url, page_content, page_title, page):
+                return True
+            
+            # PRIORITY 2: MyOpinions specific completion detection (EXISTING)
             if self._check_myopinions_completion(current_url, page_content, page):
                 return True
             
-            # PRIORITY 2: Generic completion detection (fallback)
+            # PRIORITY 3: Generic completion detection (EXISTING - fallback)
             if self._check_generic_completion(current_url, page_content, page_title):
                 return True
             
-            # PRIORITY 3: Check for no more survey questions (ENHANCED VERSION)
+            # PRIORITY 4: Check for no more survey questions (EXISTING - enhanced)
             if self._no_survey_questions_detected(page_content):
                 print(f"🎉 Survey completion detected - no more questions found")
                 return True
@@ -554,6 +558,97 @@ class SurveyDetector:
         
         return False
     
+    def _check_universal_completion(self, current_url, page_content, page_title, page):
+        """
+        Universal completion detection for ANY survey platform.
+        Enhanced for SurveyMonkey, Qualtrics, Typeform, and other platforms.
+        """
+        
+        # UNIVERSAL METHOD 1: URL-based completion patterns
+        universal_url_patterns = [
+            'complete', 'finished', 'done', 'thank', 'thanks', 'success',
+            'submitted', 'end', 'final', 'conclusion', 'closed', 'finish'
+        ]
+        
+        for pattern in universal_url_patterns:
+            if pattern in current_url.lower():
+                print(f"🎉 Universal completion detected by URL pattern: {pattern}")
+                print(f"📍 Completion URL: {current_url}")
+                return True
+        
+        # UNIVERSAL METHOD 2: Page content completion phrases
+        universal_completion_phrases = [
+            'thank you for completing',
+            'survey complete',
+            'questionnaire complete', 
+            'your responses have been submitted',
+            'thank you for participating',
+            'survey has been completed',
+            'research complete',
+            'study complete',
+            'thank you for your time',
+            'your participation is complete',
+            'responses have been recorded',
+            'survey is now complete',
+            'thank you for taking',
+            'survey successfully submitted',
+            'questionnaire submitted',
+            'we appreciate your participation',
+            'thank you for completing this survey',  # SurveyMonkey specific
+            'your survey response has been recorded', # SurveyMonkey specific
+            'survey submitted successfully'           # SurveyMonkey specific
+        ]
+        
+        for phrase in universal_completion_phrases:
+            if phrase in page_content:
+                print(f"🎉 Universal completion detected by content: '{phrase}'")
+                return True
+        
+        # UNIVERSAL METHOD 3: Title-based completion detection
+        title_completion_patterns = [
+            'complete', 'thank you', 'finished', 'done', 'submitted', 'success'
+        ]
+        
+        for pattern in title_completion_patterns:
+            if pattern in page_title:
+                print(f"🎉 Universal completion detected by title: '{pattern}'")
+                return True
+        
+        # UNIVERSAL METHOD 4: Check for completion page indicators
+        # Look for elements that suggest completion
+        try:
+            completion_elements = page.query_selector_all('*')
+            for element in completion_elements:
+                if element.is_visible():
+                    element_text = element.inner_text().lower()
+                    if ('thank you' in element_text and 'complet' in element_text) or \
+                    ('survey' in element_text and 'finish' in element_text) or \
+                    ('response' in element_text and 'record' in element_text):
+                        print(f"🎉 Universal completion detected by element text")
+                        return True
+        except:
+            pass
+        
+        # UNIVERSAL METHOD 5: Check for absence of survey questions
+        # If there are no more form elements and no question indicators, likely complete
+        try:
+            form_elements = page.query_selector_all('input[type="text"], input[type="radio"], input[type="checkbox"], select, textarea')
+            usable_forms = [el for el in form_elements if el.is_visible() and not el.is_disabled()]
+            
+            question_indicators = [
+                'question', 'select', 'choose', 'rate', 'answer', 'please enter'
+            ]
+            
+            question_count = sum(1 for indicator in question_indicators if indicator in page_content)
+            
+            if len(usable_forms) == 0 and question_count < 2:
+                print(f"🎉 Universal completion detected - no more questions or forms")
+                return True
+        except:
+            pass
+        
+        return False
+
     def _check_generic_completion(self, current_url, page_content, page_title):
         """
         Generic completion detection for non-MyOpinions surveys.
