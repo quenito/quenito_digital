@@ -20,7 +20,7 @@ from core.navigation_controller import NavigationController
 
 # Import utility services
 from utils.knowledge_base import KnowledgeBase
-from utils.intervention_manager import InterventionManager
+from utils.enhanced_intervention_manager import EnhancedLearningInterventionManager
 from utils.research_engine import ResearchEngine
 from utils.reporting import ReportGenerator
 
@@ -45,7 +45,7 @@ class EnhancedSurveyAutomationTool:
         
         # Initialize utility services
         self.knowledge_base = KnowledgeBase()
-        self.intervention_manager = InterventionManager()
+        self.intervention_manager = EnhancedLearningInterventionManager()
         self.research_engine = ResearchEngine(self.knowledge_base)
         self.report_generator = ReportGenerator()
         
