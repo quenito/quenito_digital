@@ -1,428 +1,267 @@
 #!/usr/bin/env python3
 """
-Human-Like Timing Manager
-Realistic timing patterns for enhanced stealth and human-like behavior.
+Human-Like Timing Manager (Standalone Version)
+Realistic timing patterns with complexity-based delays and personal variations.
+No dependencies on other utils modules.
 """
 
 import random
 import time
-import statistics
-from typing import Dict, Tuple, List
+from typing import Dict, Tuple
 
 
 class HumanLikeTimingManager:
     """
-    Advanced timing manager that simulates realistic human behavior patterns.
-    Includes question complexity analysis, typing simulation, and personal variation.
+    Advanced human-like timing with complexity analysis and personal patterns.
+    Creates realistic delays that match how humans actually interact with surveys.
     """
     
     def __init__(self):
-        # Simulated user characteristics
-        self.user_typing_speed = random.uniform(40, 80)  # WPM (words per minute)
-        self.user_reading_speed = random.uniform(200, 300)  # WPM
-        self.user_decision_speed = random.uniform(0.8, 1.4)  # Multiplier for decision making
+        """Initialize with personal characteristics that vary per session."""
+        # Personal characteristics (varies per session to simulate different users)
+        self.user_typing_speed = random.uniform(40, 80)  # Words per minute
+        self.thinking_speed = random.uniform(0.8, 1.3)   # How fast they think
+        self.decision_confidence = random.uniform(0.7, 1.1)  # Decision making speed
         
-        # Base timing patterns for different question types
-        self.thinking_patterns = {
-            'simple_question': (1.2, 3.5),      # Easy yes/no, basic demographics
-            'complex_question': (3.0, 8.0),     # Multi-part, research required
-            'demographic': (0.8, 2.5),          # Age, gender, location
-            'opinion': (2.0, 6.0),              # Rating scales, preferences
-            'brand_familiarity': (1.5, 4.0),    # Brand awareness questions
-            'rating_matrix': (2.5, 7.0),        # Multiple ratings
-            'multi_select': (3.0, 8.0),         # Multiple choice selection
-            'trust_rating': (2.0, 5.0),         # Trust/reliability scales
-            'unknown': (2.0, 6.0)               # Unknown question types
+        print(f"🧠 Human Profile: {self.user_typing_speed:.0f} WPM, "
+              f"thinking speed {self.thinking_speed:.1f}x, "
+              f"decision confidence {self.decision_confidence:.1f}x")
+        
+        # Base timing patterns for different question types (min_seconds, max_seconds)
+        self.timing_patterns = {
+            'demographics': (0.8, 2.5),      # Quick factual questions (age, gender)
+            'simple_rating': (1.2, 3.5),     # Basic 1-5 rating scales
+            'complex_rating': (2.5, 6.0),    # Complex rating matrices
+            'multi_select': (2.0, 5.0),      # Multiple choice with multiple answers
+            'opinion': (3.0, 8.0),           # Opinion questions requiring thought
+            'brand_familiarity': (1.5, 4.0), # Brand awareness questions
+            'research_required': (4.0, 12.0), # Questions needing research
+            'unknown': (2.0, 6.0)            # Unknown question types
         }
-        
-        # Reading time factors
-        self.reading_factors = {
-            'short_text': 0.5,      # < 50 characters
-            'medium_text': 1.0,     # 50-200 characters  
-            'long_text': 1.8,       # > 200 characters
-            'complex_text': 2.2     # Technical/complex content
-        }
-        
-        # Personal timing variations throughout session
-        self.session_fatigue = 1.0  # Increases over time
-        self.session_start_time = time.time()
-        self.actions_taken = 0
-        
-        print(f"🕒 Human Timing Profile: {self.user_typing_speed:.0f} WPM typing, {self.user_reading_speed:.0f} WPM reading")
     
-    def calculate_human_delay(self, action_type: str, content_complexity: str = "medium", 
-                            content_length: int = 100, question_content: str = "") -> float:
+    def calculate_human_delay(self, question_type: str, complexity: str, 
+                            content_length: int, question_content: str = "") -> float:
         """
         Calculate realistic human delay based on multiple factors.
         
         Args:
-            action_type: Type of action/question
-            content_complexity: 'simple', 'medium', 'complex'
-            content_length: Length of content to read
+            question_type: Type of question (demographics, opinion, etc.)
+            complexity: Complexity level (simple, medium, complex)
+            content_length: Length of question content in characters
             question_content: Actual question text for analysis
             
         Returns:
-            float: Delay in seconds
+            float: Delay in seconds (realistic human timing)
         """
-        # Get base timing range
-        base_range = self.thinking_patterns.get(action_type, (2.0, 5.0))
+        # Step 1: Get base timing range for this question type
+        base_range = self.timing_patterns.get(question_type, (2.0, 6.0))
         
-        # Calculate reading time
-        reading_time = self._calculate_reading_time(content_length, question_content)
+        # Step 2: Apply complexity multiplier
+        complexity_multipliers = {
+            'simple': 0.7,      # 30% faster for simple questions
+            'medium': 1.0,      # Normal speed
+            'complex': 1.4      # 40% slower for complex questions
+        }
+        complexity_factor = complexity_multipliers.get(complexity, 1.0)
         
-        # Calculate thinking time
-        thinking_time = self._calculate_thinking_time(base_range, content_complexity)
+        # Step 3: Content length factor (longer content = more reading time)
+        # Every 500 characters adds 30% more time
+        content_factor = 1.0 + (content_length / 500) * 0.3
         
-        # Apply personal factors
-        personal_factor = self._get_personal_timing_factor()
+        # Step 4: Analyze question complexity from actual content
+        question_complexity_factor = self._analyze_question_complexity(question_content)
         
-        # Apply session factors (fatigue, consistency)
-        session_factor = self._get_session_timing_factor()
+        # Step 5: Apply personal characteristics
+        personal_factor = self.thinking_speed * self.decision_confidence
         
-        # Combine all factors
-        total_delay = (reading_time + thinking_time) * personal_factor * session_factor
+        # Step 6: Calculate final timing range
+        min_delay = (base_range[0] * complexity_factor * content_factor * 
+                    question_complexity_factor * personal_factor)
+        max_delay = (base_range[1] * complexity_factor * content_factor * 
+                    question_complexity_factor * personal_factor)
         
-        # Add small random variations (micro-hesitations)
-        micro_variation = random.uniform(0.1, 0.3)
-        total_delay += micro_variation
+        # Step 7: Add random variation within the range
+        final_delay = random.uniform(min_delay, max_delay)
         
-        # Ensure minimum and maximum bounds
-        min_delay = 0.5  # Never too fast
-        max_delay = 15.0  # Never too slow
+        # Step 8: Ensure minimum realistic delay (humans need at least 0.8 seconds)
+        return max(final_delay, 0.8)
+    
+    def _analyze_question_complexity(self, question_content: str) -> float:
+        """
+        Analyze question content for complexity indicators.
+        Returns a multiplier based on how complex the question appears.
+        """
+        if not question_content:
+            return 1.0
+            
+        # Keywords that indicate different complexity levels
+        complexity_keywords = {
+            'simple': ['age', 'gender', 'name', 'yes', 'no', 'select', 'choose'],
+            'medium': ['opinion', 'think', 'feel', 'rate', 'scale', 'how much', 'how often'],
+            'complex': ['compare', 'analyze', 'evaluate', 'explain', 'why', 'likelihood', 
+                       'relationship', 'influence', 'impact', 'consider all']
+        }
         
-        final_delay = max(min_delay, min(total_delay, max_delay))
+        content_lower = question_content.lower()
         
-        # Update session tracking
-        self.actions_taken += 1
-        self._update_session_fatigue()
+        # Count complexity indicators
+        simple_count = sum(1 for word in complexity_keywords['simple'] if word in content_lower)
+        medium_count = sum(1 for word in complexity_keywords['medium'] if word in content_lower)
+        complex_count = sum(1 for word in complexity_keywords['complex'] if word in content_lower)
+        
+        # Calculate complexity factor
+        if complex_count > 0:
+            return 1.3 + (complex_count * 0.2)  # 30% base + 20% per complex word
+        elif medium_count > 0:
+            return 1.0 + (medium_count * 0.1)   # Normal + 10% per medium word
+        else:
+            return 0.8 + (simple_count * 0.05)  # 20% faster + 5% per simple word
+    
+    def typing_delay_for_text(self, text: str) -> float:
+        """
+        Calculate realistic typing delay for text input.
+        Simulates actual human typing with pauses and corrections.
+        """
+        if not text:
+            return 0
+            
+        # Step 1: Calculate base typing time
+        chars_per_second = self.user_typing_speed / 60 * 5  # Convert WPM to chars/second
+        base_time = len(text) / chars_per_second
+        
+        # Step 2: Add thinking pauses (humans pause every 10-15 characters to think)
+        pause_points = len(text) // random.randint(10, 15)
+        pause_time = pause_points * random.uniform(0.3, 1.2)
+        
+        # Step 3: Add correction time (humans occasionally backspace and retype)
+        correction_chance = 0.15  # 15% chance of making a correction
+        correction_time = 0
+        if random.random() < correction_chance:
+            correction_time = random.uniform(0.5, 2.0)
+        
+        total_time = base_time + pause_time + correction_time
+        return max(total_time, 0.5)  # Minimum 0.5 seconds even for short text
+    
+    def apply_human_delay(self, action_type: str = "general", question_type: str = "unknown", 
+                         complexity: str = "medium", question_content: str = "") -> float:
+        """
+        Apply human-like delay based on action and question context.
+        This is the main method you'll call from your handlers.
+        
+        Args:
+            action_type: Type of action (reading, clicking, typing, etc.)
+            question_type: Type of question being processed
+            complexity: Complexity level of the question
+            question_content: Question text for analysis
+            
+        Returns:
+            float: Actual delay applied in seconds
+        """
+        # Calculate appropriate delay based on question
+        content_length = len(question_content) if question_content else 100
+        delay = self.calculate_human_delay(question_type, complexity, content_length, question_content)
+        
+        # Apply action-specific adjustments
+        action_multipliers = {
+            'reading': 0.8,      # Reading is faster than decision making
+            'clicking': 0.6,     # Quick physical action
+            'typing': 1.2,       # Slower due to physical input
+            'thinking': 1.4,     # Extra time for complex decisions
+            'scrolling': 0.5,    # Quick scrolling action
+            'general': 1.0       # Default timing
+        }
+        
+        # Calculate final delay
+        final_delay = delay * action_multipliers.get(action_type, 1.0)
+        
+        # Add a small random variation (±10%) to make it even more human-like
+        variation = random.uniform(0.9, 1.1)
+        final_delay *= variation
+        
+        # Ensure reasonable bounds (0.3 to 15 seconds max)
+        final_delay = max(0.3, min(final_delay, 15.0))
+        
+        # Apply the delay
+        print(f"⏱️ Human timing: {final_delay:.1f}s ({action_type} on {question_type})")
+        time.sleep(final_delay)
         
         return final_delay
     
-    def _calculate_reading_time(self, content_length: int, content: str = "") -> float:
-        """Calculate time needed to read content."""
-        if content_length == 0:
-            return 0.1
-        
-        # Estimate words (average 5 characters per word)
-        estimated_words = content_length / 5
-        
-        # Base reading time
-        reading_time = estimated_words / (self.user_reading_speed / 60)  # Convert WPM to words per second
-        
-        # Complexity adjustment
-        complexity_factor = 1.0
-        if content:
-            content_lower = content.lower()
-            # Check for complex content
-            complex_indicators = ['research', 'documentary', 'sponsor', 'venue', 'statistical']
-            if any(indicator in content_lower for indicator in complex_indicators):
-                complexity_factor = 1.5
-        
-        return reading_time * complexity_factor
-    
-    def _calculate_thinking_time(self, base_range: Tuple[float, float], complexity: str) -> float:
-        """Calculate thinking/decision time."""
-        min_time, max_time = base_range
-        
-        # Complexity multiplier
-        complexity_multipliers = {
-            'simple': 0.7,
-            'medium': 1.0,
-            'complex': 1.4,
-            'very_complex': 1.8
-        }
-        
-        multiplier = complexity_multipliers.get(complexity, 1.0)
-        
-        # Apply decision speed personal factor
-        adjusted_min = min_time * multiplier / self.user_decision_speed
-        adjusted_max = max_time * multiplier / self.user_decision_speed
-        
-        # Random selection within range
-        thinking_time = random.uniform(adjusted_min, adjusted_max)
-        
-        return thinking_time
-    
-    def _get_personal_timing_factor(self) -> float:
-        """Get personal timing variation factor."""
-        # Each person has consistent but slightly variable timing
-        base_consistency = random.uniform(0.85, 1.15)
-        
-        # Small random variation for each action
-        action_variation = random.uniform(0.95, 1.05)
-        
-        return base_consistency * action_variation
-    
-    def _get_session_timing_factor(self) -> float:
-        """Get session-based timing factor (fatigue, rhythm)."""
-        # Session duration effect
-        session_duration = time.time() - self.session_start_time
-        session_minutes = session_duration / 60
-        
-        # Slight slowdown over time (fatigue)
-        fatigue_factor = 1.0 + (session_minutes * 0.01)  # 1% slower per minute
-        
-        # Rhythm factor (people get into a rhythm)
-        if self.actions_taken > 5:
-            rhythm_factor = random.uniform(0.95, 1.02)  # Slight speedup when in rhythm
-        else:
-            rhythm_factor = random.uniform(1.0, 1.1)    # Slightly slower when starting
-        
-        return fatigue_factor * rhythm_factor
-    
-    def _update_session_fatigue(self):
-        """Update session fatigue factor."""
-        # Gradual increase in fatigue
-        self.session_fatigue += random.uniform(0.001, 0.005)
-    
-    def typing_delay_for_text(self, text_length: int, text_content: str = "") -> float:
+    def quick_delay(self, min_seconds: float = 0.5, max_seconds: float = 1.5) -> float:
         """
-        Calculate realistic typing delay with pauses and corrections.
+        Quick delay for simple actions like page loads or navigation.
         
         Args:
-            text_length: Length of text to type
-            text_content: Actual text content
+            min_seconds: Minimum delay time
+            max_seconds: Maximum delay time
             
         Returns:
-            float: Typing delay in seconds
+            float: Actual delay applied
         """
-        if text_length == 0:
-            return 0.1
-        
-        # Base typing time
-        characters_per_second = (self.user_typing_speed * 5) / 60  # Convert WPM to chars/sec
-        base_typing_time = text_length / characters_per_second
-        
-        # Add thinking pauses (people pause while typing)
-        thinking_pauses = random.randint(0, max(1, text_length // 8))
-        pause_time = thinking_pauses * random.uniform(0.3, 1.2)
-        
-        # Add small corrections/backspaces
-        corrections = random.randint(0, max(1, text_length // 15))
-        correction_time = corrections * random.uniform(0.5, 1.5)
-        
-        # Add start/finish delay (positioning cursor, checking result)
-        start_delay = random.uniform(0.2, 0.8)
-        finish_delay = random.uniform(0.1, 0.5)
-        
-        total_time = base_typing_time + pause_time + correction_time + start_delay + finish_delay
-        
-        return total_time
+        delay = random.uniform(min_seconds, max_seconds)
+        time.sleep(delay)
+        return delay
     
-    def mouse_movement_delay(self, distance_category: str = "medium") -> float:
+    def reading_delay(self, text_length: int) -> float:
         """
-        Calculate realistic mouse movement delay.
+        Delay for reading text content.
+        Assumes average reading speed of 200-300 words per minute.
         
         Args:
-            distance_category: 'short', 'medium', 'long'
+            text_length: Length of text to read in characters
             
         Returns:
-            float: Mouse movement delay in seconds
+            float: Reading delay in seconds
         """
-        distance_times = {
-            'short': (0.1, 0.3),    # Same area of screen
-            'medium': (0.2, 0.6),   # Across part of screen
-            'long': (0.4, 1.0)      # Across full screen
-        }
+        # Average reading speed: 250 words per minute = ~1250 characters per minute
+        reading_speed_chars_per_second = 1250 / 60  # ~21 chars per second
         
-        min_time, max_time = distance_times.get(distance_category, (0.2, 0.6))
+        # Calculate base reading time
+        base_reading_time = text_length / reading_speed_chars_per_second
         
-        # Add personal coordination factor
-        coordination_factor = random.uniform(0.8, 1.3)
+        # Add processing time (humans need time to understand, not just read)
+        processing_time = base_reading_time * random.uniform(0.3, 0.7)
         
-        base_time = random.uniform(min_time, max_time)
-        return base_time * coordination_factor
+        total_time = base_reading_time + processing_time
+        
+        # Apply bounds (minimum 0.5 seconds, maximum 10 seconds for reading)
+        final_time = max(0.5, min(total_time, 10.0))
+        
+        print(f"📖 Reading delay: {final_time:.1f}s for {text_length} characters")
+        time.sleep(final_time)
+        
+        return final_time
+
+
+# Test the timing manager if run directly
+if __name__ == "__main__":
+    print("🧪 Testing Human-Like Timing Manager")
+    print("=" * 40)
     
-    def page_load_wait_time(self, expected_load_time: str = "normal") -> float:
-        """
-        Calculate realistic page load waiting time.
-        
-        Args:
-            expected_load_time: 'fast', 'normal', 'slow'
-            
-        Returns:
-            float: Wait time in seconds
-        """
-        load_expectations = {
-            'fast': (0.5, 1.5),      # Quick page updates
-            'normal': (1.0, 3.0),    # Normal page loads
-            'slow': (2.0, 5.0)       # Complex pages
-        }
-        
-        min_wait, max_wait = load_expectations.get(expected_load_time, (1.0, 3.0))
-        
-        # Add personal patience factor
-        patience_factor = random.uniform(0.7, 1.4)
-        
-        base_wait = random.uniform(min_wait, max_wait)
-        return base_wait * patience_factor
+    # Create a timing manager instance
+    timing = HumanLikeTimingManager()
     
-    def get_question_complexity(self, question_content: str) -> str:
-        """
-        Analyze question content to determine complexity level.
-        
-        Args:
-            question_content: The question text to analyze
-            
-        Returns:
-            str: Complexity level ('simple', 'medium', 'complex', 'very_complex')
-        """
-        if not question_content:
-            return "medium"
-        
-        content_lower = question_content.lower()
-        content_length = len(question_content)
-        
-        # Simple questions
-        simple_indicators = [
-            'age', 'gender', 'male', 'female', 'yes', 'no',
-            'select one', 'choose one', 'click'
-        ]
-        
-        # Complex questions
-        complex_indicators = [
-            'research', 'documentary', 'sponsor', 'venue', 'stadium',
-            'which company', 'what is the name of', 'multiple',
-            'select all that apply', 'rate each', 'agreement'
-        ]
-        
-        # Very complex questions
-        very_complex_indicators = [
-            'matrix', 'grid', 'table', 'multiple parts',
-            'several questions', 'compare', 'analyze'
-        ]
-        
-        # Count indicators
-        simple_count = sum(1 for indicator in simple_indicators if indicator in content_lower)
-        complex_count = sum(1 for indicator in complex_indicators if indicator in content_lower)
-        very_complex_count = sum(1 for indicator in very_complex_indicators if indicator in content_lower)
-        
-        # Length-based complexity
-        if content_length > 500:
-            length_complexity = "complex"
-        elif content_length > 200:
-            length_complexity = "medium"
-        else:
-            length_complexity = "simple"
-        
-        # Determine final complexity
-        if very_complex_count > 0 or length_complexity == "complex":
-            return "very_complex"
-        elif complex_count > simple_count or length_complexity == "medium":
-            return "complex"
-        elif simple_count > 0 and content_length < 100:
-            return "simple"
-        else:
-            return "medium"
+    # Test different scenarios
+    test_scenarios = [
+        ("demographics", "simple", "What is your age?"),
+        ("opinion", "complex", "How do you feel about the environmental impact of social media platforms and their responsibility for climate change?"),
+        ("brand_familiarity", "medium", "How familiar are you with the following brands?"),
+        ("multi_select", "medium", "Which of the following activities do you enjoy? (Select all that apply)")
+    ]
     
-    def apply_human_delay(self, action_type: str, question_content: str = "", 
-                         content_length: int = None) -> None:
-        """
-        Apply human-like delay with comprehensive timing analysis.
-        
-        Args:
-            action_type: Type of action being performed
-            question_content: The question text for analysis
-            content_length: Override content length if needed
-        """
-        if content_length is None:
-            content_length = len(question_content)
-        
-        # Determine complexity
-        complexity = self.get_question_complexity(question_content)
-        
-        # Calculate delay
-        delay = self.calculate_human_delay(
-            action_type=action_type,
-            content_complexity=complexity,
-            content_length=content_length,
-            question_content=question_content
+    print("\n🎯 Testing timing patterns:")
+    for question_type, complexity, question in test_scenarios:
+        delay = timing.calculate_human_delay(
+            question_type=question_type, 
+            complexity=complexity, 
+            content_length=len(question),
+            question_content=question
         )
-        
-        # Apply the delay
-        print(f"🕒 Human timing: {delay:.1f}s for {action_type} ({complexity} complexity)")
-        time.sleep(delay)
+        print(f"   {question_type:15} ({complexity:7}): {delay:.1f}s")
     
-    def apply_typing_delay(self, text: str) -> None:
-        """
-        Apply realistic typing delay.
-        
-        Args:
-            text: Text that would be typed
-        """
-        delay = self.typing_delay_for_text(len(text), text)
-        print(f"⌨️ Typing delay: {delay:.1f}s for {len(text)} characters")
-        time.sleep(delay)
+    print("\n📖 Testing reading delay:")
+    long_text = "This is a longer piece of text that might appear in a survey question or instructions. It requires more time to read and understand properly."
+    reading_time = timing.reading_delay(len(long_text))
     
-    def apply_mouse_delay(self, distance: str = "medium") -> None:
-        """
-        Apply realistic mouse movement delay.
-        
-        Args:
-            distance: Distance category ('short', 'medium', 'long')
-        """
-        delay = self.mouse_movement_delay(distance)
-        print(f"🖱️ Mouse delay: {delay:.1f}s for {distance} movement")
-        time.sleep(delay)
-    
-    def apply_page_wait(self, load_type: str = "normal") -> None:
-        """
-        Apply realistic page load waiting time.
-        
-        Args:
-            load_type: Expected load time ('fast', 'normal', 'slow')
-        """
-        delay = self.page_load_wait_time(load_type)
-        print(f"⏳ Page wait: {delay:.1f}s for {load_type} load")
-        time.sleep(delay)
-    
-    def get_timing_stats(self) -> Dict[str, Any]:
-        """Get current timing statistics and user profile."""
-        session_duration = time.time() - self.session_start_time
-        
-        return {
-            "user_profile": {
-                "typing_speed_wpm": self.user_typing_speed,
-                "reading_speed_wpm": self.user_reading_speed,
-                "decision_speed_factor": self.user_decision_speed
-            },
-            "session_stats": {
-                "duration_minutes": session_duration / 60,
-                "actions_taken": self.actions_taken,
-                "current_fatigue": self.session_fatigue,
-                "avg_action_interval": session_duration / max(1, self.actions_taken)
-            },
-            "timing_patterns": self.thinking_patterns
-        }
-    
-    def reset_session(self):
-        """Reset session-based timing factors."""
-        self.session_start_time = time.time()
-        self.actions_taken = 0
-        self.session_fatigue = 1.0
-        print("🔄 Timing session reset - fresh start!")
-    
-    def simulate_human_hesitation(self, probability: float = 0.3) -> None:
-        """
-        Occasionally simulate human hesitation/uncertainty.
-        
-        Args:
-            probability: Chance of hesitation (0.0 to 1.0)
-        """
-        if random.random() < probability:
-            hesitation_time = random.uniform(0.5, 2.0)
-            print(f"🤔 Human hesitation: {hesitation_time:.1f}s")
-            time.sleep(hesitation_time)
-    
-    def simulate_micro_break(self, probability: float = 0.1) -> None:
-        """
-        Occasionally simulate very brief micro-breaks.
-        
-        Args:
-            probability: Chance of micro-break (0.0 to 1.0)
-        """
-        if random.random() < probability:
-            break_time = random.uniform(1.0, 3.0)
-            print(f"☕ Micro-break: {break_time:.1f}s")
-            time.sleep(break_time)
-            
+    print("\n✅ Human-Like Timing Manager test completed!")
+    print("🎉 Ready for integration with your survey automation system!")

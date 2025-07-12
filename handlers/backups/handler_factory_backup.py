@@ -1,7 +1,6 @@
 """
 Handler Factory Module
 Intelligent handler selection based on confidence scoring.
-Enhanced with ultra-conservative confidence thresholds for learning system.
 """
 
 from .demographics_handler import EnhancedDemographicsHandler
@@ -14,21 +13,21 @@ from .research_handler import ResearchHandler  # NEW
 from .unknown_handler import UnknownHandler
 
 class HandlerFactory:
-    """Enhanced handler factory with ultra-conservative confidence thresholds and improved selection logic"""
+    """Enhanced handler factory with new handlers and improved selection logic"""
     
     def __init__(self, knowledge_base, intervention_manager):
         self.knowledge_base = knowledge_base
         self.intervention_manager = intervention_manager
         
-        # Initialize all handlers with None page (will be set later)
+        # Initialize all handlers
         self.handlers = {
             'demographics': EnhancedDemographicsHandler(None, knowledge_base, intervention_manager),
             'brand_familiarity': BrandFamiliarityHandler(None, knowledge_base, intervention_manager),
             'rating_matrix': RatingMatrixHandler(None, knowledge_base, intervention_manager),
             'multi_select': MultiSelectHandler(None, knowledge_base, intervention_manager),
-            'trust_rating': TrustRatingHandler(None, knowledge_base, intervention_manager),
+            'trust_rating': TrustRatingHandler(None, knowledge_base, intervention_manager),  # NEW
             'recency_activities': RecencyActivitiesHandler(None, knowledge_base, intervention_manager),
-            'research_required': ResearchHandler(None, knowledge_base, intervention_manager),
+            'research_required': ResearchHandler(None, knowledge_base, intervention_manager),  # NEW
             'unknown': UnknownHandler(None, knowledge_base, intervention_manager)
         }
         
@@ -37,23 +36,12 @@ class HandlerFactory:
             name: {'attempts': 0, 'successes': 0, 'confidence_scores': []} 
             for name in self.handlers.keys()
         }
-        
-        # Ultra-conservative confidence thresholds (98-99%) for enhanced learning
-        self.confidence_thresholds = {
-            "demographics": 0.98,        # 98% - highest confidence needed
-            "brand_familiarity": 0.98,   # 98% - matrix questions need precision
-            "rating_matrix": 0.99,       # 99% - complex interactions
-            "multi_select": 0.97,        # 97% - multiple selections
-            "trust_rating": 0.96,        # 96% - scaling questions
-            "research_required": 0.95,   # 95% - research complexity
-            "unknown": 0.99              # 99% - unknown patterns
-        }
-        
-        print(f"🎯 Ultra-conservative thresholds loaded: {len(self.confidence_thresholds)} question types")
-        print(f"🔧 Handler factory initialized with {len(self.handlers)} handlers")
+    
+    # Debug patch for handlers/handler_factory.py
+    # Replace the get_best_handler method with this debug version
 
     def get_best_handler(self, page, page_content):
-        """Get the best handler for the current question with ultra-conservative confidence scoring"""
+        """Get the best handler for the current question with enhanced confidence scoring"""
         
         print(f"=== 🔍 DEBUG: Handler Factory get_best_handler started ===")
         
@@ -144,36 +132,20 @@ class HandlerFactory:
         for name, handler, confidence in handler_confidences:
             print(f"   📊 {name}: {confidence:.2f}")
         
-        # Select best handler based on ULTRA-CONSERVATIVE confidence thresholds
-        if handler_confidences and handler_confidences[0][2] > 0.0:
+        # Select best handler based on confidence threshold
+        if handler_confidences and handler_confidences[0][2] > 0.5:
             best_name, best_handler, best_confidence = handler_confidences[0]
             
-            # Get the appropriate ultra-conservative threshold for this question type
-            required_threshold = self.confidence_thresholds.get(best_name, 0.95)
+            # Update statistics
+            self.handler_stats[best_name]['attempts'] += 1
+            self.handler_stats[best_name]['confidence_scores'].append(best_confidence)
             
-            # Apply ultra-conservative threshold check
-            if best_confidence >= required_threshold:
-                print(f"✅ High confidence ({best_confidence:.1%} >= {required_threshold:.1%}) - Using {best_name}")
-                print(f"🎯 ULTRA-CONSERVATIVE: {best_name} meets {required_threshold:.0%} threshold")
-                
-                # Update statistics
-                self.handler_stats[best_name]['attempts'] += 1
-                self.handler_stats[best_name]['confidence_scores'].append(best_confidence)
-                
-                print(f"✅ FACTORY DEBUG: Returning {best_name} handler")
-                return best_handler, best_confidence
-            else:
-                print(f"🔄 Low confidence ({best_confidence:.1%} < {required_threshold:.1%}) - Manual intervention required")
-                print(f"   📊 Required threshold for {best_name}: {required_threshold:.1%}")
-                print(f"🎯 ULTRA-CONSERVATIVE: Triggering manual intervention for learning")
-                
-                # Fall back to unknown handler (which will trigger manual intervention)
-                self.handler_stats['unknown']['attempts'] += 1
-                self.handlers['unknown'].page = page
-                print(f"🔍 FACTORY DEBUG: Unknown handler page: {type(self.handlers['unknown'].page)}")
-                return self.handlers['unknown'], 0.0
+            print(f"🎯 FACTORY DEBUG: Selected handler: {best_name} (confidence: {best_confidence:.2f})")
+            print(f"✅ FACTORY DEBUG: Returning {best_name} handler")
+            
+            return best_handler, best_confidence
         else:
-            # No handlers found with any confidence
+            # Fall back to unknown handler
             print("🔄 FACTORY DEBUG: No confident handler found, using unknown handler")
             self.handler_stats['unknown']['attempts'] += 1
             
@@ -326,27 +298,3 @@ class HandlerFactory:
             recommendations.append("📊 Insufficient data for handler recommendations - run more surveys")
         
         return recommendations
-    
-    def get_confidence_threshold_report(self):
-        """Get a report on confidence threshold performance"""
-        report = []
-        report.append("🎯 ULTRA-CONSERVATIVE CONFIDENCE THRESHOLD REPORT")
-        report.append("=" * 55)
-        
-        for handler_name, threshold in self.confidence_thresholds.items():
-            stats = self.handler_stats.get(handler_name, {})
-            attempts = stats.get('attempts', 0)
-            successes = stats.get('successes', 0)
-            confidence_scores = stats.get('confidence_scores', [])
-            
-            avg_confidence = (sum(confidence_scores) / len(confidence_scores)) if confidence_scores else 0
-            success_rate = (successes / attempts * 100) if attempts > 0 else 0
-            
-            report.append(f"📊 {handler_name.upper()}:")
-            report.append(f"   Threshold: {threshold:.0%}")
-            report.append(f"   Attempts: {attempts}")
-            report.append(f"   Success Rate: {success_rate:.1f}%")
-            report.append(f"   Avg Confidence: {avg_confidence:.1%}")
-            report.append("")
-        
-        return "\n".join(report)
