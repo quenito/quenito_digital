@@ -5,6 +5,7 @@ This replaces your existing demographics_handler.py with:
 - Bulletproof element detection (99.9% success rate)
 - Mixed question page handling (solves chocolate + demographics issue)
 - Semantic understanding (Male = Man = M)
+- Enhanced timing integration with realistic human behavior
 """
 
 import time
@@ -26,6 +27,7 @@ class EnhancedDemographicsHandler(BaseQuestionHandler):
     - Mixed question page intelligence (avoids chocolate/product questions)
     - Comprehensive error handling
     - Learning from failures
+    - Enhanced timing integration with realistic human behavior
     """
     
     def __init__(self, page, knowledge_base, intervention_manager):
@@ -209,11 +211,8 @@ class EnhancedDemographicsHandler(BaseQuestionHandler):
         
         return 0.0    
     
-    # Debug patch for handlers/demographics_handler.py
-    # Add this to the beginning of the handle() method
-
     def handle(self) -> bool:
-        """Handle demographic questions with proper page object validation."""
+        """Handle demographic questions with proper page object validation and enhanced timing."""
         
         print(f"=== 🔍 DEBUG: Demographics Handler started ===")
         
@@ -263,8 +262,6 @@ class EnhancedDemographicsHandler(BaseQuestionHandler):
         
         print("🔧 Enhanced Demographics handler processing...")
 
-        # Add this right after your existing debug code in the handle() method
-
         # DEBUG: Update detector page object and test it
         if hasattr(self, 'detector') and self.detector:
             print(f"🔍 DEMO DEBUG: Updating detector page object...")
@@ -299,6 +296,9 @@ class EnhancedDemographicsHandler(BaseQuestionHandler):
             return False
         
         try:
+            # Apply reading delay for page analysis
+            self.page_analysis_delay()
+            
             # Analyze the page to identify demographic questions
             page_content = self.page.inner_text('body')
             question_analysis = self._analyze_demographics_questions(page_content)
@@ -316,8 +316,8 @@ class EnhancedDemographicsHandler(BaseQuestionHandler):
                 
                 if self._process_demographic_question(question):
                     success_count += 1
-                    # Human-like delay between questions
-                    self.human_like_delay(800, 1500)
+                    # Enhanced human-like delay between questions
+                    self.human_like_delay(action_type="thinking", question_content="processing next demographic question")
                 else:
                     print(f"❌ Failed to process {question['type']} question")
             
@@ -330,10 +330,12 @@ class EnhancedDemographicsHandler(BaseQuestionHandler):
                 return True
             else:
                 print("⚠️ Demographics processing had too many failures")
+                print("🔄 Handler could not automate - requesting manual intervention")
                 return False
                 
         except Exception as e:
             print(f"❌ Critical error in enhanced demographics handler: {e}")
+            print("🔄 Handler could not automate - requesting manual intervention")
             return False
     
     def _analyze_demographics_questions(self, page_content: str) -> List[Dict[str, Any]]:
@@ -427,83 +429,86 @@ class EnhancedDemographicsHandler(BaseQuestionHandler):
         return True
     
     def _process_demographic_question(self, question_info: Dict[str, Any]) -> bool:
-            """
-            Process a single demographic question using Universal Element Detector.
-            Sync version - no async/await needed.
-            """
-            question_type = question_info['type']
-            target_value = question_info['target_value']
-            strategies = question_info['strategies']
+        """
+        Process a single demographic question using Universal Element Detector.
+        Sync version - no async/await needed.
+        """
+        question_type = question_info['type']
+        target_value = question_info['target_value']
+        strategies = question_info['strategies']
+        
+        print(f"🎯 Processing {question_type}: targeting '{target_value}'")
+        
+        # Apply thinking delay before processing question
+        self.human_like_delay(action_type="thinking", question_content=f"demographic question: {question_type}")
+        
+        # Special handling for occupation questions
+        if question_type == 'occupation':
+            occupation = self.user_demographics.get("occupation", "Data Analyst")
+            return self._handle_occupation_question(question_type, occupation)
+        
+        # Try each response strategy until one succeeds
+        for strategy in strategies:
+            print(f"   🔍 Trying strategy: {strategy}")
             
-            print(f"🎯 Processing {question_type}: targeting '{target_value}'")
-            
-            # Special handling for occupation questions
-            if question_type == 'occupation':
-                occupation = self.user_demographics.get("occupation", "Data Analyst")
-                return self._handle_occupation_question(question_type, occupation)
-            
-            # Try each response strategy until one succeeds
-            for strategy in strategies:
-                print(f"   🔍 Trying strategy: {strategy}")
-                
-                if self._execute_response_strategy(question_type, target_value, strategy):
-                    print(f"   ✅ Success with {strategy} strategy")
-                    return True
-                else:
-                    print(f"   ❌ Failed with {strategy} strategy")
-            
-            print(f"❌ All strategies failed for {question_type}")
-            return False
+            if self._execute_response_strategy(question_type, target_value, strategy):
+                print(f"   ✅ Success with {strategy} strategy")
+                return True
+            else:
+                print(f"   ❌ Failed with {strategy} strategy")
+        
+        print(f"❌ All strategies failed for {question_type}")
+        return False
     
     def _handle_occupation_question(self, question_type: str, target_value: str) -> bool:
-            """Handle occupation/job title questions with multiple fallback options"""
+        """Handle occupation/job title questions with multiple fallback options"""
+        
+        print(f"🎯 Processing occupation: targeting '{target_value}'")
+        
+        # Get additional occupation-related values for fallbacks
+        job_title = self.user_demographics.get("job_title", target_value)
+        industry = self.user_demographics.get("industry", "Retail")
+        sub_industry = self.user_demographics.get("sub_industry", "Supermarkets")
+        industry_full = self.user_demographics.get("industry_full", "Retail - Supermarkets")
+        
+        print(f"🔍 Available options: {target_value}, {job_title}, {industry}, {sub_industry}, {industry_full}")
+        
+        # Strategy 1: Try text input first (most common for occupation)
+        print(f"🔍 Trying text input for occupation...")
+        if self._handle_text_input(question_type, target_value):
+            return True
+        
+        # Strategy 2: Try dropdown selection with primary value
+        print(f"🔍 Trying dropdown selection for occupation...")
+        if self._handle_dropdown_selection(question_type, target_value):
+            return True
             
-            print(f"🎯 Processing occupation: targeting '{target_value}'")
-            
-            # Get additional occupation-related values for fallbacks
-            job_title = self.user_demographics.get("job_title", target_value)
-            industry = self.user_demographics.get("industry", "Retail")
-            sub_industry = self.user_demographics.get("sub_industry", "Supermarkets")
-            industry_full = self.user_demographics.get("industry_full", "Retail - Supermarkets")
-            
-            print(f"🔍 Available options: {target_value}, {job_title}, {industry}, {sub_industry}, {industry_full}")
-            
-            # Strategy 1: Try text input first (most common for occupation)
-            print(f"🔍 Trying text input for occupation...")
-            if self._handle_text_input(question_type, target_value):
-                return True
-            
-            # Strategy 2: Try dropdown selection with primary value
-            print(f"🔍 Trying dropdown selection for occupation...")
-            if self._handle_dropdown_selection(question_type, target_value):
-                return True
+        # Strategy 3: Try radio button selection
+        print(f"🔍 Trying radio selection for occupation...")
+        if self._handle_radio_selection(question_type, target_value):
+            return True
+        
+        # Strategy 4: Try industry-based fallbacks if specific job title doesn't work
+        fallback_options = [job_title, industry, sub_industry, industry_full]
+        
+        for fallback in fallback_options:
+            if fallback != target_value:  # Don't retry the same value
+                print(f"🔄 Trying fallback option: {fallback}")
                 
-            # Strategy 3: Try radio button selection
-            print(f"🔍 Trying radio selection for occupation...")
-            if self._handle_radio_selection(question_type, target_value):
-                return True
-            
-            # Strategy 4: Try industry-based fallbacks if specific job title doesn't work
-            fallback_options = [job_title, industry, sub_industry, industry_full]
-            
-            for fallback in fallback_options:
-                if fallback != target_value:  # Don't retry the same value
-                    print(f"🔄 Trying fallback option: {fallback}")
+                # Try text input with fallback
+                if self._handle_text_input(question_type, fallback):
+                    return True
+                
+                # Try dropdown with fallback
+                if self._handle_dropdown_selection(question_type, fallback):
+                    return True
                     
-                    # Try text input with fallback
-                    if self._handle_text_input(question_type, fallback):
-                        return True
-                    
-                    # Try dropdown with fallback
-                    if self._handle_dropdown_selection(question_type, fallback):
-                        return True
-                        
-                    # Try radio with fallback
-                    if self._handle_radio_selection(question_type, fallback):
-                        return True
-            
-            print(f"❌ Could not handle occupation question with any available options")
-            return False
+                # Try radio with fallback
+                if self._handle_radio_selection(question_type, fallback):
+                    return True
+        
+        print(f"❌ Could not handle occupation question with any available options")
+        return False
 
     def _execute_response_strategy(self, question_type: str, target_value: str, strategy: str) -> bool:
         """
@@ -529,7 +534,6 @@ class EnhancedDemographicsHandler(BaseQuestionHandler):
             print(f"❌ Error executing {strategy}: {e}")
             return False
     
-    # Update the _handle_text_input method in demographics_handler.py
     def _handle_text_input(self, question_type: str, target_value: str) -> bool:
         """Handle text input fields (age, postcode, etc.) - FIXED VERSION FOR EMPTY INPUTS"""
         
@@ -558,8 +562,16 @@ class EnhancedDemographicsHandler(BaseQuestionHandler):
                                 # This looks like an age input - try to fill it
                                 print(f"✅ DEMO DEBUG: Found suitable input for age (type: {input_type})")
                                 
+                                # Apply typing delay for realistic text input
+                                self.typing_delay(target_value)
                                 input_element.fill(target_value)
-                                self.human_like_delay(300, 800)
+                                
+                                # Quick delay after filling
+                                if hasattr(self, 'timing_manager') and self.timing_manager:
+                                    self.timing_manager.quick_delay(0.3, 0.8)
+                                else:
+                                    time.sleep(random.uniform(0.3, 0.8))
+                                
                                 print(f"✅ Filled text input with: {target_value}")
                                 return True
                         
@@ -567,8 +579,16 @@ class EnhancedDemographicsHandler(BaseQuestionHandler):
                         elif current_value == "":
                             print(f"✅ DEMO DEBUG: Found empty input for {question_type}")
                             
+                            # Apply typing delay for realistic text input
+                            self.typing_delay(target_value)
                             input_element.fill(target_value)
-                            self.human_like_delay(300, 800)
+                            
+                            # Quick delay after filling
+                            if hasattr(self, 'timing_manager') and self.timing_manager:
+                                self.timing_manager.quick_delay(0.3, 0.8)
+                            else:
+                                time.sleep(random.uniform(0.3, 0.8))
+                            
                             print(f"✅ Filled text input with: {target_value}")
                             return True
                             
@@ -583,8 +603,6 @@ class EnhancedDemographicsHandler(BaseQuestionHandler):
             print(f"❌ DEMO DEBUG: Error finding text inputs: {e}")
             return False
     
-    # Replace the _handle_radio_selection method in demographics_handler.py
-
     def _handle_radio_selection(self, question_type: str, target_value: str) -> bool:
         """Handle radio button selections - ENHANCED FOR SURVEYMONKEY"""
         
@@ -616,7 +634,7 @@ class EnhancedDemographicsHandler(BaseQuestionHandler):
                             
                             print(f"✅ RADIO DEBUG: Found match for '{value_to_check}' in radio {i+1}")
                             
-                            # Try to click this radio button
+                            # Try to click this radio button with enhanced timing
                             success = self.click_radio_button_safely(radio, f"{question_type}: {value_to_check}")
                             if success:
                                 print(f"✅ Successfully selected radio button for: {value_to_check}")
@@ -688,6 +706,9 @@ class EnhancedDemographicsHandler(BaseQuestionHandler):
         
         alternatives = self._get_value_alternatives(question_type, target_value)
         
+        # Apply thinking delay before dropdown interaction
+        self.human_like_delay(action_type="thinking", question_content=f"dropdown selection for {question_type}")
+        
         # Find dropdown first
         dropdowns = self.page.query_selector_all('select')
         print(f"🔍 DEMO DEBUG: Found {len(dropdowns)} dropdown elements")
@@ -701,14 +722,26 @@ class EnhancedDemographicsHandler(BaseQuestionHandler):
                     try:
                         # Try by value
                         dropdown.select_option(value=value_to_try)
-                        self.human_like_delay(300, 700)
+                        
+                        # Apply delay after selection
+                        if hasattr(self, 'timing_manager') and self.timing_manager:
+                            self.timing_manager.quick_delay(0.3, 0.7)
+                        else:
+                            time.sleep(random.uniform(0.3, 0.7))
+                        
                         print(f"✅ Selected dropdown option by value: {value_to_try}")
                         return True
                     except:
                         try:
                             # Try by label
                             dropdown.select_option(label=value_to_try)
-                            self.human_like_delay(300, 700)
+                            
+                            # Apply delay after selection
+                            if hasattr(self, 'timing_manager') and self.timing_manager:
+                                self.timing_manager.quick_delay(0.3, 0.7)
+                            else:
+                                time.sleep(random.uniform(0.3, 0.7))
+                            
                             print(f"✅ Selected dropdown option by label: {value_to_try}")
                             return True
                         except:
@@ -829,8 +862,3 @@ class EnhancedDemographicsHandler(BaseQuestionHandler):
     def get_detection_performance(self) -> Dict[str, Any]:
         """Get performance statistics from the Universal Element Detector."""
         return self.detector.get_detection_stats()
-    
-    def human_like_delay(self, min_ms=800, max_ms=1500):
-        """Generate human-like delays."""
-        delay = random.randint(min_ms, max_ms) / 1000
-        time.sleep(delay)
