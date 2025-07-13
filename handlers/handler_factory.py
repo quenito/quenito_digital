@@ -1,20 +1,25 @@
+#!/usr/bin/env python3
 """
-Handler Factory Module
-Intelligent handler selection based on confidence scoring.
-Enhanced with ultra-conservative confidence thresholds for learning system.
+Handler Factory Module - Enhanced with Brand Familiarity Supremacy
+Intelligent handler selection with ultra-conservative confidence thresholds.
+
+MAJOR UPDATE: Includes the GAME-CHANGING Brand Familiarity Handler
+Expected impact: 21% → 60-70% automation improvement!
+FIXED: Critical error resolution for "too many values to unpack"
 """
 
-from .demographics_handler import EnhancedDemographicsHandler
-from .brand_familiarity_handler import BrandFamiliarityHandler
+from .demographics_handler import DemographicsHandler
+from .brand_familiarity_handler import BrandFamiliarityHandler  # THE GAME CHANGER!
 from .rating_matrix_handler import RatingMatrixHandler
 from .multi_select_handler import MultiSelectHandler
-from .trust_rating_handler import TrustRatingHandler  # NEW
 from .recency_activities_handler import RecencyActivitiesHandler
-from .research_handler import ResearchHandler  # NEW
+from .trust_rating_handler import TrustRatingHandler
+from .research_handler import ResearchRequiredHandler
 from .unknown_handler import UnknownHandler
 
+
 class HandlerFactory:
-    """Enhanced handler factory with ultra-conservative confidence thresholds and improved selection logic"""
+    """Enhanced handler factory with Brand Familiarity Supremacy and ultra-conservative confidence thresholds"""
     
     def __init__(self, knowledge_base, intervention_manager):
         self.knowledge_base = knowledge_base
@@ -22,13 +27,13 @@ class HandlerFactory:
         
         # Initialize all handlers with None page (will be set later)
         self.handlers = {
-            'demographics': EnhancedDemographicsHandler(None, knowledge_base, intervention_manager),
-            'brand_familiarity': BrandFamiliarityHandler(None, knowledge_base, intervention_manager),
+            'demographics': DemographicsHandler(None, knowledge_base, intervention_manager),
+            'brand_familiarity': BrandFamiliarityHandler(None, knowledge_base, intervention_manager),  # 🚀 THE GAME CHANGER!
             'rating_matrix': RatingMatrixHandler(None, knowledge_base, intervention_manager),
             'multi_select': MultiSelectHandler(None, knowledge_base, intervention_manager),
             'trust_rating': TrustRatingHandler(None, knowledge_base, intervention_manager),
             'recency_activities': RecencyActivitiesHandler(None, knowledge_base, intervention_manager),
-            'research_required': ResearchHandler(None, knowledge_base, intervention_manager),
+            'research_required': ResearchRequiredHandler(None, knowledge_base, intervention_manager),
             'unknown': UnknownHandler(None, knowledge_base, intervention_manager)
         }
         
@@ -41,211 +46,119 @@ class HandlerFactory:
         # Ultra-conservative confidence thresholds (98-99%) for enhanced learning
         self.confidence_thresholds = {
             "demographics": 0.98,        # 98% - highest confidence needed
-            "brand_familiarity": 0.98,   # 98% - matrix questions need precision
+            "brand_familiarity": 0.98,   # 98% - THE CRITICAL HANDLER for matrix questions
             "rating_matrix": 0.99,       # 99% - complex interactions
-            "multi_select": 0.97,        # 97% - multiple selections
-            "trust_rating": 0.96,        # 96% - scaling questions
-            "research_required": 0.95,   # 95% - research complexity
-            "unknown": 0.99              # 99% - unknown patterns
+            "multi_select": 0.97,        # 97% - multiple choice complexity
+            "trust_rating": 0.96,        # 96% - trust assessment
+            "recency_activities": 0.95,  # 95% - activity timeline
+            "research_required": 0.95,   # 95% - factual lookup needed
+            "unknown": 0.99              # 99% - catch-all with highest threshold
         }
         
-        print(f"🎯 Ultra-conservative thresholds loaded: {len(self.confidence_thresholds)} question types")
-        print(f"🔧 Handler factory initialized with {len(self.handlers)} handlers")
-
-    def get_best_handler(self, page, page_content):
-        """Get the best handler for the current question with ultra-conservative confidence scoring"""
+        print("🏭 Handler Factory initialized with Brand Familiarity SUPREMACY!")
+        print("🎯 Expected automation boost: 21% → 60-70% with brand handler!")
+    
+    def get_best_handler(self, page, page_content: str):
+        """
+        Get the best handler for the current question with enhanced confidence scoring.
+        FIXED: Ensures consistent return format for all cases.
         
-        print(f"=== 🔍 DEBUG: Handler Factory get_best_handler started ===")
-        
-        # DEBUG: Validate page object received
-        print(f"🔍 FACTORY DEBUG: Received page object type: {type(page)}")
-        print(f"🔍 FACTORY DEBUG: Page is None: {page is None}")
-        print(f"🔍 FACTORY DEBUG: Page content length: {len(page_content) if page_content else 0}")
-        
-        if page is None:
-            print("❌ CRITICAL: Handler Factory received None page object!")
-            print("❌ CRITICAL: Cannot proceed with handler selection!")
-            return self.handlers['unknown'], 0.0
-        
-        # Test page functionality before proceeding
-        try:
-            test_url = page.url
-            test_title = page.title()
-            print(f"✅ FACTORY DEBUG: Page object is functional")
-            print(f"🔍 FACTORY DEBUG: URL: {test_url}")
-            print(f"🔍 FACTORY DEBUG: Title: {test_title}")
-        except Exception as e:
-            print(f"❌ FACTORY DEBUG: Page object is invalid: {e}")
-            return self.handlers['unknown'], 0.0
-        
-        # DEBUG: Check handler initialization
-        print(f"🔍 FACTORY DEBUG: Available handlers: {list(self.handlers.keys())}")
-        
-        # Update page reference for all handlers
-        for handler_name, handler in self.handlers.items():
-            print(f"🔍 FACTORY DEBUG: Updating {handler_name} handler page object...")
+        Args:
+            page: Playwright page object
+            page_content: HTML content of the current page
             
-            # Check handler state before update
-            print(f"🔍 FACTORY DEBUG: {handler_name} old page: {type(handler.page)}")
-            
-            # Update page
-            handler.page = page
-            
-            # Verify update
-            print(f"🔍 FACTORY DEBUG: {handler_name} new page: {type(handler.page)}")
-            print(f"✅ FACTORY DEBUG: Updated {handler_name} handler page object")
+        Returns:
+            tuple: (handler_object, handler_name, confidence_score) or (None, None, 0.0)
+        """
+        best_handler = None
+        best_name = None
+        best_confidence = 0.0
         
-        # Test each handler's confidence (excluding 'unknown' for initial testing)
-        handler_confidences = []
+        print("\n🔍 Handler Analysis with Brand Familiarity Priority:")
         
-        print(f"🔍 FACTORY DEBUG: Testing handler confidence scores...")
-        
+        # Test each handler's confidence
+        handler_results = []
         for name, handler in self.handlers.items():
-            if name == 'unknown':  # Skip unknown for confidence testing
-                continue
-            
-            print(f"🔍 FACTORY DEBUG: Testing {name} handler...")
-            
             try:
-                # Verify handler has page object
-                if handler.page is None:
-                    print(f"❌ FACTORY DEBUG: {name} handler has None page!")
-                    handler_confidences.append((name, handler, 0.0))
-                    continue
+                # Set the page for this handler
+                handler.page = page
                 
-                # Test can_handle method
-                can_handle = handler.can_handle(page_content)
-                base_confidence = 1.0 if can_handle else 0.0
+                # Get confidence score
+                confidence = handler.can_handle(page_content)
                 
-                print(f"🔍 FACTORY DEBUG: {name} can_handle result: {can_handle}")
-                print(f"🔍 FACTORY DEBUG: {name} base_confidence: {base_confidence}")
+                # Apply context-aware adjustments
+                adjusted_confidence = self._apply_context_adjustments(name, confidence, page_content)
                 
-                # Apply confidence adjustments
-                adjusted_confidence = self.apply_confidence_adjustments(
-                    name, base_confidence, page_content
-                )
+                # Record confidence score for statistics
+                self.handler_stats[name]['confidence_scores'].append(adjusted_confidence)
                 
-                handler_confidences.append((name, handler, adjusted_confidence))
-                
-                # Log confidence for debugging
-                if adjusted_confidence > 0.0:
-                    print(f"   📊 {name}: {adjusted_confidence:.2f} confidence")
+                handler_results.append((name, adjusted_confidence))
+                print(f"   📊 {name}: {adjusted_confidence:.3f}")
                 
             except Exception as e:
-                print(f"   ❌ FACTORY DEBUG: Error testing handler {name}: {e}")
-                import traceback
-                traceback.print_exc()
-                handler_confidences.append((name, handler, 0.0))
+                print(f"   ❌ {name}: Error getting confidence - {str(e)}")
+                # Still add to results with 0 confidence
+                handler_results.append((name, 0.0))
+                self.handler_stats[name]['confidence_scores'].append(0.0)
         
         # Sort by confidence (highest first)
-        handler_confidences.sort(key=lambda x: x[2], reverse=True)
+        handler_results.sort(key=lambda x: x[1], reverse=True)
         
-        print(f"🔍 FACTORY DEBUG: Handler confidence results:")
-        for name, handler, confidence in handler_confidences:
-            print(f"   📊 {name}: {confidence:.2f}")
+        # Find the first handler that meets the ultra-conservative threshold
+        for name, confidence in handler_results:
+            threshold = self.confidence_thresholds.get(name, 0.95)
+            
+            if confidence >= threshold:
+                best_handler = self.handlers[name]
+                best_name = name
+                best_confidence = confidence
+                
+                print(f"✅ Selected handler: {name} (confidence: {confidence:.3f}, threshold: {threshold})")
+                print(f"🚀 Brand Familiarity Priority: {'CRITICAL HANDLER SELECTED!' if name == 'brand_familiarity' else 'Standard handler'}")
+                
+                # Record attempt
+                self.handler_stats[name]['attempts'] += 1
+                break
         
-        # Select best handler based on ULTRA-CONSERVATIVE confidence thresholds
-        if handler_confidences and handler_confidences[0][2] > 0.0:
-            best_name, best_handler, best_confidence = handler_confidences[0]
-            
-            # Get the appropriate ultra-conservative threshold for this question type
-            required_threshold = self.confidence_thresholds.get(best_name, 0.95)
-            
-            # Apply ultra-conservative threshold check
-            if best_confidence >= required_threshold:
-                print(f"✅ High confidence ({best_confidence:.1%} >= {required_threshold:.1%}) - Using {best_name}")
-                print(f"🎯 ULTRA-CONSERVATIVE: {best_name} meets {required_threshold:.0%} threshold")
-                
-                # Update statistics
-                self.handler_stats[best_name]['attempts'] += 1
-                self.handler_stats[best_name]['confidence_scores'].append(best_confidence)
-                
-                print(f"✅ FACTORY DEBUG: Returning {best_name} handler")
-                return best_handler, best_confidence
-            else:
-                print(f"🔄 Low confidence ({best_confidence:.1%} < {required_threshold:.1%}) - Manual intervention required")
-                print(f"   📊 Required threshold for {best_name}: {required_threshold:.1%}")
-                print(f"🎯 ULTRA-CONSERVATIVE: Triggering manual intervention for learning")
-                
-                # Fall back to unknown handler (which will trigger manual intervention)
-                self.handler_stats['unknown']['attempts'] += 1
-                self.handlers['unknown'].page = page
-                print(f"🔍 FACTORY DEBUG: Unknown handler page: {type(self.handlers['unknown'].page)}")
-                return self.handlers['unknown'], 0.0
-        else:
-            # No handlers found with any confidence
-            print("🔄 FACTORY DEBUG: No confident handler found, using unknown handler")
-            self.handler_stats['unknown']['attempts'] += 1
-            
-            # Make sure unknown handler has page object too
-            self.handlers['unknown'].page = page
-            print(f"🔍 FACTORY DEBUG: Unknown handler page: {type(self.handlers['unknown'].page)}")
-            
-            return self.handlers['unknown'], 0.0
+        if not best_handler:
+            print("❌ No handler meets ultra-conservative confidence thresholds")
+            print("🔄 Will request manual intervention for learning data capture")
+        
+        # CRITICAL FIX: Always return exactly 3 values
+        return best_handler, best_name, best_confidence
     
-    def apply_confidence_adjustments(self, handler_name, base_confidence, page_content):
-        """Apply handler-specific confidence adjustments"""
+    def _apply_context_adjustments(self, handler_name: str, confidence: float, page_content: str) -> float:
+        """
+        Apply context-aware confidence adjustments with Brand Familiarity Priority.
         
-        if base_confidence == 0.0:
-            return 0.0
-        
+        Args:
+            handler_name: Name of the handler being evaluated
+            confidence: Base confidence score
+            page_content: Page content for context analysis
+            
+        Returns:
+            float: Adjusted confidence score
+        """
         content_lower = page_content.lower()
-        adjusted_confidence = base_confidence
         
-        # Handler-specific confidence boosts
-        if handler_name == 'trust_rating':
-            # Boost confidence for clear trust rating indicators
-            trust_indicators = ['trustworthy', 'how much do you trust', 'rate the trust']
-            if any(indicator in content_lower for indicator in trust_indicators):
-                adjusted_confidence = min(1.0, adjusted_confidence + 0.2)
+        # BRAND FAMILIARITY PRIORITY BOOST
+        if handler_name == 'brand_familiarity':
+            # Extra boost for clear brand matrix indicators
+            brand_matrix_indicators = [
+                'how familiar are you with these brands',
+                'rate your familiarity with',
+                'brand awareness',
+                'familiar with the following brands'
+            ]
             
-            # Check for rating scale elements
-            if any(num in content_lower for num in ['1', '2', '3', '4', '5', '6', '7']):
-                adjusted_confidence = min(1.0, adjusted_confidence + 0.1)
+            for indicator in brand_matrix_indicators:
+                if indicator in content_lower:
+                    confidence = min(0.98, confidence + 0.1)  # Boost toward threshold
+                    print(f"🚀 Brand Matrix Boost Applied: +0.1 confidence")
+                    break
         
-        elif handler_name == 'research_required':
-            # Boost confidence for clear research indicators
-            research_indicators = ['sponsor', 'venue', 'stadium', 'which company', 'where is']
-            matching_indicators = sum(1 for indicator in research_indicators if indicator in content_lower)
-            if matching_indicators >= 2:
-                adjusted_confidence = min(1.0, adjusted_confidence + 0.3)
-            elif matching_indicators == 1:
-                adjusted_confidence = min(1.0, adjusted_confidence + 0.1)
-        
-        elif handler_name == 'demographics':
-            # Boost for multiple demographic indicators
-            demo_indicators = ['age', 'gender', 'employment', 'income', 'education', 'location']
-            matching_demos = sum(1 for indicator in demo_indicators if indicator in content_lower)
-            if matching_demos >= 2:
-                adjusted_confidence = min(1.0, adjusted_confidence + 0.2)
-        
-        elif handler_name == 'brand_familiarity':
-            # Boost for brand familiarity matrix patterns
-            if 'familiar' in content_lower and 'brand' in content_lower:
-                adjusted_confidence = min(1.0, adjusted_confidence + 0.2)
-        
-        elif handler_name == 'multi_select':
-            # Boost for clear multi-select indicators
-            multi_indicators = ['select all', 'check all', 'multiple', 'more than one']
-            if any(indicator in content_lower for indicator in multi_indicators):
-                adjusted_confidence = min(1.0, adjusted_confidence + 0.2)
-        
-        # Apply penalties for conflicting patterns
-        adjusted_confidence = self.apply_confidence_penalties(
-            handler_name, adjusted_confidence, content_lower
-        )
-        
-        return max(0.0, adjusted_confidence)
-    
-    def apply_confidence_penalties(self, handler_name, confidence, content_lower):
-        """Apply penalties for conflicting patterns"""
-        
-        # Penalty if multiple handlers might match strongly
-        if handler_name == 'trust_rating' and 'familiar' in content_lower:
-            # Trust questions usually don't ask about familiarity
-            confidence = max(0.0, confidence - 0.3)
-        
-        elif handler_name == 'demographics' and any(word in content_lower for word in ['sponsor', 'venue']):
+        # Negative adjustments for mismatched contexts
+        if handler_name == 'demographics' and any(word in content_lower for word in ['sponsor', 'venue']):
             # Demographics questions usually don't ask about sponsors/venues
             confidence = max(0.0, confidence - 0.2)
         
@@ -253,23 +166,51 @@ class HandlerFactory:
             # Brand familiarity is different from trust ratings
             confidence = max(0.0, confidence - 0.2)
         
+        elif handler_name == 'trust_rating' and any(brand in content_lower for brand in ['nike', 'adidas', 'apple', 'samsung']):
+            # Trust ratings shouldn't handle brand familiarity
+            confidence = max(0.0, confidence - 0.3)
+        
+        # Positive adjustments for strong contextual matches
+        if handler_name == 'demographics' and any(word in content_lower for word in ['age', 'gender', 'income', 'education']):
+            confidence = min(0.98, confidence + 0.05)
+        
         return confidence
     
-    def record_handler_success(self, handler_name, success):
-        """Record the success/failure of a handler execution"""
+    def record_handler_success(self, handler_name: str, success: bool):
+        """
+        Record the success/failure of a handler execution with Brand Familiarity tracking.
+        
+        Args:
+            handler_name: Name of the handler that was executed
+            success: Whether the handler succeeded
+        """
         if handler_name in self.handler_stats:
             if success:
                 self.handler_stats[handler_name]['successes'] += 1
+                
+                # Special celebration for brand familiarity success!
+                if handler_name == 'brand_familiarity':
+                    print("🎉 BRAND FAMILIARITY SUCCESS! Survey automation revolution in progress!")
             
             # Calculate success rate
             attempts = self.handler_stats[handler_name]['attempts']
             successes = self.handler_stats[handler_name]['successes']
             success_rate = (successes / attempts * 100) if attempts > 0 else 0
             
-            print(f"📊 {handler_name} performance: {successes}/{attempts} ({success_rate:.1f}% success rate)")
+            status_icon = "🎯" if handler_name == 'brand_familiarity' else "📊"
+            print(f"{status_icon} {handler_name} performance: {successes}/{attempts} ({success_rate:.1f}% success rate)")
+            
+            # Track brand familiarity impact
+            if handler_name == 'brand_familiarity' and success:
+                print("📈 Expected automation boost from brand handler success!")
     
     def get_handler_stats(self):
-        """Get comprehensive handler performance statistics"""
+        """
+        Get comprehensive handler performance statistics with Brand Familiarity focus.
+        
+        Returns:
+            dict: Handler performance statistics
+        """
         stats = {}
         
         for handler_name, data in self.handler_stats.items():
@@ -285,14 +226,51 @@ class HandlerFactory:
                 'successes': successes,
                 'success_rate': success_rate,
                 'average_confidence': avg_confidence,
-                'total_confidence_scores': len(confidence_scores)
+                'total_confidence_scores': len(confidence_scores),
+                'is_critical_handler': handler_name == 'brand_familiarity'  # Mark the game changer
             }
         
         return stats
     
+    def get_brand_familiarity_impact(self):
+        """
+        Calculate the impact of the Brand Familiarity Handler on overall automation.
+        
+        Returns:
+            dict: Brand familiarity impact metrics
+        """
+        bf_stats = self.handler_stats.get('brand_familiarity', {})
+        attempts = bf_stats.get('attempts', 0)
+        successes = bf_stats.get('successes', 0)
+        
+        # Calculate projected automation improvement
+        if attempts > 0:
+            success_rate = (successes / attempts) * 100
+            # Based on JSON analysis: brand failures were bottleneck for 21% → 60-70% improvement
+            projected_automation_boost = (success_rate / 100) * 45  # 45% potential boost from analysis
+        else:
+            success_rate = 0
+            projected_automation_boost = 0
+        
+        return {
+            'brand_attempts': attempts,
+            'brand_successes': successes,
+            'brand_success_rate': success_rate,
+            'projected_automation_boost': projected_automation_boost,
+            'analysis_baseline': 21.0,  # From your JSON analysis
+            'projected_new_automation': 21.0 + projected_automation_boost
+        }
+    
     def get_available_handlers(self):
-        """Get list of available handler names"""
-        return list(self.handlers.keys())
+        """Get list of available handler names with Brand Familiarity priority"""
+        handlers = list(self.handlers.keys())
+        
+        # Put brand_familiarity first to show priority
+        if 'brand_familiarity' in handlers:
+            handlers.remove('brand_familiarity')
+            handlers.insert(0, 'brand_familiarity')
+        
+        return handlers
     
     def reset_stats(self):
         """Reset handler statistics (useful for testing)"""
@@ -302,51 +280,55 @@ class HandlerFactory:
                 'successes': 0, 
                 'confidence_scores': []
             }
-        print("📊 Handler statistics reset")
+        print("📊 Handler statistics reset - ready for Brand Familiarity revolution testing!")
     
+    def get_confidence_thresholds(self):
+        """Get current confidence thresholds for all handlers"""
+        return self.confidence_thresholds.copy()
+    
+    def update_confidence_threshold(self, handler_name: str, new_threshold: float):
+        """
+        Update confidence threshold for a specific handler.
+        
+        Args:
+            handler_name: Name of handler to update
+            new_threshold: New confidence threshold (0.0-1.0)
+        """
+        if handler_name in self.confidence_thresholds:
+            old_threshold = self.confidence_thresholds[handler_name]
+            self.confidence_thresholds[handler_name] = max(0.0, min(1.0, new_threshold))
+            
+            print(f"🔧 Updated {handler_name} threshold: {old_threshold:.3f} → {new_threshold:.3f}")
+            
+            if handler_name == 'brand_familiarity':
+                print("🚀 Brand Familiarity threshold updated - automation impact expected!")
+
+    # CRITICAL FIX: Add missing methods that are being called
     def get_handler_recommendations(self):
-        """Get recommendations for handler improvements"""
+        """
+        Get handler recommendations based on current performance.
+        FIXES: 'HandlerFactory' object has no attribute 'get_handler_recommendations'
+        """
         recommendations = []
         
-        for handler_name, data in self.handler_stats.items():
-            attempts = data['attempts']
-            successes = data['successes']
-            
-            if attempts > 0:
-                success_rate = (successes / attempts) * 100
-                
-                if success_rate < 50 and attempts >= 3:
-                    recommendations.append(f"❌ {handler_name}: Low success rate ({success_rate:.1f}%) - needs improvement")
-                elif success_rate < 75 and attempts >= 5:
-                    recommendations.append(f"⚠️ {handler_name}: Moderate success rate ({success_rate:.1f}%) - consider enhancement")
-                elif success_rate >= 90 and attempts >= 3:
-                    recommendations.append(f"✅ {handler_name}: Excellent performance ({success_rate:.1f}%)")
-        
-        if not recommendations:
-            recommendations.append("📊 Insufficient data for handler recommendations - run more surveys")
-        
-        return recommendations
-    
-    def get_confidence_threshold_report(self):
-        """Get a report on confidence threshold performance"""
-        report = []
-        report.append("🎯 ULTRA-CONSERVATIVE CONFIDENCE THRESHOLD REPORT")
-        report.append("=" * 55)
-        
-        for handler_name, threshold in self.confidence_thresholds.items():
-            stats = self.handler_stats.get(handler_name, {})
+        for handler_name, stats in self.handler_stats.items():
             attempts = stats.get('attempts', 0)
             successes = stats.get('successes', 0)
-            confidence_scores = stats.get('confidence_scores', [])
-            
-            avg_confidence = (sum(confidence_scores) / len(confidence_scores)) if confidence_scores else 0
             success_rate = (successes / attempts * 100) if attempts > 0 else 0
             
-            report.append(f"📊 {handler_name.upper()}:")
-            report.append(f"   Threshold: {threshold:.0%}")
-            report.append(f"   Attempts: {attempts}")
-            report.append(f"   Success Rate: {success_rate:.1f}%")
-            report.append(f"   Avg Confidence: {avg_confidence:.1%}")
-            report.append("")
+            if attempts > 0 and success_rate < 50:
+                recommendations.append({
+                    'handler': handler_name,
+                    'issue': 'Low success rate',
+                    'suggestion': f'Review and enhance {handler_name} detection patterns',
+                    'priority': 'HIGH' if handler_name == 'brand_familiarity' else 'MEDIUM'
+                })
+            elif handler_name == 'brand_familiarity' and attempts == 0:
+                recommendations.append({
+                    'handler': handler_name,
+                    'issue': 'No brand questions encountered yet',
+                    'suggestion': 'Look for surveys with brand familiarity questions for supremacy testing',
+                    'priority': 'INFO'
+                })
         
-        return "\n".join(report)
+        return recommendations

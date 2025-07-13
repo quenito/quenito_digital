@@ -15,7 +15,7 @@ from handlers.base_handler import BaseQuestionHandler
 from handlers.universal_element_detector import UniversalElementDetector, ElementSearchCriteria
 
 
-class EnhancedDemographicsHandler(BaseQuestionHandler):
+class DemographicsHandler(BaseQuestionHandler):
     """
     Enhanced Demographics Handler with Universal Element Detector integration.
     Sync version compatible with your existing system.

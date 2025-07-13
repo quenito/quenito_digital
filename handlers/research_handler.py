@@ -5,7 +5,7 @@ Handles questions requiring research questions.
 
 from .base_handler import BaseQuestionHandler
 
-class ResearchHandler(BaseQuestionHandler):
+class ResearchRequiredHandler(BaseQuestionHandler):
     """Handler for questions requiring research"""
     
     def can_handle(self, page_content: str) -> bool:
