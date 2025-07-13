@@ -106,6 +106,36 @@ class SurveyStats:
             return (self.total_questions / total_time) * 60
         return 0.0
     
+    def get_automated_count(self):
+        """Get number of successfully automated questions."""
+        return getattr(self, 'automated_count', 0)
+
+    def get_intervention_count(self):
+        """Get number of manual interventions.""" 
+        return getattr(self, 'intervention_count', 0)
+
+    def get_total_questions(self):
+        """Get total number of questions processed."""
+        return getattr(self, 'total_questions', 0)
+
+    def increment_automated_count(self):
+        """Increment automated question counter."""
+        if not hasattr(self, 'automated_count'):
+            self.automated_count = 0
+        self.automated_count += 1
+
+    def increment_intervention_count(self):
+        """Increment intervention counter."""
+        if not hasattr(self, 'intervention_count'):
+            self.intervention_count = 0
+        self.intervention_count += 1
+
+    def increment_question_count(self):
+        """Increment total question counter."""
+        if not hasattr(self, 'total_questions'):
+            self.total_questions = 0
+        self.total_questions += 1
+
     def get_stats(self) -> dict:
         """Get all statistics."""
         return self.stats.copy()

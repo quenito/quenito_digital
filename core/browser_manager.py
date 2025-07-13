@@ -321,3 +321,18 @@ class BrowserManager:
                 print(f"❌ Could not get page title: {e}")
                 return ""
         return ""
+    
+    def close_session(self):
+        """Close browser session cleanly."""
+        try:
+            if hasattr(self, 'page') and self.page:
+                self.page.close()
+            if hasattr(self, 'browser') and self.browser:
+                self.browser.close()
+            if hasattr(self, 'playwright') and self.playwright:
+                self.playwright.stop()
+            print("🌐 Browser session closed successfully")
+            return True
+        except Exception as e:
+            print(f"⚠️ Browser close error: {e}")
+            return False

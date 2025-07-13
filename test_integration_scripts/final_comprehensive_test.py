@@ -25,7 +25,7 @@ def test_complete_enhanced_system():
     # Test 2: Enhanced Intervention Manager
     print("\n2️⃣ Testing Enhanced Intervention Manager...")
     try:
-        from utils.enhanced_intervention_manager import EnhancedLearningInterventionManager
+        from survey_automation.utils.intervention_manager import EnhancedLearningInterventionManager
         intervention = EnhancedLearningInterventionManager()
         print(f"✅ Enhanced Intervention Manager: {len(intervention.confidence_thresholds)} thresholds loaded")
         print(f"   📊 Ultra-conservative thresholds: Demographics {intervention.confidence_thresholds['demographics']:.0%}, Unknown {intervention.confidence_thresholds['unknown']:.0%}")

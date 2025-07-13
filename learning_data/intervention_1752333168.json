@@ -1,0 +1,35 @@
+{
+  "question_type": "team_preference",
+  "reason": "EnhancedDemographicsHandler could not automate this question",
+  "pre_state": {
+    "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507159#'",
+    "title": "Survey",
+    "content_sample": " \nprogress bar\n17%\nWhich area do you live in?\nPlease select from the list below.\n\tWestern Australia (WA)\n\tQueensland (QLD)\n\tNew South Wales (NSW)\n\tVictoria (VIC)\n\tSouth Australia (SA)\n\tTasmania (TAS)\n\tNorthern Territory (NT)\n\tAustralian Capital Territory (ACT)\n\tDon't know",
+    "timestamp": 1752333152.561316,
+    "question_type": "team_preference",
+    "failure_reason": "EnhancedDemographicsHandler could not automate this question"
+  },
+  "post_state": {
+    "post_url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507159#'",
+    "post_title": "Survey",
+    "post_content_sample": " \nprogress bar\n25%\nWhich of the following operating systems are you currently using on your main mobile device?\nPlease select one option only.\n\tiOS\n\tAndroid\n\tOther/None of the above",
+    "timestamp": 1752333168.0461173
+  },
+  "learning_insights": {
+    "question_type": "team_preference",
+    "failure_reason": "EnhancedDemographicsHandler could not automate this question",
+    "learning_opportunities": [
+      "Pattern recognition improvement needed for team_preference",
+      "Handler enhancement required: EnhancedDemographicsHandler could not automate this question",
+      "Element detection strategies should be updated"
+    ],
+    "suggested_improvements": [
+      "Lower confidence threshold for team_preference from 95%",
+      "Add new element selectors based on this page structure",
+      "Improve question type classification accuracy"
+    ],
+    "timestamp": 1752333168.0461524
+  },
+  "duration": 15.5023512840271,
+  "timestamp": 1752333168.046154
+}

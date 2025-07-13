@@ -11,7 +11,7 @@ from .reporting import ReportGenerator
 
 # Add the new components
 from .human_timing_manager import HumanLikeTimingManager
-from .enhanced_intervention_manager import EnhancedLearningInterventionManager
+from .intervention_manager import EnhancedLearningInterventionManager
 
 __all__ = [
     'KnowledgeBase',

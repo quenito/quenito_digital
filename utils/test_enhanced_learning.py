@@ -6,7 +6,7 @@
 def test_enhanced_intervention_manager():
     """Test the enhanced intervention manager"""
     try:
-        from utils.enhanced_intervention_manager import EnhancedLearningInterventionManager
+        from survey_automation.utils.intervention_manager import EnhancedLearningInterventionManager
         
         manager = EnhancedLearningInterventionManager()
         print("✅ Enhanced Intervention Manager loads successfully")

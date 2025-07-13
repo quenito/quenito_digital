@@ -1,0 +1,571 @@
+{
+  "session_id": "session_1752340747",
+  "intervention_id": "intervention_1752342051",
+  "timestamp": 1752342051.4809997,
+  "question_type": "demographics",
+  "failure_reason": "EnhancedDemographicsHandler could not automate this question",
+  "duration_seconds": 182.40938210487366,
+  "user_response_data": {
+    "question_text": "How many dependent children do you have in each of these age groups?",
+    "answer_provided": "drop down 0-4yrs \"1\" drop down 5-12yrs \"1\" drop down 13-15yrs \"0\" drop down 16-19 yrs \"0\" drop down 20 yrs or above \"0\"",
+    "element_type": "dropdown",
+    "completion_method": "manual_intervention",
+    "capture_timestamp": 1752342051.4810002
+  },
+  "page_state_before": {
+    "timestamp": 1752341869.0716178,
+    "question_type": "demographics",
+    "failure_reason": "EnhancedDemographicsHandler could not automate this question",
+    "capture_status": "comprehensive_capture_complete",
+    "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507107#,",
+    "title": "Survey",
+    "full_page_content": "\n\n\nPrivacy Policy\n \nprogress bar\n7%\nThere were problems with some of the data you entered in the survey. You will find the questions with errors below; please follow the instructions attached to each question.\nHow many dependent children do you have in each of these age groups?\nNote: Dependent children are children aged under 15 years, as well as children aged 15 to 24 years who are students\nPlease select an answer.\n0-4 yrs.\nSelect one...\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10 or more\n5-12 yrs.\nSelect one...\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10 or more\n13-15 yrs.\nSelect one...\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10 or more\n16-19 yrs.\nSelect one...\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10 or more\n20 yrs. or above\nSelect one...\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10 or more\n\tPrefer not to say",
+    "content_length": 721,
+    "content_captured": true,
+    "form_elements": {
+      "radio_buttons": [],
+      "checkboxes": [
+        {
+          "index": 0,
+          "name": "_v2_na_Q1187.r99",
+          "value": "1",
+          "id": "_v2_na_Q1187.r99",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"checkbox\"][name=\"_v2_na_Q1187.r99\"]",
+          "label_text": "Prefer not to say"
+        }
+      ],
+      "text_inputs": [],
+      "dropdowns": [
+        {
+          "index": 0,
+          "name": "ans33934.0.0",
+          "id": "ans33934.0.0",
+          "options": [
+            {
+              "index": 0,
+              "value": "-1",
+              "text": "Select one...",
+              "selected": false
+            },
+            {
+              "index": 1,
+              "value": "0",
+              "text": "0",
+              "selected": false
+            },
+            {
+              "index": 2,
+              "value": "1",
+              "text": "1",
+              "selected": true
+            },
+            {
+              "index": 3,
+              "value": "2",
+              "text": "2",
+              "selected": false
+            },
+            {
+              "index": 4,
+              "value": "3",
+              "text": "3",
+              "selected": false
+            },
+            {
+              "index": 5,
+              "value": "4",
+              "text": "4",
+              "selected": false
+            },
+            {
+              "index": 6,
+              "value": "5",
+              "text": "5",
+              "selected": false
+            },
+            {
+              "index": 7,
+              "value": "6",
+              "text": "6",
+              "selected": false
+            },
+            {
+              "index": 8,
+              "value": "7",
+              "text": "7",
+              "selected": false
+            },
+            {
+              "index": 9,
+              "value": "8",
+              "text": "8",
+              "selected": false
+            },
+            {
+              "index": 10,
+              "value": "9",
+              "text": "9",
+              "selected": false
+            },
+            {
+              "index": 11,
+              "value": "10",
+              "text": "10 or more",
+              "selected": false
+            }
+          ],
+          "options_count": 12,
+          "visible": true,
+          "enabled": true,
+          "selector": "select[name=\"ans33934.0.0\"]"
+        },
+        {
+          "index": 1,
+          "name": "ans33934.0.1",
+          "id": "ans33934.0.1",
+          "options": [
+            {
+              "index": 0,
+              "value": "-1",
+              "text": "Select one...",
+              "selected": false
+            },
+            {
+              "index": 1,
+              "value": "0",
+              "text": "0",
+              "selected": false
+            },
+            {
+              "index": 2,
+              "value": "1",
+              "text": "1",
+              "selected": true
+            },
+            {
+              "index": 3,
+              "value": "2",
+              "text": "2",
+              "selected": false
+            },
+            {
+              "index": 4,
+              "value": "3",
+              "text": "3",
+              "selected": false
+            },
+            {
+              "index": 5,
+              "value": "4",
+              "text": "4",
+              "selected": false
+            },
+            {
+              "index": 6,
+              "value": "5",
+              "text": "5",
+              "selected": false
+            },
+            {
+              "index": 7,
+              "value": "6",
+              "text": "6",
+              "selected": false
+            },
+            {
+              "index": 8,
+              "value": "7",
+              "text": "7",
+              "selected": false
+            },
+            {
+              "index": 9,
+              "value": "8",
+              "text": "8",
+              "selected": false
+            },
+            {
+              "index": 10,
+              "value": "9",
+              "text": "9",
+              "selected": false
+            },
+            {
+              "index": 11,
+              "value": "10",
+              "text": "10 or more",
+              "selected": false
+            }
+          ],
+          "options_count": 12,
+          "visible": true,
+          "enabled": true,
+          "selector": "select[name=\"ans33934.0.1\"]"
+        },
+        {
+          "index": 2,
+          "name": "ans33934.0.2",
+          "id": "ans33934.0.2",
+          "options": [
+            {
+              "index": 0,
+              "value": "-1",
+              "text": "Select one...",
+              "selected": true
+            },
+            {
+              "index": 1,
+              "value": "0",
+              "text": "0",
+              "selected": false
+            },
+            {
+              "index": 2,
+              "value": "1",
+              "text": "1",
+              "selected": false
+            },
+            {
+              "index": 3,
+              "value": "2",
+              "text": "2",
+              "selected": false
+            },
+            {
+              "index": 4,
+              "value": "3",
+              "text": "3",
+              "selected": false
+            },
+            {
+              "index": 5,
+              "value": "4",
+              "text": "4",
+              "selected": false
+            },
+            {
+              "index": 6,
+              "value": "5",
+              "text": "5",
+              "selected": false
+            },
+            {
+              "index": 7,
+              "value": "6",
+              "text": "6",
+              "selected": false
+            },
+            {
+              "index": 8,
+              "value": "7",
+              "text": "7",
+              "selected": false
+            },
+            {
+              "index": 9,
+              "value": "8",
+              "text": "8",
+              "selected": false
+            },
+            {
+              "index": 10,
+              "value": "9",
+              "text": "9",
+              "selected": false
+            },
+            {
+              "index": 11,
+              "value": "10",
+              "text": "10 or more",
+              "selected": false
+            }
+          ],
+          "options_count": 12,
+          "visible": true,
+          "enabled": true,
+          "selector": "select[name=\"ans33934.0.2\"]"
+        },
+        {
+          "index": 3,
+          "name": "ans33934.0.3",
+          "id": "ans33934.0.3",
+          "options": [
+            {
+              "index": 0,
+              "value": "-1",
+              "text": "Select one...",
+              "selected": true
+            },
+            {
+              "index": 1,
+              "value": "0",
+              "text": "0",
+              "selected": false
+            },
+            {
+              "index": 2,
+              "value": "1",
+              "text": "1",
+              "selected": false
+            },
+            {
+              "index": 3,
+              "value": "2",
+              "text": "2",
+              "selected": false
+            },
+            {
+              "index": 4,
+              "value": "3",
+              "text": "3",
+              "selected": false
+            },
+            {
+              "index": 5,
+              "value": "4",
+              "text": "4",
+              "selected": false
+            },
+            {
+              "index": 6,
+              "value": "5",
+              "text": "5",
+              "selected": false
+            },
+            {
+              "index": 7,
+              "value": "6",
+              "text": "6",
+              "selected": false
+            },
+            {
+              "index": 8,
+              "value": "7",
+              "text": "7",
+              "selected": false
+            },
+            {
+              "index": 9,
+              "value": "8",
+              "text": "8",
+              "selected": false
+            },
+            {
+              "index": 10,
+              "value": "9",
+              "text": "9",
+              "selected": false
+            },
+            {
+              "index": 11,
+              "value": "10",
+              "text": "10 or more",
+              "selected": false
+            }
+          ],
+          "options_count": 12,
+          "visible": true,
+          "enabled": true,
+          "selector": "select[name=\"ans33934.0.3\"]"
+        },
+        {
+          "index": 4,
+          "name": "ans33934.0.4",
+          "id": "ans33934.0.4",
+          "options": [
+            {
+              "index": 0,
+              "value": "-1",
+              "text": "Select one...",
+              "selected": true
+            },
+            {
+              "index": 1,
+              "value": "0",
+              "text": "0",
+              "selected": false
+            },
+            {
+              "index": 2,
+              "value": "1",
+              "text": "1",
+              "selected": false
+            },
+            {
+              "index": 3,
+              "value": "2",
+              "text": "2",
+              "selected": false
+            },
+            {
+              "index": 4,
+              "value": "3",
+              "text": "3",
+              "selected": false
+            },
+            {
+              "index": 5,
+              "value": "4",
+              "text": "4",
+              "selected": false
+            },
+            {
+              "index": 6,
+              "value": "5",
+              "text": "5",
+              "selected": false
+            },
+            {
+              "index": 7,
+              "value": "6",
+              "text": "6",
+              "selected": false
+            },
+            {
+              "index": 8,
+              "value": "7",
+              "text": "7",
+              "selected": false
+            },
+            {
+              "index": 9,
+              "value": "8",
+              "text": "8",
+              "selected": false
+            },
+            {
+              "index": 10,
+              "value": "9",
+              "text": "9",
+              "selected": false
+            },
+            {
+              "index": 11,
+              "value": "10",
+              "text": "10 or more",
+              "selected": false
+            }
+          ],
+          "options_count": 12,
+          "visible": true,
+          "enabled": true,
+          "selector": "select[name=\"ans33934.0.4\"]"
+        }
+      ],
+      "buttons": [
+        {
+          "index": 0,
+          "type": "submit",
+          "text": "",
+          "value": "Continue ",
+          "id": "btn_continue",
+          "visible": true,
+          "enabled": true,
+          "selector": "button:nth-child(1)"
+        }
+      ],
+      "textareas": [],
+      "other_inputs": [],
+      "capture_timestamp": 1752341869.081124,
+      "capture_errors": [],
+      "capture_success": true,
+      "total_elements_found": 7
+    },
+    "interactive_elements": {
+      "links": [
+        {
+          "index": 0,
+          "href": "https://www.secnewgate.com.au/research-privacy-policy/",
+          "text": "Privacy Policy",
+          "title": "",
+          "visible": true,
+          "selector": "a:nth-child(1)"
+        }
+      ],
+      "clickable_divs": [],
+      "interactive_spans": [],
+      "other_clickable": [],
+      "capture_timestamp": 1752341870.1013675,
+      "capture_errors": []
+    },
+    "html_content": "<!DOCTYPE html><html lang=\"en-US\"><!--<![endif]--><head>\n<meta name=\"robots\" content=\"noindex, nofollow, noarchive\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1\">\n\n<!-- respview.client.meta -->\n<meta name=\"pinterest\" content=\"nopin\">\n\n<title>Survey</title>\n\n\n<!-- respview.css -->\n<link rel=\"stylesheet\" href=\"/s/support/jquery-ui-1.9.2.custom/css/smoothness/jquery-ui-1.9.2.custom.min.css?ad7753b880\">\n<link rel=\"stylesheet\" href=\"/s/support/jquery-ui-1.9.2.custom/css/smoothness/jquery-ui-1.9.2.beacon.css?4ddb951d43\">\n\n<!-- generated from: static/support/font-awesome-4.2.0/less/font-awesome.less, static/support/select2-4.0.1/select2.min.css, static/survey.respondent-post143.less, selfserve/53b/2507107/static/company-theme_vop-theme.less, lib/steam/audio/v3/static/audio.less, lib/steam/cardsort/v7/static/cardsort.less and 0 themevars -->\n<link rel=\"stylesheet\" href=\"/survey/selfserve/53b/2507107/company-theme_vop-compiled.css?1ce400339d2e7a1b322d333015726a60\">\n\n\n<!-- extra CSS -->\n\n\n\n<!-- respview.client.css -->\n\n<style type=\"text/css\">\n    .autosave-restart { display: none; }\n    .grid.grid-table-mode .col-legend { vertical-align: bottom; }\n    \n    \n    \n\t\t\t\t\t/* atm1d */\n\n.sq-atm1d-widget .sq-atm1d-button\n{\n\tbackground-color: transparent;\n\tborder: 2px solid #696a69;\n\tborder-radius: 10px;\n\tcolor: #454545;\n\tfont-size: 1.2rem;\n}\n\n.sq-atm1d-widget .sq-atm1d-selected, .sq-atm1d-widget .sq-atm1d-hovered\n{\n\tbackground-color: #5ab414;\n\tborder: transparent;\n\tcolor: white;\n}\n\n\n\t\t\t\t\t/* atmtable */\n\n.sq-atmtable-btn \n{\n\tbackground-color: transparent !important;\n\tborder: 1px solid #696a69 !important;\n\tcolor: #454545 !important;\n}\n\n.sq-atmtable-btn-selected, .sq-atmtable-btn-hover\n{\n\tbackground-color: #5ab414 !important;\n\tborder: transparent !important;\n\tcolor: white !important;\n}\n\n\n\t\t\t\t\t/* atmrating */ \n\n.sq-atmrating-container .atmrating-btn\n{\n\tbackground-color: transparent !important;\n\tborder: 1px solid #696a69 !important;\n\tcolor: #454545 !important;\n}\n\n.sq-atmrating-container .atmrating-selected, .sq-atmrating-container .atmrating-hover\n{\n\tbackground-color: #5ab414 !important;\n\tcolor: white !important;\n}\n\n\n\t\t\t\t\t/* cardrating */ \n\n.sq-cardrating-widget .sq-cardrating-button\n{\n\tbackground-color: transparent;\n\tborder: 1px solid #696a69;\n\tcolor: #454545;\n\tborder-radius: 10px;\n\tfont-size: 1.2rem;\n}\n\n.sq-cardrating-widget .sq-cardrating-button[data-hovered]\n{\n\tbackground-color: #5ab414;\n\tcolor: white;\n\tborder: transparent;\n}\n\n\n\t\t\t\t\t/* cardsort */ \n\n.sq-cardsort .sq-cardsort-bucket\n{\n\tbackground-color: transparent;\n\tborder: 1px solid #696a69;\n\tcolor: #454545;\n\tborder-radius: 10px;\n\tfont-size: 1.2rem;\n}\n\n.sq-cardsort .sq-cardsort-bucket:active, div.checkbox .sq-cardsort .sq-cardsort-state-selected:not(.sq-cardsort-card)\n{\n\tbackground-color: #5ab414;\n\tcolor: white;\n\tborder: transparent;\n}\n\n\n\n\t\t\t\t\t/* ranksort */ \n\n.sq-ranksort-container .sq-ranksort-card\n{\n\tbackground-color: transparent !important;\n\tborder: 1px solid #696a69 !important;\n\tcolor: #454545 !important;\n\tfont-size: 1.2rem !important;\n}\n\n.sq-ranksort-container .sq-ranksort-card:hover, .sq-ranksort-container .sq-ranksort-card-dropped\n{\n\tbackground-color: #5ab414 !important;\n\tcolor: white !important;\n}\n\n.sq-ranksort-container .ui-state-disabled\n{\n\tbackground-color: #EFEFEF !important;\n\tcolor: #454545 !important;\n\tborder: transparent !important;\n}\n\n.sq-ranksort-container .sq-ranksort-bucket\n{\n\tbackground-color: #F6F6F6 !important;\n\tborder: 1.5px dashed #888 !important;\n}\n\n</style>\n<style type=\"text/css\">\n    .autosave-restart { display: none; }\n    .grid.grid-table-mode .col-legend { vertical-align: bottom; }\n    img { pointer-events: none; }\n    \n    \n    \n\t\t\t\t\t/* atm1d */\n\n.sq-atm1d-widget .sq-atm1d-button\n{\n\tbackground-color: transparent;\n\tborder: 2px solid #696a69;\n\tborder-radius: 10px;\n\tcolor: #454545;\n\tfont-size: 1.2rem;\n}\n\n.sq-atm1d-widget .sq-atm1d-selected, .sq-atm1d-widget .sq-atm1d-hovered\n{\n\tbackground-color: #5ab414;\n\tborder: transparent;\n\tcolor: white;\n}\n\n\n\t\t\t\t\t/* atmtable */\n\n.sq-atmtable-btn \n{\n\tbackground-color: transparent !important;\n\tborder: 1px solid #696a69 !important;\n\tcolor: #454545 !important;\n}\n\n.sq-atmtable-btn-selected, .sq-atmtable-btn-hover\n{\n\tbackground-color: #5ab414 !important;\n\tborder: transparent !important;\n\tcolor: white !important;\n}\n\n\n\t\t\t\t\t/* atmrating */ \n\n.sq-atmrating-container .atmrating-btn\n{\n\tbackground-color: transparent !important;\n\tborder: 1px solid #696a69 !important;\n\tcolor: #454545 !important;\n}\n\n.sq-atmrating-container .atmrating-selected, .sq-atmrating-container .atmrating-hover\n{\n\tbackground-color: #5ab414 !important;\n\tcolor: white !important;\n}\n\n\n\t\t\t\t\t/* cardrating */ \n\n.sq-cardrating-widget .sq-cardrating-button\n{\n\tbackground-color: transparent;\n\tborder: 1px solid #696a69;\n\tcolor: #454545;\n\tborder-radius: 10px;\n\tfont-size: 1.2rem;\n}\n\n.sq-cardrating-widget .sq-cardrating-button[data-hovered]\n{\n\tbackground-color: #5ab414;\n\tcolor: white;\n\tborder: transparent;\n}\n\n\n\t\t\t\t\t/* cardsort */ \n\n.sq-cardsort .sq-cardsort-bucket\n{\n\tbackground-color: transparent;\n\tborder: 1px solid #696a69;\n\tcolor: #454545;\n\tborder-radius: 10px;\n\tfont-size: 1.2rem;\n}\n\n.sq-cardsort .sq-cardsort-bucket:active, div.checkbox .sq-cardsort .sq-cardsort-state-selected:not(.sq-cardsort-card)\n{\n\tbackground-color: #5ab414;\n\tcolor: white;\n\tborder: transparent;\n}\n\n\n\n\t\t\t\t\t/* ranksort */ \n\n.sq-ranksort-container .sq-ranksort-card\n{\n\tbackground-color: transparent !important;\n\tborder: 1px solid #696a69 !important;\n\tcolor: #454545 !important;\n\tfont-size: 1.2rem !important;\n}\n\n.sq-ranksort-container .sq-ranksort-card:hover, .sq-ranksort-container .sq-ranksort-card-dropped\n{\n\tbackground-color: #5ab414 !important;\n\tcolor: white !important;\n}\n\n.sq-ranksort-container .ui-state-disabled\n{\n\tbackground-color: #EFEFEF !important;\n\tcolor: #454545 !important;\n\tborder: transparent !important;\n}\n\n.sq-ranksort-container .sq-ranksort-bucket\n{\n\tbackground-color: #F6F6F6 !important;\n\tborder: 1.5px dashed #888 !important;\n}\n\n</style>\n\n<!-- client.css -->\n<style media=\"screen\">\n\n</style>\n\n<!-- JQuery -->\n<!--\n/s/jquery183.all.js\n-->\n<script src=\"//rnau.surveyfiles.com/s/exp/tmp/caaa730ed462680b3c3fc324ca591ac5.js\"></script>\n\n\n<!-- respview.js -->\n<script>\n(function(){\nif (!window.location.hash) {\nvar fragmentPattern = '_?$&\\')*,(;=.-~:@!';\nfor (var i = 1, result = ''; i <= Math.floor(8 / fragmentPattern.length); i++) {\nresult += fragmentPattern.slice(-1);\n}\nresult += fragmentPattern.charAt((8 % fragmentPattern.length) - 1);\nwindow.location.hash = result;\n}\n})();\n</script>\n\n<!--[if lte IE 8]><script src=\"/s/support/respond/respond-1.4.2.min.js\"></script><script src=\"/s/support/rem-unit-polyfill/rem.min.js\"></script><![endif]-->\n\n\n<!--\n/s/support/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js\n/s/common.js\n/s/respview-post132.js\n/s/survey.respondent-post143.js\n-->\n<script src=\"//rnau.surveyfiles.com/s/exp/tmp/bc1281e8b1698e536efd1b7d8eb52bb9.js\"></script>\n\n\n<!-- extra JS -->\n\n\n\n<!-- Include JS (specified in survey.xml) -->\n<script src=\"/survey/selfserve/dgustlib/res/rnjslib0.3.js?imgsecurity=standard\"></script>\n<script src=\" //d2n88fe5uqdqty.cloudfront.net/rnd/tools/imagepreloader/imagepreloader_v1.0.js?cache=xfhaxdrzazvjx9p7\"></script>\n\n\n\n\n<!-- respview.client.js -->\n</head><body class=\"survey-page non-touch\" data-device=\"\" style=\"user-select: none;\"><div style=\"text-align: center;\" data-mce-style=\"text-align: center;\">\n<br><br><br>\n<a href=\"https://www.secnewgate.com.au/research-privacy-policy/\" target=\"_blank\" rel=\"noopener\" data-mce-href=\"https://www.secnewgate.com.au/research-privacy-policy/\" data-mce-selected=\"inline-boundary\">Privacy Policy</a></div>\n\n<!-- client.javascript -->\n\n\n<script>\nfunction goForward(){window.history.forward();}\ngoForward();\naddHandler(goForward);\nwindow.onpageshow=function(evt){if(evt.persisted) goForward();}\nwindow.onunload=function(){void(0);}\n</script>\n\n<!-- extra Head -->\n<script>\njQuery(document).ready(function()\n{\n\tjQuery('.survey-section .footer span:contains(\"Privacy Policy\")').remove();\n\t jQuery('input:text').bind(\"cut copy paste\",function(e) {\n     e.preventDefault();\n  });\njQuery('textarea').bind(\"cut copy paste\",function(e) {\n     e.preventDefault();\n  }); \n});\n</script><script>\njQuery(document).ready(function()\n{\n\tjQuery('.survey-section .footer span:contains(\"Privacy Policy\")').remove();\n});\n</script>\n\n\n\n\n\n\n<div id=\"survey\" class=\"survey-container\">\n<div class=\"survey-section\"><div class=\"page-header\"></div>\n<!-- /.page-header --></div>\n<div class=\"survey-section\">\n<div class=\"survey-body\">\n<div class=\"survey-header\">\n\n<div class=\"progress-bar progress-top\" title=\"progress bar - 7% complete\">\n<div class=\"progress-box-outer\"><span class=\"progress-box-completed\" style=\"width: 7%;\"></span></div>\n<div class=\"progress-text\"><span class=\"screen-readers-only\">progress bar </span>7%</div>\n</div>\n<!-- /.progress-bar -->\n</div>\n<!-- /.survey-header -->\n\n<form id=\"primary\" name=\"primary\" method=\"post\" action=\"/survey/selfserve/53b/2507107\" enctype=\"application/x-www-form-urlencoded\">\n<input type=\"hidden\" name=\"_v2_counter\" value=\"8\">\n<!-- @@XYZZY@@ -->\n<div class=\"survey-error\">\n<h1 class=\"survey-error-text\">There were problems with some of the data you entered in the survey. You will find the questions with errors below; please follow the instructions attached to each question.</h1>\n</div>\n<!-- /.survey-error --><div id=\"question_Q1187\" class=\"question select label_Q1187  hasError noCols\" role=\"radiogroup\">\n<h1 title=\"question\" class=\"question-text\" id=\"question_text_Q1187\">How many dependent children do you have in each of these age groups?<br><i>Note: Dependent children are children aged under 15 years, as well as children aged 15 to 24 years who are students</i></h1>\n<!-- /.question-text -->\n<div class=\"question-error\">\n<h2 class=\"question-error-text\">Please select an answer.</h2>\n</div>\n<!-- /.question-error -->\n<h2 title=\"instructions\" class=\"instruction-text\"></h2>\n<!-- /.instruction-text -->\n<div class=\"answers answers-list\">\n<div class=\"fir fir-checkbox\" style=\"display: none;\">\n<span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<path d=\"M15.8,0H3.9C1.8,0,0,2,0,4.1V16c0,2.2,1.8,4,3.9,4h11.8c2.2,0,4.2-1.8,4.2-4V4.1C20,2,18,0,15.8,0z M19,16 c0,1.6-1.6,3-3.2,3H3.9C2.3,19,1,17.7,1,16V4.1C1,2.5,2.3,1,3.9,1h11.8C17.4,1,19,2.5,19,4.1V16z\" class=\"fir-base\"></path>\n<path d=\"M19,16c0,1.6-1.6,3-3.2,3H3.9C2.3,19,1,17.7,1,16V4.1C1,2.5,2.3,1,3.9,1h11.8C17.4,1,19,2.5,19,4.1V16z\" class=\"fir-bg\"></path>\n<polygon points=\"9.1,16.3 2.5,11 4.1,9 8.7,12.6 15.6,3.7 17.7,5.2 \" class=\"fir-selected\"></polygon>\n</svg>\n</span>\n</div>\n<div class=\"fir fir-radio\" style=\"display: none;\">\n<span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</div><div class=\"element even  groupingCols OneColumnEl    \">\n<span class=\"cell-sub-wrapper cell-legend-above\">\n<span class=\"cell-text cell-sub-column\"><label for=\"ans33934.0.0\">0-4 yrs.</label> </span>\n<span class=\"cell-input cell-sub-column\">\n<div class=\"fir-select\"><select name=\"ans33934.0.0\" id=\"ans33934.0.0\" class=\"input dropdown\">\n<option value=\"-1\">Select one...</option>\n<option value=\"0\" class=\"None\">0</option>\n<option value=\"1\" selected=\"\" class=\"None\">1</option>\n<option value=\"2\" class=\"None\">2</option>\n<option value=\"3\" class=\"None\">3</option>\n<option value=\"4\" class=\"None\">4</option>\n<option value=\"5\" class=\"None\">5</option>\n<option value=\"6\" class=\"None\">6</option>\n<option value=\"7\" class=\"None\">7</option>\n<option value=\"8\" class=\"None\">8</option>\n<option value=\"9\" class=\"None\">9</option>\n<option value=\"10\" class=\"None\">10 or more</option>\n</select></div>\n</span>\n</span>\n</div><div class=\"element odd  groupingCols OneColumnEl    \">\n<span class=\"cell-sub-wrapper cell-legend-above\">\n<span class=\"cell-text cell-sub-column\"><label for=\"ans33934.0.1\">5-12 yrs.</label> </span>\n<span class=\"cell-input cell-sub-column\">\n<div class=\"fir-select\"><select name=\"ans33934.0.1\" id=\"ans33934.0.1\" class=\"input dropdown\">\n<option value=\"-1\">Select one...</option>\n<option value=\"0\" class=\"None\">0</option>\n<option value=\"1\" selected=\"\" class=\"None\">1</option>\n<option value=\"2\" class=\"None\">2</option>\n<option value=\"3\" class=\"None\">3</option>\n<option value=\"4\" class=\"None\">4</option>\n<option value=\"5\" class=\"None\">5</option>\n<option value=\"6\" class=\"None\">6</option>\n<option value=\"7\" class=\"None\">7</option>\n<option value=\"8\" class=\"None\">8</option>\n<option value=\"9\" class=\"None\">9</option>\n<option value=\"10\" class=\"None\">10 or more</option>\n</select></div>\n</span>\n</span>\n</div><div class=\"element even  groupingCols OneColumnEl hasError    \">\n<span class=\"cell-sub-wrapper cell-legend-above\">\n<span class=\"cell-text cell-sub-column\"><label for=\"ans33934.0.2\">13-15 yrs.</label> </span>\n<span class=\"cell-input cell-sub-column\">\n  <div class=\"fir-select\"><select name=\"ans33934.0.2\" id=\"ans33934.0.2\" class=\"input dropdown\" aria-invalid=\"true\">\n<option value=\"-1\" selected=\"\">Select one...</option>\n<option value=\"0\" class=\"None\">0</option>\n<option value=\"1\" class=\"None\">1</option>\n<option value=\"2\" class=\"None\">2</option>\n<option value=\"3\" class=\"None\">3</option>\n<option value=\"4\" class=\"None\">4</option>\n<option value=\"5\" class=\"None\">5</option>\n<option value=\"6\" class=\"None\">6</option>\n<option value=\"7\" class=\"None\">7</option>\n<option value=\"8\" class=\"None\">8</option>\n<option value=\"9\" class=\"None\">9</option>\n<option value=\"10\" class=\"None\">10 or more</option>\n</select></div>\n</span>\n</span>\n</div><div class=\"element odd  groupingCols OneColumnEl hasError    \">\n<span class=\"cell-sub-wrapper cell-legend-above\">\n<span class=\"cell-text cell-sub-column\"><label for=\"ans33934.0.3\">16-19 yrs.</label> </span>\n<span class=\"cell-input cell-sub-column\">\n  <div class=\"fir-select\"><select name=\"ans33934.0.3\" id=\"ans33934.0.3\" class=\"input dropdown\" aria-invalid=\"true\">\n<option value=\"-1\" selected=\"\">Select one...</option>\n<option value=\"0\" class=\"None\">0</option>\n<option value=\"1\" class=\"None\">1</option>\n<option value=\"2\" class=\"None\">2</option>\n<option value=\"3\" class=\"None\">3</option>\n<option value=\"4\" class=\"None\">4</option>\n<option value=\"5\" class=\"None\">5</option>\n<option value=\"6\" class=\"None\">6</option>\n<option value=\"7\" class=\"None\">7</option>\n<option value=\"8\" class=\"None\">8</option>\n<option value=\"9\" class=\"None\">9</option>\n<option value=\"10\" class=\"None\">10 or more</option>\n</select></div>\n</span>\n</span>\n</div><div class=\"element even  groupingCols OneColumnEl hasError    \">\n<span class=\"cell-sub-wrapper cell-legend-above\">\n<span class=\"cell-text cell-sub-column\"><label for=\"ans33934.0.4\">20 yrs. or above</label> </span>\n<span class=\"cell-input cell-sub-column\">\n  <div class=\"fir-select\"><select name=\"ans33934.0.4\" id=\"ans33934.0.4\" class=\"input dropdown\" aria-invalid=\"true\">\n<option value=\"-1\" selected=\"\">Select one...</option>\n<option value=\"0\" class=\"None\">0</option>\n<option value=\"1\" class=\"None\">1</option>\n<option value=\"2\" class=\"None\">2</option>\n<option value=\"3\" class=\"None\">3</option>\n<option value=\"4\" class=\"None\">4</option>\n<option value=\"5\" class=\"None\">5</option>\n<option value=\"6\" class=\"None\">6</option>\n<option value=\"7\" class=\"None\">7</option>\n<option value=\"8\" class=\"None\">8</option>\n<option value=\"9\" class=\"None\">9</option>\n<option value=\"10\" class=\"None\">10 or more</option>\n</select></div>\n</span>\n</span>\n</div><div class=\"element\">\n<span class=\"cell-sub-wrapper cell-legend-right\"><span class=\"cell-input cell-sub-column\">\n<input type=\"checkbox\" id=\"_v2_na_Q1187.r99\" name=\"_v2_na_Q1187.r99\" value=\"1\" class=\"input no-answer checkbox fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<path d=\"M15.8,0H3.9C1.8,0,0,2,0,4.1V16c0,2.2,1.8,4,3.9,4h11.8c2.2,0,4.2-1.8,4.2-4V4.1C20,2,18,0,15.8,0z M19,16 c0,1.6-1.6,3-3.2,3H3.9C2.3,19,1,17.7,1,16V4.1C1,2.5,2.3,1,3.9,1h11.8C17.4,1,19,2.5,19,4.1V16z\" class=\"fir-base\"></path>\n<path d=\"M19,16c0,1.6-1.6,3-3.2,3H3.9C2.3,19,1,17.7,1,16V4.1C1,2.5,2.3,1,3.9,1h11.8C17.4,1,19,2.5,19,4.1V16z\" class=\"fir-bg\"></path>\n<polygon points=\"9.1,16.3 2.5,11 4.1,9 8.7,12.6 15.6,3.7 17.7,5.2 \" class=\"fir-selected\"></polygon>\n</svg>\n</span>\n</span><span class=\"cell-text cell-sub-column\"><label for=\"_v2_na_Q1187.r99\">Prefer not to say</label></span></span>\n</div><!-- /.grid -->\n</div>\n<!-- /.answers -->\n</div>\n<!-- /.question --><script type=\"text/javascript\">\nSurvey.configureNA.apply(null, [\"((oe|ans)33934\\\\.|_v2_na_Q1187\\\\.)\", [\"_v2_na_Q1187.r99\"]]);\n</script><div class=\"survey-buttons\">\n<input type=\"submit\" name=\"continue\" id=\"btn_continue\" class=\"button continue\" value=\"Continue \" onclick=\"var i = document.createElement('input'); i.setAttribute('type', 'hidden');i.setAttribute('value', '1');i.setAttribute('name', '__has_javascript');document.forms.primary.appendChild(i);\">\n\n</div>\n<!-- #surveyButtons --><input type=\"hidden\" name=\"state\" value=\"297790cb-c1b2-43b0-b1a4-b6c501d74e83\">\n<input type=\"hidden\" name=\"start_time\" value=\"1752341869\">\n<input type=\"hidden\" name=\"_ptime\" value=\"0\">\n<script>addHandler(Survey.capturePreciseTime)</script><script>\n$ (window).on(\"load\", function() { setTimeout(function() { Survey.recordPageTiming(\"selfserve/53b/2507107\", \"xfhaxdrzazvjx9p7\", \"5k822k4yn14pewf9\");}, 100); });\n</script>\n</form>\n\n\n</div>\n<!-- /.survey-body -->\n</div>\n<div class=\"survey-section\">\n<script>\nvar QsIsTesting=0;\nvar QsLangCode = {\"arabic\":\"AR\",\"arabic_egypt\":\"AR\",\"arabic_lebanon\":\"AR\",\"arabic_morocco\":\"AR\",\"arabic_qatar\":\"AR\",\"arabic_saudiarabia\":\"AR\",\"arabic_uae\":\"AR\",\"bulgarian\":\"BG\",\"simplifiedchinese\":\"ZH-CHS\",\"traditionalchinese\":\"ZH-CHT\",\"czech\":\"CS\",\"danish\":\"DA\",\"dutch\":\"NL\",\"dutch_belgium\":\"NL\",\"english\":\"EN\",\"aus\":\"EN\",\"english_ca\":\"EN\",\"english_china\":\"EN\",\"english_hk\":\"EN\",\"english_india\":\"EN\",\"english_id\":\"EN\",\"english_ireland\":\"EN\",\"english_my\":\"EN\",\"english_nigeria\":\"EN\",\"english_sg\":\"EN\",\"english_za\":\"EN\",\"english_tw\":\"EN\",\"uk\":\"EN\",\"finnish\":\"FI\",\"french\":\"FR\",\"french_belgium\":\"FR\",\"canadian\":\"FR\",\"french_lu\":\"FR\",\"french_ch\":\"FR\",\"german\":\"DE\",\"german_austria\":\"DE\",\"german_lu\":\"DE\",\"german_ch\":\"DE\",\"hungarian\":\"HU\",\"indonesian\":\"ID\",\"italian\":\"IT\",\"italian_ch\":\"IT\",\"japanese\":\"JA\",\"korean\":\"KO\",\"malay\":\"MS\",\"malay_sg\":\"MS\",\"norwegian\":\"NN\",\"polish\":\"PL\",\"portuguese\":\"PT\",\"portuguese_br\":\"PT\",\"romanian\":\"RO\",\"russian\":\"RU\",\"slovak\":\"SK\",\"spanish\":\"ES\",\"spanish_argentina\":\"ES\",\"spanish_brazil\":\"ES\",\"spanish_chile\":\"ES\",\"spanish_colombia\":\"ES\",\"spanish_ecuador\":\"ES\",\"spanish_eu\":\"ES\",\"spanish_peru\":\"ES\",\"spanish_venezuela\":\"ES\",\"spanish_latin\":\"ES\",\"spanish_mexico\":\"ES\",\"spanish_south\":\"ES\",\"swedish\":\"SV\",\"thai\":\"TH\",\"turkish\":\"TR\",\"vietnamese\":\"VI\",}[\"english\"];\n$ (document).ready(function(){\nvar submitted = 0;\nvar disableCollect = document.getElementById('qualityscore_collect_disabled');\nif(!disableCollect && document.forms[0]) {\n$ ('.imperium-ra-question').each(function(){\nvar qsRaAttrs = this['imperium-ra-attrs'] || {};\nif($ (this).hasClass('oe')) qsRaAttrs['EngagedLength'] = \"1\";\n$ (this).parents('[class*=qsra]').each(function(){\nvar arrClass = $ (this).attr('class').split(/\\s+/);\nfor(var i=0; i<arrClass.length;i++){\nif(arrClass[i].substr(0,4) == 'qsra'){\nvar arrQsRa = arrClass[i].substr(4).split('-');\nif(arrQsRa.length == 2)\nqsRaAttrs[arrQsRa[0]] = arrQsRa[1];\n}\n}\n})\nthis['imperium-ra-attrs'] = qsRaAttrs;\n});\n$ (\"#primary\").on(\"submit\", CallQSService);\n}\nfunction submitForm(){\nif(!submitted){\nsubmitted = 1;\n$ (\"#primary\").off(\"submit\", CallQSService).submit();\n}\n}\nfunction CollectQSDataResponse(data){\nif(QsIsTesting) console.log(\"QS:\", JSON.stringify(data));\nsubmitForm();\n}\nfunction CallQSService(e){\nif(!submitted){\ne = e || window.event;\ne.preventDefault ? e.preventDefault() : (e.returnValue = false);\ne.stopPropagation();\nsetTimeout(submitForm, 3000);\ntry{\nvar pageId = $ (\"div.question, div.comment\").attr(\"id\");\nvar matrixData = getMatrixData();\nimperium_qualityscore.CollectData(pageId , matrixData, CollectQSDataResponse);\n}\ncatch(e){\nconsole.error(e);\nsubmitForm();\n}\n}\n}\nfunction getInputData(input, questionType, selected){\nvar items = input.attr('id').split('.');\nvar data = {};\nif(items.length>2){\nif(questionType.includes(\"group-by-col\")){\ndata.rowId = input.closest(\"td\").attr('headers').split(\" \")[0].split(\"_\").splice(1).join(\"_\");\ndata.value = items[2];\n}\nelse{\ndata.rowId = 'r' + items[2];\ndata.value = input.closest(\"td\").attr('headers').split(\" \")[0].split(\"_\").splice(1).join(\"_\");\n}\nselected[data.rowId] = selected[data.rowId] || [];\nselected[data.rowId].push(data.value);\n}\nreturn selected;\n}\nfunction getMatrixData() {\ntry {\nvar pageData = [];\nvar questions = $ ('.question');\nquestions.each(function () {\nvar $q = $ (this);\nvar qId = $q.attr(\"id\").split(\"_\").splice(1).join(\"_\");\nvar question = $ (this).find('.grid');\nvar questionType = question.attr('data-settings');\nvar selected = {};\nif (qId && questionType) {\nvar isGrid = false;\nif ($ (\".answers tr.row-elements\").first().find(\"input:radio\").length > 1) {\nisGrid = true;\n$q.find(\"div.answers td input:radio:checked\").each(function () {\ngetInputData($ (this), questionType, selected);\n})\n}\nif ($ (\".answers tr.row-elements\").first().find(\"input:checkbox\").length > 1) {\nisGrid = true;\n$q.find(\"div.answers td input:checkbox:checked\").each(function () {\ngetInputData($ (this), questionType, selected);\n})\n}\nif (isGrid) {\n$q.find('div.answers td input[type=\"text\"]').filter(function () {\nreturn !!this.value;\n}).each(function () {\ngetInputData($ (this), questionType, selected);\n})\n}\n}\n// Retrieve Decipher button rating question as grid data\nelse if ($ (\".answers .atmrating_input\").find(\".atmrating-selected\").length > 0) {\nvar inputs = $q.find(\".answers .atmrating_input\");\nfor (var i = 0; i < inputs.length; i++) {\nvar selectedIndex = $ (inputs[i]).find('.atmrating-selected').index();\nif (selectedIndex >= 0)\nselected[i + 1] = [selectedIndex + 1];\n}\n}\nvar qData = [];\nfor (var rowId in selected) {\nqData.push(rowId + '-' + selected[rowId].join());\n}\nif (qData.length > 0) pageData.push(qId + ':' + qData.join(';'));\n});\nreturn pageData.join('|');\n} catch (e) {\nconsole.error(e);\nreturn \"\";\n};\n}\n$ (\".question.number, .question.float\").not('.sq-atmrating').find('div.answers input[type=\"text\"]:visible:not(.oe-inline)').addClass(\"imperium-numeric-question\");\n})\nif(!\"1144\"){\n$ ('body').append('<input type=\"hidden\" id=\"GeoCodes\" name=\"GeoCodes\" value=\"1,\"/>');\nwindow.RVIDResponseComplete = window.RVIDResponseComplete || function(data) {}\n}\nwindow.RealAnswerComplete = window.RealAnswerComplete || function(realAnswerResults){}\nif(QsLangCode){\n$ (\".question:not(.number):not(.float)\").find('div.answers input[type=\"text\"]:visible').addClass(\"imperium-ra-question\");\n$ (\".question.number, .question.float\").find('div.answers input[type=\"text\"]:visible.oe-inline').addClass(\"imperium-ra-question\");\n$ ('div.answers textarea:visible').addClass(\"imperium-ra-question\");\nif($ ('.imperium-ra-question').length>0){ $ ('body').append('<input type=\"hidden\" id=\"LangCode\" name=\"LangCode\" value=\"' + QsLangCode + '\">');}\n}\n</script>\n<input type=\"hidden\" id=\"ClientID\" name=\"ClientID\" value=\"32F0DF3C-D504-46E9-999F-AE32A3D57A44\">\n<input type=\"hidden\" id=\"SurveyID\" name=\"SurveyID\" value=\"survey-au.yoursurveynow.com/selfserve/53b/2507107\">\n<input type=\"hidden\" id=\"PanelistID\" name=\"PanelistID\" value=\"Q4uXRsaBwZO1mzF2GJYk1A**\">\n<script type=\"text/javascript\" src=\"https://survey-d.dynata.com/survey/selfserve/53b/dgust/10000231/qslib1.0.js\"></script></div>\n</div><input type=\"hidden\" name=\"imperium_qs_time_start\" id=\"imperium_qs_time_start\" value=\"1752341869007\">\n<div id=\"detectBreakpoint\"></div>\n<!-- /.survey-container -->\n\n\n</body></html>",
+    "html_captured": true,
+    "screenshot_path": "learning_data/screenshot_1752341870.png",
+    "screenshot_captured": true
+  },
+  "page_state_after": {
+    "timestamp": 1752342051.4370255,
+    "capture_method": "enhanced_with_user_input",
+    "user_provided_data": {
+      "question_text": "How many dependent children do you have in each of these age groups?",
+      "answer_provided": "drop down 0-4yrs \"1\" drop down 5-12yrs \"1\" drop down 13-15yrs \"0\" drop down 16-19 yrs \"0\" drop down 20 yrs or above \"0\"",
+      "element_type": "dropdown",
+      "intervention_method": "manual_completion"
+    },
+    "post_url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507107#,",
+    "post_title": "Survey",
+    "post_content_sample": "\n\n\nPrivacy Policy\n \nprogress bar\n7%\nWhich of the following do your dependent children attend or do on a regular basis (at least one day a week), if any?\nSelect all that apply\n\tPaid childcare provided within the home on a private basis (e.g. nanny, au-pair)\n\tPaid childcare provided outside your home \u2013 not including pre-school (e.g. long daycare, occasional care, family daycare)\n\tPre-school\n\tPublic primary school\n\tPrivate primary school\n\tHome-schooled \u2013 primary school curriculum\n\tPublic high school\n\tPrivate high school\n\tHome-schooled \u2013 high school curriculum\n\tTAFE\n\tUniversity\n\tNone of these\n\tPrefer not to say",
+    "page_data_captured": true
+  },
+  "learning_insights": {
+    "analysis_timestamp": 1752342051.4809573,
+    "question_type": "demographics",
+    "failure_reason": "EnhancedDemographicsHandler could not automate this question",
+    "learning_opportunities": [
+      "Dropdown pattern detected for demographics",
+      "Demographics handler needs enhancement for this element pattern",
+      "Found 0 radio buttons - analyze for demographic patterns",
+      "Found 0 text inputs - likely age/postcode fields",
+      "Page navigation occurred - analyze navigation patterns"
+    ],
+    "suggested_improvements": [
+      "Enhance dropdown selection logic",
+      "Improve navigation detection and handling"
+    ],
+    "pattern_analysis": {
+      "total_elements": 7,
+      "radio_count": 0,
+      "checkbox_count": 1,
+      "text_input_count": 0,
+      "dropdown_count": 5,
+      "button_count": 1,
+      "element_distribution": "analyzed"
+    },
+    "handler_enhancement_recommendations": [
+      "Update demographics handler with new element selectors",
+      "Add confidence boosting for patterns with 7 elements",
+      "Consider creating specialized sub-handler for this pattern"
+    ],
+    "confidence_threshold_suggestions": {
+      "current_threshold": 0.98,
+      "suggested_reduction": 0.9299999999999999,
+      "reason": "Reduce threshold by 5% after successful manual intervention learning",
+      "progressive_improvement": "Gradually increase automation rate"
+    },
+    "new_selector_candidates": [],
+    "manual_data_insights": {
+      "question_text_length": 68,
+      "question_keywords": [
+        "how",
+        "many",
+        "dependent",
+        "children",
+        "do",
+        "you",
+        "have",
+        "in",
+        "each",
+        "of"
+      ],
+      "answer_provided": "drop down 0-4yrs \"1\" drop down 5-12yrs \"1\" drop down 13-15yrs \"0\" drop down 16-19 yrs \"0\" drop down 20 yrs or above \"0\"",
+      "element_type_used": "dropdown",
+      "automation_opportunity": "Create demographics handler for dropdown elements"
+    }
+  },
+  "confidence_threshold": 0.98,
+  "page_object_available": true,
+  "data_capture_method": "enhanced_with_user_input"
+}
