@@ -1,0 +1,33 @@
+{
+  "question_type": "ratingmatrix",
+  "reason": "RatingMatrixHandler not yet fully implemented - manual completion recommended",
+  "pre_state": {
+    "url": "unknown",
+    "title": "unknown",
+    "content_sample": "Page object not available",
+    "timestamp": 1752333169.251803,
+    "question_type": "ratingmatrix",
+    "failure_reason": "RatingMatrixHandler not yet fully implemented - manual completion recommended"
+  },
+  "post_state": {
+    "post_url": "unknown",
+    "timestamp": 1752333188.6204937
+  },
+  "learning_insights": {
+    "question_type": "ratingmatrix",
+    "failure_reason": "RatingMatrixHandler not yet fully implemented - manual completion recommended",
+    "learning_opportunities": [
+      "Pattern recognition improvement needed for ratingmatrix",
+      "Handler enhancement required: RatingMatrixHandler not yet fully implemented - manual completion recommended",
+      "Element detection strategies should be updated"
+    ],
+    "suggested_improvements": [
+      "Lower confidence threshold for ratingmatrix from 95%",
+      "Add new element selectors based on this page structure",
+      "Improve question type classification accuracy"
+    ],
+    "timestamp": 1752333188.6205387
+  },
+  "duration": 19.36875033378601,
+  "timestamp": 1752333188.620543
+}

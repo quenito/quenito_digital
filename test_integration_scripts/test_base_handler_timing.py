@@ -6,7 +6,7 @@ def test_base_handler_timing():
         # Test imports
         from utils.human_timing_manager import HumanLikeTimingManager
         from utils.knowledge_base import KnowledgeBase
-        from utils.enhanced_intervention_manager import EnhancedLearningInterventionManager
+        from survey_automation.utils.intervention_manager import EnhancedLearningInterventionManager
         
         print("✅ All imports successful!")
         

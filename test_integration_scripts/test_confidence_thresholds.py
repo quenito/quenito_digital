@@ -5,7 +5,7 @@ def test_thresholds():
     try:
         from handlers.handler_factory import HandlerFactory
         from utils.knowledge_base import KnowledgeBase
-        from utils.enhanced_intervention_manager import EnhancedLearningInterventionManager
+        from survey_automation.utils.intervention_manager import EnhancedLearningInterventionManager
         
         kb = KnowledgeBase()
         intervention = EnhancedLearningInterventionManager()

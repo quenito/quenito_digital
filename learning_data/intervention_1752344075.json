@@ -1,0 +1,912 @@
+{
+  "session_id": "session_1752340747",
+  "intervention_id": "intervention_1752344075",
+  "timestamp": 1752344075.9734457,
+  "question_type": "unknown",
+  "failure_reason": "Automation exception: 'EnhancedLearningInterventionManager' object has no attribute 'request_manual_intervention'",
+  "duration_seconds": 301.7284891605377,
+  "user_response_data": {
+    "question_text": "Please indicate how affordability has impacted each of the following behaviours vs. 12 months ago, if at all?",
+    "answer_provided": "1",
+    "element_type": "unknown",
+    "completion_method": "manual_intervention",
+    "capture_timestamp": 1752344075.973446
+  },
+  "page_state_before": {
+    "timestamp": 1752343774.2449617,
+    "question_type": "unknown",
+    "failure_reason": "Automation exception: 'EnhancedLearningInterventionManager' object has no attribute 'request_manual_intervention'",
+    "capture_status": "comprehensive_capture_complete",
+    "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507107#!_",
+    "title": "Survey",
+    "full_page_content": "\n\n\nPrivacy Policy\n \nprogress bar\n17%\nPlease indicate how affordability has impacted each of the following behaviours vs. 12 months ago, if at all?\nSelect one in each row\n\tDoing more of this now due to affordability\tDoing the same amount\tDoing less of this now due to affordability\tHave stopped doing this due to affordability\tNever did this\nParticipating in fitness and wellbeing activities (e.g. gym)\t\n\t\n\t\n\t\n\t\n\nAttending routine health appointments for me (e.g. dentist, doctor)\t\n\t\n\t\n\t\n\t\n\nSpending quality time with family and friends\t\n\t\n\t\n\t\n\t\n\nGoing on holidays\t\n\t\n\t\n\t\n\t\n\nDriving in general\t\n\t\n\t\n\t\n\t\n\nUsing public transport\t\n\t\n\t\n\t\n\t\n\nChild participating in paid physical activities (e.g. organised sport, dance)\t\n\t\n\t\n\t\n\t\n\nChild attending routine heath appointments (e.g. dentist, doctor)\t\n\t\n\t\n\t\n\t\n\nAttending entertainment activities/events (e.g. cinema, concert, sports game, museum, festival)\t\n\t\n\t\n\t\n\t\n\nDriving on toll roads\t\n\t\n\t\n\t\n\t\n\nEating healthy food in general\t\n\t\n\t\n\t\n\t\n\nChild participating in extracurricular activities (e.g. sports, music)\t\n\t\n\t\n\t\n\t\n\nChild participating in paid creative activities (e.g. music, art, drama)\t\n\t\n\t\n\t\n\t\n\nEating/drinking out (e.g. at restaurant/caf\u00e9/bar/pub)\t\n\t\n\t\n\t\n\t",
+    "content_length": 1205,
+    "content_captured": true,
+    "form_elements": {
+      "radio_buttons": [
+        {
+          "index": 0,
+          "name": "ans34850.0.10",
+          "value": "0",
+          "id": "ans34850.0.10",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.10\"]",
+          "label_text": "Doing more of this now due to affordability"
+        },
+        {
+          "index": 1,
+          "name": "ans34850.0.10",
+          "value": "1",
+          "id": "ans34850.1.10",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.10\"]",
+          "label_text": "Doing the same amount"
+        },
+        {
+          "index": 2,
+          "name": "ans34850.0.10",
+          "value": "2",
+          "id": "ans34850.2.10",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.10\"]",
+          "label_text": "Doing less of this now due to affordability"
+        },
+        {
+          "index": 3,
+          "name": "ans34850.0.10",
+          "value": "3",
+          "id": "ans34850.3.10",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.10\"]",
+          "label_text": "Have stopped doing this due to affordability"
+        },
+        {
+          "index": 4,
+          "name": "ans34850.0.10",
+          "value": "4",
+          "id": "ans34850.4.10",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.10\"]",
+          "label_text": "Never did this"
+        },
+        {
+          "index": 5,
+          "name": "ans34850.0.2",
+          "value": "0",
+          "id": "ans34850.0.2",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.2\"]",
+          "label_text": "Doing more of this now due to affordability"
+        },
+        {
+          "index": 6,
+          "name": "ans34850.0.2",
+          "value": "1",
+          "id": "ans34850.1.2",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.2\"]",
+          "label_text": "Doing the same amount"
+        },
+        {
+          "index": 7,
+          "name": "ans34850.0.2",
+          "value": "2",
+          "id": "ans34850.2.2",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.2\"]",
+          "label_text": "Doing less of this now due to affordability"
+        },
+        {
+          "index": 8,
+          "name": "ans34850.0.2",
+          "value": "3",
+          "id": "ans34850.3.2",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.2\"]",
+          "label_text": "Have stopped doing this due to affordability"
+        },
+        {
+          "index": 9,
+          "name": "ans34850.0.2",
+          "value": "4",
+          "id": "ans34850.4.2",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.2\"]",
+          "label_text": "Never did this"
+        },
+        {
+          "index": 10,
+          "name": "ans34850.0.11",
+          "value": "0",
+          "id": "ans34850.0.11",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.11\"]",
+          "label_text": "Doing more of this now due to affordability"
+        },
+        {
+          "index": 11,
+          "name": "ans34850.0.11",
+          "value": "1",
+          "id": "ans34850.1.11",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.11\"]",
+          "label_text": "Doing the same amount"
+        },
+        {
+          "index": 12,
+          "name": "ans34850.0.11",
+          "value": "2",
+          "id": "ans34850.2.11",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.11\"]",
+          "label_text": "Doing less of this now due to affordability"
+        },
+        {
+          "index": 13,
+          "name": "ans34850.0.11",
+          "value": "3",
+          "id": "ans34850.3.11",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.11\"]",
+          "label_text": "Have stopped doing this due to affordability"
+        },
+        {
+          "index": 14,
+          "name": "ans34850.0.11",
+          "value": "4",
+          "id": "ans34850.4.11",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.11\"]",
+          "label_text": "Never did this"
+        },
+        {
+          "index": 15,
+          "name": "ans34850.0.9",
+          "value": "0",
+          "id": "ans34850.0.9",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.9\"]",
+          "label_text": "Doing more of this now due to affordability"
+        },
+        {
+          "index": 16,
+          "name": "ans34850.0.9",
+          "value": "1",
+          "id": "ans34850.1.9",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.9\"]",
+          "label_text": "Doing the same amount"
+        },
+        {
+          "index": 17,
+          "name": "ans34850.0.9",
+          "value": "2",
+          "id": "ans34850.2.9",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.9\"]",
+          "label_text": "Doing less of this now due to affordability"
+        },
+        {
+          "index": 18,
+          "name": "ans34850.0.9",
+          "value": "3",
+          "id": "ans34850.3.9",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.9\"]",
+          "label_text": "Have stopped doing this due to affordability"
+        },
+        {
+          "index": 19,
+          "name": "ans34850.0.9",
+          "value": "4",
+          "id": "ans34850.4.9",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.9\"]",
+          "label_text": "Never did this"
+        },
+        {
+          "index": 20,
+          "name": "ans34850.0.5",
+          "value": "0",
+          "id": "ans34850.0.5",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.5\"]",
+          "label_text": "Doing more of this now due to affordability"
+        },
+        {
+          "index": 21,
+          "name": "ans34850.0.5",
+          "value": "1",
+          "id": "ans34850.1.5",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.5\"]",
+          "label_text": "Doing the same amount"
+        },
+        {
+          "index": 22,
+          "name": "ans34850.0.5",
+          "value": "2",
+          "id": "ans34850.2.5",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.5\"]",
+          "label_text": "Doing less of this now due to affordability"
+        },
+        {
+          "index": 23,
+          "name": "ans34850.0.5",
+          "value": "3",
+          "id": "ans34850.3.5",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.5\"]",
+          "label_text": "Have stopped doing this due to affordability"
+        },
+        {
+          "index": 24,
+          "name": "ans34850.0.5",
+          "value": "4",
+          "id": "ans34850.4.5",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.5\"]",
+          "label_text": "Never did this"
+        },
+        {
+          "index": 25,
+          "name": "ans34850.0.7",
+          "value": "0",
+          "id": "ans34850.0.7",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.7\"]",
+          "label_text": "Doing more of this now due to affordability"
+        },
+        {
+          "index": 26,
+          "name": "ans34850.0.7",
+          "value": "1",
+          "id": "ans34850.1.7",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.7\"]",
+          "label_text": "Doing the same amount"
+        },
+        {
+          "index": 27,
+          "name": "ans34850.0.7",
+          "value": "2",
+          "id": "ans34850.2.7",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.7\"]",
+          "label_text": "Doing less of this now due to affordability"
+        },
+        {
+          "index": 28,
+          "name": "ans34850.0.7",
+          "value": "3",
+          "id": "ans34850.3.7",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.7\"]",
+          "label_text": "Have stopped doing this due to affordability"
+        },
+        {
+          "index": 29,
+          "name": "ans34850.0.7",
+          "value": "4",
+          "id": "ans34850.4.7",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.7\"]",
+          "label_text": "Never did this"
+        },
+        {
+          "index": 30,
+          "name": "ans34850.0.12",
+          "value": "0",
+          "id": "ans34850.0.12",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.12\"]",
+          "label_text": "Doing more of this now due to affordability"
+        },
+        {
+          "index": 31,
+          "name": "ans34850.0.12",
+          "value": "1",
+          "id": "ans34850.1.12",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.12\"]",
+          "label_text": "Doing the same amount"
+        },
+        {
+          "index": 32,
+          "name": "ans34850.0.12",
+          "value": "2",
+          "id": "ans34850.2.12",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.12\"]",
+          "label_text": "Doing less of this now due to affordability"
+        },
+        {
+          "index": 33,
+          "name": "ans34850.0.12",
+          "value": "3",
+          "id": "ans34850.3.12",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.12\"]",
+          "label_text": "Have stopped doing this due to affordability"
+        },
+        {
+          "index": 34,
+          "name": "ans34850.0.12",
+          "value": "4",
+          "id": "ans34850.4.12",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.12\"]",
+          "label_text": "Never did this"
+        },
+        {
+          "index": 35,
+          "name": "ans34850.0.3",
+          "value": "0",
+          "id": "ans34850.0.3",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.3\"]",
+          "label_text": "Doing more of this now due to affordability"
+        },
+        {
+          "index": 36,
+          "name": "ans34850.0.3",
+          "value": "1",
+          "id": "ans34850.1.3",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.3\"]",
+          "label_text": "Doing the same amount"
+        },
+        {
+          "index": 37,
+          "name": "ans34850.0.3",
+          "value": "2",
+          "id": "ans34850.2.3",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.3\"]",
+          "label_text": "Doing less of this now due to affordability"
+        },
+        {
+          "index": 38,
+          "name": "ans34850.0.3",
+          "value": "3",
+          "id": "ans34850.3.3",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.3\"]",
+          "label_text": "Have stopped doing this due to affordability"
+        },
+        {
+          "index": 39,
+          "name": "ans34850.0.3",
+          "value": "4",
+          "id": "ans34850.4.3",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.3\"]",
+          "label_text": "Never did this"
+        },
+        {
+          "index": 40,
+          "name": "ans34850.0.1",
+          "value": "0",
+          "id": "ans34850.0.1",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.1\"]",
+          "label_text": "Doing more of this now due to affordability"
+        },
+        {
+          "index": 41,
+          "name": "ans34850.0.1",
+          "value": "1",
+          "id": "ans34850.1.1",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.1\"]",
+          "label_text": "Doing the same amount"
+        },
+        {
+          "index": 42,
+          "name": "ans34850.0.1",
+          "value": "2",
+          "id": "ans34850.2.1",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.1\"]",
+          "label_text": "Doing less of this now due to affordability"
+        },
+        {
+          "index": 43,
+          "name": "ans34850.0.1",
+          "value": "3",
+          "id": "ans34850.3.1",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.1\"]",
+          "label_text": "Have stopped doing this due to affordability"
+        },
+        {
+          "index": 44,
+          "name": "ans34850.0.1",
+          "value": "4",
+          "id": "ans34850.4.1",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.1\"]",
+          "label_text": "Never did this"
+        },
+        {
+          "index": 45,
+          "name": "ans34850.0.6",
+          "value": "0",
+          "id": "ans34850.0.6",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.6\"]",
+          "label_text": "Doing more of this now due to affordability"
+        },
+        {
+          "index": 46,
+          "name": "ans34850.0.6",
+          "value": "1",
+          "id": "ans34850.1.6",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.6\"]",
+          "label_text": "Doing the same amount"
+        },
+        {
+          "index": 47,
+          "name": "ans34850.0.6",
+          "value": "2",
+          "id": "ans34850.2.6",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.6\"]",
+          "label_text": "Doing less of this now due to affordability"
+        },
+        {
+          "index": 48,
+          "name": "ans34850.0.6",
+          "value": "3",
+          "id": "ans34850.3.6",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.6\"]",
+          "label_text": "Have stopped doing this due to affordability"
+        },
+        {
+          "index": 49,
+          "name": "ans34850.0.6",
+          "value": "4",
+          "id": "ans34850.4.6",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.6\"]",
+          "label_text": "Never did this"
+        },
+        {
+          "index": 50,
+          "name": "ans34850.0.4",
+          "value": "0",
+          "id": "ans34850.0.4",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.4\"]",
+          "label_text": "Doing more of this now due to affordability"
+        },
+        {
+          "index": 51,
+          "name": "ans34850.0.4",
+          "value": "1",
+          "id": "ans34850.1.4",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.4\"]",
+          "label_text": "Doing the same amount"
+        },
+        {
+          "index": 52,
+          "name": "ans34850.0.4",
+          "value": "2",
+          "id": "ans34850.2.4",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.4\"]",
+          "label_text": "Doing less of this now due to affordability"
+        },
+        {
+          "index": 53,
+          "name": "ans34850.0.4",
+          "value": "3",
+          "id": "ans34850.3.4",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.4\"]",
+          "label_text": "Have stopped doing this due to affordability"
+        },
+        {
+          "index": 54,
+          "name": "ans34850.0.4",
+          "value": "4",
+          "id": "ans34850.4.4",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.4\"]",
+          "label_text": "Never did this"
+        },
+        {
+          "index": 55,
+          "name": "ans34850.0.8",
+          "value": "0",
+          "id": "ans34850.0.8",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.8\"]",
+          "label_text": "Doing more of this now due to affordability"
+        },
+        {
+          "index": 56,
+          "name": "ans34850.0.8",
+          "value": "1",
+          "id": "ans34850.1.8",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.8\"]",
+          "label_text": "Doing the same amount"
+        },
+        {
+          "index": 57,
+          "name": "ans34850.0.8",
+          "value": "2",
+          "id": "ans34850.2.8",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.8\"]",
+          "label_text": "Doing less of this now due to affordability"
+        },
+        {
+          "index": 58,
+          "name": "ans34850.0.8",
+          "value": "3",
+          "id": "ans34850.3.8",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.8\"]",
+          "label_text": "Have stopped doing this due to affordability"
+        },
+        {
+          "index": 59,
+          "name": "ans34850.0.8",
+          "value": "4",
+          "id": "ans34850.4.8",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.8\"]",
+          "label_text": "Never did this"
+        },
+        {
+          "index": 60,
+          "name": "ans34850.0.13",
+          "value": "0",
+          "id": "ans34850.0.13",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.13\"]",
+          "label_text": "Doing more of this now due to affordability"
+        },
+        {
+          "index": 61,
+          "name": "ans34850.0.13",
+          "value": "1",
+          "id": "ans34850.1.13",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.13\"]",
+          "label_text": "Doing the same amount"
+        },
+        {
+          "index": 62,
+          "name": "ans34850.0.13",
+          "value": "2",
+          "id": "ans34850.2.13",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.13\"]",
+          "label_text": "Doing less of this now due to affordability"
+        },
+        {
+          "index": 63,
+          "name": "ans34850.0.13",
+          "value": "3",
+          "id": "ans34850.3.13",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.13\"]",
+          "label_text": "Have stopped doing this due to affordability"
+        },
+        {
+          "index": 64,
+          "name": "ans34850.0.13",
+          "value": "4",
+          "id": "ans34850.4.13",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.13\"]",
+          "label_text": "Never did this"
+        },
+        {
+          "index": 65,
+          "name": "ans34850.0.0",
+          "value": "0",
+          "id": "ans34850.0.0",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.0\"]",
+          "label_text": "Doing more of this now due to affordability"
+        },
+        {
+          "index": 66,
+          "name": "ans34850.0.0",
+          "value": "1",
+          "id": "ans34850.1.0",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.0\"]",
+          "label_text": "Doing the same amount"
+        },
+        {
+          "index": 67,
+          "name": "ans34850.0.0",
+          "value": "2",
+          "id": "ans34850.2.0",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.0\"]",
+          "label_text": "Doing less of this now due to affordability"
+        },
+        {
+          "index": 68,
+          "name": "ans34850.0.0",
+          "value": "3",
+          "id": "ans34850.3.0",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.0\"]",
+          "label_text": "Have stopped doing this due to affordability"
+        },
+        {
+          "index": 69,
+          "name": "ans34850.0.0",
+          "value": "4",
+          "id": "ans34850.4.0",
+          "checked": false,
+          "visible": true,
+          "enabled": true,
+          "selector": "input[type=\"radio\"][name=\"ans34850.0.0\"]",
+          "label_text": "Never did this"
+        }
+      ],
+      "checkboxes": [],
+      "text_inputs": [],
+      "dropdowns": [],
+      "buttons": [
+        {
+          "index": 0,
+          "type": "submit",
+          "text": "",
+          "value": "Continue ",
+          "id": "btn_continue",
+          "visible": true,
+          "enabled": true,
+          "selector": "button:nth-child(1)"
+        }
+      ],
+      "textareas": [],
+      "other_inputs": [],
+      "capture_timestamp": 1752343774.2615535,
+      "capture_errors": [],
+      "capture_success": true,
+      "total_elements_found": 71
+    },
+    "interactive_elements": {
+      "links": [
+        {
+          "index": 0,
+          "href": "https://www.secnewgate.com.au/research-privacy-policy/",
+          "text": "Privacy Policy",
+          "title": "",
+          "visible": true,
+          "selector": "a:nth-child(1)"
+        }
+      ],
+      "clickable_divs": [],
+      "interactive_spans": [],
+      "other_clickable": [],
+      "capture_timestamp": 1752343776.9435766,
+      "capture_errors": []
+    },
+    "html_content": "<!DOCTYPE html><html lang=\"en-US\"><!--<![endif]--><head>\n<meta name=\"robots\" content=\"noindex, nofollow, noarchive\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1\">\n\n<!-- respview.client.meta -->\n<meta name=\"pinterest\" content=\"nopin\">\n\n<title>Survey</title>\n\n\n<!-- respview.css -->\n<link rel=\"stylesheet\" href=\"/s/support/jquery-ui-1.9.2.custom/css/smoothness/jquery-ui-1.9.2.custom.min.css?ad7753b880\">\n<link rel=\"stylesheet\" href=\"/s/support/jquery-ui-1.9.2.custom/css/smoothness/jquery-ui-1.9.2.beacon.css?4ddb951d43\">\n\n<!-- generated from: static/support/font-awesome-4.2.0/less/font-awesome.less, static/support/select2-4.0.1/select2.min.css, static/survey.respondent-post143.less, selfserve/53b/2507107/static/company-theme_vop-theme.less, lib/steam/audio/v3/static/audio.less, lib/steam/cardsort/v7/static/cardsort.less and 0 themevars -->\n<link rel=\"stylesheet\" href=\"/survey/selfserve/53b/2507107/company-theme_vop-compiled.css?1ce400339d2e7a1b322d333015726a60\">\n\n\n<!-- extra CSS -->\n\n\n\n<!-- respview.client.css -->\n\n<style type=\"text/css\">\n    .autosave-restart { display: none; }\n    .grid.grid-table-mode .col-legend { vertical-align: bottom; }\n    \n    \n    \n\t\t\t\t\t/* atm1d */\n\n.sq-atm1d-widget .sq-atm1d-button\n{\n\tbackground-color: transparent;\n\tborder: 2px solid #696a69;\n\tborder-radius: 10px;\n\tcolor: #454545;\n\tfont-size: 1.2rem;\n}\n\n.sq-atm1d-widget .sq-atm1d-selected, .sq-atm1d-widget .sq-atm1d-hovered\n{\n\tbackground-color: #5ab414;\n\tborder: transparent;\n\tcolor: white;\n}\n\n\n\t\t\t\t\t/* atmtable */\n\n.sq-atmtable-btn \n{\n\tbackground-color: transparent !important;\n\tborder: 1px solid #696a69 !important;\n\tcolor: #454545 !important;\n}\n\n.sq-atmtable-btn-selected, .sq-atmtable-btn-hover\n{\n\tbackground-color: #5ab414 !important;\n\tborder: transparent !important;\n\tcolor: white !important;\n}\n\n\n\t\t\t\t\t/* atmrating */ \n\n.sq-atmrating-container .atmrating-btn\n{\n\tbackground-color: transparent !important;\n\tborder: 1px solid #696a69 !important;\n\tcolor: #454545 !important;\n}\n\n.sq-atmrating-container .atmrating-selected, .sq-atmrating-container .atmrating-hover\n{\n\tbackground-color: #5ab414 !important;\n\tcolor: white !important;\n}\n\n\n\t\t\t\t\t/* cardrating */ \n\n.sq-cardrating-widget .sq-cardrating-button\n{\n\tbackground-color: transparent;\n\tborder: 1px solid #696a69;\n\tcolor: #454545;\n\tborder-radius: 10px;\n\tfont-size: 1.2rem;\n}\n\n.sq-cardrating-widget .sq-cardrating-button[data-hovered]\n{\n\tbackground-color: #5ab414;\n\tcolor: white;\n\tborder: transparent;\n}\n\n\n\t\t\t\t\t/* cardsort */ \n\n.sq-cardsort .sq-cardsort-bucket\n{\n\tbackground-color: transparent;\n\tborder: 1px solid #696a69;\n\tcolor: #454545;\n\tborder-radius: 10px;\n\tfont-size: 1.2rem;\n}\n\n.sq-cardsort .sq-cardsort-bucket:active, div.checkbox .sq-cardsort .sq-cardsort-state-selected:not(.sq-cardsort-card)\n{\n\tbackground-color: #5ab414;\n\tcolor: white;\n\tborder: transparent;\n}\n\n\n\n\t\t\t\t\t/* ranksort */ \n\n.sq-ranksort-container .sq-ranksort-card\n{\n\tbackground-color: transparent !important;\n\tborder: 1px solid #696a69 !important;\n\tcolor: #454545 !important;\n\tfont-size: 1.2rem !important;\n}\n\n.sq-ranksort-container .sq-ranksort-card:hover, .sq-ranksort-container .sq-ranksort-card-dropped\n{\n\tbackground-color: #5ab414 !important;\n\tcolor: white !important;\n}\n\n.sq-ranksort-container .ui-state-disabled\n{\n\tbackground-color: #EFEFEF !important;\n\tcolor: #454545 !important;\n\tborder: transparent !important;\n}\n\n.sq-ranksort-container .sq-ranksort-bucket\n{\n\tbackground-color: #F6F6F6 !important;\n\tborder: 1.5px dashed #888 !important;\n}\n\n</style>\n<style type=\"text/css\">\n    .autosave-restart { display: none; }\n    .grid.grid-table-mode .col-legend { vertical-align: bottom; }\n    img { pointer-events: none; }\n    \n    \n    \n\t\t\t\t\t/* atm1d */\n\n.sq-atm1d-widget .sq-atm1d-button\n{\n\tbackground-color: transparent;\n\tborder: 2px solid #696a69;\n\tborder-radius: 10px;\n\tcolor: #454545;\n\tfont-size: 1.2rem;\n}\n\n.sq-atm1d-widget .sq-atm1d-selected, .sq-atm1d-widget .sq-atm1d-hovered\n{\n\tbackground-color: #5ab414;\n\tborder: transparent;\n\tcolor: white;\n}\n\n\n\t\t\t\t\t/* atmtable */\n\n.sq-atmtable-btn \n{\n\tbackground-color: transparent !important;\n\tborder: 1px solid #696a69 !important;\n\tcolor: #454545 !important;\n}\n\n.sq-atmtable-btn-selected, .sq-atmtable-btn-hover\n{\n\tbackground-color: #5ab414 !important;\n\tborder: transparent !important;\n\tcolor: white !important;\n}\n\n\n\t\t\t\t\t/* atmrating */ \n\n.sq-atmrating-container .atmrating-btn\n{\n\tbackground-color: transparent !important;\n\tborder: 1px solid #696a69 !important;\n\tcolor: #454545 !important;\n}\n\n.sq-atmrating-container .atmrating-selected, .sq-atmrating-container .atmrating-hover\n{\n\tbackground-color: #5ab414 !important;\n\tcolor: white !important;\n}\n\n\n\t\t\t\t\t/* cardrating */ \n\n.sq-cardrating-widget .sq-cardrating-button\n{\n\tbackground-color: transparent;\n\tborder: 1px solid #696a69;\n\tcolor: #454545;\n\tborder-radius: 10px;\n\tfont-size: 1.2rem;\n}\n\n.sq-cardrating-widget .sq-cardrating-button[data-hovered]\n{\n\tbackground-color: #5ab414;\n\tcolor: white;\n\tborder: transparent;\n}\n\n\n\t\t\t\t\t/* cardsort */ \n\n.sq-cardsort .sq-cardsort-bucket\n{\n\tbackground-color: transparent;\n\tborder: 1px solid #696a69;\n\tcolor: #454545;\n\tborder-radius: 10px;\n\tfont-size: 1.2rem;\n}\n\n.sq-cardsort .sq-cardsort-bucket:active, div.checkbox .sq-cardsort .sq-cardsort-state-selected:not(.sq-cardsort-card)\n{\n\tbackground-color: #5ab414;\n\tcolor: white;\n\tborder: transparent;\n}\n\n\n\n\t\t\t\t\t/* ranksort */ \n\n.sq-ranksort-container .sq-ranksort-card\n{\n\tbackground-color: transparent !important;\n\tborder: 1px solid #696a69 !important;\n\tcolor: #454545 !important;\n\tfont-size: 1.2rem !important;\n}\n\n.sq-ranksort-container .sq-ranksort-card:hover, .sq-ranksort-container .sq-ranksort-card-dropped\n{\n\tbackground-color: #5ab414 !important;\n\tcolor: white !important;\n}\n\n.sq-ranksort-container .ui-state-disabled\n{\n\tbackground-color: #EFEFEF !important;\n\tcolor: #454545 !important;\n\tborder: transparent !important;\n}\n\n.sq-ranksort-container .sq-ranksort-bucket\n{\n\tbackground-color: #F6F6F6 !important;\n\tborder: 1.5px dashed #888 !important;\n}\n\n</style>\n\n<!-- client.css -->\n<style media=\"screen\">\n\n</style>\n\n<!-- JQuery -->\n<!--\n/s/jquery183.all.js\n-->\n<script src=\"//rnau.surveyfiles.com/s/exp/tmp/caaa730ed462680b3c3fc324ca591ac5.js\"></script>\n\n\n<!-- respview.js -->\n<script>\n(function(){\nif (!window.location.hash) {\nvar fragmentPattern = '_?$&\\')*,(;=.-~:@!';\nfor (var i = 1, result = ''; i <= Math.floor(18 / fragmentPattern.length); i++) {\nresult += fragmentPattern.slice(-1);\n}\nresult += fragmentPattern.charAt((18 % fragmentPattern.length) - 1);\nwindow.location.hash = result;\n}\n})();\n</script>\n\n<!--[if lte IE 8]><script src=\"/s/support/respond/respond-1.4.2.min.js\"></script><script src=\"/s/support/rem-unit-polyfill/rem.min.js\"></script><![endif]-->\n\n\n<!--\n/s/support/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js\n/s/common.js\n/s/respview-post132.js\n/s/survey.respondent-post143.js\n-->\n<script src=\"//rnau.surveyfiles.com/s/exp/tmp/bc1281e8b1698e536efd1b7d8eb52bb9.js\"></script>\n\n\n<!-- extra JS -->\n\n\n\n<!-- Include JS (specified in survey.xml) -->\n<script src=\"/survey/selfserve/dgustlib/res/rnjslib0.3.js?imgsecurity=standard\"></script>\n<script src=\" //d2n88fe5uqdqty.cloudfront.net/rnd/tools/imagepreloader/imagepreloader_v1.0.js?cache=xfhaxdrzazvjx9p7\"></script>\n\n\n\n\n<!-- respview.client.js -->\n</head><body class=\"survey-page non-touch\" data-device=\"\" style=\"user-select: none;\"><div style=\"text-align: center;\" data-mce-style=\"text-align: center;\">\n<br><br><br>\n<a href=\"https://www.secnewgate.com.au/research-privacy-policy/\" target=\"_blank\" rel=\"noopener\" data-mce-href=\"https://www.secnewgate.com.au/research-privacy-policy/\" data-mce-selected=\"inline-boundary\">Privacy Policy</a></div>\n\n<!-- client.javascript -->\n\n\n<script>\nfunction goForward(){window.history.forward();}\ngoForward();\naddHandler(goForward);\nwindow.onpageshow=function(evt){if(evt.persisted) goForward();}\nwindow.onunload=function(){void(0);}\n</script>\n\n<!-- extra Head -->\n<script>\njQuery(document).ready(function()\n{\n\tjQuery('.survey-section .footer span:contains(\"Privacy Policy\")').remove();\n\t jQuery('input:text').bind(\"cut copy paste\",function(e) {\n     e.preventDefault();\n  });\njQuery('textarea').bind(\"cut copy paste\",function(e) {\n     e.preventDefault();\n  }); \n});\n</script><script>\njQuery(document).ready(function()\n{\n\tjQuery('.survey-section .footer span:contains(\"Privacy Policy\")').remove();\n});\n</script>\n\n\n\n\n\n\n<div id=\"survey\" class=\"survey-container\">\n<div class=\"survey-section\"><div class=\"page-header\"></div>\n<!-- /.page-header --></div>\n<div class=\"survey-section\">\n<div class=\"survey-body\">\n<div class=\"survey-header\">\n\n<div class=\"progress-bar progress-top\" title=\"progress bar - 17% complete\">\n<div class=\"progress-box-outer\"><span class=\"progress-box-completed\" style=\"width: 17%;\"></span></div>\n<div class=\"progress-text\"><span class=\"screen-readers-only\">progress bar </span>17%</div>\n</div>\n<!-- /.progress-bar -->\n</div>\n<!-- /.survey-header -->\n\n<form id=\"primary\" name=\"primary\" method=\"post\" action=\"/survey/selfserve/53b/2507107\" enctype=\"application/x-www-form-urlencoded\">\n<input type=\"hidden\" name=\"_v2_counter\" value=\"18\">\n<!-- @@XYZZY@@ -->\n<div id=\"question_Q2087\" class=\"question radio label_Q2087  \">\n<h1 title=\"question\" class=\"question-text\" id=\"question_text_Q2087\">Please indicate how affordability has impacted each of the following behaviours vs. 12 months ago, if at all?</h1>\n<!-- /.question-text -->\n\n<h2 title=\"instructions\" class=\"instruction-text\">Select one in each row</h2>\n<!-- /.instruction-text -->\n<div class=\"answers answers-table\">\n<div class=\"fir fir-checkbox\" style=\"display: none;\">\n<span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<path d=\"M15.8,0H3.9C1.8,0,0,2,0,4.1V16c0,2.2,1.8,4,3.9,4h11.8c2.2,0,4.2-1.8,4.2-4V4.1C20,2,18,0,15.8,0z M19,16 c0,1.6-1.6,3-3.2,3H3.9C2.3,19,1,17.7,1,16V4.1C1,2.5,2.3,1,3.9,1h11.8C17.4,1,19,2.5,19,4.1V16z\" class=\"fir-base\"></path>\n<path d=\"M19,16c0,1.6-1.6,3-3.2,3H3.9C2.3,19,1,17.7,1,16V4.1C1,2.5,2.3,1,3.9,1h11.8C17.4,1,19,2.5,19,4.1V16z\" class=\"fir-bg\"></path>\n<polygon points=\"9.1,16.3 2.5,11 4.1,9 8.7,12.6 15.6,3.7 17.7,5.2 \" class=\"fir-selected\"></polygon>\n</svg>\n</span>\n</div>\n<div class=\"fir fir-radio\" style=\"display: none;\">\n<span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</div>\n<table class=\"grid setWidth grid-table-mode\" data-settings=\"auto-optimize mobile-mode group-by-row table-mode\" data-height=\"\" summary=\"This table contains form elements to answer the survey question\">\n<tbody>\n<tr class=\"row mobile-top-border-row\">\n<td colspan=\"6\" class=\"cell nonempty mobile-top-border-cell\"></td>\n</tr><tr class=\"row row-col-legends row-col-legends-top colCount-5\">\n<td class=\"cell empty empty-left empty-top unused mobile border-collapse\"></td>\n<th scope=\"col\" id=\"Q2087_c1\" class=\"cell nonempty legend col-legend col-legend-top col-legend-basic legend-level-1 mobile border-collapse   \" style=\"width: 111px; min-width: 111px;\">\nDoing more of this now due to affordability\n</th><th scope=\"col\" id=\"Q2087_c2\" class=\"cell nonempty legend col-legend col-legend-top col-legend-basic legend-level-1 mobile border-collapse   \" style=\"width: 111px; min-width: 111px;\">\nDoing the same amount\n</th><th scope=\"col\" id=\"Q2087_c3\" class=\"cell nonempty legend col-legend col-legend-top col-legend-basic legend-level-1 mobile border-collapse   \" style=\"width: 111px; min-width: 111px;\">\nDoing less of this now due to affordability\n</th><th scope=\"col\" id=\"Q2087_c4\" class=\"cell nonempty legend col-legend col-legend-top col-legend-basic legend-level-1 mobile border-collapse   \" style=\"width: 111px; min-width: 111px;\">\nHave stopped doing this due to affordability\n</th><th scope=\"col\" id=\"Q2087_c5\" class=\"cell nonempty legend col-legend col-legend-top col-legend-basic legend-level-1 mobile border-collapse   \" style=\"width: 111px; min-width: 111px;\">\nNever did this\n</th>\n\n</tr>\n</tbody>\n<tbody><tr class=\"row row-elements even colCount-5\">\n<th scope=\"row\" class=\"cell nonempty legend row-legend row-legend-left row-legend-basic legend-level-1 mobile border-collapse  \">\nParticipating in fitness and wellbeing activities (e.g. gym)\n</th>\n<td headers=\"Q2087_c1\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.10\" value=\"0\" id=\"ans34850.0.10\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.0.10\">Doing more of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c2\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.10\" value=\"1\" id=\"ans34850.1.10\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.1.10\">Doing the same amount</label> </span>\n</span>\n</td><td headers=\"Q2087_c3\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.10\" value=\"2\" id=\"ans34850.2.10\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.2.10\">Doing less of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c4\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.10\" value=\"3\" id=\"ans34850.3.10\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.3.10\">Have stopped doing this due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c5\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.10\" value=\"4\" id=\"ans34850.4.10\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.4.10\">Never did this</label> </span>\n</span>\n</td>\n\n</tr><tr class=\"row row-elements odd colCount-5\">\n<th scope=\"row\" class=\"cell nonempty legend row-legend row-legend-left row-legend-basic legend-level-1 mobile border-collapse  \">\nAttending routine health appointments for me (e.g. dentist, doctor)\n</th>\n<td headers=\"Q2087_c1\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.2\" value=\"0\" id=\"ans34850.0.2\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.0.2\">Doing more of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c2\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.2\" value=\"1\" id=\"ans34850.1.2\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.1.2\">Doing the same amount</label> </span>\n</span>\n</td><td headers=\"Q2087_c3\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.2\" value=\"2\" id=\"ans34850.2.2\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.2.2\">Doing less of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c4\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.2\" value=\"3\" id=\"ans34850.3.2\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.3.2\">Have stopped doing this due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c5\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.2\" value=\"4\" id=\"ans34850.4.2\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.4.2\">Never did this</label> </span>\n</span>\n</td>\n\n</tr><tr class=\"row row-elements even colCount-5\">\n<th scope=\"row\" class=\"cell nonempty legend row-legend row-legend-left row-legend-basic legend-level-1 mobile border-collapse  \">\nSpending quality time with family and friends\n</th>\n<td headers=\"Q2087_c1\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.11\" value=\"0\" id=\"ans34850.0.11\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.0.11\">Doing more of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c2\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.11\" value=\"1\" id=\"ans34850.1.11\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.1.11\">Doing the same amount</label> </span>\n</span>\n</td><td headers=\"Q2087_c3\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.11\" value=\"2\" id=\"ans34850.2.11\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.2.11\">Doing less of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c4\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.11\" value=\"3\" id=\"ans34850.3.11\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.3.11\">Have stopped doing this due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c5\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.11\" value=\"4\" id=\"ans34850.4.11\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.4.11\">Never did this</label> </span>\n</span>\n</td>\n\n</tr><tr class=\"row row-elements odd colCount-5\">\n<th scope=\"row\" class=\"cell nonempty legend row-legend row-legend-left row-legend-basic legend-level-1 mobile border-collapse  \">\nGoing on holidays\n</th>\n<td headers=\"Q2087_c1\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.9\" value=\"0\" id=\"ans34850.0.9\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.0.9\">Doing more of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c2\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.9\" value=\"1\" id=\"ans34850.1.9\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.1.9\">Doing the same amount</label> </span>\n</span>\n</td><td headers=\"Q2087_c3\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.9\" value=\"2\" id=\"ans34850.2.9\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.2.9\">Doing less of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c4\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.9\" value=\"3\" id=\"ans34850.3.9\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.3.9\">Have stopped doing this due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c5\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.9\" value=\"4\" id=\"ans34850.4.9\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.4.9\">Never did this</label> </span>\n</span>\n</td>\n\n</tr><tr class=\"row row-elements even colCount-5\">\n<th scope=\"row\" class=\"cell nonempty legend row-legend row-legend-left row-legend-basic legend-level-1 mobile border-collapse  \">\nDriving in general\n</th>\n<td headers=\"Q2087_c1\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.5\" value=\"0\" id=\"ans34850.0.5\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.0.5\">Doing more of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c2\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.5\" value=\"1\" id=\"ans34850.1.5\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.1.5\">Doing the same amount</label> </span>\n</span>\n</td><td headers=\"Q2087_c3\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.5\" value=\"2\" id=\"ans34850.2.5\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.2.5\">Doing less of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c4\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.5\" value=\"3\" id=\"ans34850.3.5\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.3.5\">Have stopped doing this due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c5\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.5\" value=\"4\" id=\"ans34850.4.5\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.4.5\">Never did this</label> </span>\n</span>\n</td>\n\n</tr><tr class=\"row row-elements odd colCount-5\">\n<th scope=\"row\" class=\"cell nonempty legend row-legend row-legend-left row-legend-basic legend-level-1 mobile border-collapse  \">\nUsing public transport\n</th>\n<td headers=\"Q2087_c1\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.7\" value=\"0\" id=\"ans34850.0.7\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.0.7\">Doing more of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c2\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.7\" value=\"1\" id=\"ans34850.1.7\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.1.7\">Doing the same amount</label> </span>\n</span>\n</td><td headers=\"Q2087_c3\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.7\" value=\"2\" id=\"ans34850.2.7\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.2.7\">Doing less of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c4\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.7\" value=\"3\" id=\"ans34850.3.7\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.3.7\">Have stopped doing this due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c5\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.7\" value=\"4\" id=\"ans34850.4.7\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.4.7\">Never did this</label> </span>\n</span>\n</td>\n\n</tr><tr class=\"row row-elements even colCount-5\">\n<th scope=\"row\" class=\"cell nonempty legend row-legend row-legend-left row-legend-basic legend-level-1 mobile border-collapse  \">\nChild participating in paid physical activities (e.g. organised sport, dance)\n</th>\n<td headers=\"Q2087_c1\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.12\" value=\"0\" id=\"ans34850.0.12\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.0.12\">Doing more of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c2\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.12\" value=\"1\" id=\"ans34850.1.12\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.1.12\">Doing the same amount</label> </span>\n</span>\n</td><td headers=\"Q2087_c3\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.12\" value=\"2\" id=\"ans34850.2.12\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.2.12\">Doing less of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c4\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.12\" value=\"3\" id=\"ans34850.3.12\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.3.12\">Have stopped doing this due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c5\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.12\" value=\"4\" id=\"ans34850.4.12\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.4.12\">Never did this</label> </span>\n</span>\n</td>\n\n</tr><tr class=\"row row-elements odd colCount-5\">\n<th scope=\"row\" class=\"cell nonempty legend row-legend row-legend-left row-legend-basic legend-level-1 mobile border-collapse  \">\nChild attending routine heath appointments (e.g. dentist, doctor)\n</th>\n<td headers=\"Q2087_c1\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.3\" value=\"0\" id=\"ans34850.0.3\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.0.3\">Doing more of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c2\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.3\" value=\"1\" id=\"ans34850.1.3\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.1.3\">Doing the same amount</label> </span>\n</span>\n</td><td headers=\"Q2087_c3\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.3\" value=\"2\" id=\"ans34850.2.3\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.2.3\">Doing less of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c4\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.3\" value=\"3\" id=\"ans34850.3.3\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.3.3\">Have stopped doing this due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c5\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.3\" value=\"4\" id=\"ans34850.4.3\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.4.3\">Never did this</label> </span>\n</span>\n</td>\n\n</tr><tr class=\"row row-elements even colCount-5\">\n<th scope=\"row\" class=\"cell nonempty legend row-legend row-legend-left row-legend-basic legend-level-1 mobile border-collapse  \">\nAttending entertainment activities/events (e.g. cinema, concert, sports game, museum, festival)\n</th>\n<td headers=\"Q2087_c1\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.1\" value=\"0\" id=\"ans34850.0.1\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.0.1\">Doing more of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c2\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.1\" value=\"1\" id=\"ans34850.1.1\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.1.1\">Doing the same amount</label> </span>\n</span>\n</td><td headers=\"Q2087_c3\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.1\" value=\"2\" id=\"ans34850.2.1\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.2.1\">Doing less of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c4\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.1\" value=\"3\" id=\"ans34850.3.1\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.3.1\">Have stopped doing this due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c5\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.1\" value=\"4\" id=\"ans34850.4.1\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.4.1\">Never did this</label> </span>\n</span>\n</td>\n\n</tr><tr class=\"row row-elements odd colCount-5\">\n<th scope=\"row\" class=\"cell nonempty legend row-legend row-legend-left row-legend-basic legend-level-1 mobile border-collapse  \">\nDriving on toll roads\n</th>\n<td headers=\"Q2087_c1\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.6\" value=\"0\" id=\"ans34850.0.6\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.0.6\">Doing more of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c2\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.6\" value=\"1\" id=\"ans34850.1.6\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.1.6\">Doing the same amount</label> </span>\n</span>\n</td><td headers=\"Q2087_c3\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.6\" value=\"2\" id=\"ans34850.2.6\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.2.6\">Doing less of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c4\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.6\" value=\"3\" id=\"ans34850.3.6\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.3.6\">Have stopped doing this due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c5\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.6\" value=\"4\" id=\"ans34850.4.6\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.4.6\">Never did this</label> </span>\n</span>\n</td>\n\n</tr><tr class=\"row row-elements even colCount-5\">\n<th scope=\"row\" class=\"cell nonempty legend row-legend row-legend-left row-legend-basic legend-level-1 mobile border-collapse  \">\nEating healthy food in general\n</th>\n<td headers=\"Q2087_c1\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.4\" value=\"0\" id=\"ans34850.0.4\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.0.4\">Doing more of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c2\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.4\" value=\"1\" id=\"ans34850.1.4\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.1.4\">Doing the same amount</label> </span>\n</span>\n</td><td headers=\"Q2087_c3\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.4\" value=\"2\" id=\"ans34850.2.4\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.2.4\">Doing less of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c4\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.4\" value=\"3\" id=\"ans34850.3.4\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.3.4\">Have stopped doing this due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c5\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.4\" value=\"4\" id=\"ans34850.4.4\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.4.4\">Never did this</label> </span>\n</span>\n</td>\n\n</tr><tr class=\"row row-elements odd colCount-5\">\n<th scope=\"row\" class=\"cell nonempty legend row-legend row-legend-left row-legend-basic legend-level-1 mobile border-collapse  \">\nChild participating in extracurricular activities (e.g. sports, music)\n</th>\n<td headers=\"Q2087_c1\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.8\" value=\"0\" id=\"ans34850.0.8\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.0.8\">Doing more of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c2\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.8\" value=\"1\" id=\"ans34850.1.8\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.1.8\">Doing the same amount</label> </span>\n</span>\n</td><td headers=\"Q2087_c3\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.8\" value=\"2\" id=\"ans34850.2.8\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.2.8\">Doing less of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c4\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.8\" value=\"3\" id=\"ans34850.3.8\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.3.8\">Have stopped doing this due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c5\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.8\" value=\"4\" id=\"ans34850.4.8\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.4.8\">Never did this</label> </span>\n</span>\n</td>\n\n</tr><tr class=\"row row-elements even colCount-5\">\n<th scope=\"row\" class=\"cell nonempty legend row-legend row-legend-left row-legend-basic legend-level-1 mobile border-collapse  \">\nChild participating in paid creative activities (e.g. music, art, drama)\n</th>\n<td headers=\"Q2087_c1\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.13\" value=\"0\" id=\"ans34850.0.13\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.0.13\">Doing more of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c2\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.13\" value=\"1\" id=\"ans34850.1.13\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.1.13\">Doing the same amount</label> </span>\n</span>\n</td><td headers=\"Q2087_c3\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.13\" value=\"2\" id=\"ans34850.2.13\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.2.13\">Doing less of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c4\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.13\" value=\"3\" id=\"ans34850.3.13\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.3.13\">Have stopped doing this due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c5\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.13\" value=\"4\" id=\"ans34850.4.13\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.4.13\">Never did this</label> </span>\n</span>\n</td>\n\n</tr><tr class=\"row row-elements odd colCount-5\">\n<th scope=\"row\" class=\"cell nonempty legend row-legend row-legend-left row-legend-basic legend-level-1 mobile border-collapse  \">\nEating/drinking out (e.g. at restaurant/caf\u00e9/bar/pub)\n</th>\n<td headers=\"Q2087_c1\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.0\" value=\"0\" id=\"ans34850.0.0\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.0.0\">Doing more of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c2\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.0\" value=\"1\" id=\"ans34850.1.0\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.1.0\">Doing the same amount</label> </span>\n</span>\n</td><td headers=\"Q2087_c3\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.0\" value=\"2\" id=\"ans34850.2.0\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.2.0\">Doing less of this now due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c4\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.0\" value=\"3\" id=\"ans34850.3.0\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.3.0\">Have stopped doing this due to affordability</label> </span>\n</span>\n</td><td headers=\"Q2087_c5\" class=\"cell nonempty element indent-1 mobile border-collapse groupingRows    clickableCell\">\n<span class=\"cell-sub-wrapper cell-legend-right\">\n<span class=\"cell-input cell-sub-column\">\n<input type=\"radio\" name=\"ans34850.0.0\" value=\"4\" id=\"ans34850.4.0\" class=\"input radio fir-hidden\"><span class=\"fir-icon\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-1 -1 22 22\" class=\"rounded\">\n<circle cx=\"10\" cy=\"10\" r=\"10\" class=\"fir-base\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"9\" class=\"fir-bg\"></circle>\n<circle cx=\"10\" cy=\"10\" r=\"7\" class=\"fir-selected\"></circle>\n</svg>\n</span>\n</span>\n<span class=\"cell-text cell-sub-column\"><label for=\"ans34850.4.0\">Never did this</label> </span>\n</span>\n</td>\n\n</tr></tbody>\n</table>\n<!-- /.grid -->\n</div>\n<!-- /.answers -->\n</div>\n<!-- /.question --><div class=\"survey-buttons\">\n<input type=\"submit\" name=\"continue\" id=\"btn_continue\" class=\"button continue\" value=\"Continue \" onclick=\"var i = document.createElement('input'); i.setAttribute('type', 'hidden');i.setAttribute('value', '1');i.setAttribute('name', '__has_javascript');document.forms.primary.appendChild(i);\">\n\n</div>\n<!-- #surveyButtons --><input type=\"hidden\" name=\"state\" value=\"ffb0992e-36f9-46b9-b3d4-8eab059ab295\">\n<input type=\"hidden\" name=\"start_time\" value=\"1752343771\">\n<input type=\"hidden\" name=\"_ptime\" value=\"0\">\n<script>addHandler(Survey.capturePreciseTime)</script><script>\n$ (window).on(\"load\", function() { setTimeout(function() { Survey.recordPageTiming(\"selfserve/53b/2507107\", \"xfhaxdrzazvjx9p7\", \"y8adgfb8ykkwpen7\");}, 100); });\n</script>\n</form>\n\n\n</div>\n<!-- /.survey-body -->\n</div>\n<div class=\"survey-section\">\n<script>\nvar QsIsTesting=0;\nvar QsLangCode = {\"arabic\":\"AR\",\"arabic_egypt\":\"AR\",\"arabic_lebanon\":\"AR\",\"arabic_morocco\":\"AR\",\"arabic_qatar\":\"AR\",\"arabic_saudiarabia\":\"AR\",\"arabic_uae\":\"AR\",\"bulgarian\":\"BG\",\"simplifiedchinese\":\"ZH-CHS\",\"traditionalchinese\":\"ZH-CHT\",\"czech\":\"CS\",\"danish\":\"DA\",\"dutch\":\"NL\",\"dutch_belgium\":\"NL\",\"english\":\"EN\",\"aus\":\"EN\",\"english_ca\":\"EN\",\"english_china\":\"EN\",\"english_hk\":\"EN\",\"english_india\":\"EN\",\"english_id\":\"EN\",\"english_ireland\":\"EN\",\"english_my\":\"EN\",\"english_nigeria\":\"EN\",\"english_sg\":\"EN\",\"english_za\":\"EN\",\"english_tw\":\"EN\",\"uk\":\"EN\",\"finnish\":\"FI\",\"french\":\"FR\",\"french_belgium\":\"FR\",\"canadian\":\"FR\",\"french_lu\":\"FR\",\"french_ch\":\"FR\",\"german\":\"DE\",\"german_austria\":\"DE\",\"german_lu\":\"DE\",\"german_ch\":\"DE\",\"hungarian\":\"HU\",\"indonesian\":\"ID\",\"italian\":\"IT\",\"italian_ch\":\"IT\",\"japanese\":\"JA\",\"korean\":\"KO\",\"malay\":\"MS\",\"malay_sg\":\"MS\",\"norwegian\":\"NN\",\"polish\":\"PL\",\"portuguese\":\"PT\",\"portuguese_br\":\"PT\",\"romanian\":\"RO\",\"russian\":\"RU\",\"slovak\":\"SK\",\"spanish\":\"ES\",\"spanish_argentina\":\"ES\",\"spanish_brazil\":\"ES\",\"spanish_chile\":\"ES\",\"spanish_colombia\":\"ES\",\"spanish_ecuador\":\"ES\",\"spanish_eu\":\"ES\",\"spanish_peru\":\"ES\",\"spanish_venezuela\":\"ES\",\"spanish_latin\":\"ES\",\"spanish_mexico\":\"ES\",\"spanish_south\":\"ES\",\"swedish\":\"SV\",\"thai\":\"TH\",\"turkish\":\"TR\",\"vietnamese\":\"VI\",}[\"english\"];\n$ (document).ready(function(){\nvar submitted = 0;\nvar disableCollect = document.getElementById('qualityscore_collect_disabled');\nif(!disableCollect && document.forms[0]) {\n$ ('.imperium-ra-question').each(function(){\nvar qsRaAttrs = this['imperium-ra-attrs'] || {};\nif($ (this).hasClass('oe')) qsRaAttrs['EngagedLength'] = \"1\";\n$ (this).parents('[class*=qsra]').each(function(){\nvar arrClass = $ (this).attr('class').split(/\\s+/);\nfor(var i=0; i<arrClass.length;i++){\nif(arrClass[i].substr(0,4) == 'qsra'){\nvar arrQsRa = arrClass[i].substr(4).split('-');\nif(arrQsRa.length == 2)\nqsRaAttrs[arrQsRa[0]] = arrQsRa[1];\n}\n}\n})\nthis['imperium-ra-attrs'] = qsRaAttrs;\n});\n$ (\"#primary\").on(\"submit\", CallQSService);\n}\nfunction submitForm(){\nif(!submitted){\nsubmitted = 1;\n$ (\"#primary\").off(\"submit\", CallQSService).submit();\n}\n}\nfunction CollectQSDataResponse(data){\nif(QsIsTesting) console.log(\"QS:\", JSON.stringify(data));\nsubmitForm();\n}\nfunction CallQSService(e){\nif(!submitted){\ne = e || window.event;\ne.preventDefault ? e.preventDefault() : (e.returnValue = false);\ne.stopPropagation();\nsetTimeout(submitForm, 3000);\ntry{\nvar pageId = $ (\"div.question, div.comment\").attr(\"id\");\nvar matrixData = getMatrixData();\nimperium_qualityscore.CollectData(pageId , matrixData, CollectQSDataResponse);\n}\ncatch(e){\nconsole.error(e);\nsubmitForm();\n}\n}\n}\nfunction getInputData(input, questionType, selected){\nvar items = input.attr('id').split('.');\nvar data = {};\nif(items.length>2){\nif(questionType.includes(\"group-by-col\")){\ndata.rowId = input.closest(\"td\").attr('headers').split(\" \")[0].split(\"_\").splice(1).join(\"_\");\ndata.value = items[2];\n}\nelse{\ndata.rowId = 'r' + items[2];\ndata.value = input.closest(\"td\").attr('headers').split(\" \")[0].split(\"_\").splice(1).join(\"_\");\n}\nselected[data.rowId] = selected[data.rowId] || [];\nselected[data.rowId].push(data.value);\n}\nreturn selected;\n}\nfunction getMatrixData() {\ntry {\nvar pageData = [];\nvar questions = $ ('.question');\nquestions.each(function () {\nvar $q = $ (this);\nvar qId = $q.attr(\"id\").split(\"_\").splice(1).join(\"_\");\nvar question = $ (this).find('.grid');\nvar questionType = question.attr('data-settings');\nvar selected = {};\nif (qId && questionType) {\nvar isGrid = false;\nif ($ (\".answers tr.row-elements\").first().find(\"input:radio\").length > 1) {\nisGrid = true;\n$q.find(\"div.answers td input:radio:checked\").each(function () {\ngetInputData($ (this), questionType, selected);\n})\n}\nif ($ (\".answers tr.row-elements\").first().find(\"input:checkbox\").length > 1) {\nisGrid = true;\n$q.find(\"div.answers td input:checkbox:checked\").each(function () {\ngetInputData($ (this), questionType, selected);\n})\n}\nif (isGrid) {\n$q.find('div.answers td input[type=\"text\"]').filter(function () {\nreturn !!this.value;\n}).each(function () {\ngetInputData($ (this), questionType, selected);\n})\n}\n}\n// Retrieve Decipher button rating question as grid data\nelse if ($ (\".answers .atmrating_input\").find(\".atmrating-selected\").length > 0) {\nvar inputs = $q.find(\".answers .atmrating_input\");\nfor (var i = 0; i < inputs.length; i++) {\nvar selectedIndex = $ (inputs[i]).find('.atmrating-selected').index();\nif (selectedIndex >= 0)\nselected[i + 1] = [selectedIndex + 1];\n}\n}\nvar qData = [];\nfor (var rowId in selected) {\nqData.push(rowId + '-' + selected[rowId].join());\n}\nif (qData.length > 0) pageData.push(qId + ':' + qData.join(';'));\n});\nreturn pageData.join('|');\n} catch (e) {\nconsole.error(e);\nreturn \"\";\n};\n}\n$ (\".question.number, .question.float\").not('.sq-atmrating').find('div.answers input[type=\"text\"]:visible:not(.oe-inline)').addClass(\"imperium-numeric-question\");\n})\nif(!\"1144\"){\n$ ('body').append('<input type=\"hidden\" id=\"GeoCodes\" name=\"GeoCodes\" value=\"1,\"/>');\nwindow.RVIDResponseComplete = window.RVIDResponseComplete || function(data) {}\n}\nwindow.RealAnswerComplete = window.RealAnswerComplete || function(realAnswerResults){}\nif(QsLangCode){\n$ (\".question:not(.number):not(.float)\").find('div.answers input[type=\"text\"]:visible').addClass(\"imperium-ra-question\");\n$ (\".question.number, .question.float\").find('div.answers input[type=\"text\"]:visible.oe-inline').addClass(\"imperium-ra-question\");\n$ ('div.answers textarea:visible').addClass(\"imperium-ra-question\");\nif($ ('.imperium-ra-question').length>0){ $ ('body').append('<input type=\"hidden\" id=\"LangCode\" name=\"LangCode\" value=\"' + QsLangCode + '\">');}\n}\n</script>\n<input type=\"hidden\" id=\"ClientID\" name=\"ClientID\" value=\"32F0DF3C-D504-46E9-999F-AE32A3D57A44\">\n<input type=\"hidden\" id=\"SurveyID\" name=\"SurveyID\" value=\"survey-au.yoursurveynow.com/selfserve/53b/2507107\">\n<input type=\"hidden\" id=\"PanelistID\" name=\"PanelistID\" value=\"Q4uXRsaBwZO1mzF2GJYk1A**\">\n<script type=\"text/javascript\" src=\"https://survey-d.dynata.com/survey/selfserve/53b/dgust/10000231/qslib1.0.js\"></script></div>\n</div><input type=\"hidden\" name=\"imperium_qs_time_start\" id=\"imperium_qs_time_start\" value=\"1752343771584\">\n<div id=\"detectBreakpoint\"></div>\n<!-- /.survey-container -->\n\n\n</body></html>",
+    "html_captured": true,
+    "screenshot_path": "learning_data/screenshot_1752343776.png",
+    "screenshot_captured": true
+  },
+  "page_state_after": {
+    "timestamp": 1752344075.9463987,
+    "capture_method": "enhanced_with_user_input",
+    "user_provided_data": {
+      "question_text": "Please indicate how affordability has impacted each of the following behaviours vs. 12 months ago, if at all?",
+      "answer_provided": "1",
+      "element_type": "unknown",
+      "intervention_method": "manual_completion"
+    },
+    "post_url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507107#!_",
+    "post_title": "Survey",
+    "post_content_sample": "\n\n\nPrivacy Policy\n \nprogress bar\n20%\nHave you experienced any of the following in the last 3 months?\nSelect one in each row\n\tYes\tNo\tHave not had this type of expense\nNot being able to meet the minimum payments on your credit card on time\t\n\t\n\t\n\nNot being able to pay your child\u2019s education/childcare on time\t\n\t\n\t\n\nNot being able to afford your usual groceries\t\n\t\n\t\n\nNot being able to pay an energy bill on time\t\n\t\n\t\n\nNot being able to pay a phone/internet bill on time\t\n\t\n\t\n\nNot being able to make buy-now-pay-later repayments on time (e.g. Afterpay, Zip Pay)\t\n\t\n\t",
+    "page_data_captured": true
+  },
+  "learning_insights": {
+    "analysis_timestamp": 1752344075.973415,
+    "question_type": "unknown",
+    "failure_reason": "Automation exception: 'EnhancedLearningInterventionManager' object has no attribute 'request_manual_intervention'",
+    "learning_opportunities": [
+      "New question pattern discovered - analyze for classification",
+      "Element pattern: {'total_elements': 71, 'radio_count': 70, 'checkbox_count': 0, 'text_input_count': 0, 'dropdown_count': 0, 'button_count': 1, 'element_distribution': 'analyzed'} - create new handler",
+      "This intervention provides new automation capability",
+      "Page navigation occurred - analyze navigation patterns"
+    ],
+    "suggested_improvements": [
+      "Improve navigation detection and handling"
+    ],
+    "pattern_analysis": {
+      "total_elements": 71,
+      "radio_count": 70,
+      "checkbox_count": 0,
+      "text_input_count": 0,
+      "dropdown_count": 0,
+      "button_count": 1,
+      "element_distribution": "analyzed"
+    },
+    "handler_enhancement_recommendations": [
+      "Update unknown handler with new element selectors",
+      "Add confidence boosting for patterns with 71 elements",
+      "Consider creating specialized sub-handler for this pattern"
+    ],
+    "confidence_threshold_suggestions": {
+      "current_threshold": 0.99,
+      "suggested_reduction": 0.94,
+      "reason": "Reduce threshold by 5% after successful manual intervention learning",
+      "progressive_improvement": "Gradually increase automation rate"
+    },
+    "new_selector_candidates": [],
+    "manual_data_insights": {
+      "question_text_length": 109,
+      "question_keywords": [
+        "please",
+        "indicate",
+        "how",
+        "affordability",
+        "has",
+        "impacted",
+        "each",
+        "of",
+        "the",
+        "following"
+      ],
+      "answer_provided": "1",
+      "element_type_used": "unknown",
+      "automation_opportunity": "Create unknown handler for unknown elements"
+    }
+  },
+  "confidence_threshold": 0.99,
+  "page_object_available": true,
+  "data_capture_method": "enhanced_with_user_input"
+}
