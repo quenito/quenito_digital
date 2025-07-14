@@ -45,7 +45,7 @@ class HandlerFactory:
         
         # Ultra-conservative confidence thresholds (98-99%) for enhanced learning
         self.confidence_thresholds = {
-            "demographics": 0.98,        # 98% - highest confidence needed
+            "demographics": 0.60,        # 60% - full demographics profile in knowledge base decreased to 60% confidence needed
             "brand_familiarity": 0.98,   # 98% - THE CRITICAL HANDLER for matrix questions
             "rating_matrix": 0.99,       # 99% - complex interactions
             "multi_select": 0.97,        # 97% - multiple choice complexity
@@ -171,9 +171,11 @@ class HandlerFactory:
             confidence = max(0.0, confidence - 0.3)
         
         # Positive adjustments for strong contextual matches
-        if handler_name == 'demographics' and any(word in content_lower for word in ['age', 'gender', 'income', 'education']):
-            confidence = min(0.98, confidence + 0.05)
-        
+        if handler_name == 'demographics' and any(word in content_lower for word in ['age', 'gender', 'income', 'education', 'occupation', 'work', 'job']):
+            confidence = min(1.0, confidence + 0.15)  # 🎯 INCREASED boost and higher cap
+        elif handler_name == 'demographics' and any(word in content_lower for word in ['male', 'female', 'years old', 'born']):
+            confidence = min(1.0, confidence + 0.10)  # 🎯 Additional boost for clear demo indicators
+
         return confidence
     
     def record_handler_success(self, handler_name: str, success: bool):

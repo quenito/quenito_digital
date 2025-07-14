@@ -1055,7 +1055,7 @@ class EnhancedLearningInterventionManager(InterventionManager):
             print(f"⚠️ Could not save learning data: {e}")
 
     # Session management methods
-    def save_learning_session_FIXED(self):
+    def save_learning_session(self):
         """FIXED: Save complete learning session data"""
         try:
             session_data = {

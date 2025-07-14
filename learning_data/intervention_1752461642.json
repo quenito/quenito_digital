@@ -1,0 +1,36 @@
+{
+  "session_id": "single_brand_1752461593",
+  "session_type": "single_brand_learning",
+  "timestamp": 1752461642.1756048,
+  "duration_seconds": 48.966792345047,
+  "question_analysis": {
+    "complexity_level": "single_brand",
+    "question_count": 1,
+    "element_types": [
+      "radio"
+    ],
+    "requires_typing": false,
+    "has_multiple_selections": false,
+    "is_matrix": false,
+    "is_brand_familiarity": true,
+    "brand_keywords_found": 2,
+    "automation_impact": "HIGH - brand learning opportunity",
+    "time_estimate": "10-15 seconds (brand optimized)",
+    "supremacy_priority": "HIGH"
+  },
+  "extracted_brand": {
+    "extraction_method": "single_brand_supremacy",
+    "brand_name": "Unknown",
+    "familiarity_level": "Unknown",
+    "confidence": 85
+  },
+  "capture_data": {
+    "capture_timestamp": 1752461642.1543107,
+    "page_url": "https://www.surveymonkey.com/r/HX39G27",
+    "page_title": "Demographics Survey",
+    "question_complexity": "single_brand",
+    "brand_indicators": 2,
+    "capture_method": "smart_post_completion_enhanced"
+  },
+  "automation_impact": "MEDIUM - single brand learning"
+}
