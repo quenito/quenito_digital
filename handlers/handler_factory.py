@@ -8,7 +8,7 @@ Expected impact: 21% → 60-70% automation improvement!
 FIXED: Critical error resolution for "too many values to unpack"
 """
 
-from .demographics_handler import DemographicsHandler
+from .demographics_handler_brain import DemographicsHandler
 from .brand_familiarity_handler import BrandFamiliarityHandler  # THE GAME CHANGER!
 from .rating_matrix_handler import RatingMatrixHandler
 from .multi_select_handler import MultiSelectHandler

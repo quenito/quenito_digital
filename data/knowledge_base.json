@@ -1,0 +1,196 @@
+{
+  "version": "2.5.0",
+  "last_updated": "2025-07-14",
+  "description": "Enhanced knowledge base with complete demographics for comprehensive testing",
+  
+  "validation_settings": {
+    "handler_confidence_thresholds": {
+      "demographics": 0.40,
+      "brand_familiarity": 0.70,
+      "rating_matrix": 0.80,
+      "multi_select": 0.75,
+      "trust_rating": 0.75,
+      "recency_activities": 0.70,
+      "research_required": 0.70,
+      "unknown": 0.99
+    },
+    "safety_first_mode": true,
+    "double_validation_enabled": true,
+    "manual_intervention_threshold": 0.5
+  },
+  
+  "user_profile": {
+    "demographics": {
+      "age": "45",
+      "birth_year": "1980",
+      "gender": "Male",
+      "location": "New South Wales",
+      "postcode": "2217",
+      "city_suburb": "Kogarah",
+      "location_type": "In a large metropolitan city",
+      "urban_rural": "Urban",
+      "marital_status": "Married/civil partnership",
+      "household_size": "4",
+      "children": "Yes",
+      "pets": "Yes",
+      "employment_status": "Full-time",
+      "work_arrangement": "Mix of on-site and home-based",
+      "education": "High school education (Year 11 or Year 12)",
+      "occupation": "Data Analyst",
+      "job_title": "Data Analyst",
+      "industry": "Retail",
+      "sub_industry": "Supermarkets",
+      "industry_full": "Retail - Supermarkets",
+      "work_sector": "Private Sector",
+      "occupation_level": "Academic/Professional",
+      "personal_income": "$100,000 to $149,999",
+      "household_income": "$200,000 to $499,999"
+    },
+    "existing_brands": {
+      "currently_use": [
+        "Coca-Cola", "McDonald's", "Apple", "Google", "Netflix"
+      ],
+      "familiar_with": [
+        "Pepsi", "KFC", "Samsung", "Microsoft", "Disney"
+      ]
+    },
+    "interests_and_preferences": {
+      "high_interest": [
+        "Technology", "Data Analysis", "Automation"
+      ],
+      "medium_interest": [
+        "Sports", "Movies", "Travel"
+      ],
+      "low_interest": [
+        "Fashion", "Cooking", "Gardening"
+      ]
+    }
+  },
+  
+  "question_patterns": {
+    "demographics_questions": {
+      "age_questions": {
+        "keywords": ["age", "born", "how old", "year of birth", "age group", "age range"],
+        "response_strategy": "use_user_profile_age",
+        "primary_value": "45",
+        "birth_year_value": "1980",
+        "age_ranges": {
+          "45-54": ["45-54", "40-54", "45 to 54", "40 to 54"]
+        },
+        "fallback_selectors": ["input[type=\"number\"]", "input[name*=\"age\"]"]
+      },
+      "gender_questions": {
+        "keywords": ["gender", "sex", "male", "female", "man", "woman"],
+        "response_strategy": "use_user_profile_gender",
+        "primary_value": "Male",
+        "gender_mappings": {
+          "Male": ["Male", "Man", "M", "male", "man"]
+        },
+        "options": ["Male", "Female", "male", "female", "M", "F"]
+      },
+      "location_questions": {
+        "keywords": ["location", "state", "region", "where do you live", "which region", "postcode", "metropolitan"],
+        "response_strategy": "use_user_profile_location",
+        "primary_location": "New South Wales",
+        "primary_postcode": "2217",
+        "location_mappings": {
+          "NSW": ["New South Wales", "NSW", "nsw", "new south wales"],
+          "Metropolitan": ["In a large metropolitan city", "large metropolitan", "metropolitan", "large city"]
+        },
+        "enhanced_patterns": [
+          "NSW", "New South Wales", "NSW/ACT", "NSW / ACT", "2217"
+        ]
+      },
+      "employment_questions": {
+        "keywords": ["employment", "work", "job", "occupation", "employed", "full-time", "work arrangement"],
+        "response_strategy": "use_user_profile_employment",
+        "primary_value": "Full-time",
+        "work_sector": "Private Sector",
+        "work_arrangement": "Mix of on-site and home-based",
+        "employment_mappings": {
+          "Full-time": ["Employed full-time", "Full-time", "full-time", "full time"],
+          "Private": ["Private Sector", "private sector", "private"],
+          "Mix": ["Mix of on-site and home-based", "mix of", "hybrid", "flexible"]
+        }
+      },
+      "occupation_questions": {
+        "keywords": ["occupation", "job title", "data analyst", "profession", "occupation level"],
+        "response_strategy": "use_user_profile_occupation",
+        "primary_value": "Data Analyst",
+        "occupation_level": "Academic/Professional",
+        "occupation_mappings": {
+          "Data Analyst": ["Data Analyst", "data analyst", "analyst"],
+          "Academic": ["Academic/Professional", "academic", "professional"]
+        }
+      },
+      "industry_questions": {
+        "keywords": ["industry", "sector", "retail", "supermarkets"],
+        "response_strategy": "use_user_profile_industry",
+        "primary_value": "Retail",
+        "sub_industry": "Supermarkets",
+        "industry_mappings": {
+          "Retail": ["Retail", "retail"],
+          "Supermarkets": ["Supermarkets", "supermarket", "grocery"]
+        }
+      },
+      "income_questions": {
+        "keywords": ["income", "salary", "earnings", "personal income", "household income"],
+        "response_strategy": "use_user_profile_income",
+        "personal_income": "$100,000 to $149,999",
+        "household_income": "$200,000 to $499,999",
+        "income_mappings": {
+          "Personal": ["$100,000 to $149,999", "$100,000-$149,999", "100000", "149999"],
+          "Household": ["$200,000 to $499,999", "$200,000-$499,999", "200000", "499999"]
+        }
+      },
+      "household_questions": {
+        "keywords": ["marital", "married", "household size", "children", "family", "pets"],
+        "response_strategy": "use_user_profile_household",
+        "marital_status": "Married/civil partnership",
+        "household_size": "4",
+        "children": "Yes",
+        "pets": "Yes",
+        "household_mappings": {
+          "Married": ["Married/civil partnership", "Married", "married", "civil partnership"],
+          "Children": ["Yes", "have children", "with children", "Family with children primary school aged"],
+          "Pets": ["Yes", "have pets", "own pets"]
+        }
+      },
+      "education_questions": {
+        "keywords": ["education", "school", "qualification", "high school"],
+        "response_strategy": "use_user_profile_education",
+        "primary_value": "High school education (Year 11 or Year 12)",
+        "education_mappings": {
+          "High School": ["High school education", "high school graduate", "year 12", "high school"]
+        }
+      }
+    },
+    
+    "brand_familiarity_questions": {
+      "response_levels": {
+        "very_familiar": ["Very familiar", "Extremely familiar", "Know very well"],
+        "somewhat_familiar": ["Somewhat familiar", "Moderately familiar", "Know a little"],
+        "not_familiar": ["Not familiar", "Never heard of", "Don't know"]
+      },
+      "brand_categories": {
+        "food_beverages": ["Coca-Cola", "Pepsi", "McDonald's", "KFC"],
+        "technology": ["Apple", "Google", "Microsoft", "Samsung"],
+        "entertainment": ["Netflix", "Disney", "YouTube", "Spotify"]
+      }
+    }
+  },
+  
+  "automation_settings": {
+    "timing": {
+      "reading_speed": 250,
+      "typing_speed": 65,
+      "decision_delay": 1.2,
+      "human_variation": 0.3
+    },
+    "safety": {
+      "max_retries": 3,
+      "timeout_seconds": 30,
+      "screenshot_on_error": true
+    }
+  }
+}
