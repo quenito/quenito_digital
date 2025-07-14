@@ -640,11 +640,36 @@ class EnhancedSurveyAutomationTool:
             
             # Get handler with comprehensive error handling
             try:
-                handler, confidence = self.handler_factory.get_best_handler(
+                # 🔧 FIXED: Safe unpacking of handler factory result
+                handler_result = self.handler_factory.get_best_handler(
                     self.browser_manager.page, 
                     page_content
                 )
-                print(f"🔍 Handler: {type(handler).__name__}, confidence: {confidence}")
+                
+                # Handle potential extra return values safely
+                if isinstance(handler_result, tuple):
+                    handler = handler_result[0]
+                    raw_confidence = handler_result[1] if len(handler_result) > 1 else 0.0
+                else:
+                    handler = handler_result
+                    raw_confidence = 0.0
+                
+                # 🔧 CRITICAL FIX: Convert confidence to numeric value
+                if isinstance(raw_confidence, str):
+                    if raw_confidence.lower() == 'unknown':
+                        confidence = 0.0  # Unknown = very low confidence
+                    else:
+                        try:
+                            confidence = float(raw_confidence)
+                        except (ValueError, TypeError):
+                            confidence = 0.0
+                elif isinstance(raw_confidence, (int, float)):
+                    confidence = float(raw_confidence)
+                else:
+                    confidence = 0.0
+                
+                print(f"🔍 Handler: {type(handler).__name__ if handler else 'None'}, confidence: {confidence:.3f}")
+                    
             except Exception as e:
                 print(f"❌ Handler factory error: {e} - using emergency intervention")
                 return self._emergency_manual_intervention(question_type, page_content, str(e))
@@ -826,31 +851,21 @@ class EnhancedSurveyAutomationTool:
 
     def _handle_manual_intervention(self, question_type: str, page_content: str, reason: str) -> str:
         """
-        🛡️ ENHANCED: Handle manual intervention with signal protection integration.
+        🚀 ENHANCED UNIVERSAL: Handle intervention with Universal Smart Capture + Brand Supremacy.
         """
         try:
-            # Use the enhanced intervention manager with signal protection
-            return self.intervention_manager.enhanced_manual_intervention_flow(
+            # 🚀 NEW: Use Universal Smart Capture instead of old manual intervention
+            return self.intervention_manager.enhanced_universal_intervention_flow(
                 question_type, reason, page_content, self.browser_manager.page
             )
         except Exception as e:
-            print(f"❌ Enhanced intervention failed: {e}")
-            print("🔄 Falling back to basic intervention...")
+            print(f"❌ Universal Smart Capture failed: {e}")
+            print("🔄 Falling back to manual intervention...")
             
-            # Basic fallback intervention
-            print("\n" + "="*60)
-            print("🔄 BASIC MANUAL INTERVENTION")
-            print(f"Question Type: {question_type}")
-            print(f"Reason: {reason}")
-            print("="*60)
-            print("Please complete this question manually and press Enter when done.")
-            
-            try:
-                input("Press Enter after completing the question...")
-                return "COMPLETE"
-            except KeyboardInterrupt:
-                print("🛡️ CTRL+C handled by protection system")
-                return "COMPLETE"
+            # Fallback to old method if Universal Smart Capture fails
+            return self.intervention_manager.enhanced_manual_intervention_flow(
+                question_type, reason, page_content, self.browser_manager.page
+            )
 
     def _check_survey_completion(self) -> bool:
         """Enhanced survey completion detection with error handling."""
