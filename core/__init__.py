@@ -1,14 +1,19 @@
 """
 Survey Automation Core Modules
-Core infrastructure for browser management, survey detection, and navigation.
+Enhanced with stealth browser capabilities and brain intelligence.
 """
 
-from .browser_manager import BrowserManager
-from .survey_detector import SurveyDetector
-from .navigation_controller import NavigationController
+from .stealth_browser_manager import StealthBrowserManager
+
+# Import existing browser manager for compatibility
+try:
+    from .browser_manager import BrowserManager
+except ImportError:
+    BrowserManager = None
 
 __all__ = [
-    'BrowserManager',
-    'SurveyDetector',
-    'NavigationController'
+    'StealthBrowserManager'
 ]
+
+if BrowserManager:
+    __all__.append('BrowserManager')

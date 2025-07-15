@@ -1,12 +1,11 @@
 """
 Survey Automation Data Models
-Core data models for question detection and statistics tracking.
+Enhanced with brain learning and intelligence tracking.
 """
 
-from .question_types import QuestionTypeDetector
-from .survey_stats import SurveyStats
+from .survey_stats import BrainEnhancedSurveyStats, SurveyStats
 
 __all__ = [
-    'QuestionTypeDetector',
+    'BrainEnhancedSurveyStats',
     'SurveyStats'
 ]

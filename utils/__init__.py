@@ -1,23 +1,30 @@
 """
 Survey Automation Utility Services
-Core utility modules for knowledge base, interventions, research, and reporting.
+Enhanced with brain intelligence and stealth reporting.
 """
 
 from .knowledge_base import KnowledgeBase
-# Temporarily comment out intervention_manager until we fix the dependency
-# from .intervention_manager import InterventionManager
-from .research_engine import ResearchEngine
-from .reporting import ReportGenerator
+from .reporting import BrainEnhancedReportGenerator, ReportGenerator
 
-# Add the new components
-from .human_timing_manager import HumanLikeTimingManager
-from .intervention_manager import EnhancedLearningInterventionManager
+# Import existing components
+try:
+    from .intervention_manager import EnhancedLearningInterventionManager
+except ImportError:
+    EnhancedLearningInterventionManager = None
+
+try:
+    from .research_engine import ResearchEngine
+except ImportError:
+    ResearchEngine = None
 
 __all__ = [
     'KnowledgeBase',
-    # 'InterventionManager',  # Commented out temporarily
-    'ResearchEngine',
-    'ReportGenerator',
-    'HumanLikeTimingManager',
-    'EnhancedLearningInterventionManager'
+    'BrainEnhancedReportGenerator',
+    'ReportGenerator'
 ]
+
+if EnhancedLearningInterventionManager:
+    __all__.append('EnhancedLearningInterventionManager')
+    
+if ResearchEngine:
+    __all__.append('ResearchEngine')
