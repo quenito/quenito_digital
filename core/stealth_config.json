@@ -1,0 +1,52 @@
+{
+  "version": "2.0.0",
+  "deployment_date": "2025-07-16T01:15:49.081459",
+  "stealth_system": {
+    "enabled": true,
+    "default_profile": "quenito_myopinions",
+    "cookie_transfer": true,
+    "stealth_enhancements": true,
+    "human_behavior_simulation": true
+  },
+  "platforms": {
+    "myopinions.com.au": {
+      "name": "MyOpinions Australia",
+      "profile": "quenito_myopinions",
+      "target_url": "https://www.myopinions.com.au/auth/dashboard",
+      "stealth_level": "maximum",
+      "cookie_domains": [
+        "myopinions.com.au",
+        "google.com",
+        "googleapis.com"
+      ]
+    },
+    "primeopinion.com.au": {
+      "name": "Prime Opinion Australia",
+      "profile": "quenito_primeopinion",
+      "target_url": "https://app.primeopinion.com.au/surveys",
+      "stealth_level": "maximum",
+      "cookie_domains": [
+        "primeopinion.com.au",
+        "google.com",
+        "googleapis.com"
+      ]
+    },
+    "surveymonkey.com": {
+      "name": "SurveyMonkey",
+      "profile": "quenito_surveymonkey",
+      "target_url": "direct_survey_url",
+      "stealth_level": "high",
+      "cookie_domains": [
+        "surveymonkey.com",
+        "google.com"
+      ]
+    }
+  },
+  "brain_integration": {
+    "enabled": true,
+    "real_time_learning": true,
+    "confidence_calibration": true,
+    "performance_tracking": true,
+    "intelligence_reporting": true
+  }
+}

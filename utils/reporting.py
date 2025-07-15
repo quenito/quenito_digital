@@ -1,502 +1,924 @@
 """
-Reporting Module
-Generates comprehensive reports for survey automation sessions.
-FIXED: Added missing generate_enhanced_report method
+🧠 Brain-Enhanced Reporting Module v2.0
+Generates comprehensive reports with DIGITAL BRAIN INTELLIGENCE ANALYSIS.
+
+NEW FEATURES:
+- ✅ Brain evolution tracking and analysis
+- ✅ Intelligence progression reporting  
+- ✅ Learning correlation insights
+- ✅ Confidence calibration analysis
+- ✅ Pattern discovery reporting
+- ✅ Handler intelligence evolution
+- ✅ Automation readiness progression
 """
 
 import os
 import time
+import json
 from typing import Dict, Any, List, Optional
+from pathlib import Path
 
 
-class ReportGenerator:
+class BrainEnhancedReportGenerator:
     """
-    Generates detailed reports for survey automation sessions with analytics.
+    🧠 Enhanced report generator with digital brain intelligence analysis.
+    Creates comprehensive reports showing not just automation performance,
+    but how Quenito's brain learns and evolves during each session.
     """
     
-    def __init__(self):
+    def __init__(self, knowledge_base=None):
+        """Initialize brain-enhanced report generator."""
+        self.knowledge_base = knowledge_base
         self.session_start_time = None
         self.session_end_time = None
+        
+        print("🧠 Brain-Enhanced Report Generator initialized!")
+        if self.knowledge_base:
+            print("🔗 Connected to Quenito's Digital Brain for intelligence analysis")
+        else:
+            print("⚠️ No brain connection - intelligence analysis will be limited")
     
     def start_session(self):
         """Mark the start of a survey session."""
         self.session_start_time = time.time()
+        print("⏰ Brain-enhanced reporting session started")
 
-    def generate_session_report(self, survey_stats, session_stats, handler_stats):
-        """
-        Generate comprehensive session report with enhanced metrics.
-        
-        FIXES: 'ReportGenerator' object has no attribute 'generate_session_report'
-        
-        Args:
-            survey_stats: Survey completion statistics
-            session_stats: Session-level statistics  
-            handler_stats: Handler performance statistics
-            
-        Returns:
-            str: Path to generated report file
-        """
-        import json
-        import time
-        from pathlib import Path
-        
-        timestamp = time.strftime("%Y%m%d_%H%M%S")
-        report_file = f"session_report_{timestamp}.json"
-        
-        try:
-            # Calculate overall automation metrics
-            total_attempts = sum(stats.get('attempts', 0) for stats in handler_stats.values())
-            total_successes = sum(stats.get('successes', 0) for stats in handler_stats.values())
-            overall_success_rate = (total_successes / total_attempts * 100) if total_attempts > 0 else 0
-            
-            # Brand Familiarity specific metrics
-            bf_stats = handler_stats.get('brand_familiarity', {})
-            bf_success_rate = 0
-            if bf_stats.get('attempts', 0) > 0:
-                bf_success_rate = (bf_stats.get('successes', 0) / bf_stats.get('attempts', 0)) * 100
-            
-            # Compile comprehensive report
-            report_data = {
-                'session_metadata': {
-                    'timestamp': timestamp,
-                    'report_type': 'comprehensive_session_report',
-                    'quenito_version': '2.0_brand_supremacy'
-                },
-                'automation_summary': {
-                    'total_handler_attempts': total_attempts,
-                    'total_handler_successes': total_successes,
-                    'overall_automation_rate': overall_success_rate,
-                    'brand_familiarity_success_rate': bf_success_rate,
-                    'automation_improvement_target': '60-70% with brand handler'
-                },
-                'handler_performance': handler_stats,
-                'session_statistics': session_stats,
-                'survey_statistics': survey_stats,
-                'brand_familiarity_revolution': {
-                    'attempts': bf_stats.get('attempts', 0),
-                    'successes': bf_stats.get('successes', 0),
-                    'success_rate': bf_success_rate,
-                    'expected_impact': 'Critical for 21% → 60-70% automation boost',
-                    'status': 'ACTIVE - Game Changing Handler'
-                },
-                'learning_insights': {
-                    'intervention_count': session_stats.get('total_interventions', 0),
-                    'learning_opportunities': session_stats.get('learning_opportunities', 0),
-                    'data_quality_score': session_stats.get('data_quality', 'N/A')
-                }
-            }
-            
-            # Save report
-            with open(report_file, 'w') as f:
-                json.dump(report_data, f, indent=2, default=str)
-            
-            # Print summary
-            print(f"\n📋 SESSION REPORT GENERATED: {report_file}")
-            print(f"🎯 Overall Automation Rate: {overall_success_rate:.1f}%")
-            print(f"🚀 Brand Familiarity Rate: {bf_success_rate:.1f}%")
-            print(f"📊 Total Handler Attempts: {total_attempts}")
-            print(f"✅ Total Handler Successes: {total_successes}")
-            
-            if bf_stats.get('attempts', 0) > 0:
-                print(f"🎉 BRAND FAMILIARITY REVOLUTION: {bf_stats['successes']}/{bf_stats['attempts']} successes!")
-            
-            return report_file
-            
-        except Exception as e:
-            print(f"❌ Report generation error: {e}")
-            # Create minimal error report
-            error_report = {
-                'timestamp': timestamp,
-                'error': str(e),
-                'report_type': 'error_report',
-                'handler_stats_available': bool(handler_stats),
-                'session_stats_available': bool(session_stats),
-                'survey_stats_available': bool(survey_stats)
-            }
-            
-            error_file = f"error_report_{timestamp}.json"
-            with open(error_file, 'w') as f:
-                json.dump(error_report, f, indent=2)
-            
-            return error_file
-
-    def generate_enhanced_report(self, survey_stats, handler_stats, session_data=None):
-        """
-        Generate enhanced automation report with comprehensive metrics.
-        FIXES: 'ReportGenerator' object has no attribute 'generate_enhanced_report'
-        
-        Args:
-            survey_stats: Survey completion statistics
-            handler_stats: Handler performance statistics  
-            session_data: Optional session data
-            
-        Returns:
-            dict: Comprehensive report data
-        """
-        import time
-        
-        try:
-            # Calculate overall metrics
-            total_attempts = sum(stats.get('attempts', 0) for stats in handler_stats.values())
-            total_successes = sum(stats.get('successes', 0) for stats in handler_stats.values())
-            overall_success_rate = (total_successes / total_attempts * 100) if total_attempts > 0 else 0
-            
-            # Brand Familiarity specific metrics
-            bf_stats = handler_stats.get('brand_familiarity', {})
-            bf_attempts = bf_stats.get('attempts', 0)
-            bf_successes = bf_stats.get('successes', 0)
-            bf_success_rate = (bf_successes / bf_attempts * 100) if bf_attempts > 0 else 0
-            
-            # Generate report
-            report = {
-                'report_metadata': {
-                    'timestamp': time.time(),
-                    'report_type': 'enhanced_automation_report',
-                    'generator_version': '2.0_brand_supremacy'
-                },
-                'automation_summary': {
-                    'total_handler_attempts': total_attempts,
-                    'total_handler_successes': total_successes,
-                    'overall_success_rate': overall_success_rate,
-                    'questions_processed': survey_stats.get('questions_processed', 0),
-                    'automation_rate': survey_stats.get('automation_rate', 0)
-                },
-                'brand_familiarity_analysis': {
-                    'attempts': bf_attempts,
-                    'successes': bf_successes,
-                    'success_rate': bf_success_rate,
-                    'status': 'Ready for brand questions' if bf_attempts == 0 else f'{bf_success_rate:.1f}% success rate',
-                    'expected_impact': 'Will boost automation to 60-70% when brand questions encountered'
-                },
-                'handler_performance': handler_stats,
-                'system_health': {
-                    'protection_systems': 'All active and functioning',
-                    'error_recovery': 'Emergency intervention working properly',
-                    'learning_system': 'Capturing data for improvements'
-                },
-                'recommendations': [
-                    'System is working correctly with ultra-conservative thresholds',
-                    'Brand Familiarity Supremacy is ready for brand matrix questions',
-                    'Consider continuing surveys to encounter brand questions',
-                    'Manual interventions are providing valuable learning data'
-                ]
-            }
-            
-            # Print summary
-            print(f"\n📋 ENHANCED AUTOMATION REPORT:")
-            print(f"🎯 Overall Handler Success Rate: {overall_success_rate:.1f}%")
-            print(f"📊 Questions Processed: {survey_stats.get('questions_processed', 0)}")
-            print(f"🚀 Brand Familiarity Status: {report['brand_familiarity_analysis']['status']}")
-            print(f"🛡️ Protection Systems: All active and functioning")
-            print(f"💡 Recommendation: Look for surveys with brand questions to activate supremacy!")
-            
-            return report
-            
-        except Exception as e:
-            print(f"❌ Enhanced report generation error: {e}")
-            return {
-                'report_metadata': {'timestamp': time.time(), 'error': str(e)},
-                'automation_summary': {'error': 'Report generation failed'},
-                'recommendations': ['Check system logs for detailed error information']
-            }
-  
     def end_session(self):
         """Mark the end of a survey session."""
         self.session_end_time = time.time()
+        print("📊 Brain-enhanced reporting session completed")
     
-    def generate_survey_report(self, survey_stats: Dict[str, Any], 
-                             session_stats: Dict[str, Any],
-                             handler_stats: Dict[str, Any],
-                             intervention_stats: Dict[str, Any],
-                             research_stats: Dict[str, Any]) -> str:
+    def generate_brain_intelligence_report(self, brain_enhanced_stats, 
+                                         session_stats: Dict[str, Any] = None,
+                                         handler_stats: Dict[str, Any] = None) -> str:
         """
-        Generate comprehensive survey completion report.
+        Generate comprehensive brain intelligence report.
         
         Args:
-            survey_stats: Survey completion statistics
-            session_stats: Browser session statistics  
-            handler_stats: Handler usage statistics
-            intervention_stats: Manual intervention statistics
-            research_stats: Research operation statistics
+            brain_enhanced_stats: BrainEnhancedSurveyStats instance
+            session_stats: Session-level statistics
+            handler_stats: Handler performance statistics
             
         Returns:
-            Formatted report string
+            Formatted brain intelligence report string
         """
-        report = []
-        report.append("=" * 80)
-        report.append("📊 ENHANCED SURVEY AUTOMATION REPORT")
-        report.append("=" * 80)
-        
-        # Session timing summary
-        if session_stats.get("session_mode") == "persistent":
-            report.extend(self._generate_session_timing_section(session_stats))
-        
-        # Survey completion summary
-        report.extend(self._generate_survey_summary_section(survey_stats))
-        
-        # Handler usage analysis
-        report.extend(self._generate_handler_analysis_section(handler_stats))
-        
-        # Manual intervention analysis
-        report.extend(self._generate_intervention_section(intervention_stats))
-        
-        # Research operations summary
-        report.extend(self._generate_research_section(research_stats))
-        
-        # Performance metrics
-        report.extend(self._generate_performance_section(survey_stats, intervention_stats))
-        
-        # Improvement recommendations
-        report.extend(self._generate_recommendations_section(
-            survey_stats, handler_stats, intervention_stats
-        ))
-        
-        report.append("=" * 80)
-        return "\n".join(report)
-    
-    def _generate_session_timing_section(self, session_stats: Dict[str, Any]) -> List[str]:
-        """Generate session timing section."""
-        section = []
-        
-        if session_stats.get("start_time") and session_stats.get("manual_navigation_time"):
-            total_time = time.time() - session_stats["start_time"]
-            manual_time = (session_stats["manual_navigation_time"] - 
-                          session_stats["start_time"])
-            auto_time = 0
-            if session_stats.get("automation_start_time"):
-                auto_time = time.time() - session_stats["automation_start_time"]
+        try:
+            report = []
+            report.append("🧠" + "=" * 79)
+            report.append("🧠 QUENITO'S DIGITAL BRAIN INTELLIGENCE REPORT")
+            report.append("🧠" + "=" * 79)
             
-            section.extend([
-                "⏱️ SESSION TIMING:",
-                f"   • Total Session Time: {total_time/60:.1f} minutes",
-                f"   • Manual Navigation: {manual_time/60:.1f} minutes",
-                f"   • Automation Time: {auto_time/60:.1f} minutes",
-                ""
-            ])
-        
-        section.extend([
-            "🌐 SESSION DETAILS:",
-            f"   • Dashboard URL: {session_stats.get('dashboard_url', 'N/A')}",
-            f"   • Survey URL: {session_stats.get('survey_url', 'N/A')}",
-            f"   • Session Transfers: {session_stats.get('session_transfers', 0)}",
-            f"   • Session Mode: {session_stats.get('session_mode', 'Unknown').title()}",
-            ""
-        ])
-        
-        return section
+            # Brain baseline and evolution
+            report.extend(self._generate_brain_evolution_section(brain_enhanced_stats))
+            
+            # Core automation performance with brain correlation
+            report.extend(self._generate_brain_correlated_performance_section(brain_enhanced_stats))
+            
+            # Handler intelligence analysis
+            report.extend(self._generate_handler_intelligence_section(brain_enhanced_stats))
+            
+            # Learning events and pattern discoveries
+            report.extend(self._generate_learning_events_section(brain_enhanced_stats))
+            
+            # Confidence evolution analysis
+            report.extend(self._generate_confidence_evolution_section(brain_enhanced_stats))
+            
+            # Brain improvement recommendations
+            report.extend(self._generate_brain_recommendations_section(brain_enhanced_stats))
+            
+            # Traditional survey metrics (for compatibility)
+            report.extend(self._generate_traditional_survey_section(brain_enhanced_stats))
+            
+            # Future brain development roadmap
+            report.extend(self._generate_brain_roadmap_section(brain_enhanced_stats))
+            
+            report.append("🧠" + "=" * 79)
+            report.append("🧠 END OF BRAIN INTELLIGENCE REPORT")
+            report.append("🧠" + "=" * 79)
+            
+            return "\n".join(report)
+            
+        except Exception as e:
+            print(f"❌ Error generating brain intelligence report: {e}")
+            return self._generate_fallback_report(brain_enhanced_stats, str(e))
     
-    def _generate_survey_summary_section(self, survey_stats: Dict[str, Any]) -> List[str]:
-        """Generate survey completion summary."""
-        # Calculate totals safely
-        total_questions = survey_stats.get("total_questions", 0)
-        automated_questions = survey_stats.get("automated_questions", 0)
-        manual_interventions = survey_stats.get("manual_interventions", 0)
-        research_performed = survey_stats.get("research_performed", 0)
-        
-        # Calculate automation rate
-        automation_rate = 0
-        if total_questions > 0:
-            automation_rate = (automated_questions / total_questions) * 100
-        
-        # Calculate timing
-        total_time = 0
-        if survey_stats.get("start_time") and survey_stats.get("end_time"):
-            total_time = survey_stats["end_time"] - survey_stats["start_time"]
-        
+    def _generate_brain_evolution_section(self, stats) -> List[str]:
+        """Generate brain evolution and intelligence progression analysis."""
         section = [
-            "📈 SUMMARY STATISTICS:",
-            f"   • Total Questions Processed: {total_questions}",
-            f"   • Automated Successfully: {automated_questions}",
-            f"   • Manual Interventions: {manual_interventions}",
-            f"   • Automation Rate: {automation_rate:.1f}%",
-            f"   • Research Operations: {research_performed}",
-            f"   • Total Time: {total_time/60:.1f} minutes",
-            ""
+            "",
+            "🧠 BRAIN EVOLUTION ANALYSIS:",
+            "=" * 50
         ]
         
-        return section
-    
-    def _generate_handler_analysis_section(self, handler_stats: Dict[str, Any]) -> List[str]:
-        """Generate handler usage analysis."""
-        section = ["🔧 HANDLER USAGE ANALYSIS:"]
-        
-        handler_usage = handler_stats.get("handler_usage", {})
-        total_selections = handler_stats.get("total_selections", 0)
-        
-        if handler_usage and total_selections > 0:
-            section.append("   Handler usage breakdown:")
+        try:
+            evolution_metrics = stats.get_brain_evolution_metrics()
+            session_data = stats.session_data
             
-            # Sort handlers by usage count
-            sorted_handlers = sorted(handler_usage.items(), key=lambda x: x[1], reverse=True)
+            # Brain intelligence progression
+            brain_start = session_data.get("brain_intelligence_start", {})
+            brain_end = session_data.get("brain_intelligence_end", {})
             
-            for handler_name, count in sorted_handlers:
-                percentage = (count / total_selections) * 100
-                section.append(f"   • {handler_name}: {count} times ({percentage:.1f}%)")
-            
-            # Average confidence
-            confidence_scores = handler_stats.get("confidence_scores", [])
-            if confidence_scores:
-                avg_confidence = sum(confidence_scores) / len(confidence_scores)
-                section.append(f"   • Average Confidence: {avg_confidence:.2f}")
-        else:
-            section.append("   No handler usage data available")
-        
-        section.append("")
-        return section
-    
-    def _generate_intervention_section(self, intervention_stats: Dict[str, Any]) -> List[str]:
-        """Generate manual intervention analysis."""
-        section = ["🚫 MANUAL INTERVENTION ANALYSIS:"]
-        
-        total_interventions = intervention_stats.get("total_interventions", 0)
-        
-        if total_interventions == 0:
-            section.extend([
-                "   🎉 NO MANUAL INTERVENTIONS REQUIRED!",
-                "   ✅ Perfect automation achieved",
-                ""
-            ])
-            return section
-        
-        # Intervention breakdown
-        intervention_types = intervention_stats.get("intervention_types", {})
-        if intervention_types:
-            section.append("   Interventions by type:")
-            for intervention_type, count in sorted(intervention_types.items(), 
-                                                 key=lambda x: x[1], reverse=True):
-                percentage = (count / total_interventions) * 100
-                section.append(f"   • {intervention_type}: {count} times ({percentage:.1f}%)")
-        
-        # Average intervention time
-        total_manual_time = intervention_stats.get("total_manual_time", 0)
-        if total_manual_time > 0:
-            avg_time = total_manual_time / total_interventions
-            section.append(f"   • Average intervention time: {avg_time:.1f} seconds")
-        
-        section.append("")
-        return section
-    
-    def _generate_research_section(self, research_stats: Dict[str, Any]) -> List[str]:
-        """Generate research operations summary."""
-        section = ["🔍 RESEARCH OPERATIONS:"]
-        
-        total_searches = research_stats.get("total_searches", 0)
-        
-        if total_searches == 0:
-            section.extend([
-                "   No research operations performed",
-                ""
-            ])
-            return section
-        
-        cache_hits = research_stats.get("cache_hits", 0)
-        cache_misses = research_stats.get("cache_misses", 0)
-        failed_searches = research_stats.get("failed_searches", 0)
-        
-        # Calculate rates
-        cache_hit_rate = 0
-        success_rate = 0
-        
-        total_attempts = cache_hits + cache_misses
-        if total_attempts > 0:
-            cache_hit_rate = (cache_hits / total_attempts) * 100
-        
-        if total_searches > 0:
-            successful_searches = total_searches - failed_searches
-            success_rate = (successful_searches / total_searches) * 100
-        
-        section.extend([
-            f"   • Total searches: {total_searches}",
-            f"   • Cache hit rate: {cache_hit_rate:.1f}%",
-            f"   • Success rate: {success_rate:.1f}%",
-            f"   • Failed searches: {failed_searches}",
-            ""
-        ])
-        
-        return section
-    
-    def _generate_performance_section(self, survey_stats: Dict[str, Any], 
-                                    intervention_stats: Dict[str, Any]) -> List[str]:
-        """Generate performance metrics section."""
-        section = ["⚡ PERFORMANCE METRICS:"]
-        
-        # Questions per minute
-        total_questions = survey_stats.get("total_questions", 0)
-        total_time = 0
-        if survey_stats.get("start_time") and survey_stats.get("end_time"):
-            total_time = survey_stats["end_time"] - survey_stats["start_time"]
-        
-        if total_time > 0 and total_questions > 0:
-            questions_per_minute = (total_questions / total_time) * 60
-            section.append(f"   • Questions per minute: {questions_per_minute:.1f}")
-        
-        # Efficiency score
-        automated_questions = survey_stats.get("automated_questions", 0)
-        if total_questions > 0:
-            efficiency = (automated_questions / total_questions) * 100
-            section.append(f"   • Automation efficiency: {efficiency:.1f}%")
-        
-        # Manual intervention impact
-        total_interventions = intervention_stats.get("total_interventions", 0)
-        if total_interventions > 0 and total_questions > 0:
-            intervention_rate = (total_interventions / total_questions) * 100
-            section.append(f"   • Intervention rate: {intervention_rate:.1f}%")
-        
-        section.append("")
-        return section
-    
-    def _generate_recommendations_section(self, survey_stats: Dict[str, Any],
-                                        handler_stats: Dict[str, Any],
-                                        intervention_stats: Dict[str, Any]) -> List[str]:
-        """Generate improvement recommendations."""
-        section = ["💡 IMPROVEMENT RECOMMENDATIONS:"]
-        
-        recommendations = []
-        
-        # Automation rate recommendations
-        total_questions = survey_stats.get("total_questions", 0)
-        automated_questions = survey_stats.get("automated_questions", 0)
-        
-        if total_questions > 0:
-            automation_rate = (automated_questions / total_questions) * 100
-            
-            if automation_rate < 70:
-                recommendations.append("Priority: Improve handler confidence scoring")
-                recommendations.append("Add more question patterns to knowledge base")
-            elif automation_rate < 85:
-                recommendations.append("Enhance existing handlers with better selectors")
-                recommendations.append("Update question detection keywords")
-            elif automation_rate < 95:
-                recommendations.append("Fine-tune handler selection algorithms")
-                recommendations.append("Add edge case handling")
+            if brain_start and brain_end:
+                start_level = brain_start.get('brain_intelligence_level', 'Unknown')
+                end_level = brain_end.get('brain_intelligence_level', 'Unknown')
+                start_readiness = brain_start.get('automation_readiness', 0)
+                end_readiness = brain_end.get('automation_readiness', 0)
+                readiness_improvement = end_readiness - start_readiness
+                
+                section.extend([
+                    f"📊 Intelligence Level: {start_level} → {end_level}",
+                    f"🎯 Automation Readiness: {start_readiness:.1f}% → {end_readiness:.1f}% (+{readiness_improvement:.1f}%)",
+                    f"🧠 Total Interventions Learned: {brain_end.get('total_interventions', 0)}",
+                    f"🎯 Success Patterns Stored: {brain_end.get('success_patterns_count', 0)}",
+                    f"⚙️ Calibrated Handlers: {brain_end.get('calibrated_handlers', 0)}",
+                    ""
+                ])
             else:
-                recommendations.append("Excellent automation rate achieved!")
+                section.extend([
+                    "⚠️ Brain baseline data not available",
+                    "🔧 Recommendation: Ensure brain connection during survey initialization",
+                    ""
+                ])
+            
+            # Session learning summary
+            learning_improvement = session_data.get("automation_improvement", 0)
+            new_patterns = session_data.get("new_patterns_learned", 0)
+            calibrations = session_data.get("confidence_calibrations", 0)
+            
+            section.extend([
+                "📈 SESSION LEARNING SUMMARY:",
+                f"   • Automation Improvement: +{learning_improvement:.1f}%",
+                f"   • New Patterns Learned: {new_patterns}",
+                f"   • Confidence Calibrations: {calibrations}",
+                f"   • Learning Events: {len(evolution_metrics.get('learning_events', []))}",
+                f"   • Pattern Discoveries: {len(evolution_metrics.get('pattern_discoveries', []))}",
+                ""
+            ])
+            
+        except Exception as e:
+            section.extend([
+                f"⚠️ Error analyzing brain evolution: {e}",
+                "🔧 Check brain connection and data integrity",
+                ""
+            ])
         
-        # Handler-specific recommendations
-        handler_usage = handler_stats.get("handler_usage", {})
-        if "Unknown" in handler_usage:
-            unknown_count = handler_usage["Unknown"]
-            if unknown_count > 2:
-                recommendations.append("High unknown handler usage - create specific handlers")
-        
-        # Intervention-specific recommendations
-        intervention_types = intervention_stats.get("intervention_types", {})
-        for intervention_type, count in intervention_types.items():
-            if count > 3:
-                recommendations.append(f"Focus on improving {intervention_type} handler")
-        
-        # Add recommendations to section
-        if recommendations:
-            for rec in recommendations:
-                section.append(f"   • {rec}")
-        else:
-            section.append("   • System is performing optimally!")
-        
-        section.append("")
         return section
+    
+    def _generate_brain_correlated_performance_section(self, stats) -> List[str]:
+        """Generate performance analysis correlated with brain learning."""
+        section = [
+            "📊 BRAIN-CORRELATED PERFORMANCE ANALYSIS:",
+            "=" * 50
+        ]
+        
+        try:
+            # Core metrics
+            total_questions = stats.get_total_questions()
+            automated_questions = stats.get_automated_questions()
+            manual_interventions = stats.get_manual_interventions()
+            automation_rate = stats.get_automation_rate()
+            learning_rate = stats.get_brain_learning_rate()
+            
+            section.extend([
+                f"🎯 CORE AUTOMATION METRICS:",
+                f"   • Total Questions Processed: {total_questions}",
+                f"   • Successfully Automated: {automated_questions}",
+                f"   • Manual Interventions: {manual_interventions}",
+                f"   • Automation Rate: {automation_rate:.1f}%",
+                f"   • Brain Learning Rate: {learning_rate:.2f} events/question",
+                ""
+            ])
+            
+            # Timing analysis
+            total_time = stats.get_total_time()
+            if total_time > 0:
+                questions_per_minute = stats.get_questions_per_minute()
+                section.extend([
+                    f"⏱️ TIMING ANALYSIS:",
+                    f"   • Total Session Time: {total_time/60:.1f} minutes",
+                    f"   • Questions per Minute: {questions_per_minute:.1f}",
+                    f"   • Average Time per Question: {total_time/total_questions:.1f} seconds" if total_questions > 0 else "   • Average Time per Question: N/A",
+                    ""
+                ])
+            
+            # Learning correlation analysis
+            if automation_rate > 0 and learning_rate > 0:
+                learning_efficiency = automation_rate / (learning_rate * 100)  # Automation per learning event
+                section.extend([
+                    f"🧠 LEARNING CORRELATION:",
+                    f"   • Learning Efficiency: {learning_efficiency:.2f} automation/learning_event",
+                    f"   • Brain Growth Velocity: {learning_rate * questions_per_minute:.2f} learning_events/minute" if total_time > 0 else "   • Brain Growth Velocity: N/A",
+                    ""
+                ])
+            
+        except Exception as e:
+            section.extend([
+                f"⚠️ Error analyzing brain-correlated performance: {e}",
+                ""
+            ])
+        
+        return section
+    
+    def _generate_handler_intelligence_section(self, stats) -> List[str]:
+        """Generate handler intelligence and performance evolution analysis."""
+        section = [
+            "🎯 HANDLER INTELLIGENCE ANALYSIS:",
+            "=" * 50
+        ]
+        
+        try:
+            handler_summary = stats.get_handler_performance_summary()
+            
+            if handler_summary:
+                section.append("📊 HANDLER PERFORMANCE MATRIX:")
+                
+                # Sort handlers by success rate
+                sorted_handlers = sorted(handler_summary.items(), 
+                                       key=lambda x: x[1]['success_rate'], reverse=True)
+                
+                for handler_name, metrics in sorted_handlers:
+                    success_rate = metrics['success_rate']
+                    avg_confidence = metrics['average_confidence']
+                    total_attempts = metrics['total_attempts']
+                    trend = metrics['trend']
+                    
+                    # Determine trend emoji
+                    trend_emoji = {
+                        'improving': '📈',
+                        'declining': '📉', 
+                        'stable': '➡️',
+                        'insufficient_data': '❓'
+                    }.get(trend, '❓')
+                    
+                    section.append(f"   • {handler_name}:")
+                    section.append(f"     - Success Rate: {success_rate:.1f}% ({total_attempts} attempts)")
+                    section.append(f"     - Avg Confidence: {avg_confidence:.2f}")
+                    section.append(f"     - Intelligence Trend: {trend} {trend_emoji}")
+                
+                section.append("")
+                
+                # Handler intelligence insights
+                best_handler = sorted_handlers[0] if sorted_handlers else None
+                if best_handler:
+                    best_name, best_metrics = best_handler
+                    section.extend([
+                        "🏆 TOP PERFORMING HANDLER:",
+                        f"   • {best_name}: {best_metrics['success_rate']:.1f}% success rate",
+                        f"   • This handler shows the strongest brain integration",
+                        ""
+                    ])
+                
+                # Identify handlers needing improvement
+                struggling_handlers = [name for name, metrics in handler_summary.items() 
+                                     if metrics['success_rate'] < 50 and metrics['total_attempts'] > 2]
+                
+                if struggling_handlers:
+                    section.extend([
+                        "⚠️ HANDLERS NEEDING BRAIN ENHANCEMENT:",
+                        *[f"   • {handler}: Consider additional pattern training" for handler in struggling_handlers],
+                        ""
+                    ])
+            else:
+                section.extend([
+                    "⚠️ No handler performance data available",
+                    "🔧 Handlers may not be reporting performance metrics correctly",
+                    ""
+                ])
+                
+        except Exception as e:
+            section.extend([
+                f"⚠️ Error analyzing handler intelligence: {e}",
+                ""
+            ])
+        
+        return section
+    
+    def _generate_learning_events_section(self, stats) -> List[str]:
+        """Generate learning events and pattern discovery analysis."""
+        section = [
+            "📚 LEARNING EVENTS & PATTERN DISCOVERIES:",
+            "=" * 50
+        ]
+        
+        try:
+            learning_events = getattr(stats, 'learning_events', [])
+            pattern_discoveries = getattr(stats, 'pattern_discoveries', [])
+            brain_improvements = getattr(stats, 'brain_improvements', [])
+            
+            # Learning events summary
+            if learning_events:
+                successful_automations = [e for e in learning_events if e.get('event_type') == 'successful_automation']
+                manual_interventions = [e for e in learning_events if e.get('event_type') == 'manual_intervention']
+                
+                section.extend([
+                    f"📊 LEARNING EVENTS SUMMARY:",
+                    f"   • Total Learning Events: {len(learning_events)}",
+                    f"   • Successful Automations: {len(successful_automations)}",
+                    f"   • Manual Interventions: {len(manual_interventions)}",
+                    ""
+                ])
+                
+                # Recent learning events (last 5)
+                recent_events = learning_events[-5:] if len(learning_events) > 5 else learning_events
+                if recent_events:
+                    section.append("🔍 RECENT LEARNING EVENTS:")
+                    for event in recent_events:
+                        event_type = event.get('event_type', 'unknown')
+                        handler = event.get('handler', 'unknown')
+                        confidence = event.get('confidence', 0)
+                        timestamp = event.get('timestamp', 0)
+                        
+                        time_str = time.strftime('%H:%M:%S', time.localtime(timestamp))
+                        emoji = '✅' if event_type == 'successful_automation' else '📝'
+                        section.append(f"   {emoji} {time_str}: {handler} - {event_type} (conf: {confidence:.2f})")
+                    section.append("")
+            
+            # Pattern discoveries
+            if pattern_discoveries:
+                section.extend([
+                    f"🔍 PATTERN DISCOVERIES:",
+                    f"   • New Patterns Discovered: {len(pattern_discoveries)}",
+                    ""
+                ])
+                
+                for discovery in pattern_discoveries:
+                    pattern_type = discovery.get('pattern_type', 'unknown')
+                    timestamp = discovery.get('timestamp', 0)
+                    time_str = time.strftime('%H:%M:%S', time.localtime(timestamp))
+                    section.append(f"   🆕 {time_str}: {pattern_type} pattern discovered")
+                section.append("")
+            
+            # Brain improvements
+            if brain_improvements:
+                section.extend([
+                    f"🧠 BRAIN IMPROVEMENTS:",
+                    f"   • Brain Enhancement Events: {len(brain_improvements)}",
+                    ""
+                ])
+                
+                for improvement in brain_improvements:
+                    improvement_type = improvement.get('improvement_type', 'unknown')
+                    timestamp = improvement.get('timestamp', 0)
+                    time_str = time.strftime('%H:%M:%S', time.localtime(timestamp))
+                    section.append(f"   🚀 {time_str}: {improvement_type}")
+                section.append("")
+            
+            if not learning_events and not pattern_discoveries and not brain_improvements:
+                section.extend([
+                    "⚠️ No learning events recorded this session",
+                    "🔧 Verify brain learning integration is active",
+                    ""
+                ])
+                
+        except Exception as e:
+            section.extend([
+                f"⚠️ Error analyzing learning events: {e}",
+                ""
+            ])
+        
+        return section
+    
+    def _generate_confidence_evolution_section(self, stats) -> List[str]:
+        """Generate confidence evolution and calibration analysis."""
+        section = [
+            "🎯 CONFIDENCE EVOLUTION ANALYSIS:",
+            "=" * 50
+        ]
+        
+        try:
+            confidence_evolution = getattr(stats, 'confidence_evolution', [])
+            
+            if confidence_evolution:
+                # Calculate confidence trends by handler
+                handler_confidence = {}
+                for point in confidence_evolution:
+                    handler = point.get('handler', 'unknown')
+                    confidence = point.get('confidence', 0)
+                    
+                    if handler not in handler_confidence:
+                        handler_confidence[handler] = []
+                    handler_confidence[handler].append(confidence)
+                
+                # Analyze trends
+                section.append("📈 CONFIDENCE TRENDS BY HANDLER:")
+                for handler, confidences in handler_confidence.items():
+                    if len(confidences) >= 2:
+                        avg_confidence = sum(confidences) / len(confidences)
+                        first_half = confidences[:len(confidences)//2]
+                        second_half = confidences[len(confidences)//2:]
+                        
+                        first_avg = sum(first_half) / len(first_half) if first_half else 0
+                        second_avg = sum(second_half) / len(second_half) if second_half else 0
+                        
+                        trend = "improving" if second_avg > first_avg + 0.05 else "declining" if second_avg < first_avg - 0.05 else "stable"
+                        trend_emoji = {'improving': '📈', 'declining': '📉', 'stable': '➡️'}[trend]
+                        
+                        section.append(f"   • {handler}: {avg_confidence:.2f} avg, {trend} {trend_emoji}")
+                    else:
+                        section.append(f"   • {handler}: {confidences[0]:.2f} (single measurement)")
+                
+                section.extend([
+                    "",
+                    f"🔢 CONFIDENCE STATISTICS:",
+                    f"   • Total Confidence Measurements: {len(confidence_evolution)}",
+                    f"   • Handlers Tracked: {len(handler_confidence)}",
+                    ""
+                ])
+            else:
+                section.extend([
+                    "⚠️ No confidence evolution data available",
+                    "🔧 Ensure handlers are reporting confidence scores",
+                    ""
+                ])
+                
+        except Exception as e:
+            section.extend([
+                f"⚠️ Error analyzing confidence evolution: {e}",
+                ""
+            ])
+        
+        return section
+    
+    def _generate_brain_recommendations_section(self, stats) -> List[str]:
+        """Generate brain intelligence improvement recommendations."""
+        section = [
+            "💡 BRAIN ENHANCEMENT RECOMMENDATIONS:",
+            "=" * 50
+        ]
+        
+        try:
+            recommendations = []
+            
+            # Analyze automation rate and brain learning correlation
+            automation_rate = stats.get_automation_rate()
+            learning_rate = stats.get_brain_learning_rate()
+            
+            # Automation rate recommendations
+            if automation_rate < 50:
+                recommendations.extend([
+                    "🚨 CRITICAL: Low automation rate detected",
+                    "   → Increase brain learning data through more manual interventions",
+                    "   → Review and enhance question pattern recognition",
+                    "   → Consider lowering confidence thresholds for learning mode"
+                ])
+            elif automation_rate < 75:
+                recommendations.extend([
+                    "⚠️ MODERATE: Automation rate needs improvement",
+                    "   → Focus on handler-specific brain training",
+                    "   → Expand question pattern libraries",
+                    "   → Optimize confidence calibration algorithms"
+                ])
+            elif automation_rate < 90:
+                recommendations.extend([
+                    "✅ GOOD: Solid automation performance",
+                    "   → Fine-tune edge case handling",
+                    "   → Enhance cross-handler knowledge sharing",
+                    "   → Implement predictive question sequencing"
+                ])
+            else:
+                recommendations.extend([
+                    "🏆 EXCELLENT: Outstanding automation performance!",
+                    "   → Focus on intelligence optimization",
+                    "   → Explore advanced AI integration",
+                    "   → Consider commercial deployment readiness"
+                ])
+            
+            # Learning rate analysis
+            if learning_rate < 0.1:
+                recommendations.extend([
+                    "📚 Brain learning opportunities:",
+                    "   → Increase manual intervention capture",
+                    "   → Implement active learning strategies",
+                    "   → Enhance pattern discovery algorithms"
+                ])
+            elif learning_rate > 1.0:
+                recommendations.extend([
+                    "🧠 High learning activity detected:",
+                    "   → Validate learning quality vs quantity",
+                    "   → Optimize learning event filtering",
+                    "   → Focus on pattern consolidation"
+                ])
+            
+            # Handler-specific recommendations
+            handler_summary = stats.get_handler_performance_summary()
+            for handler_name, metrics in handler_summary.items():
+                if metrics['success_rate'] < 30 and metrics['total_attempts'] > 3:
+                    recommendations.append(f"   → {handler_name}: Requires immediate brain enhancement")
+                elif metrics['trend'] == 'declining':
+                    recommendations.append(f"   → {handler_name}: Monitor for confidence calibration issues")
+            
+            # Brain evolution recommendations
+            evolution_metrics = stats.get_brain_evolution_metrics()
+            if evolution_metrics.get('automation_improvement', 0) < 5:
+                recommendations.extend([
+                    "🧠 Brain evolution enhancement:",
+                    "   → Implement more sophisticated learning algorithms",
+                    "   → Increase pattern recognition sensitivity",
+                    "   → Enhance success pattern storage mechanisms"
+                ])
+            
+            # Knowledge base recommendations
+            if self.knowledge_base:
+                try:
+                    brain_summary = self.knowledge_base.get_brain_learning_summary()
+                    intelligence_level = brain_summary.get('brain_intelligence_level', 'Unknown')
+                    
+                    if intelligence_level == 'Beginner':
+                        recommendations.extend([
+                            "🎓 Brain development focus:",
+                            "   → Complete Phase 1A demographics mastery",
+                            "   → Accumulate at least 10 successful interventions",
+                            "   → Establish baseline confidence calibration"
+                        ])
+                    elif intelligence_level == 'Learning':
+                        recommendations.extend([
+                            "📈 Intelligence advancement:",
+                            "   → Expand to Phase 1B multi-format testing",
+                            "   → Develop specialized handler expertise",
+                            "   → Implement cross-survey learning"
+                        ])
+                    elif intelligence_level == 'Intermediate':
+                        recommendations.extend([
+                            "🚀 Advanced capabilities:",
+                            "   → Begin Phase 2 brand intelligence development",
+                            "   → Implement predictive automation",
+                            "   → Enhance multi-platform compatibility"
+                        ])
+                except Exception:
+                    pass
+            
+            # Add recommendations to section
+            if recommendations:
+                for rec in recommendations:
+                    section.append(rec)
+            else:
+                section.extend([
+                    "🎯 System operating optimally!",
+                    "   → Continue monitoring brain evolution",
+                    "   → Focus on intelligence maintenance",
+                    "   → Prepare for advanced feature development"
+                ])
+            
+            section.append("")
+            
+        except Exception as e:
+            section.extend([
+                f"⚠️ Error generating brain recommendations: {e}",
+                ""
+            ])
+        
+        return section
+    
+    def _generate_traditional_survey_section(self, stats) -> List[str]:
+        """Generate traditional survey metrics for compatibility."""
+        section = [
+            "📊 TRADITIONAL SURVEY METRICS:",
+            "=" * 50
+        ]
+        
+        try:
+            # Get traditional stats for compatibility
+            traditional_stats = stats.get_stats()
+            
+            section.extend([
+                f"📈 LEGACY COMPATIBILITY METRICS:",
+                f"   • Questions Encountered: {traditional_stats.get('total_questions', 0)}",
+                f"   • Automation Successes: {traditional_stats.get('automated_questions', 0)}",
+                f"   • Manual Interventions: {traditional_stats.get('manual_interventions', 0)}",
+                f"   • Research Operations: {traditional_stats.get('research_performed', 0)}",
+                ""
+            ])
+            
+            # Question type breakdown
+            question_types = traditional_stats.get('question_types_encountered', {})
+            if question_types:
+                section.append("🔍 QUESTION TYPE BREAKDOWN:")
+                for q_type, count in sorted(question_types.items(), key=lambda x: x[1], reverse=True):
+                    section.append(f"   • {q_type}: {count} occurrences")
+                section.append("")
+            
+        except Exception as e:
+            section.extend([
+                f"⚠️ Error generating traditional metrics: {e}",
+                ""
+            ])
+        
+        return section
+    
+    def _generate_brain_roadmap_section(self, stats) -> List[str]:
+        """Generate future brain development roadmap."""
+        section = [
+            "🗺️ BRAIN DEVELOPMENT ROADMAP:",
+            "=" * 50
+        ]
+        
+        try:
+            automation_rate = stats.get_automation_rate()
+            evolution_metrics = stats.get_brain_evolution_metrics()
+            
+            # Determine current phase and next steps
+            if automation_rate < 60:
+                phase = "Phase 1A: Demographics Foundation"
+                next_milestone = "Achieve 100% demographics automation"
+                timeline = "Current focus - complete within 1-2 weeks"
+            elif automation_rate < 80:
+                phase = "Phase 1B: Format Expansion"
+                next_milestone = "Master all demographic question formats"
+                timeline = "Next 2-3 weeks"
+            elif automation_rate < 90:
+                phase = "Phase 1C: Complex Demographics"
+                next_milestone = "Handle multi-question demographic pages"
+                timeline = "Next 3-4 weeks"
+            else:
+                phase = "Phase 2: Brand Intelligence"
+                next_milestone = "Develop brand familiarity automation"
+                timeline = "Ready for advanced development"
+            
+            section.extend([
+                f"🎯 CURRENT DEVELOPMENT PHASE:",
+                f"   • Phase: {phase}",
+                f"   • Next Milestone: {next_milestone}",
+                f"   • Timeline: {timeline}",
+                "",
+                f"🚀 BRAIN EVOLUTION PATHWAY:",
+                f"   • Current Automation Rate: {automation_rate:.1f}%",
+                f"   • Learning Events This Session: {len(evolution_metrics.get('learning_events', []))}",
+                f"   • Pattern Discoveries: {len(evolution_metrics.get('pattern_discoveries', []))}",
+                ""
+            ])
+            
+            # Future capabilities roadmap
+            section.extend([
+                "🔮 FUTURE BRAIN CAPABILITIES:",
+                "   🎯 Phase 2: Brand Familiarity Mastery (60-70% automation)",
+                "   🎯 Phase 3: Survey Prediction (80-85% automation)",
+                "   🎯 Phase 4: True AI Assistant (99% automation)",
+                "",
+                "💫 ULTIMATE VISION:",
+                "   • Human-indistinguishable survey responses",
+                "   • Cross-platform universal compatibility",
+                "   • Commercial scalability and deployment",
+                "   • Self-improving artificial intelligence",
+                ""
+            ])
+            
+        except Exception as e:
+            section.extend([
+                f"⚠️ Error generating brain roadmap: {e}",
+                ""
+            ])
+        
+        return section
+    
+    def _generate_fallback_report(self, stats, error_msg: str) -> str:
+        """Generate a basic fallback report when full analysis fails."""
+        try:
+            fallback = [
+                "🧠" + "=" * 79,
+                "🧠 BRAIN INTELLIGENCE REPORT (FALLBACK MODE)",
+                "🧠" + "=" * 79,
+                "",
+                f"⚠️ REPORT GENERATION ERROR: {error_msg}",
+                "",
+                "📊 BASIC METRICS:",
+                f"   • Questions Processed: {getattr(stats, 'total_questions', 0)}",
+                f"   • Automated: {getattr(stats, 'automated_questions', 0)}",
+                f"   • Manual Interventions: {getattr(stats, 'manual_interventions', 0)}",
+                f"   • Automation Rate: {stats.get_automation_rate() if hasattr(stats, 'get_automation_rate') else 0:.1f}%",
+                "",
+                "🔧 TROUBLESHOOTING:",
+                "   • Check brain connection during survey initialization",
+                "   • Verify BrainEnhancedSurveyStats integration",
+                "   • Review error logs for detailed diagnostics",
+                "",
+                "🧠" + "=" * 79
+            ]
+            
+            return "\n".join(fallback)
+            
+        except Exception as e:
+            return f"🧠 CRITICAL ERROR: Unable to generate even fallback report: {e}"
+    
+    def export_brain_report(self, report_content: str, filename: str = None) -> bool:
+        """Export brain intelligence report to file with brain-specific naming."""
+        try:
+            # Create brain-specific filename if not provided
+            if filename is None:
+                timestamp = time.strftime("%Y%m%d_%H%M%S")
+                filename = f"brain_intelligence_report_{timestamp}.txt"
+            
+            # Get report filepath
+            filepath = self.get_report_filepath(filename)
+            
+            # Ensure directory exists
+            os.makedirs(os.path.dirname(filepath), exist_ok=True)
+            
+            # Write report
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(report_content)
+            
+            print(f"🧠 Brain intelligence report exported to: {filepath}")
+            return True
+            
+        except Exception as e:
+            print(f"❌ Error exporting brain report: {e}")
+            return False
+    
+    def get_report_filepath(self, filename: str) -> str:
+        """Generate brain report filepath in the reporting directory."""
+        # Create reporting directory path
+        script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        reporting_dir = os.path.join(script_dir, "reporting", "brain_intelligence")
+        
+        # Ensure brain intelligence subdirectory exists
+        os.makedirs(reporting_dir, exist_ok=True)
+        
+        return os.path.join(reporting_dir, filename)
+    
+    def generate_brain_summary_json(self, brain_enhanced_stats) -> Dict[str, Any]:
+        """Generate brain intelligence summary in JSON format for API consumption."""
+        try:
+            evolution_metrics = brain_enhanced_stats.get_brain_evolution_metrics()
+            session_data = brain_enhanced_stats.session_data
+            
+            summary = {
+                "timestamp": time.time(),
+                "report_type": "brain_intelligence_summary",
+                "session_id": session_data.get("session_id", "unknown"),
+                "brain_evolution": {
+                    "intelligence_level_start": session_data.get("brain_intelligence_start", {}).get("brain_intelligence_level", "Unknown"),
+                    "intelligence_level_end": session_data.get("brain_intelligence_end", {}).get("brain_intelligence_level", "Unknown"),
+                    "automation_readiness_improvement": session_data.get("automation_improvement", 0),
+                    "new_patterns_learned": session_data.get("new_patterns_learned", 0),
+                    "confidence_calibrations": session_data.get("confidence_calibrations", 0)
+                },
+                "performance_metrics": {
+                    "total_questions": brain_enhanced_stats.get_total_questions(),
+                    "automated_questions": brain_enhanced_stats.get_automated_questions(),
+                    "manual_interventions": brain_enhanced_stats.get_manual_interventions(),
+                    "automation_rate": brain_enhanced_stats.get_automation_rate(),
+                    "brain_learning_rate": brain_enhanced_stats.get_brain_learning_rate()
+                },
+                "learning_analytics": {
+                    "total_learning_events": len(evolution_metrics.get("learning_events", [])),
+                    "pattern_discoveries": len(evolution_metrics.get("pattern_discoveries", [])),
+                    "brain_improvements": len(evolution_metrics.get("brain_improvements", [])),
+                    "confidence_evolution_points": len(evolution_metrics.get("confidence_evolution", []))
+                },
+                "handler_intelligence": brain_enhanced_stats.get_handler_performance_summary(),
+                "recommendations": self._generate_json_recommendations(brain_enhanced_stats),
+                "next_development_phase": self._determine_next_phase(brain_enhanced_stats.get_automation_rate())
+            }
+            
+            return summary
+            
+        except Exception as e:
+            return {
+                "timestamp": time.time(),
+                "report_type": "brain_intelligence_summary",
+                "error": str(e),
+                "status": "failed"
+            }
+    
+    def _generate_json_recommendations(self, stats) -> List[str]:
+        """Generate recommendations in JSON-friendly format."""
+        recommendations = []
+        automation_rate = stats.get_automation_rate()
+        
+        if automation_rate < 50:
+            recommendations.extend([
+                "Increase brain learning data through manual interventions",
+                "Review and enhance question pattern recognition",
+                "Consider lowering confidence thresholds for learning mode"
+            ])
+        elif automation_rate < 75:
+            recommendations.extend([
+                "Focus on handler-specific brain training", 
+                "Expand question pattern libraries",
+                "Optimize confidence calibration algorithms"
+            ])
+        elif automation_rate < 90:
+            recommendations.extend([
+                "Fine-tune edge case handling",
+                "Enhance cross-handler knowledge sharing",
+                "Implement predictive question sequencing"
+            ])
+        else:
+            recommendations.extend([
+                "Focus on intelligence optimization",
+                "Explore advanced AI integration", 
+                "Consider commercial deployment readiness"
+            ])
+        
+        return recommendations
+    
+    def _determine_next_phase(self, automation_rate: float) -> Dict[str, str]:
+        """Determine next development phase based on automation rate."""
+        if automation_rate < 60:
+            return {
+                "phase": "Phase 1A: Demographics Foundation",
+                "milestone": "Achieve 100% demographics automation",
+                "timeline": "1-2 weeks"
+            }
+        elif automation_rate < 80:
+            return {
+                "phase": "Phase 1B: Format Expansion", 
+                "milestone": "Master all demographic question formats",
+                "timeline": "2-3 weeks"
+            }
+        elif automation_rate < 90:
+            return {
+                "phase": "Phase 1C: Complex Demographics",
+                "milestone": "Handle multi-question demographic pages",
+                "timeline": "3-4 weeks"
+            }
+        else:
+            return {
+                "phase": "Phase 2: Brand Intelligence",
+                "milestone": "Develop brand familiarity automation",
+                "timeline": "Ready for advanced development"
+            }
+
+
+# Legacy compatibility class
+class ReportGenerator(BrainEnhancedReportGenerator):
+    """
+    Legacy compatibility wrapper for existing code.
+    Provides traditional reporting functionality while supporting brain enhancement.
+    """
+    
+    def __init__(self):
+        super().__init__(knowledge_base=None)
+        print("📊 Legacy ReportGenerator initialized")
+        print("🧠 Consider upgrading to BrainEnhancedReportGenerator for full intelligence analysis")
+    
+    def generate_survey_report(self, survey_stats: Dict[str, Any], 
+                             session_stats: Dict[str, Any] = None,
+                             handler_stats: Dict[str, Any] = None,
+                             intervention_stats: Dict[str, Any] = None,
+                             research_stats: Dict[str, Any] = None) -> str:
+        """
+        Generate traditional survey report for backward compatibility.
+        """
+        try:
+            report = []
+            report.append("=" * 80)
+            report.append("📊 ENHANCED SURVEY AUTOMATION REPORT")
+            report.append("=" * 80)
+            
+            # Basic survey metrics
+            total_questions = survey_stats.get("total_questions", 0)
+            automated_questions = survey_stats.get("automated_questions", 0)
+            manual_interventions = survey_stats.get("manual_interventions", 0)
+            automation_rate = (automated_questions / total_questions * 100) if total_questions > 0 else 0
+            
+            report.extend([
+                "",
+                "📈 SURVEY COMPLETION SUMMARY:",
+                f"   • Total Questions Processed: {total_questions}",
+                f"   • Automated Successfully: {automated_questions}",
+                f"   • Manual Interventions: {manual_interventions}",
+                f"   • Automation Rate: {automation_rate:.1f}%",
+                ""
+            ])
+            
+            # Timing analysis
+            if survey_stats.get("start_time") and survey_stats.get("end_time"):
+                total_time = survey_stats["end_time"] - survey_stats["start_time"]
+                questions_per_minute = (total_questions / total_time * 60) if total_time > 0 else 0
+                
+                report.extend([
+                    "⏱️ TIMING ANALYSIS:",
+                    f"   • Total Time: {total_time/60:.1f} minutes",
+                    f"   • Questions per Minute: {questions_per_minute:.1f}",
+                    ""
+                ])
+            
+            # Handler stats if available
+            if handler_stats:
+                report.extend([
+                    "🎯 HANDLER USAGE:",
+                    *[f"   • {handler}: {stats.get('attempts', 0)} attempts" 
+                      for handler, stats in handler_stats.items()],
+                    ""
+                ])
+            
+            # Basic recommendations
+            report.extend([
+                "💡 RECOMMENDATIONS:",
+                f"   • {'Continue current strategy' if automation_rate >= 80 else 'Improve handler confidence scoring'}",
+                f"   • {'Excellent performance!' if automation_rate >= 90 else 'Focus on pattern recognition enhancement'}",
+                ""
+            ])
+            
+            report.append("=" * 80)
+            return "\n".join(report)
+            
+        except Exception as e:
+            return f"❌ Error generating legacy report: {e}"
     
     def generate_quick_summary(self, survey_stats: Dict[str, Any]) -> str:
-        """Generate a quick one-line summary."""
+        """Generate a quick one-line summary for legacy compatibility."""
         total_questions = survey_stats.get("total_questions", 0)
         automated_questions = survey_stats.get("automated_questions", 0)
         manual_interventions = survey_stats.get("manual_interventions", 0)
@@ -509,38 +931,27 @@ class ReportGenerator:
                 f"{automation_rate:.1f}% automated, {manual_interventions} manual interventions")
     
     def export_report(self, report_content: str, filepath: str) -> bool:
-        """Export report to file with automatic directory creation."""
+        """Export report to file with automatic directory creation (legacy method)."""
         try:
             # Ensure the directory exists
             os.makedirs(os.path.dirname(filepath), exist_ok=True)
             
             with open(filepath, 'w', encoding='utf-8') as f:
                 f.write(report_content)
-            print(f"📤 Report exported to {filepath}")
+            print(f"📤 Legacy report exported to {filepath}")
             return True
         except Exception as e:
-            print(f"❌ Error exporting report: {e}")
+            print(f"❌ Error exporting legacy report: {e}")
             return False
-
+    
     def get_report_filepath(self, filename: str = None) -> str:
-        """
-        Generate report filepath in the reporting directory.
-        
-        Args:
-            filename: Optional custom filename
-            
-        Returns:
-            str: Full filepath for the report
-        """
-        import time
+        """Generate report filepath in the reporting directory (legacy method)."""
+        if filename is None:
+            timestamp = time.strftime("%Y%m%d_%H%M%S")
+            filename = f"survey_report_{timestamp}.txt"
         
         # Create reporting directory path
         script_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         reporting_dir = os.path.join(script_dir, "reporting")
-        
-        # Generate filename if not provided
-        if filename is None:
-            timestamp = time.strftime("%Y%m%d_%H%M%S")
-            filename = f"survey_report_{timestamp}.txt"
         
         return os.path.join(reporting_dir, filename)
