@@ -26,15 +26,8 @@ class DemographicsHandler(BaseHandler):
         # 🧠 Connect to Quenito's digital brain
         self.brain = knowledge_base
         
-        # Human behavior simulation attributes
-        self.wpm = random.randint(40, 80)
-        self.thinking_speed = random.uniform(0.8, 1.3)
-        self.decision_confidence = random.uniform(0.7, 1.2)
-        
         print("🧠 Quenito's Brain-Integrated Demographics Handler initialized!")
         print("🎯 Ready for continuous learning and evolution!")
-        print(f"🧠 Human Profile: {self.wpm} WPM, thinking speed {self.thinking_speed:.1f}x, decision confidence {self.decision_confidence:.1f}x")
-        print(f"⏱️ Handler initialized with enhanced human timing")
         
         # Enhanced question patterns for comprehensive demographics
         self.question_patterns = {
@@ -274,139 +267,107 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error in Quenito's brain confidence calculation: {e}")
             return 0.0
     
-    async def handle(self) -> bool:
-            """
-            🧠 Quenito's Brain-Enhanced demographic question handling.
-            Every success/failure teaches Quenito's brain to get smarter.
-            """
-            print(f"🧠 Quenito's Enhanced Demographics Handler starting...")
+    def handle(self) -> bool:
+        """
+        🧠 Quenito's Brain-Enhanced demographic question handling.
+        Every success/failure teaches Quenito's brain to get smarter.
+        """
+        print(f"🧠 Quenito's Enhanced Demographics Handler starting...")
+        
+        if not self.page:
+            print("❌ No page available for demographics processing")
+            return False
+        
+        try:
+            # Apply reading delay
+            self.page_analysis_delay()
             
-            if not self.page:
-                print("❌ No page available for demographics processing")
-                return False
+            # Get page content for analysis
+            page_content = self.page.inner_text('body') 
             
-            try:
-                # Apply reading delay
-                self.page_analysis_delay()
+            # Try to identify the specific demographic question type
+            question_type = self._identify_question_type(page_content)
+            print(f"📊 Quenito identified question type: {question_type}")
+            
+            if question_type:
+                # Process the specific demographic question
+                success = self._process_demographic_question(question_type, page_content)
                 
-                # Get page content for analysis (fixed async issue)
-                try:
-                    page_content = await self.page.locator('body').text_content()
-                except Exception:
-                    try:
-                        page_content = await self.page.evaluate('() => document.body.textContent')
-                    except Exception:
-                        page_content = "How old are you?"  # Fallback for age question
-                
-                # Try to identify the specific demographic question type
-                question_type = self._identify_question_type(page_content)
-                print(f"📊 Quenito identified question type: {question_type}")
-                
-                if question_type:
-                    # Process the specific demographic question
-                    success = await self._process_demographic_question(question_type, page_content)
+                if success:
+                    # Navigate to next question
+                    navigation_success = self._try_navigation()
                     
-                    if success:
-                        # Navigate to next question
-                        navigation_success = await self._try_navigation()
-                        
-                        if navigation_success:
-                            print("🧠 ✅ Quenito successfully automated demographics + navigation!")
-                            self._teach_brain_success(question_type, page_content, 1.0)
-                            return True
-                        else:
-                            print("⚠️ Demographics automated but navigation failed")
-                            self._teach_brain_partial_success(question_type, page_content, 0.8)
-                            return True  # Still count as success since question was answered
+                    if navigation_success:
+                        print("🧠 ✅ Quenito successfully automated demographics + navigation!")
+                        self._teach_brain_success(question_type, page_content, 1.0)
+                        return True
                     else:
-                        print("❌ Demographics processing failed")
-                        self._teach_brain_failure(question_type, page_content)
-                        return False
+                        print("⚠️ Demographics automated but navigation failed")
+                        self._teach_brain_partial_success(question_type, page_content, 0.8)
+                        return True  # Still count as success since question was answered
                 else:
-                    print("⚠️ Quenito could not identify demographic question type")
-                    self._teach_brain_unknown_pattern(page_content)
+                    print("❌ Demographics processing failed")
+                    self._teach_brain_failure(question_type, page_content)
                     return False
-                    
-            except Exception as e:
-                print(f"❌ Error in Quenito's demographics handler: {e}")
+            else:
+                print("⚠️ Quenito could not identify demographic question type")
+                self._teach_brain_unknown_pattern(page_content)
                 return False
+                
+        except Exception as e:
+            print(f"❌ Error in Quenito's demographics handler: {e}")
+            return False
     
     def _identify_question_type(self, page_content: str) -> Optional[str]:
-            """🧠 Identify the specific type of demographic question using brain patterns"""
-            content_lower = page_content.lower()
-            
-            # PRIORITY 1: Check for strong age question indicators first
-            strong_age_patterns = [
-                'how old are you', 'what is your age', 'please enter your age',
-                'enter your age', 'your age:', 'age in years', 'current age'
-            ]
-            
-            if any(pattern in content_lower for pattern in strong_age_patterns):
-                print(f"🧠 PRIORITY: Strong age question detected!")
-                return 'age'
-            
-            # PRIORITY 2: Check for other specific patterns
-            # Check each pattern but prioritize more specific matches
-            best_match = None
-            best_score = 0
-            
-            for question_type, pattern in self.question_patterns.items():
-                matches = 0
-                
-                # Count keyword matches
-                for keyword in pattern['keywords']:
-                    if keyword in content_lower:
-                        matches += 1
-                
-                # Apply priority weighting
-                if question_type == 'age' and matches > 0:
-                    matches *= 3  # Boost age questions
-                elif question_type == 'gender' and matches > 0:
-                    matches *= 2  # Boost gender questions
-                elif question_type == 'location' and matches > 0:
-                    matches *= 0.5  # Reduce location sensitivity
-                
-                if matches > best_score:
-                    best_score = matches
-                    best_match = question_type
-                    
-            print(f"🔍 Best match: {best_match} (score: {best_score})")
-            return best_match if best_score > 0 else None
+        """🧠 Identify the specific type of demographic question using brain patterns"""
+        content_lower = page_content.lower()
+        
+        # Check each pattern for the strongest match
+        best_match = None
+        best_score = 0
+        
+        for question_type, pattern in self.question_patterns.items():
+            matches = sum(1 for keyword in pattern['keywords'] if keyword in content_lower)
+            if matches > best_score:
+                best_score = matches
+                best_match = question_type
+        
+        return best_match if best_score > 0 else None
     
-    async def _process_demographic_question(self, question_type: str, page_content: str) -> bool:
+    def _process_demographic_question(self, question_type: str, page_content: str) -> bool:
         """🧠 Process a specific demographic question type using Quenito's brain data"""
         try:
             # Get user demographics from Quenito's brain
             demographics = self.brain.get_demographics()
             
             if question_type == 'age':
-                return await self._handle_age_question(demographics, page_content)
+                return self._handle_age_question(demographics, page_content)
             elif question_type == 'gender':
-                return await self._handle_gender_question(demographics)
+                return self._handle_gender_question(demographics)
             elif question_type == 'birth_location':
-                return await self._handle_birth_location_question(demographics)
+                return self._handle_birth_location_question(demographics)
             elif question_type == 'location':
-                return await self._handle_location_question(demographics, page_content)
+                return self._handle_location_question(demographics, page_content)
             elif question_type == 'employment':
-                return await self._handle_employment_question(demographics, page_content)
+                return self._handle_employment_question(demographics, page_content)
             elif question_type == 'occupation':
-                return await self._handle_occupation_question(demographics)
+                return self._handle_occupation_question(demographics)
             elif question_type == 'industry':
-                return await self._handle_industry_question(demographics)
+                return self._handle_industry_question(demographics)
             elif question_type == 'income':
-                return await self._handle_income_question(demographics, page_content)
+                return self._handle_income_question(demographics, page_content)
             elif question_type == 'education':
-                return await self._handle_education_question(demographics)
+                return self._handle_education_question(demographics)
             elif question_type == 'marital_status':
-                return await self._handle_marital_status_question(demographics)
+                return self._handle_marital_status_question(demographics)
             elif question_type == 'household_size':
-                return await self._handle_household_size_question(demographics)
+                return self._handle_household_size_question(demographics)
             elif question_type == 'children':
-                return await self._handle_children_question(demographics, page_content)
+                return self._handle_children_question(demographics, page_content)
             elif question_type == 'household_composition':
-                return await self._handle_household_composition_question(demographics)
+                return self._handle_household_composition_question(demographics)
             elif question_type == 'pets':
-                return await self._handle_pets_question(demographics)
+                return self._handle_pets_question(demographics)
             else:
                 print(f"⚠️ Unknown question type: {question_type}")
                 return False
@@ -414,60 +375,33 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error processing demographic question: {e}")
             return False
-
-    async def _handle_age_question(self, demographics: Dict[str, Any], page_content: str) -> bool:
-            """🧠 Handle age-specific questions with brain-integrated data"""
-            try:
-                age = demographics.get('age', '45')  # Get from Quenito's brain
-                print(f"🧠 Quenito processing age question with brain value: {age}")
-                
-                content_lower = page_content.lower()
-                
-                # Get age-specific patterns from brain
-                age_patterns = self.question_patterns.get('age', {})
-                
-                # Check if it's an age range question using comprehensive patterns
-                age_range_indicators = [
-                    'age group', 'age range', 'which age', 'age bracket',
-                    'age group applies', 'which age group', 'select age range',
-                    'choose age group', 'age category'
-                ]
-                
-                # Check for age range patterns
-                is_age_range = any(indicator in content_lower for indicator in age_range_indicators)
-                
-                if is_age_range:
-                    print(f"🧠 Detected age range question")
-                    return await self._select_age_range(age)
-                else:
-                    # Check for direct age input patterns
-                    direct_age_indicators = [
-                        'how old are you', 'what is your age', 'enter your age',
-                        'please enter your age', 'your age:', 'age in years',
-                        'current age', 'enter a number'
-                    ]
-                    
-                    is_direct_age = any(indicator in content_lower for indicator in direct_age_indicators)
-                    
-                    if is_direct_age:
-                        print(f"🧠 Detected direct age input question")
-                        return await self._fill_age_input(age)
-                    else:
-                        # Fallback: try both methods
-                        print(f"🧠 Age question type unclear, trying both methods")
-                        return await self._fill_age_input(age) or await self._select_age_range(age)
-
-            except Exception as e:
-                print(f"❌ Error handling age question: {e}")
-                return False
     
-    async def _select_age_range(self, age: str) -> bool:
+    def _handle_age_question(self, demographics: Dict[str, Any], page_content: str) -> bool:
+        """🧠 Handle age-specific questions with brain-integrated data"""
+        try:
+            age = demographics.get('age', '45')  # Get from Quenito's brain
+            print(f"🧠 Quenito processing age question with brain value: {age}")
+            
+            # Check if it's an age range question
+            content_lower = page_content.lower()
+            if any(range_indicator in content_lower for range_indicator in ['age group', 'age range', 'which age']):
+                # Handle age range selection
+                return self._select_age_range(age)
+            else:
+                # Handle direct age input
+                return self._fill_age_input(age)
+                
+        except Exception as e:
+            print(f"❌ Error handling age question: {e}")
+            return False
+    
+    def _select_age_range(self, age: str) -> bool:
         """🧠 Select appropriate age range for age 45"""
         try:
             # Age 45 should select ranges that include 45
             target_ranges = ['45-54', '40-54', '45 to 54', '40 to 54']
             
-            radio_buttons = await self.page.query_selector_all('input[type="radio"]')
+            radio_buttons = self.page.query_selector_all('input[type="radio"]')
             
             for radio in radio_buttons:
                 label_text = self._get_radio_label_text(radio)
@@ -484,124 +418,61 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error selecting age range: {e}")
             return False
     
-    async def _fill_age_input(self, age: str) -> bool:
-            """🧠 Fill age in text input field with robust clicking strategies"""
-            try:
-                # Try multiple input selector strategies
-                input_selectors = [
-                    'input[type="text"]',
-                    'input[type="number"]', 
-                    'input:not([type="hidden"]):not([type="submit"]):not([type="button"])',
-                    'textarea',
-                    '.form-control',
-                    '[data-testid*="input"]'
-                ]
-                
-                for selector in input_selectors:
-                    try:
-                        inputs = await self.page.query_selector_all(selector)
-                        if inputs:
-                            # Use the first visible input
-                            for input_elem in inputs:
-                                if await input_elem.is_visible():
-                                    print(f"🧠 ✅ Found input field using selector: {selector}")
-                                    
-                                    # Try multiple clicking strategies
-                                    click_success = await self._robust_click_and_fill(input_elem, age)
-                                    if click_success:
-                                        print(f"🧠 ✅ Age entered: {age}")
-                                        return True
-                                        
-                    except Exception as e:
-                        print(f"⚠️ Selector {selector} failed: {e}")
-                        continue
-                
-                print("❌ No suitable input field found for age")
-                return False
-                
-            except Exception as e:
-                print(f"❌ Error filling age input: {e}")
-                return False
-        
-    async def _robust_click_and_fill(self, input_elem, value: str) -> bool:
-        """🧠 Robust clicking and filling with multiple strategies"""
+    def _fill_age_input(self, age: str) -> bool:
+        """🧠 Fill age in text input field"""
         try:
-            # Strategy 1: Standard click
-            try:
-                await input_elem.click(timeout=5000)
-                self.human_like_delay(action_type="thinking")
-                await input_elem.fill('')
-                self.human_like_delay(action_type="typing", text_length=len(str(value)))
-                await input_elem.fill(str(value))
-                print(f"🧠 ✅ Strategy 1 (standard click) successful")
-                return True
-            except Exception as e:
-                print(f"⚠️ Strategy 1 failed: {e}")
+            # Try multiple input selector strategies
+            input_selectors = [
+                'input[type="text"]',
+                'input[type="number"]', 
+                'input:not([type="hidden"]):not([type="submit"]):not([type="button"])',
+                'textarea',
+                '.form-control',
+                '[data-testid*="input"]'
+            ]
             
-            # Strategy 2: Force click
-            try:
-                await input_elem.click(force=True, timeout=5000)
-                self.human_like_delay(action_type="thinking")
-                await input_elem.fill('')
-                self.human_like_delay(action_type="typing", text_length=len(str(value)))
-                await input_elem.fill(str(value))
-                print(f"🧠 ✅ Strategy 2 (force click) successful")
-                return True
-            except Exception as e:
-                print(f"⚠️ Strategy 2 failed: {e}")
+            for selector in input_selectors:
+                try:
+                    inputs = self.page.query_selector_all(selector)
+                    if inputs:
+                        # Use the first visible input
+                        for input_elem in inputs:
+                            if input_elem.is_visible():
+                                print(f"🧠 ✅ Found input field using selector: {selector}")
+                                
+                                # Clear and fill the input
+                                input_elem.click()
+                                self.human_like_delay(action_type="thinking")
+                                input_elem.fill('')
+                                self.human_like_delay(action_type="typing", text_length=len(str(age)))
+                                input_elem.fill(str(age))
+                                
+                                print(f"🧠 ✅ Age entered: {age}")
+                                return True
+                                
+                except Exception as e:
+                    print(f"⚠️ Selector {selector} failed: {e}")
+                    continue
             
-            # Strategy 3: Focus and type
-            try:
-                await input_elem.focus()
-                self.human_like_delay(action_type="thinking")
-                await input_elem.fill('')
-                self.human_like_delay(action_type="typing", text_length=len(str(value)))
-                await input_elem.fill(str(value))
-                print(f"🧠 ✅ Strategy 3 (focus and fill) successful")
-                return True
-            except Exception as e:
-                print(f"⚠️ Strategy 3 failed: {e}")
-            
-            # Strategy 4: JavaScript click
-            try:
-                await self.page.evaluate('(element) => element.click()', input_elem)
-                self.human_like_delay(action_type="thinking")
-                await input_elem.fill('')
-                self.human_like_delay(action_type="typing", text_length=len(str(value)))
-                await input_elem.fill(str(value))
-                print(f"🧠 ✅ Strategy 4 (JS click) successful")
-                return True
-            except Exception as e:
-                print(f"⚠️ Strategy 4 failed: {e}")
-            
-            # Strategy 5: Direct value setting
-            try:
-                await self.page.evaluate(f'(element) => {{ element.value = "{value}"; element.dispatchEvent(new Event("input", {{ bubbles: true }})); element.dispatchEvent(new Event("change", {{ bubbles: true }})); }}', input_elem)
-                self.human_like_delay(action_type="typing", text_length=len(str(value)))
-                print(f"🧠 ✅ Strategy 5 (JS value setting) successful")
-                return True
-            except Exception as e:
-                print(f"⚠️ Strategy 5 failed: {e}")
-            
-            print(f"❌ All click strategies failed for this input field")
+            print("❌ No suitable input field found for age")
             return False
             
         except Exception as e:
-            print(f"❌ Error in robust click and fill: {e}")
+            print(f"❌ Error filling age input: {e}")
             return False
     
-    async def _handle_birth_location_question(self, demographics: Dict[str, Any]) -> bool:
+    def _handle_birth_location_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle birth location questions (Australia/Overseas)"""
         try:
             # Assume Australian birth based on demographics
             target_value = "Australia"
             print(f"🧠 Processing birth location with brain value: {target_value}")
             
-            if await self._select_radio_option(target_value, ['australia', 'australian', 'domestic']):
+            if self._select_radio_option(target_value, ['australia', 'australian', 'domestic']):
                 return True
             
             # Also handle citizenship questions
-            if await self._select_radio_option("Yes", ['yes', 'citizen', 'australian citizen']):
+            if self._select_radio_option("Yes", ['yes', 'citizen', 'australian citizen']):
                 return True
             
             return False
@@ -610,18 +481,18 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error handling birth location question: {e}")
             return False
     
-    async def _handle_gender_question(self, demographics: Dict[str, Any]) -> bool:
+    def _handle_gender_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle gender questions with brain data"""
         try:
             gender = demographics.get('gender', 'Male')
             print(f"🧠 Processing gender question with brain value: {gender}")
             
             # Try radio buttons first
-            if await self._select_radio_option(gender, ['male', 'female', 'man', 'woman']):
+            if self._select_radio_option(gender, ['male', 'female', 'man', 'woman']):
                 return True
             
             # Try dropdown
-            if await self._select_dropdown_option(gender):
+            if self._select_dropdown_option(gender):
                 return True
             
             print("❌ No suitable gender input found")
@@ -631,7 +502,7 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error handling gender question: {e}")
             return False
     
-    async def _handle_location_question(self, demographics: Dict[str, Any], page_content: str) -> bool:
+    def _handle_location_question(self, demographics: Dict[str, Any], page_content: str) -> bool:
         """🧠 Handle location questions with enhanced brain mapping"""
         try:
             state = demographics.get('location', 'New South Wales')
@@ -644,17 +515,17 @@ class DemographicsHandler(BaseHandler):
             
             # Check for postcode question
             if 'postcode' in content_lower:
-                return await self._fill_text_input(postcode)
+                return self._fill_text_input(postcode)
             
             # Check for metropolitan/city type question
             if 'metropolitan' in content_lower or 'large city' in content_lower:
-                return await self._select_radio_option(location_type, 
+                return self._select_radio_option(location_type, 
                     ['metropolitan', 'large city', 'large metropolitan'])
             
             # Check for state selection
             if 'state' in content_lower or 'nsw' in content_lower:
                 # Try both full name and abbreviation
-                if await self._select_dropdown_option(state) or await self._select_radio_option(state, ['nsw', 'new south wales']):
+                if self._select_dropdown_option(state) or self._select_radio_option(state, ['nsw', 'new south wales']):
                     return True
             
             return False
@@ -663,7 +534,7 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error handling location question: {e}")
             return False
     
-    async def _handle_employment_question(self, demographics: Dict[str, Any], page_content: str) -> bool:
+    def _handle_employment_question(self, demographics: Dict[str, Any], page_content: str) -> bool:
         """🧠 Handle employment questions with work arrangement support"""
         try:
             employment = demographics.get('employment_status', 'Full-time')
@@ -674,31 +545,31 @@ class DemographicsHandler(BaseHandler):
             
             # Check for work arrangement question
             if 'work arrangement' in content_lower or 'home-based' in content_lower:
-                return await self._select_radio_option(work_arrangement, ['mix of', 'hybrid', 'flexible'])
+                return self._select_radio_option(work_arrangement, ['mix of', 'hybrid', 'flexible'])
             
             # Check for sector question
             if 'sector' in content_lower:
-                return await self._select_radio_option(work_sector, ['private sector', 'private'])
+                return self._select_radio_option(work_sector, ['private sector', 'private'])
             
             # General employment status
-            return await self._select_radio_option(employment, ['employed', 'full time', 'full-time'])
+            return self._select_radio_option(employment, ['employed', 'full time', 'full-time'])
             
         except Exception as e:
             print(f"❌ Error handling employment question: {e}")
             return False
     
-    async def _handle_occupation_question(self, demographics: Dict[str, Any]) -> bool:
+    def _handle_occupation_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle occupation and job title questions"""
         try:
             occupation = demographics.get('occupation', 'Data Analyst')
             occupation_level = demographics.get('occupation_level', 'Academic/Professional')
             
             # Try text input first (for occupation field)
-            if await self._fill_text_input(occupation):
+            if self._fill_text_input(occupation):
                 return True
             
             # Try occupation level selection
-            if await self._select_radio_option(occupation_level, ['academic', 'professional']):
+            if self._select_radio_option(occupation_level, ['academic', 'professional']):
                 return True
             
             return False
@@ -707,18 +578,18 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error handling occupation question: {e}")
             return False
     
-    async def _handle_industry_question(self, demographics: Dict[str, Any]) -> bool:
+    def _handle_industry_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle industry and sub-industry questions"""
         try:
             industry = demographics.get('industry', 'Retail')
             sub_industry = demographics.get('sub_industry', 'Supermarkets')
             
             # Try sub-industry first (more specific)
-            if await self._select_dropdown_option(sub_industry) or await self._select_radio_option(sub_industry, ['supermarket', 'grocery']):
+            if self._select_dropdown_option(sub_industry) or self._select_radio_option(sub_industry, ['supermarket', 'grocery']):
                 return True
             
             # Try general industry
-            if await self._select_dropdown_option(industry) or await self._select_radio_option(industry, ['retail']):
+            if self._select_dropdown_option(industry) or self._select_radio_option(industry, ['retail']):
                 return True
             
             return False
@@ -727,7 +598,7 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error handling industry question: {e}")
             return False
     
-    async def _handle_income_question(self, demographics: Dict[str, Any], page_content: str) -> bool:
+    def _handle_income_question(self, demographics: Dict[str, Any], page_content: str) -> bool:
         """🧠 Handle personal and household income questions"""
         try:
             personal_income = demographics.get('personal_income', '$100,000 to $149,999')
@@ -745,7 +616,7 @@ class DemographicsHandler(BaseHandler):
             
             print(f"🧠 Processing income question with brain value: {target_income}")
             
-            if await self._select_dropdown_option(target_income) or await self._select_radio_option(target_income, keywords):
+            if self._select_dropdown_option(target_income) or self._select_radio_option(target_income, keywords):
                 return True
             
             return False
@@ -754,12 +625,12 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error handling income question: {e}")
             return False
     
-    async def _handle_education_question(self, demographics: Dict[str, Any]) -> bool:
+    def _handle_education_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle education questions"""
         try:
             education = demographics.get('education', 'High school education')
             
-            if await self._select_dropdown_option(education) or await self._select_radio_option(education, ['high school', 'year 12', 'graduate']):
+            if self._select_dropdown_option(education) or self._select_radio_option(education, ['high school', 'year 12', 'graduate']):
                 return True
             
             return False
@@ -768,13 +639,13 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error handling education question: {e}")
             return False
     
-    async def _handle_marital_status_question(self, demographics: Dict[str, Any]) -> bool:
+    def _handle_marital_status_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle marital status questions"""
         try:
             marital_status = demographics.get('marital_status', 'Married/civil partnership')
             
             # Try various marital status formats
-            if await self._select_radio_option(marital_status, ['married', 'civil partnership', 'married/civil']):
+            if self._select_radio_option(marital_status, ['married', 'civil partnership', 'married/civil']):
                 return True
             
             return False
@@ -783,12 +654,12 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error handling marital status question: {e}")
             return False
     
-    async def _handle_household_size_question(self, demographics: Dict[str, Any]) -> bool:
+    def _handle_household_size_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle household size questions"""
         try:
             household_size = demographics.get('household_size', '4')
             
-            if await self._fill_text_input(household_size):
+            if self._fill_text_input(household_size):
                 return True
             
             return False
@@ -796,54 +667,60 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error handling household size question: {e}")
             return False
-        
-    async def _handle_children_question(self, demographics: Dict[str, Any], page_content: str) -> bool:
+    
+    def _handle_children_question(self, demographics: Dict[str, Any], page_content: str) -> bool:
         """🧠 Handle children questions including complex multi-dropdown format"""
         try:
             content_lower = page_content.lower()
             
             # Check for complex multi-dropdown children question (like Image 1)
             if 'dependent children' in content_lower and 'age groups' in content_lower:
-                return await self._handle_children_age_groups()
+                return self._handle_children_age_groups()
             
             # Check for household composition with children
             if 'family with children' in content_lower:
-                return await self._select_checkbox_option('Family with children primary school aged', 
+                return self._select_checkbox_option('Family with children primary school aged', 
                     ['primary school', 'school aged'])
             
             # Simple yes/no children question
             children = demographics.get('children', 'Yes')
-            return await self._select_radio_option(children, ['yes', 'have children', 'with children'])
+            return self._select_radio_option(children, ['yes', 'have children', 'with children'])
             
         except Exception as e:
             print(f"❌ Error handling children question: {e}")
             return False
     
-    async def _handle_children_age_groups(self) -> bool:
-        """🧠 Handle complex multi-dropdown children age groups"""
+    def _handle_children_age_groups(self) -> bool:
+        """🧠 Handle complex multi-dropdown children age groups (from Image 1)"""
         try:
+            # This is a complex question with multiple dropdowns for different age ranges
+            # For now, we'll select appropriate values based on the user's actual family situation
+            
             age_group_selectors = [
-                ('0-4 yrs', '0'),
-                ('5-12 yrs', '1'),
-                ('13-15 yrs', '0'),
-                ('16-19 yrs', '0'),
-                ('20 yrs or above', '0')
+                ('0-4 yrs', '0'),      # Adjust based on actual children
+                ('5-12 yrs', '1'),     # Adjust based on actual children  
+                ('13-15 yrs', '0'),    # Adjust based on actual children
+                ('16-19 yrs', '0'),    # Adjust based on actual children
+                ('20 yrs or above', '0') # Adjust based on actual children
             ]
             
             success_count = 0
             
             for age_group, value in age_group_selectors:
                 try:
-                    selects = await self.page.query_selector_all('select')
+                    # Find dropdowns for this age group
+                    selects = self.page.query_selector_all('select')
                     
                     for select in selects:
-                        parent_text = await select.locator('..').inner_text()
+                        # Look for the select that corresponds to this age group
+                        parent_text = select.query_selector('..').inner_text().lower()
                         
-                        if age_group.replace(' yrs', '') in parent_text.lower():
-                            options = await select.query_selector_all('option')
+                        if age_group.replace(' yrs', '') in parent_text:
+                            # Select the appropriate value
+                            options = select.query_selector_all('option')
                             for option in options:
-                                if await option.get_attribute('value') == value or await option.inner_text() == value:
-                                    await select.select_option(value=await option.get_attribute('value'))
+                                if option.get_attribute('value') == value or option.inner_text().strip() == value:
+                                    select.select_option(value=option.get_attribute('value'))
                                     self.human_like_delay(action_type="decision")
                                     print(f"🧠 ✅ Selected {value} for {age_group}")
                                     success_count += 1
@@ -860,17 +737,18 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error handling children age groups: {e}")
             return False
     
-    async def _handle_household_composition_question(self, demographics: Dict[str, Any]) -> bool:
+    def _handle_household_composition_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle household composition questions with checkbox support"""
         try:
+            # Based on demographics, select appropriate household composition
             target_composition = 'Family with children primary school aged'
             
             # Try checkbox selection first (multi-select format)
-            if await self._select_checkbox_option(target_composition, ['primary school', 'family with children']):
+            if self._select_checkbox_option(target_composition, ['primary school', 'family with children']):
                 return True
             
             # Try radio selection (single select format)
-            if await self._select_radio_option(target_composition, ['family with children', 'couple with children']):
+            if self._select_radio_option(target_composition, ['family with children', 'couple with children']):
                 return True
             
             return False
@@ -879,12 +757,12 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error handling household composition question: {e}")
             return False
     
-    async def _handle_pets_question(self, demographics: Dict[str, Any]) -> bool:
+    def _handle_pets_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle pets questions"""
         try:
             pets = demographics.get('pets', 'Yes')
             
-            if await self._select_radio_option(pets, ['yes', 'have pets', 'own pets']):
+            if self._select_radio_option(pets, ['yes', 'have pets', 'own pets']):
                 return True
             
             return False
@@ -893,17 +771,17 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error handling pets question: {e}")
             return False
     
-    async def _select_radio_option(self, target_value: str, keywords: List[str]) -> bool:
+    def _select_radio_option(self, target_value: str, keywords: List[str]) -> bool:
         """🧠 Select a radio button option based on target value and keywords"""
         try:
-            radio_buttons = await self.page.query_selector_all('input[type="radio"]')
+            radio_buttons = self.page.query_selector_all('input[type="radio"]')
             
             for radio in radio_buttons:
                 # Get associated label text
-                label_text = await self._get_radio_label_text(radio)
+                label_text = self._get_radio_label_text(radio)
                 
                 if self._text_matches(label_text, target_value, keywords):
-                    await radio.click()
+                    radio.click()
                     self.human_like_delay(action_type="decision")
                     print(f"🧠 ✅ Selected radio option: {label_text}")
                     return True
@@ -914,19 +792,19 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error selecting radio option: {e}")
             return False
     
-    async def _select_dropdown_option(self, target_value: str) -> bool:
+    def _select_dropdown_option(self, target_value: str) -> bool:
         """🧠 Select a dropdown option"""
         try:
-            selects = await self.page.query_selector_all('select')
+            selects = self.page.query_selector_all('select')
             
             for select in selects:
-                if await select.is_visible():
-                    options = await select.query_selector_all('option')
+                if select.is_visible():
+                    options = select.query_selector_all('option')
                     
                     for option in options:
-                        option_text = await option.inner_text()
-                        if self._text_matches(option_text.strip(), target_value, []):
-                            await select.select_option(value=await option.get_attribute('value'))
+                        option_text = option.inner_text().strip()
+                        if self._text_matches(option_text, target_value, []):
+                            select.select_option(value=option.get_attribute('value'))
                             self.human_like_delay(action_type="decision")
                             print(f"🧠 ✅ Selected dropdown option: {option_text}")
                             return True
@@ -937,18 +815,18 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error selecting dropdown option: {e}")
             return False
     
-    async def _select_checkbox_option(self, target_value: str, keywords: List[str]) -> bool:
+    def _select_checkbox_option(self, target_value: str, keywords: List[str]) -> bool:
         """🧠 Select a checkbox option based on target value and keywords"""
         try:
-            checkboxes = await self.page.query_selector_all('input[type="checkbox"]')
+            checkboxes = self.page.query_selector_all('input[type="checkbox"]')
             
             for checkbox in checkboxes:
                 # Get associated label text
-                label_text = await self._get_checkbox_label_text(checkbox)
+                label_text = self._get_checkbox_label_text(checkbox)
                 
                 if self._text_matches(label_text, target_value, keywords):
-                    if not await checkbox.is_checked():
-                        await checkbox.click()
+                    if not checkbox.is_checked():
+                        checkbox.click()
                         self.human_like_delay(action_type="decision")
                         print(f"🧠 ✅ Selected checkbox option: {label_text}")
                     return True
@@ -959,16 +837,16 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error selecting checkbox option: {e}")
             return False
     
-    async def _fill_text_input(self, value: str) -> bool:
+    def _fill_text_input(self, value: str) -> bool:
         """🧠 Fill a text input field"""
         try:
-            inputs = await self.page.query_selector_all('input[type="text"], input[type="number"], textarea')
+            inputs = self.page.query_selector_all('input[type="text"], input[type="number"], textarea')
             
             for input_elem in inputs:
-                if await input_elem.is_visible():
-                    await input_elem.click()
+                if input_elem.is_visible():
+                    input_elem.click()
                     self.human_like_delay(action_type="typing", text_length=len(value))
-                    await input_elem.fill(value)
+                    input_elem.fill(value)
                     print(f"🧠 ✅ Filled text input: {value}")
                     return True
             
@@ -978,40 +856,40 @@ class DemographicsHandler(BaseHandler):
             print(f"❌ Error filling text input: {e}")
             return False
     
-    async def _get_radio_label_text(self, radio_element) -> str:
+    def _get_radio_label_text(self, radio_element) -> str:
         """🧠 Get the label text associated with a radio button"""
         try:
             # Try different methods to get label text
-            label_id = await radio_element.get_attribute('id')
+            label_id = radio_element.get_attribute('id')
             if label_id:
-                label = await self.page.query_selector(f'label[for="{label_id}"]')
+                label = self.page.query_selector(f'label[for="{label_id}"]')
                 if label:
-                    return await label.inner_text()
+                    return label.inner_text().strip()
             
             # Try parent element text
-            parent = radio_element.locator('..')
+            parent = radio_element.query_selector('..')
             if parent:
-                return await parent.inner_text()
+                return parent.inner_text().strip()
             
             return ""
             
         except Exception:
             return ""
     
-    async def _get_checkbox_label_text(self, checkbox_element) -> str:
+    def _get_checkbox_label_text(self, checkbox_element) -> str:
         """🧠 Get the label text associated with a checkbox"""
         try:
             # Try different methods to get label text (same as radio buttons)
-            label_id = await checkbox_element.get_attribute('id')
+            label_id = checkbox_element.get_attribute('id')
             if label_id:
-                label = await self.page.query_selector(f'label[for="{label_id}"]')
+                label = self.page.query_selector(f'label[for="{label_id}"]')
                 if label:
-                    return await label.inner_text()
+                    return label.inner_text().strip()
             
             # Try parent element text
-            parent = checkbox_element.locator('..')
+            parent = checkbox_element.query_selector('..')
             if parent:
-                return await parent.inner_text()
+                return parent.inner_text().strip()
             
             return ""
             
@@ -1037,7 +915,7 @@ class DemographicsHandler(BaseHandler):
         
         return False
     
-    async def _try_navigation(self) -> bool:
+    def _try_navigation(self) -> bool:
         """🧠 Enhanced navigation with brain learning"""
         try:
             # Look for next/continue buttons
@@ -1052,10 +930,10 @@ class DemographicsHandler(BaseHandler):
             
             for selector in button_selectors:
                 try:
-                    button = await self.page.query_selector(selector)
-                    if button and await button.is_visible():
+                    button = self.page.query_selector(selector)
+                    if button and button.is_visible():
                         self.human_like_delay(action_type="decision")
-                        await button.click()
+                        button.click()
                         print("🧠 ✅ Quenito navigation successful")
                         return True
                 except Exception:
@@ -1067,48 +945,6 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error in navigation: {e}")
             return False
-    
-    def page_analysis_delay(self):
-        """🧠 Human-like delay for page analysis"""
-        try:
-            # Random delay between 0.5-2.0 seconds to simulate human reading time
-            delay = random.uniform(0.5, 2.0)
-            time.sleep(delay)
-            print(f"🧠 Page analysis delay: {delay:.2f}s")
-        except Exception as e:
-            print(f"⚠️ Error in page analysis delay: {e}")
-    
-    def human_like_delay(self, action_type: str = "general", text_length: int = 0):
-        """🧠 Human-like delays for different actions"""
-        try:
-            if action_type == "typing":
-                # Calculate typing delay based on WPM and text length
-                wpm = getattr(self, 'wpm', 50)
-                chars_per_minute = wpm * 5  # Average 5 chars per word
-                typing_time = (text_length / chars_per_minute) * 60
-                # Add some randomness and minimum delay
-                delay = max(random.uniform(0.3, 1.0), typing_time * random.uniform(0.8, 1.2))
-                
-            elif action_type == "thinking":
-                # Thinking/processing delay
-                thinking_speed = getattr(self, 'thinking_speed', 1.0)
-                delay = random.uniform(0.8, 2.5) / thinking_speed
-                
-            elif action_type == "decision":
-                # Decision-making delay
-                decision_confidence = getattr(self, 'decision_confidence', 1.0)
-                delay = random.uniform(0.5, 1.5) / decision_confidence
-                
-            else:
-                # General delay
-                delay = random.uniform(0.3, 1.0)
-            
-            time.sleep(delay)
-            print(f"🧠 Human delay ({action_type}): {delay:.2f}s")
-            
-        except Exception as e:
-            print(f"⚠️ Error in human delay: {e}")
-            time.sleep(0.5)  # Fallback delay
     
     # 🧠 BRAIN LEARNING METHODS
     def _teach_brain_success(self, question_type: str, content: str, confidence: float):
@@ -1160,3 +996,5 @@ class DemographicsHandler(BaseHandler):
             # Future: Improve fallback detection and handling
         except Exception as e:
             print(f"⚠️ Error teaching brain fallback: {e}")
+
+        

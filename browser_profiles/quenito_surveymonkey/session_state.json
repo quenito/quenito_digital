@@ -1,0 +1,141 @@
+{
+  "cookies": [
+    {
+      "name": "ep201",
+      "value": "\"+in5O7T3u+aksabpeHSPoRkRgcQ=\"",
+      "domain": ".surveymonkey.com",
+      "path": "/",
+      "expires": 1752634590.237971,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ep203",
+      "value": "\"jwUDJTDQrlH+u4D0DHmwJvOS5NY=\"",
+      "domain": ".surveymonkey.com",
+      "path": "/",
+      "expires": 1760408790.238088,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "attr_multitouch",
+      "value": "\"hiNi2vRBZuKmlcHH8Qg54XmSAuw=\"",
+      "domain": ".surveymonkey.com",
+      "path": "/",
+      "expires": 1784168790.237829,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "cdp_seg",
+      "value": "\"FJVtAl9GkCEFKfEU2jKP7WfkMQQ=\"",
+      "domain": ".surveymonkey.com",
+      "path": "/",
+      "expires": 1760408790.237917,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ep202",
+      "value": "\"/0tWh7pdLkwZghb8toa14QEDZQg=\"",
+      "domain": ".surveymonkey.com",
+      "path": "/",
+      "expires": 1760408790.238041,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "RP_461364440",
+      "value": "T5WsFvJTo7BGQN_2BIOixR_2BA_3D_3D",
+      "domain": ".surveymonkey.com",
+      "path": "/",
+      "expires": 1760408790,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    }
+  ],
+  "storage_state": {
+    "cookies": [
+      {
+        "name": "ep201",
+        "value": "\"+in5O7T3u+aksabpeHSPoRkRgcQ=\"",
+        "domain": ".surveymonkey.com",
+        "path": "/",
+        "expires": 1752634590.237971,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "ep203",
+        "value": "\"jwUDJTDQrlH+u4D0DHmwJvOS5NY=\"",
+        "domain": ".surveymonkey.com",
+        "path": "/",
+        "expires": 1760408790.238088,
+        "httpOnly": true,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "attr_multitouch",
+        "value": "\"hiNi2vRBZuKmlcHH8Qg54XmSAuw=\"",
+        "domain": ".surveymonkey.com",
+        "path": "/",
+        "expires": 1784168790.237829,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "cdp_seg",
+        "value": "\"FJVtAl9GkCEFKfEU2jKP7WfkMQQ=\"",
+        "domain": ".surveymonkey.com",
+        "path": "/",
+        "expires": 1760408790.237917,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "ep202",
+        "value": "\"/0tWh7pdLkwZghb8toa14QEDZQg=\"",
+        "domain": ".surveymonkey.com",
+        "path": "/",
+        "expires": 1760408790.238041,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "RP_461364440",
+        "value": "T5WsFvJTo7BGQN_2BIOixR_2BA_3D_3D",
+        "domain": ".surveymonkey.com",
+        "path": "/",
+        "expires": 1760408790,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "None"
+      }
+    ],
+    "origins": [
+      {
+        "origin": "https://www.surveymonkey.com",
+        "localStorage": [
+          {
+            "name": "AMP_unsent_beb2473154",
+            "value": "[]"
+          }
+        ]
+      }
+    ]
+  },
+  "timestamp": 1752633800.7388473,
+  "profile_name": "quenito_surveymonkey"
+}

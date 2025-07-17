@@ -3,7 +3,7 @@ Survey Automation Core Modules
 Enhanced with stealth browser capabilities and brain intelligence.
 """
 
-from .stealth_browser_manager import StealthBrowserManager
+from .backup.stealth_browser_manager_backup import StealthBrowserManager
 
 # Import existing browser manager for compatibility
 try:
