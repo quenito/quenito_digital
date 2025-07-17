@@ -270,41 +270,25 @@ class QuentioMainInterface:
                 print("❌ Invalid option")
     
     async def analyze_current_page(self, page):
-        """Analyze current page content with brain intelligence."""
+        """Simple page analysis for debugging."""
         
-        print("\n🔍 BRAIN-ENHANCED PAGE ANALYSIS")
-        print("=" * 40)
+        print("\n🔍 PAGE ANALYSIS")
+        print("=" * 20)
         
         try:
-            # Get page content
             content = await page.inner_text('body')
-            url = page.url
             title = await page.title()
             
             print(f"📄 Page: {title}")
-            print(f"🔗 URL: {url}")
             print(f"📝 Content Length: {len(content)} characters")
             
-            # Brain analysis
-            from handlers.handler_factory import HandlerFactory
-            intervention_manager = EnhancedLearningInterventionManager()
-            handler_factory = HandlerFactory(self.brain, intervention_manager, self.stats)
-            
-            # Get best handler for current content
-            handler, confidence = handler_factory.get_best_handler(page, content)
-            
-            print(f"🧠 Brain Analysis:")
-            print(f"   • Recommended Handler: {handler.__class__.__name__}")
-            print(f"   • Confidence Score: {confidence:.2f}")
-            print(f"   • Automation Recommendation: {'✅ AUTOMATE' if confidence > 0.4 else '📝 MANUAL INTERVENTION'}")
-            
-            # Question type detection
-            if hasattr(handler, 'can_handle'):
-                detailed_confidence = handler.can_handle(content)
-                print(f"   • Detailed Confidence: {detailed_confidence:.2f}")
-            
-            print(f"🎯 Next Action: {'Proceed with automation' if confidence > 0.4 else 'Manual review recommended'}")
-            
+            # Look for demographics keywords
+            if any(word in content.lower() for word in ['age', 'gender', 'occupation']):
+                print("🎯 Demographics question detected!")
+                print("✅ Ready for automation!")
+            else:
+                print("🤔 Unknown question type")
+                
         except Exception as e:
             print(f"❌ Analysis error: {e}")
     
@@ -317,7 +301,7 @@ class QuentioMainInterface:
         try:
             # Initialize automation components
             intervention_manager = EnhancedLearningInterventionManager()
-            handler_factory = HandlerFactory(self.brain, intervention_manager, self.stats)
+            handler_factory = HandlerFactory(self.brain, intervention_manager)
             
             question_count = 0
             max_questions = 50  # Safety limit
@@ -337,7 +321,7 @@ class QuentioMainInterface:
                         break
                     
                     # Get best handler
-                    handler, confidence = handler_factory.get_best_handler(page, content)
+                    handler, handler_name, confidence = handler_factory.get_best_handler(page, content)
                     
                     # Update statistics
                     self.stats.increment_question_count(
@@ -356,7 +340,7 @@ class QuentioMainInterface:
                         handler.page = page
                         
                         # Attempt automation
-                        success = await handler.handle() if hasattr(handler, 'handle') else handler.handle()
+                        success = await handler.handle()
                         
                         if success:
                             print("   ✅ Automated successfully!")
@@ -450,6 +434,33 @@ class QuentioMainInterface:
         except Exception as e:
             print(f"❌ Manual intervention error: {e}")
             return False
+    
+    async def manual_learning_mode(self, page):
+        """Manual learning mode for training Quenito's brain."""
+        
+        print("\n🧠 MANUAL LEARNING MODE")
+        print("=" * 30)
+        print("🎯 Train Quenito's brain by manually answering questions")
+        
+        try:
+            content = await page.inner_text('body')
+            title = await page.title()
+            
+            print(f"📄 Current Page: {title}")
+            print("\n🎯 Instructions:")
+            print("1. Manually answer the current question in the browser")
+            print("2. Click 'Next' to proceed")
+            print("3. Press Enter here when done")
+            
+            input("\n⏸️ Press Enter when completed...")
+            
+            if self.stats:
+                self.stats.record_manual_intervention("learning_mode")
+            
+            print("✅ Learning recorded - Quenito's brain is smarter!")
+            
+        except Exception as e:
+            print(f"❌ Learning mode error: {e}")
     
     async def test_stealth_detection(self, page):
         """Test stealth detection on current page."""

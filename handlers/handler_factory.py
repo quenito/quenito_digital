@@ -45,7 +45,7 @@ class HandlerFactory:
         
         # Ultra-conservative confidence thresholds (98-99%) for enhanced learning
         self.confidence_thresholds = {
-            "demographics": 0.60,        # 60% - full demographics profile in knowledge base decreased to 60% confidence needed
+            "demographics": 0.40,        # 40% - full demographics profile in knowledge base decreased to 40% confidence needed TESTING
             "brand_familiarity": 0.98,   # 98% - THE CRITICAL HANDLER for matrix questions
             "rating_matrix": 0.99,       # 99% - complex interactions
             "multi_select": 0.97,        # 97% - multiple choice complexity
@@ -58,74 +58,93 @@ class HandlerFactory:
         print("🏭 Handler Factory initialized with Brand Familiarity SUPREMACY!")
         print("🎯 Expected automation boost: 21% → 60-70% with brand handler!")
     
+
     def get_best_handler(self, page, page_content: str):
-        """
-        Get the best handler for the current question with enhanced confidence scoring.
-        FIXED: Ensures consistent return format for all cases.
-        
-        Args:
-            page: Playwright page object
-            page_content: HTML content of the current page
+            """
+            Get the best handler for the current question with enhanced confidence scoring.
+            FIXED: Proper handler selection that doesn't let unknown handler override good handlers!
             
-        Returns:
-            tuple: (handler_object, handler_name, confidence_score) or (None, None, 0.0)
-        """
-        best_handler = None
-        best_name = None
-        best_confidence = 0.0
-        
-        print("\n🔍 Handler Analysis with Brand Familiarity Priority:")
-        
-        # Test each handler's confidence
-        handler_results = []
-        for name, handler in self.handlers.items():
-            try:
-                # Set the page for this handler
-                handler.page = page
+            Args:
+                page: Playwright page object
+                page_content: HTML content of the current page
                 
-                # Get confidence score
-                confidence = handler.can_handle(page_content)
-                
-                # Apply context-aware adjustments
-                adjusted_confidence = self._apply_context_adjustments(name, confidence, page_content)
-                
-                # Record confidence score for statistics
-                self.handler_stats[name]['confidence_scores'].append(adjusted_confidence)
-                
-                handler_results.append((name, adjusted_confidence))
-                print(f"   📊 {name}: {adjusted_confidence:.3f}")
-                
-            except Exception as e:
-                print(f"   ❌ {name}: Error getting confidence - {str(e)}")
-                # Still add to results with 0 confidence
-                handler_results.append((name, 0.0))
-                self.handler_stats[name]['confidence_scores'].append(0.0)
-        
-        # Sort by confidence (highest first)
-        handler_results.sort(key=lambda x: x[1], reverse=True)
-        
-        # Find the first handler that meets the ultra-conservative threshold
-        for name, confidence in handler_results:
-            threshold = self.confidence_thresholds.get(name, 0.95)
+            Returns:
+                tuple: (handler_object, handler_name, confidence_score) or (None, None, 0.0)
+            """
+            best_handler = None
+            best_name = None
+            best_confidence = 0.0
             
-            if confidence >= threshold:
-                best_handler = self.handlers[name]
-                best_name = name
-                best_confidence = confidence
+            print("\n🔍 Handler Analysis with Brand Familiarity Priority:")
+            
+            # Test each handler's confidence
+            handler_results = []
+            for name, handler in self.handlers.items():
+                try:
+                    # Set the page for this handler
+                    handler.page = page
+                    
+                    # Get confidence score
+                    confidence = handler.can_handle(page_content)
+                    
+                    # Apply context-aware adjustments
+                    adjusted_confidence = self._apply_context_adjustments(name, confidence, page_content)
+                    
+                    # Record confidence score for statistics
+                    self.handler_stats[name]['confidence_scores'].append(adjusted_confidence)
+                    
+                    handler_results.append((name, adjusted_confidence))
+                    print(f"   📊 {name}: {adjusted_confidence:.3f}")
+                    
+                except Exception as e:
+                    print(f"   ❌ {name}: Error getting confidence - {str(e)}")
+                    # Still add to results with 0 confidence
+                    handler_results.append((name, 0.0))
+                    self.handler_stats[name]['confidence_scores'].append(0.0)
+            
+            # Sort by confidence (highest first)
+            handler_results.sort(key=lambda x: x[1], reverse=True)
+            
+            # FIXED: Find the first handler that meets threshold, excluding unknown unless no other options
+            for name, confidence in handler_results:
+                threshold = self.confidence_thresholds.get(name, 0.95)
                 
-                print(f"✅ Selected handler: {name} (confidence: {confidence:.3f}, threshold: {threshold})")
-                print(f"🚀 Brand Familiarity Priority: {'CRITICAL HANDLER SELECTED!' if name == 'brand_familiarity' else 'Standard handler'}")
+                # CRITICAL FIX: Skip unknown handler unless it's the only option above threshold
+                if name == 'unknown':
+                    continue  # Skip unknown for now, come back to it if needed
                 
-                # Record attempt
-                self.handler_stats[name]['attempts'] += 1
-                break
-        
-        if not best_handler:
-            print("❌ No handler meets ultra-conservative confidence thresholds")
-            print("🔄 Will request manual intervention for learning data capture")
-        
-        # CRITICAL FIX: Always return exactly 3 values
-        return best_handler, best_name, best_confidence
+                if confidence >= threshold:
+                    best_handler = self.handlers[name]
+                    best_name = name
+                    best_confidence = confidence
+                    
+                    print(f"✅ Selected handler: {name} (confidence: {confidence:.3f}, threshold: {threshold})")
+                    print(f"🚀 Brand Familiarity Priority: {'CRITICAL HANDLER SELECTED!' if name == 'brand_familiarity' else 'Standard handler'}")
+                    
+                    # Record attempt
+                    self.handler_stats[name]['attempts'] += 1
+                    break
+            
+            # FALLBACK: If no specific handler worked, check if unknown meets its threshold
+            if not best_handler:
+                for name, confidence in handler_results:
+                    if name == 'unknown':
+                        threshold = self.confidence_thresholds.get(name, 0.99)
+                        if confidence >= threshold:
+                            best_handler = self.handlers[name]
+                            best_name = name
+                            best_confidence = confidence
+                            
+                            print(f"🔄 Fallback to unknown handler: {name} (confidence: {confidence:.3f}, threshold: {threshold})")
+                            self.handler_stats[name]['attempts'] += 1
+                            break
+            
+            if not best_handler:
+                print("❌ No handler meets ultra-conservative confidence thresholds")
+                print("🔄 Will request manual intervention for learning data capture")
+            
+            # CRITICAL FIX: Always return exactly 3 values
+            return best_handler, best_name, best_confidence
     
     def _apply_context_adjustments(self, handler_name: str, confidence: float, page_content: str) -> float:
         """
