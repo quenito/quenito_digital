@@ -1,5 +1,5 @@
 """
-🧠 Enhanced Knowledge Base with Digital Brain Integration v2.0
+🧠 Enhanced Knowledge Base with Digital Brain Integration v2.1
 Handles loading, saving, and accessing the survey automation knowledge base.
 NOW WITH BRAIN LEARNING CAPABILITIES - Quenito gets smarter with every interaction!
 
@@ -10,6 +10,8 @@ New Digital Brain Features:
 - ✅ Handler performance tracking
 - ✅ Question mapping expansion
 - ✅ Success pattern storage
+- ✅ AUTOMATION SUCCESS LEARNING - NEW!
+- ✅ STRATEGY PREFERENCE LEARNING - NEW!
 """
 
 import json
@@ -58,7 +60,9 @@ class KnowledgeBase:
                 brain_data = self.data.get('brain_learning', {})
                 total_interventions = len(brain_data.get('intervention_history', []))
                 success_patterns = len(brain_data.get('success_patterns', {}))
-                print(f"🧠 Brain Status: {total_interventions} interventions learned, {success_patterns} success patterns")
+                strategy_preferences = len(brain_data.get('strategy_preferences', {}))
+                handler_performance = len(brain_data.get('handler_performance', {}))
+                print(f"🧠 Brain Status: {total_interventions} interventions, {success_patterns} success patterns, {strategy_preferences} strategy preferences, {handler_performance} handler metrics")
                 
             else:
                 print(f"⚠️ Knowledge base file not found: {self.path}")
@@ -87,13 +91,388 @@ class KnowledgeBase:
                 json.dump(self.data, file, indent=2, ensure_ascii=False)
             print("💾 Knowledge base updated and saved")
             print(f"🧠 Brain learning data updated with {len(self.learning_session['learning_events'])} new events")
+            
+            # 🧠 Report brain learning status after save
+            brain_data = self.data.get('brain_learning', {})
+            success_patterns = len(brain_data.get('success_patterns', {}))
+            handler_performance = len(brain_data.get('handler_performance', {}))
+            strategy_preferences = len(brain_data.get('strategy_preferences', {}))
+            
+            print(f"🧠 Brain Status After Save: {success_patterns} patterns, {handler_performance} handlers, {strategy_preferences} strategy preferences")
+            
             return True
         except Exception as e:
             print(f"❌ Error saving knowledge base: {e}")
             return False
     
     # ========================================
-    # 🧠 DIGITAL BRAIN LEARNING METHODS
+    # 🧠 NEW: AUTOMATION SUCCESS LEARNING METHODS
+    # ========================================
+    
+    async def learn_successful_automation(self, learning_data: Dict[str, Any]) -> bool:
+        """🧠 Learn from successful automation and SAVE to disk"""
+        try:
+            print(f"🧠 LEARNING FROM AUTOMATION SUCCESS: {learning_data.get('question_type')} using {learning_data.get('strategy_used')}")
+            
+            # Ensure brain learning structure exists
+            if 'brain_learning' not in self.data:
+                self.data['brain_learning'] = {}
+            
+            # Initialize sub-structures if missing
+            required_structures = ['handler_performance', 'success_patterns', 'strategy_preferences', 'confidence_calibration', 'learning_history']
+            for structure in required_structures:
+                if structure not in self.data['brain_learning']:
+                    self.data['brain_learning'][structure] = {}
+            
+            # Store in learning history
+            if 'learning_history' not in self.data['brain_learning']:
+                self.data['brain_learning']['learning_history'] = []
+            self.data['brain_learning']['learning_history'].append(learning_data)
+            
+            # Update handler performance
+            await self._update_handler_performance_detailed(learning_data)
+            
+            # Store success pattern
+            await self._store_success_pattern_detailed(learning_data)
+            
+            # Update strategy preferences
+            await self._update_strategy_preferences_detailed(learning_data)
+            
+            # Update confidence calibration
+            await self._update_confidence_calibration_detailed(learning_data)
+            
+            # Add to current session
+            self.learning_session['learning_events'].append({
+                'type': 'automation_success',
+                'data': learning_data,
+                'timestamp': time.time()
+            })
+            
+            # 🔧 CRITICAL FIX: SAVE TO DISK
+            save_success = self.save()
+            
+            if save_success:
+                print(f"🧠 ✅ LEARNING SAVED: {learning_data['question_type']} using {learning_data['strategy_used']}")
+                return True
+            else:
+                print(f"❌ Failed to save learning data to disk")
+                return False
+                
+        except Exception as e:
+            print(f"❌ Error in learn_successful_automation: {e}")
+            return False
+
+    async def learn_from_failure(self, learning_data: Dict[str, Any]) -> bool:
+        """🧠 Learn from automation failure"""
+        try:
+            print(f"🧠 LEARNING FROM AUTOMATION FAILURE: {learning_data.get('question_type')} - {learning_data.get('error_message')}")
+            
+            # Ensure brain learning structure exists
+            if 'brain_learning' not in self.data:
+                self.data['brain_learning'] = {}
+            if 'failure_analysis' not in self.data['brain_learning']:
+                self.data['brain_learning']['failure_analysis'] = []
+            
+            # Store failure data for analysis
+            self.data['brain_learning']['failure_analysis'].append(learning_data)
+            
+            # Update handler performance (failure case)
+            if learning_data.get('question_type'):
+                await self._update_handler_performance_failure(learning_data)
+            
+            # Add to current session
+            self.learning_session['learning_events'].append({
+                'type': 'automation_failure',
+                'data': learning_data,
+                'timestamp': time.time()
+            })
+            
+            # Save the failure learning
+            save_success = self.save()
+            
+            if save_success:
+                print(f"🧠 ✅ FAILURE LEARNED: {learning_data.get('question_type')}")
+                return True
+            else:
+                print(f"❌ Failed to save failure learning data")
+                return False
+                
+        except Exception as e:
+            print(f"❌ Error in learn_from_failure: {e}")
+            return False
+
+    async def get_preferred_strategy(self, question_type: str, element_type: str = None) -> Optional[Dict[str, Any]]:
+        """🧠 Get learned preferred strategy for question type"""
+        try:
+            strategy_prefs = self.data.get('brain_learning', {}).get('strategy_preferences', {})
+            
+            if question_type in strategy_prefs:
+                pref = strategy_prefs[question_type]
+                strategy_info = {
+                    'name': pref['preferred_strategy'],
+                    'success_rate': pref.get('success_rate', 0.0),
+                    'success_count': pref.get('success_count', 0),
+                    'avg_execution_time': pref.get('avg_execution_time', 0.0),
+                    'last_used': pref.get('last_used')
+                }
+                
+                print(f"🧠 STRATEGY RECALLED: {question_type} → {strategy_info['name']} (success rate: {strategy_info['success_rate']:.1%})")
+                return strategy_info
+            
+            print(f"🧠 No learned strategy for: {question_type}")
+            return None
+            
+        except Exception as e:
+            print(f"⚠️ Error getting preferred strategy: {e}")
+            return None
+
+    async def _update_handler_performance_detailed(self, learning_data: Dict[str, Any]):
+        """Update detailed handler performance metrics"""
+        handler_type = "demographics_handler"  # Can be dynamic later
+        question_type = learning_data.get('question_type', 'unknown')
+        
+        if 'handler_performance' not in self.data['brain_learning']:
+            self.data['brain_learning']['handler_performance'] = {}
+        
+        if handler_type not in self.data['brain_learning']['handler_performance']:
+            self.data['brain_learning']['handler_performance'][handler_type] = {}
+        
+        if question_type not in self.data['brain_learning']['handler_performance'][handler_type]:
+            self.data['brain_learning']['handler_performance'][handler_type][question_type] = {
+                'total_attempts': 0,
+                'successful_automations': 0,
+                'success_rate': 0.0,
+                'avg_confidence': 0.0,
+                'confidence_scores': [],
+                'execution_times': [],
+                'avg_execution_time': 0.0,
+                'last_success': None,
+                'strategies_used': {}
+            }
+        
+        # Update metrics
+        perf = self.data['brain_learning']['handler_performance'][handler_type][question_type]
+        perf['total_attempts'] += 1
+        perf['successful_automations'] += 1
+        perf['success_rate'] = perf['successful_automations'] / perf['total_attempts']
+        
+        # Update confidence tracking
+        confidence = learning_data.get('confidence_score', 0.0)
+        perf['confidence_scores'].append(confidence)
+        perf['avg_confidence'] = sum(perf['confidence_scores']) / len(perf['confidence_scores'])
+        
+        # Update execution time tracking
+        execution_time = learning_data.get('execution_time', 0.0)
+        if execution_time > 0:
+            perf['execution_times'].append(execution_time)
+            perf['avg_execution_time'] = sum(perf['execution_times']) / len(perf['execution_times'])
+        
+        perf['last_success'] = learning_data.get('timestamp')
+        
+        # Track strategy usage
+        strategy_used = learning_data.get('strategy_used')
+        if strategy_used:
+            if strategy_used not in perf['strategies_used']:
+                perf['strategies_used'][strategy_used] = 0
+            perf['strategies_used'][strategy_used] += 1
+        
+        print(f"📊 HANDLER PERFORMANCE UPDATED: {handler_type}.{question_type} → {perf['success_rate']:.1%} success rate")
+
+    async def _update_handler_performance_failure(self, learning_data: Dict[str, Any]):
+        """Update handler performance metrics for failure case"""
+        handler_type = "demographics_handler"
+        question_type = learning_data.get('question_type', 'unknown')
+        
+        if 'handler_performance' not in self.data['brain_learning']:
+            self.data['brain_learning']['handler_performance'] = {}
+        
+        if handler_type not in self.data['brain_learning']['handler_performance']:
+            self.data['brain_learning']['handler_performance'][handler_type] = {}
+        
+        if question_type not in self.data['brain_learning']['handler_performance'][handler_type]:
+            self.data['brain_learning']['handler_performance'][handler_type][question_type] = {
+                'total_attempts': 0,
+                'successful_automations': 0,
+                'success_rate': 0.0,
+                'failure_count': 0
+            }
+        
+        # Update failure metrics
+        perf = self.data['brain_learning']['handler_performance'][handler_type][question_type]
+        perf['total_attempts'] += 1
+        perf['failure_count'] = perf.get('failure_count', 0) + 1
+        perf['success_rate'] = perf.get('successful_automations', 0) / perf['total_attempts']
+        
+        print(f"📊 FAILURE RECORDED: {handler_type}.{question_type} → {perf['success_rate']:.1%} success rate")
+
+    async def _store_success_pattern_detailed(self, learning_data: Dict[str, Any]):
+        """Store detailed successful automation pattern"""
+        question_text = learning_data.get('question_text', '').lower()
+        pattern_key = self._generate_pattern_key(question_text)
+        
+        if 'success_patterns' not in self.data['brain_learning']:
+            self.data['brain_learning']['success_patterns'] = {}
+        
+        self.data['brain_learning']['success_patterns'][pattern_key] = {
+            "timestamp": learning_data.get('timestamp'),
+            "question_text": question_text,
+            "question_type": learning_data.get('question_type'),
+            "strategy": learning_data.get('strategy_used'),
+            "execution_time": learning_data.get('execution_time'),
+            "confidence": learning_data.get('confidence_score'),
+            "response_value": learning_data.get('response_value'),
+            "element_type": learning_data.get('element_type'),
+            "usage_count": self.data['brain_learning']['success_patterns'].get(pattern_key, {}).get('usage_count', 0) + 1,
+            "success_rate": 1.0  # Will be updated with more data
+        }
+        
+        print(f"🧠 SUCCESS PATTERN STORED: {pattern_key} → {learning_data.get('strategy_used')}")
+
+    async def _update_strategy_preferences_detailed(self, learning_data: Dict[str, Any]):
+        """Update detailed strategy preferences based on successful automation"""
+        question_type = learning_data.get('question_type')
+        strategy_used = learning_data.get('strategy_used')
+        execution_time = learning_data.get('execution_time', 0.0)
+        
+        if not question_type or not strategy_used:
+            return
+        
+        if 'strategy_preferences' not in self.data['brain_learning']:
+            self.data['brain_learning']['strategy_preferences'] = {}
+        
+        if question_type not in self.data['brain_learning']['strategy_preferences']:
+            self.data['brain_learning']['strategy_preferences'][question_type] = {
+                'preferred_strategy': strategy_used,
+                'success_count': 1,
+                'total_attempts': 1,
+                'success_rate': 1.0,
+                'avg_execution_time': execution_time,
+                'execution_times': [execution_time] if execution_time > 0 else [],
+                'first_success': learning_data.get('timestamp'),
+                'last_used': learning_data.get('timestamp'),
+                'strategy_history': [strategy_used]
+            }
+        else:
+            pref = self.data['brain_learning']['strategy_preferences'][question_type]
+            pref['success_count'] += 1
+            pref['total_attempts'] += 1
+            pref['success_rate'] = pref['success_count'] / pref['total_attempts']
+            pref['preferred_strategy'] = strategy_used  # Update to most recent successful strategy
+            pref['last_used'] = learning_data.get('timestamp')
+            pref['strategy_history'].append(strategy_used)
+            
+            # Update average execution time
+            if execution_time > 0:
+                pref['execution_times'].append(execution_time)
+                pref['avg_execution_time'] = sum(pref['execution_times']) / len(pref['execution_times'])
+        
+        print(f"🎯 STRATEGY PREFERENCE UPDATED: {question_type} → {strategy_used} ({self.data['brain_learning']['strategy_preferences'][question_type]['success_rate']:.1%} success)")
+
+    async def _update_confidence_calibration_detailed(self, learning_data: Dict[str, Any]):
+        """Update detailed confidence calibration based on automation success"""
+        question_type = learning_data.get('question_type')
+        confidence = learning_data.get('confidence_score', 0.0)
+        
+        if not question_type:
+            return
+        
+        if 'confidence_calibration' not in self.data['brain_learning']:
+            self.data['brain_learning']['confidence_calibration'] = {}
+        
+        if question_type not in self.data['brain_learning']['confidence_calibration']:
+            self.data['brain_learning']['confidence_calibration'][question_type] = {
+                'predictions': [],
+                'success_rate_by_confidence': {},
+                'optimal_threshold': 0.4,
+                'total_predictions': 0,
+                'successful_predictions': 0
+            }
+        
+        # Add new prediction result
+        cal_data = self.data['brain_learning']['confidence_calibration'][question_type]
+        cal_data['predictions'].append({
+            'predicted_confidence': confidence,
+            'actual_success': True,  # This is a success case
+            'timestamp': learning_data.get('timestamp')
+        })
+        
+        cal_data['total_predictions'] += 1
+        cal_data['successful_predictions'] += 1
+        
+        # Calculate confidence-based success rates
+        confidence_bucket = int(confidence * 10) / 10  # Round to nearest 0.1
+        if confidence_bucket not in cal_data['success_rate_by_confidence']:
+            cal_data['success_rate_by_confidence'][confidence_bucket] = {'successes': 0, 'total': 0}
+        
+        cal_data['success_rate_by_confidence'][confidence_bucket]['successes'] += 1
+        cal_data['success_rate_by_confidence'][confidence_bucket]['total'] += 1
+        
+        # Update optimal threshold based on performance
+        await self._recalibrate_optimal_threshold(question_type)
+        
+        print(f"🎯 CONFIDENCE CALIBRATED: {question_type} → {confidence:.2f} confidence resulted in SUCCESS")
+
+    async def _recalibrate_optimal_threshold(self, question_type: str):
+        """Recalibrate optimal confidence threshold for question type"""
+        cal_data = self.data['brain_learning']['confidence_calibration'][question_type]
+        
+        if len(cal_data['predictions']) >= 3:  # Need minimum data points
+            # Find the lowest confidence that still achieves high success rate
+            confidence_buckets = cal_data['success_rate_by_confidence']
+            
+            for confidence_level in sorted(confidence_buckets.keys()):
+                bucket = confidence_buckets[confidence_level]
+                success_rate = bucket['successes'] / bucket['total']
+                
+                # If this confidence level has good success rate, it could be our threshold
+                if success_rate >= 0.8 and bucket['total'] >= 2:  # At least 80% success with 2+ attempts
+                    cal_data['optimal_threshold'] = max(0.2, confidence_level - 0.1)  # Slightly below the working level
+                    print(f"🎯 OPTIMAL THRESHOLD UPDATED: {question_type} → {cal_data['optimal_threshold']:.2f}")
+                    break
+
+    def _generate_pattern_key(self, question_text: str) -> str:
+        """Generate a key for storing question patterns"""
+        # Extract key words for pattern matching
+        key_words = []
+        question_lower = question_text.lower()
+        
+        # Age patterns
+        if any(word in question_lower for word in ['age', 'old', 'born', 'years']):
+            key_words.append('age')
+        
+        # Gender patterns  
+        if any(word in question_lower for word in ['gender', 'male', 'female', 'man', 'woman']):
+            key_words.append('gender')
+        
+        # Location patterns
+        if any(word in question_lower for word in ['location', 'state', 'live', 'where', 'region']):
+            key_words.append('location')
+        
+        # Question type patterns
+        if any(word in question_lower for word in ['how', 'what', 'which', 'where']):
+            if 'how' in question_lower:
+                key_words.append('how')
+            elif 'what' in question_lower:
+                key_words.append('what')
+            elif 'which' in question_lower:
+                key_words.append('which')
+        
+        # Create pattern key
+        if key_words:
+            pattern_key = '_'.join(sorted(key_words))
+        else:
+            # Fallback to length-based categorization
+            if len(question_text) < 30:
+                pattern_key = "short_question"
+            elif len(question_text) < 60:
+                pattern_key = "medium_question"
+            else:
+                pattern_key = "long_question"
+        
+        return pattern_key
+
+    # ========================================
+    # 🧠 ENHANCED EXISTING LEARNING METHODS
     # ========================================
     
     def learn_from_intervention(self, question_text: str, answer_provided: str, 
@@ -128,6 +507,9 @@ class KnowledgeBase:
         # 🧠 Extract learning patterns
         self._extract_learning_patterns(intervention_data)
         
+        # 🔧 CRITICAL: Save after learning
+        self.save()
+        
         print(f"🧠 BRAIN LEARNED: '{question_text[:50]}...' -> '{answer_provided}' (Success: {success})")
         
     def learn_successful_pattern(self, question_text: str, successful_strategy: Dict[str, Any]):
@@ -147,6 +529,9 @@ class KnowledgeBase:
             "strategy": successful_strategy,
             "usage_count": self.data['brain_learning']['success_patterns'].get(pattern_key, {}).get('usage_count', 0) + 1
         }
+        
+        # 🔧 CRITICAL: Save after learning
+        self.save()
         
         print(f"🧠 SUCCESS PATTERN STORED: {pattern_key}")
     
@@ -192,6 +577,9 @@ class KnowledgeBase:
         
         # Recalculate accuracy and adjust threshold
         self._recalibrate_confidence_threshold(calibration_key)
+        
+        # 🔧 CRITICAL: Save after learning
+        self.save()
         
         print(f"🧠 CONFIDENCE CALIBRATED: {calibration_key} -> Predicted: {predicted_confidence:.2f}, Success: {actual_success}")
     
@@ -246,6 +634,9 @@ class KnowledgeBase:
         
         # Add to current session discoveries
         self.learning_session['new_patterns_discovered'].append(pattern_data)
+        
+        # 🔧 CRITICAL: Save after discovery
+        self.save()
         
         print(f"🧠 NEW PATTERN DISCOVERED: {category} -> '{question_text[:40]}...'")
     
@@ -310,8 +701,60 @@ class KnowledgeBase:
                 else:
                     perf['improvement_trend'] = "stable"
         
+        # 🔧 CRITICAL: Save after performance update
+        self.save()
+        
         print(f"🧠 PERFORMANCE UPDATED: {handler_type} -> {perf['success_rate']:.1%} success, trending {perf['improvement_trend']}")
     
+    # ========================================
+    # 🧠 USER DATA ACCESS METHODS
+    # ========================================
+    
+    async def get_user_age(self) -> Optional[str]:
+        """🧠 Get user age from demographics"""
+        try:
+            demographics = self.get_demographics()
+            age = demographics.get('age')
+            if age:
+                print(f"🧠 Retrieved user age: {age}")
+                return str(age)
+            else:
+                print(f"⚠️ No age found in user profile")
+                return None
+        except Exception as e:
+            print(f"❌ Error getting user age: {e}")
+            return None
+    
+    async def get_user_gender(self) -> Optional[str]:
+        """🧠 Get user gender from demographics"""
+        try:
+            demographics = self.get_demographics()
+            gender = demographics.get('gender')
+            if gender:
+                print(f"🧠 Retrieved user gender: {gender}")
+                return str(gender)
+            else:
+                print(f"⚠️ No gender found in user profile")
+                return None
+        except Exception as e:
+            print(f"❌ Error getting user gender: {e}")
+            return None
+    
+    async def get_user_location(self) -> Optional[str]:
+        """🧠 Get user location from demographics"""
+        try:
+            demographics = self.get_demographics()
+            location = demographics.get('location')
+            if location:
+                print(f"🧠 Retrieved user location: {location}")
+                return str(location)
+            else:
+                print(f"⚠️ No location found in user profile")
+                return None
+        except Exception as e:
+            print(f"❌ Error getting user location: {e}")
+            return None
+
     # ========================================
     # 🧠 BRAIN INTELLIGENCE HELPERS
     # ========================================
@@ -324,8 +767,11 @@ class KnowledgeBase:
         brain_defaults = {
             'intervention_history': [],
             'success_patterns': {},
+            'strategy_preferences': {},  # NEW!
             'confidence_calibration': {},
             'handler_performance': {},
+            'failure_analysis': [],  # NEW!
+            'learning_history': [],  # NEW!
             'pattern_evolution': {},
             'learning_metrics': {
                 'total_interventions': 0,
@@ -364,23 +810,6 @@ class KnowledgeBase:
                 self.data['brain_learning']['pattern_insights'] = []
             
             self.data['brain_learning']['pattern_insights'].append(pattern_insight)
-    
-    def _generate_pattern_key(self, question_text: str) -> str:
-        """Generate a key for pattern matching"""
-        # Simple pattern key based on important words
-        important_words = ['age', 'gender', 'male', 'female', 'location', 'state', 'income', 'employment', 'work', 'household']
-        found_words = [word for word in important_words if word in question_text.lower()]
-        
-        if found_words:
-            return "_".join(sorted(found_words))
-        else:
-            # Fallback to length-based categorization
-            if len(question_text) < 30:
-                return "short_question"
-            elif len(question_text) < 60:
-                return "medium_question"
-            else:
-                return "long_question"
     
     def _categorize_question(self, question_text: str, keywords: List[str]) -> str:
         """Categorize discovered questions"""
@@ -633,8 +1062,11 @@ class KnowledgeBase:
             "brain_learning": {
                 "intervention_history": [],
                 "success_patterns": {},
+                "strategy_preferences": {},  # NEW!
                 "confidence_calibration": {},
                 "handler_performance": {},
+                "failure_analysis": [],  # NEW!
+                "learning_history": [],  # NEW!
                 "pattern_evolution": {},
                 "learning_metrics": {
                     "total_interventions": 0,
@@ -672,8 +1104,10 @@ class KnowledgeBase:
             print(f"\n🧠 BRAIN LEARNING SUMMARY:")
             print(f"   Total Interventions: {len(brain_data.get('intervention_history', []))}")
             print(f"   Success Patterns: {len(brain_data.get('success_patterns', {}))}")
+            print(f"   Strategy Preferences: {len(brain_data.get('strategy_preferences', {}))}")  # NEW!
             print(f"   Confidence Calibrations: {len(brain_data.get('confidence_calibration', {}))}")
             print(f"   Handler Performance Tracking: {len(brain_data.get('handler_performance', {}))}")
+            print(f"   Automation Learning History: {len(brain_data.get('learning_history', []))}")  # NEW!
             
             # Performance insights
             handler_perf = brain_data.get('handler_performance', {})
@@ -683,6 +1117,15 @@ class KnowledgeBase:
                     success_rate = perf.get('success_rate', 0) * 100
                     trend = perf.get('improvement_trend', 'unknown')
                     print(f"      {handler}: {success_rate:.1f}% (trending {trend})")
+            
+            # Strategy preferences insights
+            strategy_prefs = brain_data.get('strategy_preferences', {})
+            if strategy_prefs:
+                print(f"   🎯 Strategy Preferences:")
+                for question_type, pref in strategy_prefs.items():
+                    strategy = pref.get('preferred_strategy', 'none')
+                    success_rate = pref.get('success_rate', 0) * 100
+                    print(f"      {question_type}: {strategy} ({success_rate:.1f}% success)")
             
             # Learning session info
             current_session = self.learning_session
@@ -699,10 +1142,51 @@ class KnowledgeBase:
         
         brain_data = self.data.get('brain_learning', {})
         
+        # Automation Learning Analysis (NEW!)
+        learning_history = brain_data.get('learning_history', [])
+        if learning_history:
+            print(f"\n🤖 AUTOMATION LEARNING ANALYSIS:")
+            print(f"   Total Automation Events: {len(learning_history)}")
+            
+            # Success rate analysis
+            successful_automations = [event for event in learning_history if event.get('result') == 'SUCCESS']
+            if learning_history:
+                automation_success_rate = len(successful_automations) / len(learning_history) * 100
+                print(f"   Automation Success Rate: {automation_success_rate:.1f}%")
+            
+            # Question type analysis
+            question_types = {}
+            for event in learning_history:
+                q_type = event.get('question_type', 'unknown')
+                question_types[q_type] = question_types.get(q_type, 0) + 1
+            
+            if question_types:
+                print(f"   Automated Question Types:")
+                for q_type, count in sorted(question_types.items(), key=lambda x: x[1], reverse=True):
+                    print(f"      {q_type}: {count} successful automations")
+        
+        # Strategy Preferences Analysis (NEW!)
+        strategy_prefs = brain_data.get('strategy_preferences', {})
+        if strategy_prefs:
+            print(f"\n🎯 STRATEGY LEARNING ANALYSIS:")
+            print(f"   Learned Strategy Preferences: {len(strategy_prefs)}")
+            
+            for question_type, pref in strategy_prefs.items():
+                strategy = pref.get('preferred_strategy', 'none')
+                success_rate = pref.get('success_rate', 0) * 100
+                success_count = pref.get('success_count', 0)
+                avg_time = pref.get('avg_execution_time', 0)
+                
+                print(f"   {question_type}:")
+                print(f"      Preferred Strategy: {strategy}")
+                print(f"      Success Rate: {success_rate:.1f}% ({success_count} successes)")
+                if avg_time > 0:
+                    print(f"      Avg Execution Time: {avg_time:.1f}s")
+        
         # Learning History Analysis
         interventions = brain_data.get('intervention_history', [])
         if interventions:
-            print(f"\n📚 LEARNING HISTORY:")
+            print(f"\n📚 MANUAL INTERVENTION LEARNING:")
             print(f"   Total Interventions: {len(interventions)}")
             
             # Success rate over time
@@ -735,32 +1219,47 @@ class KnowledgeBase:
             for pattern_key, pattern_data in sorted_patterns[:3]:
                 usage = pattern_data.get('usage_count', 0)
                 question = pattern_data.get('question_text', '')[:40]
-                print(f"      {pattern_key}: {usage} uses - '{question}...'")
+                strategy = pattern_data.get('strategy', 'unknown')
+                print(f"      {pattern_key}: {usage} uses, strategy: {strategy}")
+                print(f"         Question: '{question}...'")
         
         # Confidence Calibration Analysis
         calibrations = brain_data.get('confidence_calibration', {})
         if calibrations:
             print(f"\n🎯 CONFIDENCE CALIBRATION:")
             for handler_pattern, cal_data in calibrations.items():
-                accuracy = cal_data.get('accuracy_rate', 0) * 100
-                threshold = cal_data.get('recommended_threshold', 0.4)
-                predictions = len(cal_data.get('predictions', []))
-                print(f"   {handler_pattern}: {accuracy:.1f}% accuracy, "
-                      f"threshold: {threshold:.2f}, {predictions} predictions")
+                if isinstance(cal_data, dict):
+                    accuracy = cal_data.get('accuracy_rate', 0) * 100
+                    threshold = cal_data.get('recommended_threshold', 0.4)
+                    predictions = len(cal_data.get('predictions', []))
+                    print(f"   {handler_pattern}: {accuracy:.1f}% accuracy, "
+                          f"threshold: {threshold:.2f}, {predictions} predictions")
         
         # Handler Performance Analysis
         handler_perf = brain_data.get('handler_performance', {})
         if handler_perf:
             print(f"\n📊 HANDLER PERFORMANCE INTELLIGENCE:")
             for handler, perf in handler_perf.items():
-                attempts = perf.get('total_attempts', 0)
-                success_rate = perf.get('success_rate', 0) * 100
-                avg_confidence = perf.get('average_confidence', 0)
-                trend = perf.get('improvement_trend', 'unknown')
-                
-                print(f"   {handler}:")
-                print(f"      Attempts: {attempts}, Success Rate: {success_rate:.1f}%")
-                print(f"      Avg Confidence: {avg_confidence:.2f}, Trend: {trend}")
+                if isinstance(perf, dict):
+                    # Check if this is detailed handler performance or simple
+                    if 'total_attempts' in perf:
+                        attempts = perf.get('total_attempts', 0)
+                        success_rate = perf.get('success_rate', 0) * 100
+                        avg_confidence = perf.get('average_confidence', 0)
+                        trend = perf.get('improvement_trend', 'unknown')
+                        
+                        print(f"   {handler}:")
+                        print(f"      Attempts: {attempts}, Success Rate: {success_rate:.1f}%")
+                        print(f"      Avg Confidence: {avg_confidence:.2f}, Trend: {trend}")
+                    else:
+                        # Detailed question-type breakdown
+                        print(f"   {handler}:")
+                        for question_type, q_perf in perf.items():
+                            if isinstance(q_perf, dict):
+                                attempts = q_perf.get('total_attempts', 0)
+                                success_rate = q_perf.get('success_rate', 0) * 100
+                                avg_confidence = q_perf.get('avg_confidence', 0)
+                                print(f"      {question_type}: {attempts} attempts, {success_rate:.1f}% success, {avg_confidence:.2f} confidence")
         
         # Learning Session Summary
         session = self.learning_session
@@ -772,17 +1271,20 @@ class KnowledgeBase:
         
         # Brain Growth Potential
         print(f"\n🚀 BRAIN GROWTH POTENTIAL:")
-        total_interventions = len(interventions)
-        if total_interventions > 0:
-            automation_potential = (len(success_patterns) / total_interventions) * 100
+        total_learning_events = len(learning_history) + len(interventions)
+        if total_learning_events > 0:
+            automation_potential = (len(success_patterns) / total_learning_events) * 100
             print(f"   Automation Potential: {automation_potential:.1f}%")
-            print(f"   Knowledge Coverage: {len(brain_data.get('question_patterns', {}))}/50 pattern types")
+            print(f"   Total Learning Events: {total_learning_events}")
+            print(f"   Strategy Preferences Learned: {len(strategy_prefs)}")
             
             # Growth recommendations
-            if total_interventions < 10:
-                print(f"   🎯 Recommendation: Need more learning data (current: {total_interventions})")
-            elif len(success_patterns) < 5:
+            if total_learning_events < 5:
+                print(f"   🎯 Recommendation: Need more automation attempts (current: {total_learning_events})")
+            elif len(success_patterns) < 3:
                 print(f"   🎯 Recommendation: Focus on identifying success patterns")
+            elif len(strategy_prefs) < 2:
+                print(f"   🎯 Recommendation: Test more question types to build strategy preferences")
             else:
                 print(f"   🎯 Recommendation: Ready for advanced automation testing")
         
@@ -798,7 +1300,9 @@ class KnowledgeBase:
         
         return {
             "total_interventions": len(brain_data.get('intervention_history', [])),
+            "automation_learning_events": len(brain_data.get('learning_history', [])),  # NEW!
             "success_patterns_count": len(brain_data.get('success_patterns', {})),
+            "strategy_preferences_count": len(brain_data.get('strategy_preferences', {})),  # NEW!
             "calibrated_handlers": len(brain_data.get('confidence_calibration', {})),
             "tracked_handlers": len(brain_data.get('handler_performance', {})),
             "current_session_events": len(self.learning_session['learning_events']),
@@ -812,25 +1316,31 @@ class KnowledgeBase:
         brain_data = self.data.get('brain_learning', {})
         
         interventions = len(brain_data.get('intervention_history', []))
+        automation_events = len(brain_data.get('learning_history', []))  # NEW!
         success_patterns = len(brain_data.get('success_patterns', {}))
+        strategy_preferences = len(brain_data.get('strategy_preferences', {}))  # NEW!
         calibrations = len(brain_data.get('confidence_calibration', {}))
         
         # Calculate intelligence score
         score = 0
-        if interventions >= 5:
-            score += 25
-        if interventions >= 20:
-            score += 25
-        if success_patterns >= 3:
-            score += 25
-        if calibrations >= 2:
-            score += 25
+        total_learning_events = interventions + automation_events
         
-        if score >= 75:
+        if total_learning_events >= 5:
+            score += 20
+        if total_learning_events >= 15:
+            score += 20
+        if success_patterns >= 3:
+            score += 20
+        if strategy_preferences >= 2:  # NEW!
+            score += 20
+        if calibrations >= 2:
+            score += 20
+        
+        if score >= 80:
             return "Advanced"
-        elif score >= 50:
+        elif score >= 60:
             return "Intermediate"
-        elif score >= 25:
+        elif score >= 40:
             return "Learning"
         else:
             return "Beginner"
@@ -841,26 +1351,51 @@ class KnowledgeBase:
         
         # Factors contributing to automation readiness
         interventions = len(brain_data.get('intervention_history', []))
+        automation_events = len(brain_data.get('learning_history', []))  # NEW!
         success_patterns = len(brain_data.get('success_patterns', {}))
+        strategy_preferences = len(brain_data.get('strategy_preferences', {}))  # NEW!
         handler_performance = brain_data.get('handler_performance', {})
         
         readiness_score = 0.0
         
-        # Learning data availability (40% weight)
-        if interventions >= 10:
-            readiness_score += 0.4
-        elif interventions >= 5:
-            readiness_score += 0.2
-        
-        # Success pattern coverage (30% weight)
-        if success_patterns >= 5:
+        # Learning data availability (30% weight)
+        total_learning = interventions + automation_events
+        if total_learning >= 10:
             readiness_score += 0.3
-        elif success_patterns >= 2:
+        elif total_learning >= 5:
             readiness_score += 0.15
         
-        # Handler performance (30% weight)
+        # Success pattern coverage (25% weight)
+        if success_patterns >= 5:
+            readiness_score += 0.25
+        elif success_patterns >= 2:
+            readiness_score += 0.125
+        
+        # Strategy preferences (25% weight) - NEW!
+        if strategy_preferences >= 3:
+            readiness_score += 0.25
+        elif strategy_preferences >= 1:
+            readiness_score += 0.125
+        
+        # Handler performance (20% weight)
         if handler_performance:
-            avg_success_rate = sum(perf.get('success_rate', 0) for perf in handler_performance.values()) / len(handler_performance)
-            readiness_score += avg_success_rate * 0.3
+            total_success_rate = 0
+            handler_count = 0
+            
+            for handler, perf in handler_performance.items():
+                if isinstance(perf, dict):
+                    if 'success_rate' in perf:
+                        total_success_rate += perf.get('success_rate', 0)
+                        handler_count += 1
+                    else:
+                        # Handle detailed performance data
+                        for question_type, q_perf in perf.items():
+                            if isinstance(q_perf, dict) and 'success_rate' in q_perf:
+                                total_success_rate += q_perf.get('success_rate', 0)
+                                handler_count += 1
+            
+            if handler_count > 0:
+                avg_success_rate = total_success_rate / handler_count
+                readiness_score += avg_success_rate * 0.2
         
         return min(readiness_score * 100, 100.0)  # Cap at 100%
