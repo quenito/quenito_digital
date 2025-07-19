@@ -1,0 +1,713 @@
+{
+  "cookies": [
+    {
+      "name": "_gcl_au",
+      "value": "1.1.181913259.1752877258",
+      "domain": ".primeopinion.com.au",
+      "path": "/",
+      "expires": 1760653257,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_hjSession_3466244",
+      "value": "eyJpZCI6IjU0MDY0ZTM4LWJlYzYtNGViYy04ZTA5LWIzNzMwMjAwMmYxOCIsImMiOjE3NTI4NzcyNTc4NzUsInMiOjAsInIiOjAsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjoxLCJzcCI6MH0=",
+      "domain": ".primeopinion.com.au",
+      "path": "/",
+      "expires": 1752879104,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "localization",
+      "value": "en-au",
+      "domain": ".primeopinion.com.au",
+      "path": "/",
+      "expires": 1784413269.157617,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ttp",
+      "value": "304C3ND89hRWelbc7EGUPtSlZ0G",
+      "domain": ".tiktok.com",
+      "path": "/",
+      "expires": 1786573269.617381,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_ga",
+      "value": "GA1.1.304525380.1752877261",
+      "domain": ".primeopinion.com.au",
+      "path": "/",
+      "expires": 1787437260.602299,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_fbp",
+      "value": "fb.2.1752877261939.551512481310454237",
+      "domain": ".primeopinion.com.au",
+      "path": "/",
+      "expires": 1760653269,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "MUID",
+      "value": "0E5EE9F0BABC68731273FFDDBB626971",
+      "domain": ".bing.com",
+      "path": "/",
+      "expires": 1786573262.123128,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "MR",
+      "value": "0",
+      "domain": ".bat.bing.com",
+      "path": "/",
+      "expires": 1753482062.123239,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "guest_id_marketing",
+      "value": "v1%3A175287726099984945",
+      "domain": ".twitter.com",
+      "path": "/",
+      "expires": 1787437262.176521,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "guest_id_ads",
+      "value": "v1%3A175287726099984945",
+      "domain": ".twitter.com",
+      "path": "/",
+      "expires": 1787437262.176629,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "personalization_id",
+      "value": "\"v1_B61WTO2iT6NA+xbdj90a9Q==\"",
+      "domain": ".twitter.com",
+      "path": "/",
+      "expires": 1787437262.17672,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "guest_id",
+      "value": "v1%3A175287726099984945",
+      "domain": ".twitter.com",
+      "path": "/",
+      "expires": 1787437262.176804,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__cf_bm",
+      "value": "efaH4kTY7HpPlvpMq8uHRQBvtnNPKOCHfpz_sH6VSqQ-1752877261-1.0.1.1-fki2CJkkqn124A2ljg9X642fUnD57DCa89F8tpDRNqKW8x5tU6YTnP8xcN.yVq_VMOpmMZTuDHjOWjhA9rFNLhvqxRLJsNTtuIR9dtlzOwQ",
+      "domain": ".twitter.com",
+      "path": "/",
+      "expires": 1752879062.17691,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "muc_ads",
+      "value": "0eba9e8d-116c-401d-a992-4cc5b0679965",
+      "domain": ".t.co",
+      "path": "/",
+      "expires": 1787437262.495601,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__cf_bm",
+      "value": "Qqly6VE7oUdhD55EgDyobixtXnOg4tZSLGK_y45zwi0-1752877262-1.0.1.1-FhR7.tVAK5fN60GE8Qo6Tq2kx4aSPnmQnGaS_2yLSMa23.3SSZT6zCHGkmZeQI_cMtwXrMXwZBX465JAAq5e0Kn32baj7FJuD0UpJfGpIuc",
+      "domain": ".t.co",
+      "path": "/",
+      "expires": 1752879062.495656,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_tt_enable_cookie",
+      "value": "1",
+      "domain": ".primeopinion.com.au",
+      "path": "/",
+      "expires": 1786573269,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_ttp",
+      "value": "01K0FT0SPVPDJENZ7DSNNPEB8Y_.tt.2",
+      "domain": ".primeopinion.com.au",
+      "path": "/",
+      "expires": 1786573269,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "ar_debug",
+      "value": "1",
+      "domain": ".www.google-analytics.com",
+      "path": "/",
+      "expires": 1760653270.044416,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "__Host-GAPS",
+      "value": "1:9UP34eSNY10UqzPuFN4xePSq1Fl67w:GTNnEg59dAfQyJFB",
+      "domain": "accounts.google.com",
+      "path": "/",
+      "expires": 1787437265.720386,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "OTZ",
+      "value": "8176221_16_12_133440_16_395520",
+      "domain": "accounts.google.com",
+      "path": "/",
+      "expires": 1755469267,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "NID",
+      "value": "525=jnK5SNBVX3jyMeIl5vHOhh8xDgbI3ztqQt3khJ8meprd8COZechV4_UOKhT62pSs3tF-H0KLrkfXkRlgZ11lbeYPM7Z1AHyX_XyclvZy8IajRya1ttDgzcm72mhbwiOS4siTv6_LZqkATFwMNjopMrs-76z-IhMfMktEOfhO4CetVeo9BKXmNN2yWWh0ATvTQg",
+      "domain": ".google.com",
+      "path": "/",
+      "expires": 1768688467.560304,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_hjSessionUser_3466244",
+      "value": "eyJpZCI6IjQyZGNiZDc3LWMxZWUtNTU5YS04NjQ0LTk2ZjQ4ZjQ4YThlMyIsImNyZWF0ZWQiOjE3NTI4NzcyNTc4NzQsImV4aXN0aW5nIjp0cnVlfQ==",
+      "domain": ".primeopinion.com.au",
+      "path": "/",
+      "expires": 1784413269,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "_rdt_uuid",
+      "value": "1752877258201.9352b817-86b2-4d62-a605-576f77a7d168",
+      "domain": ".primeopinion.com.au",
+      "path": "/",
+      "expires": 1760653269,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    {
+      "name": "_ga_088KNKYP1F",
+      "value": "GS2.1.s1752877260$o1$g1$t1752877269$j51$l0$h0",
+      "domain": ".primeopinion.com.au",
+      "path": "/",
+      "expires": 1787437269.782834,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_uetsid",
+      "value": "7bd71ac0642511f0adb83dd09fb4b740",
+      "domain": ".primeopinion.com.au",
+      "path": "/",
+      "expires": 1752963669,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "_uetvid",
+      "value": "7bd709d0642511f0a09d49cacadda08f",
+      "domain": ".primeopinion.com.au",
+      "path": "/",
+      "expires": 1786573269,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "ttcsid",
+      "value": "1752877262558::xgGHHr11JPKYL9kkivS9.1.1752877269960",
+      "domain": ".primeopinion.com.au",
+      "path": "/",
+      "expires": 1786573269,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "IDE",
+      "value": "AHWqTUncR1m6qLP0OpBZnazSRqgvjyCFCYNnTB1VdpFq9opE7wTx40HSrIVRUygx",
+      "domain": ".doubleclick.net",
+      "path": "/",
+      "expires": 1787437269.965788,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "MSPTC",
+      "value": "wux6WMCz4ujuedx3Pw5i564jonstvZb2pKa-eKpz4pw",
+      "domain": ".bing.com",
+      "path": "/",
+      "expires": 1786573270.014501,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "ttcsid_COK0NKBC77UAA32C5NN0",
+      "value": "1752877262558::VhXpBCF3yTukLFCa4uNe.1.1752877270292",
+      "domain": ".primeopinion.com.au",
+      "path": "/",
+      "expires": 1786573270,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "storage_state": {
+    "cookies": [
+      {
+        "name": "_gcl_au",
+        "value": "1.1.181913259.1752877258",
+        "domain": ".primeopinion.com.au",
+        "path": "/",
+        "expires": 1760653257,
+        "httpOnly": false,
+        "secure": false,
+        "sameSite": "Lax"
+      },
+      {
+        "name": "_hjSession_3466244",
+        "value": "eyJpZCI6IjU0MDY0ZTM4LWJlYzYtNGViYy04ZTA5LWIzNzMwMjAwMmYxOCIsImMiOjE3NTI4NzcyNTc4NzUsInMiOjAsInIiOjAsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjoxLCJzcCI6MH0=",
+        "domain": ".primeopinion.com.au",
+        "path": "/",
+        "expires": 1752879104,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "localization",
+        "value": "en-au",
+        "domain": ".primeopinion.com.au",
+        "path": "/",
+        "expires": 1784413269.157617,
+        "httpOnly": false,
+        "secure": false,
+        "sameSite": "Lax"
+      },
+      {
+        "name": "_ttp",
+        "value": "304C3ND89hRWelbc7EGUPtSlZ0G",
+        "domain": ".tiktok.com",
+        "path": "/",
+        "expires": 1786573269.617381,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "_ga",
+        "value": "GA1.1.304525380.1752877261",
+        "domain": ".primeopinion.com.au",
+        "path": "/",
+        "expires": 1787437260.602299,
+        "httpOnly": false,
+        "secure": false,
+        "sameSite": "Lax"
+      },
+      {
+        "name": "_fbp",
+        "value": "fb.2.1752877261939.551512481310454237",
+        "domain": ".primeopinion.com.au",
+        "path": "/",
+        "expires": 1760653269,
+        "httpOnly": false,
+        "secure": false,
+        "sameSite": "Lax"
+      },
+      {
+        "name": "MUID",
+        "value": "0E5EE9F0BABC68731273FFDDBB626971",
+        "domain": ".bing.com",
+        "path": "/",
+        "expires": 1786573262.123128,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "MR",
+        "value": "0",
+        "domain": ".bat.bing.com",
+        "path": "/",
+        "expires": 1753482062.123239,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "guest_id_marketing",
+        "value": "v1%3A175287726099984945",
+        "domain": ".twitter.com",
+        "path": "/",
+        "expires": 1787437262.176521,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "guest_id_ads",
+        "value": "v1%3A175287726099984945",
+        "domain": ".twitter.com",
+        "path": "/",
+        "expires": 1787437262.176629,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "personalization_id",
+        "value": "\"v1_B61WTO2iT6NA+xbdj90a9Q==\"",
+        "domain": ".twitter.com",
+        "path": "/",
+        "expires": 1787437262.17672,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "guest_id",
+        "value": "v1%3A175287726099984945",
+        "domain": ".twitter.com",
+        "path": "/",
+        "expires": 1787437262.176804,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "__cf_bm",
+        "value": "efaH4kTY7HpPlvpMq8uHRQBvtnNPKOCHfpz_sH6VSqQ-1752877261-1.0.1.1-fki2CJkkqn124A2ljg9X642fUnD57DCa89F8tpDRNqKW8x5tU6YTnP8xcN.yVq_VMOpmMZTuDHjOWjhA9rFNLhvqxRLJsNTtuIR9dtlzOwQ",
+        "domain": ".twitter.com",
+        "path": "/",
+        "expires": 1752879062.17691,
+        "httpOnly": true,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "muc_ads",
+        "value": "0eba9e8d-116c-401d-a992-4cc5b0679965",
+        "domain": ".t.co",
+        "path": "/",
+        "expires": 1787437262.495601,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "__cf_bm",
+        "value": "Qqly6VE7oUdhD55EgDyobixtXnOg4tZSLGK_y45zwi0-1752877262-1.0.1.1-FhR7.tVAK5fN60GE8Qo6Tq2kx4aSPnmQnGaS_2yLSMa23.3SSZT6zCHGkmZeQI_cMtwXrMXwZBX465JAAq5e0Kn32baj7FJuD0UpJfGpIuc",
+        "domain": ".t.co",
+        "path": "/",
+        "expires": 1752879062.495656,
+        "httpOnly": true,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "_tt_enable_cookie",
+        "value": "1",
+        "domain": ".primeopinion.com.au",
+        "path": "/",
+        "expires": 1786573269,
+        "httpOnly": false,
+        "secure": false,
+        "sameSite": "Lax"
+      },
+      {
+        "name": "_ttp",
+        "value": "01K0FT0SPVPDJENZ7DSNNPEB8Y_.tt.2",
+        "domain": ".primeopinion.com.au",
+        "path": "/",
+        "expires": 1786573269,
+        "httpOnly": false,
+        "secure": false,
+        "sameSite": "Lax"
+      },
+      {
+        "name": "ar_debug",
+        "value": "1",
+        "domain": ".www.google-analytics.com",
+        "path": "/",
+        "expires": 1760653270.044416,
+        "httpOnly": true,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "__Host-GAPS",
+        "value": "1:9UP34eSNY10UqzPuFN4xePSq1Fl67w:GTNnEg59dAfQyJFB",
+        "domain": "accounts.google.com",
+        "path": "/",
+        "expires": 1787437265.720386,
+        "httpOnly": true,
+        "secure": true,
+        "sameSite": "Lax"
+      },
+      {
+        "name": "OTZ",
+        "value": "8176221_16_12_133440_16_395520",
+        "domain": "accounts.google.com",
+        "path": "/",
+        "expires": 1755469267,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "Lax"
+      },
+      {
+        "name": "NID",
+        "value": "525=jnK5SNBVX3jyMeIl5vHOhh8xDgbI3ztqQt3khJ8meprd8COZechV4_UOKhT62pSs3tF-H0KLrkfXkRlgZ11lbeYPM7Z1AHyX_XyclvZy8IajRya1ttDgzcm72mhbwiOS4siTv6_LZqkATFwMNjopMrs-76z-IhMfMktEOfhO4CetVeo9BKXmNN2yWWh0ATvTQg",
+        "domain": ".google.com",
+        "path": "/",
+        "expires": 1768688467.560304,
+        "httpOnly": true,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "_hjSessionUser_3466244",
+        "value": "eyJpZCI6IjQyZGNiZDc3LWMxZWUtNTU5YS04NjQ0LTk2ZjQ4ZjQ4YThlMyIsImNyZWF0ZWQiOjE3NTI4NzcyNTc4NzQsImV4aXN0aW5nIjp0cnVlfQ==",
+        "domain": ".primeopinion.com.au",
+        "path": "/",
+        "expires": 1784413269,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "_rdt_uuid",
+        "value": "1752877258201.9352b817-86b2-4d62-a605-576f77a7d168",
+        "domain": ".primeopinion.com.au",
+        "path": "/",
+        "expires": 1760653269,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "Strict"
+      },
+      {
+        "name": "_ga_088KNKYP1F",
+        "value": "GS2.1.s1752877260$o1$g1$t1752877269$j51$l0$h0",
+        "domain": ".primeopinion.com.au",
+        "path": "/",
+        "expires": 1787437269.782834,
+        "httpOnly": false,
+        "secure": false,
+        "sameSite": "Lax"
+      },
+      {
+        "name": "_uetsid",
+        "value": "7bd71ac0642511f0adb83dd09fb4b740",
+        "domain": ".primeopinion.com.au",
+        "path": "/",
+        "expires": 1752963669,
+        "httpOnly": false,
+        "secure": false,
+        "sameSite": "Lax"
+      },
+      {
+        "name": "_uetvid",
+        "value": "7bd709d0642511f0a09d49cacadda08f",
+        "domain": ".primeopinion.com.au",
+        "path": "/",
+        "expires": 1786573269,
+        "httpOnly": false,
+        "secure": false,
+        "sameSite": "Lax"
+      },
+      {
+        "name": "ttcsid",
+        "value": "1752877262558::xgGHHr11JPKYL9kkivS9.1.1752877269960",
+        "domain": ".primeopinion.com.au",
+        "path": "/",
+        "expires": 1786573269,
+        "httpOnly": false,
+        "secure": false,
+        "sameSite": "Lax"
+      },
+      {
+        "name": "IDE",
+        "value": "AHWqTUncR1m6qLP0OpBZnazSRqgvjyCFCYNnTB1VdpFq9opE7wTx40HSrIVRUygx",
+        "domain": ".doubleclick.net",
+        "path": "/",
+        "expires": 1787437269.965788,
+        "httpOnly": true,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "MSPTC",
+        "value": "wux6WMCz4ujuedx3Pw5i564jonstvZb2pKa-eKpz4pw",
+        "domain": ".bing.com",
+        "path": "/",
+        "expires": 1786573270.014501,
+        "httpOnly": false,
+        "secure": true,
+        "sameSite": "None"
+      },
+      {
+        "name": "ttcsid_COK0NKBC77UAA32C5NN0",
+        "value": "1752877262558::VhXpBCF3yTukLFCa4uNe.1.1752877270292",
+        "domain": ".primeopinion.com.au",
+        "path": "/",
+        "expires": 1786573270,
+        "httpOnly": false,
+        "secure": false,
+        "sameSite": "Lax"
+      }
+    ],
+    "origins": [
+      {
+        "origin": "https://app.primeopinion.com.au",
+        "localStorage": [
+          {
+            "name": "_uetvid_exp",
+            "value": "Wed, 12 Aug 2026 22:21:09 GMT"
+          },
+          {
+            "name": "app-color-mode",
+            "value": "init"
+          },
+          {
+            "name": "device",
+            "value": ""
+          },
+          {
+            "name": "app-key",
+            "value": "0"
+          },
+          {
+            "name": "maid",
+            "value": ""
+          },
+          {
+            "name": "topicsLastReferenceTime",
+            "value": "1752877269878"
+          },
+          {
+            "name": "show-usd",
+            "value": "false"
+          },
+          {
+            "name": "_gcl_ls",
+            "value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":0,\"creationTimeMs\":1752877257533},\"expires\":1760653257533}}"
+          },
+          {
+            "name": "show-alerts",
+            "value": "false"
+          },
+          {
+            "name": "_uetsid",
+            "value": "7bd71ac0642511f0adb83dd09fb4b740"
+          },
+          {
+            "name": "in-app-browser",
+            "value": "false"
+          },
+          {
+            "name": "shared-modals-storage",
+            "value": "[]"
+          },
+          {
+            "name": "preferred-mode",
+            "value": "init"
+          },
+          {
+            "name": "adid",
+            "value": ""
+          },
+          {
+            "name": "lastExternalReferrerTime",
+            "value": "1752877269709"
+          },
+          {
+            "name": "use-soketi",
+            "value": "false"
+          },
+          {
+            "name": "_uetsid_exp",
+            "value": "Sat, 19 Jul 2025 22:21:09 GMT"
+          },
+          {
+            "name": "platform",
+            "value": "web"
+          },
+          {
+            "name": "cid",
+            "value": ""
+          },
+          {
+            "name": "_uetvid",
+            "value": "7bd709d0642511f0a09d49cacadda08f"
+          },
+          {
+            "name": "lastExternalReferrer",
+            "value": "empty"
+          },
+          {
+            "name": "sslh-invite",
+            "value": ""
+          },
+          {
+            "name": "one-click-reward",
+            "value": ""
+          },
+          {
+            "name": "a-l",
+            "value": "false"
+          }
+        ]
+      }
+    ]
+  },
+  "timestamp": 1752877377.5043266,
+  "profile_name": "quenito_primeopinion"
+}
