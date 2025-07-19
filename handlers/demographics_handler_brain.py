@@ -10,6 +10,7 @@ Features:
 - Future-ready architecture for AI evolution
 - Continuous learning from every interaction
 - ADDED: Brain learning integration methods for true AI evolution
+- NEW: Complete stats integration for real-time performance tracking
 """
 
 import time
@@ -20,7 +21,9 @@ from handlers.base_handler import BaseHandler
 
 class DemographicsHandler(BaseHandler):
     """🧠 Quenito's Complete Brain-Integrated Demographics Handler"""
-    
+    # Initialize the demographics handler with brain integration
+    # This handler is designed to evolve with Quenito's digital brain, learning from every interaction
+    # and adapting to provide the most accurate and efficient demographic data collection.
     def __init__(self, page, knowledge_base, intervention_manager):
         super().__init__(page, knowledge_base, intervention_manager)
         
@@ -212,7 +215,8 @@ class DemographicsHandler(BaseHandler):
                 }
             }
         }
-    
+
+    # 🎯 MAIN HANDLER METHODS
     def can_handle(self, page_content: str) -> float:
         """
         🧠 Quenito's Brain-Enhanced confidence calculation.
@@ -239,6 +243,10 @@ class DemographicsHandler(BaseHandler):
                 print(f"🧠 QUENITO'S BRAIN: Strong age question detected! Confidence: {confidence}")
                 self.last_confidence = confidence
                 self._teach_brain_success('age', content_lower, confidence)
+                
+                # 🔗 NEW: Record confidence to stats
+                self.record_confidence_to_stats(confidence)
+                
                 return confidence
             
             # STEP 2: Check for other demographic patterns
@@ -264,6 +272,10 @@ class DemographicsHandler(BaseHandler):
                 print(f"🧠 Quenito's demographics confidence: {base_confidence:.2f} (score: {demographic_score:.2f})")
                 self.last_confidence = base_confidence
                 self._teach_brain_confidence('demographics', content_lower, base_confidence)
+                
+                # 🔗 NEW: Record confidence to stats
+                self.record_confidence_to_stats(base_confidence)
+                
                 return base_confidence
             
             # STEP 4: Fallback check for simple demographic indicators
@@ -275,6 +287,10 @@ class DemographicsHandler(BaseHandler):
                 print(f"🔍 Fallback demographics confidence: {fallback_confidence:.2f}")
                 self.last_confidence = fallback_confidence
                 self._teach_brain_fallback('demographics', content_lower, fallback_confidence)
+                
+                # 🔗 NEW: Record confidence to stats
+                self.record_confidence_to_stats(fallback_confidence)
+                
                 return fallback_confidence
             
             return 0.0
@@ -339,74 +355,6 @@ class DemographicsHandler(BaseHandler):
             await self._report_failure_to_brain(str(e), "")
             return False
 
-    # 🧠 NEW BRAIN LEARNING INTEGRATION METHODS
-    async def _report_success_to_brain(self, strategy_used: str, execution_time: float,
-                                      question_text: str, response_value: str):
-        """🧠 Report successful automation to brain for learning"""
-        try:
-            learning_data = {
-                "timestamp": time.time(),
-                "session_id": f"automation_{int(time.time())}",
-                "question_type": self.detected_question_type or "age_question",
-                "question_text": question_text,
-                "strategy_used": strategy_used,
-                "execution_time": execution_time,
-                "confidence_score": getattr(self, 'last_confidence', 0.0),
-                "response_value": response_value,
-                "result": "SUCCESS",
-                "element_type": "text_input",  # or detect from element_info
-                "automation_success": True
-            }
-            
-            # 🧠 CRITICAL: Report to brain AND save
-            success = await self.brain.learn_successful_automation(learning_data)
-            if success:
-                print(f"🧠 SUCCESS LEARNED: {strategy_used} for {self.detected_question_type}")
-            else:
-                print(f"⚠️ Failed to save learning data")
-                
-        except Exception as e:
-            print(f"❌ Error reporting success to brain: {e}")
-
-    async def _report_failure_to_brain(self, error_message: str, question_text: str):
-        """🧠 Report automation failure to brain for learning"""
-        try:
-            learning_data = {
-                "timestamp": time.time(),
-                "session_id": f"automation_{int(time.time())}",
-                "question_type": self.detected_question_type or "unknown",
-                "question_text": question_text,
-                "error_message": error_message,
-                "confidence_score": getattr(self, 'last_confidence', 0.0),
-                "result": "FAILURE",
-                "automation_success": False
-            }
-            
-            # 🧠 Report failure for learning
-            await self.brain.learn_from_failure(learning_data)
-            print(f"🧠 FAILURE LEARNED: {error_message}")
-            
-        except Exception as e:
-            print(f"❌ Error reporting failure to brain: {e}")
-
-    async def _get_learned_strategy(self, question_text: str, element_info: dict) -> Optional[str]:
-        """🧠 Get previously learned successful strategy from brain"""
-        try:
-            learned_strategy = await self.brain.get_preferred_strategy(
-                question_type=self.detected_question_type,
-                element_type=element_info.get('type', 'text_input')
-            )
-            
-            if learned_strategy:
-                print(f"🧠 USING LEARNED STRATEGY: {learned_strategy['name']} (success rate: {learned_strategy.get('success_rate', 0.0):.1%})")
-                return learned_strategy['name']
-            
-            return None
-            
-        except Exception as e:
-            print(f"⚠️ Error getting learned strategy: {e}")
-            return None
-
     async def handle_question(self, question_text, element_info):
         """Handle demographic question with BRAIN LEARNING INTEGRATION"""
         start_time = time.time()
@@ -456,6 +404,186 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             await self._report_failure_to_brain(str(e), question_text)
             return False
+    
+    # 🧠 BRAIN LEARNING INTEGRATION METHODS
+    async def _report_success_to_brain(self, strategy_used: str, execution_time: float,
+                                      question_text: str, response_value: str):
+        """🧠 Report successful automation to brain for learning + record to stats"""
+        try:
+            learning_data = {
+                "timestamp": time.time(),
+                "session_id": f"automation_{int(time.time())}",
+                "question_type": self.detected_question_type or "age_question",
+                "question_text": question_text,
+                "strategy_used": strategy_used,
+                "execution_time": execution_time,
+                "confidence_score": getattr(self, 'last_confidence', 0.0),
+                "response_value": response_value,
+                "result": "SUCCESS",
+                "element_type": "text_input",
+                "automation_success": True
+            }
+            
+            # 🧠 CRITICAL: Report to brain AND save
+            success = await self.brain.learn_successful_automation(learning_data)
+            if success:
+                print(f"🧠 SUCCESS LEARNED: {strategy_used} for {self.detected_question_type}")
+            else:
+                print(f"⚠️ Failed to save learning data")
+            
+            # 🔗 NEW: Also record to enhanced survey stats
+            self.record_success_to_stats(strategy_used, execution_time, question_text, response_value)
+                
+        except Exception as e:
+            print(f"❌ Error reporting success to brain: {e}")
+
+    async def _report_failure_to_brain(self, error_message: str, question_text: str):
+        """🧠 Report automation failure to brain for learning + record to stats"""
+        try:
+            learning_data = {
+                "timestamp": time.time(),
+                "session_id": f"automation_{int(time.time())}",
+                "question_type": self.detected_question_type or "unknown",
+                "question_text": question_text,
+                "error_message": error_message,
+                "confidence_score": getattr(self, 'last_confidence', 0.0),
+                "result": "FAILURE",
+                "automation_success": False
+            }
+            
+            # 🧠 Report failure for learning
+            await self.brain.learn_from_failure(learning_data)
+            print(f"🧠 FAILURE LEARNED: {error_message}")
+            
+            # 🔗 NEW: Also record to enhanced survey stats
+            self.record_failure_to_stats(error_message, question_text)
+            
+        except Exception as e:
+            print(f"❌ Error reporting failure to brain: {e}")
+
+    async def _get_learned_strategy(self, question_text: str, element_info: dict) -> Optional[str]:
+        """🧠 Get previously learned successful strategy from brain"""
+        try:
+            learned_strategy = await self.brain.get_preferred_strategy(
+                question_type=self.detected_question_type,
+                element_type=element_info.get('type', 'text_input')
+            )
+            
+            if learned_strategy:
+                print(f"🧠 USING LEARNED STRATEGY: {learned_strategy['name']} (success rate: {learned_strategy.get('success_rate', 0.0):.1%})")
+                return learned_strategy['name']
+            
+            return None
+            
+        except Exception as e:
+            print(f"⚠️ Error getting learned strategy: {e}")
+            return None
+
+    # 🔗 STATS INTEGRATION METHODS
+    def record_success_to_stats(self, strategy_used: str, execution_time: float, 
+                               question_text: str, response_value: str):
+        """🔗 Record successful automation to enhanced survey stats with brain correlation"""
+        try:
+            if hasattr(self, 'stats') and self.stats:
+                # Record automation success with brain learning correlation
+                self.stats.record_automation_success(
+                    handler_type="demographics_handler",
+                    confidence=self.last_confidence,
+                    question_type=self.detected_question_type,
+                    strategy_used=strategy_used
+                )
+                
+                # Record strategy effectiveness for brain optimization
+                self.stats.record_strategy_effectiveness(
+                    strategy_name=strategy_used,
+                    success=True,
+                    execution_time=execution_time,
+                    question_type=self.detected_question_type
+                )
+                
+                print(f"📊 ✅ Success recorded to stats: {strategy_used} for {self.detected_question_type}")
+            else:
+                print("⚠️ No stats connection available")
+                
+        except Exception as e:
+            print(f"❌ Error recording success to stats: {e}")
+
+    def record_failure_to_stats(self, error_message: str, question_text: str):
+        """🔗 Record automation failure to enhanced survey stats"""
+        try:
+            if hasattr(self, 'stats') and self.stats:
+                # Record manual intervention (failure triggers manual intervention)
+                self.stats.increment_intervention_count(
+                    handler_type="demographics_handler",
+                    reason=error_message
+                )
+                
+                print(f"📊 ❌ Failure recorded to stats: {error_message}")
+            else:
+                print("⚠️ No stats connection available")
+                
+        except Exception as e:
+            print(f"❌ Error recording failure to stats: {e}")
+
+    def record_confidence_to_stats(self, confidence: float):
+        """🔗 Record confidence assessment to enhanced survey stats"""
+        try:
+            if hasattr(self, 'stats') and self.stats:
+                # Record question count with confidence
+                self.stats.increment_question_count(
+                    handler_type="demographics_handler",
+                    confidence=confidence
+                )
+                
+                print(f"📊 📈 Confidence recorded to stats: {confidence:.2f}")
+            else:
+                print("⚠️ No stats connection available")
+                
+        except Exception as e:
+            print(f"❌ Error recording confidence to stats: {e}")
+
+    # 🎯 QUESTION ANALYSIS METHODS
+    def _identify_question_type(self, page_content: str) -> Optional[str]:
+        """🧠 Identify the specific type of demographic question using brain patterns"""
+        content_lower = page_content.lower()
+        
+        # PRIORITY 1: Check for strong age question indicators first
+        strong_age_patterns = [
+            'how old are you', 'what is your age', 'please enter your age',
+            'enter your age', 'your age:', 'age in years', 'current age'
+        ]
+        
+        if any(pattern in content_lower for pattern in strong_age_patterns):
+            print(f"🧠 PRIORITY: Strong age question detected!")
+            return 'age'
+        
+        # PRIORITY 2: Check for other specific patterns
+        # Check each pattern but prioritize more specific matches
+        best_match = None
+        best_score = 0
+        
+        for question_type, pattern in self.question_patterns.items():
+            matches = 0
+            
+            # Count keyword matches
+            for keyword in pattern['keywords']:
+                if keyword in content_lower:
+                    matches += 1
+            
+            # Apply priority weighting
+            if question_type == 'age' and matches > 0:
+                matches *= 3  # Boost age questions
+            elif question_type == 'gender' and matches > 0:
+                matches *= 2  # Boost gender questions
+            elif question_type == 'location' and matches > 0:
+                matches *= 0.5  # Reduce location sensitivity
+            
+            if matches > best_score:
+                best_score = matches
+                best_match = question_type
+                
+        print(f"🔍 Best match: {best_match} (score: {best_score})")
+        return best_match if best_score > 0 else None
 
     async def _detect_question_type(self, question_text: str) -> Optional[str]:
         """🧠 Detect question type using brain patterns"""
@@ -484,7 +612,8 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"⚠️ Error getting user response: {e}")
             return '45'  # Safe fallback
-
+        
+     # 🎯 STRATEGY EXECUTION METHODS
     async def _execute_strategy(self, strategy: str, element_info: dict, response_value: str) -> bool:
         """🧠 Execute automation strategy"""
         try:
@@ -626,49 +755,8 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Coordinate click strategy failed: {e}")
             return False
-    
-    def _identify_question_type(self, page_content: str) -> Optional[str]:
-        """🧠 Identify the specific type of demographic question using brain patterns"""
-        content_lower = page_content.lower()
         
-        # PRIORITY 1: Check for strong age question indicators first
-        strong_age_patterns = [
-            'how old are you', 'what is your age', 'please enter your age',
-            'enter your age', 'your age:', 'age in years', 'current age'
-        ]
-        
-        if any(pattern in content_lower for pattern in strong_age_patterns):
-            print(f"🧠 PRIORITY: Strong age question detected!")
-            return 'age'
-        
-        # PRIORITY 2: Check for other specific patterns
-        # Check each pattern but prioritize more specific matches
-        best_match = None
-        best_score = 0
-        
-        for question_type, pattern in self.question_patterns.items():
-            matches = 0
-            
-            # Count keyword matches
-            for keyword in pattern['keywords']:
-                if keyword in content_lower:
-                    matches += 1
-            
-            # Apply priority weighting
-            if question_type == 'age' and matches > 0:
-                matches *= 3  # Boost age questions
-            elif question_type == 'gender' and matches > 0:
-                matches *= 2  # Boost gender questions
-            elif question_type == 'location' and matches > 0:
-                matches *= 0.5  # Reduce location sensitivity
-            
-            if matches > best_score:
-                best_score = matches
-                best_match = question_type
-                
-        print(f"🔍 Best match: {best_match} (score: {best_score})")
-        return best_match if best_score > 0 else None
-    
+    # 📋 DEMOGRAPHIC QUESTION HANDLERS
     async def _process_demographic_question(self, question_type: str, page_content: str) -> bool:
         """🧠 Process a specific demographic question type using Quenito's brain data"""
         try:
@@ -756,7 +844,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error handling age question: {e}")
             return False
-    
+
     async def _select_age_range(self, age: str) -> bool:
         """🧠 Select appropriate age range for age 45"""
         try:
@@ -779,7 +867,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error selecting age range: {e}")
             return False
-    
+
     async def _fill_age_input(self, age: str) -> bool:
         """🧠 Fill age in text input field with robust clicking strategies"""
         try:
@@ -808,15 +896,14 @@ class DemographicsHandler(BaseHandler):
                                     print(f"🧠 ✅ Age entered: {age}")
                                     return True
                                     
-                except Exception as e:
-                    print(f"⚠️ Selector {selector} failed: {e}")
+                except Exception:
                     continue
             
-            print("❌ No suitable input field found for age")
-            return False
+                print("❌ No suitable input field found for age")
+                return False
             
         except Exception as e:
-            print(f"❌ Error filling age input: {e}")
+            print(f"❌ Error in navigation: {e}")
             return False
         
     async def _robust_click_and_fill(self, input_elem, value: str) -> bool:
@@ -885,7 +972,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error in robust click and fill: {e}")
             return False
-    
+
     async def _handle_birth_location_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle birth location questions (Australia/Overseas)"""
         try:
@@ -905,7 +992,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error handling birth location question: {e}")
             return False
-    
+
     async def _handle_gender_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle gender questions with brain data"""
         try:
@@ -926,7 +1013,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error handling gender question: {e}")
             return False
-    
+
     async def _handle_location_question(self, demographics: Dict[str, Any], page_content: str) -> bool:
         """🧠 Handle location questions with enhanced brain mapping"""
         try:
@@ -958,7 +1045,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error handling location question: {e}")
             return False
-    
+
     async def _handle_employment_question(self, demographics: Dict[str, Any], page_content: str) -> bool:
         """🧠 Handle employment questions with work arrangement support"""
         try:
@@ -982,7 +1069,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error handling employment question: {e}")
             return False
-    
+
     async def _handle_occupation_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle occupation and job title questions"""
         try:
@@ -1002,7 +1089,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error handling occupation question: {e}")
             return False
-    
+
     async def _handle_industry_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle industry and sub-industry questions"""
         try:
@@ -1022,7 +1109,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error handling industry question: {e}")
             return False
-    
+
     async def _handle_income_question(self, demographics: Dict[str, Any], page_content: str) -> bool:
         """🧠 Handle personal and household income questions"""
         try:
@@ -1049,7 +1136,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error handling income question: {e}")
             return False
-    
+
     async def _handle_education_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle education questions"""
         try:
@@ -1063,7 +1150,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error handling education question: {e}")
             return False
-    
+
     async def _handle_marital_status_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle marital status questions"""
         try:
@@ -1078,7 +1165,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error handling marital status question: {e}")
             return False
-    
+
     async def _handle_household_size_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle household size questions"""
         try:
@@ -1092,7 +1179,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error handling household size question: {e}")
             return False
-        
+
     async def _handle_children_question(self, demographics: Dict[str, Any], page_content: str) -> bool:
         """🧠 Handle children questions including complex multi-dropdown format"""
         try:
@@ -1114,7 +1201,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error handling children question: {e}")
             return False
-    
+
     async def _handle_children_age_groups(self) -> bool:
         """🧠 Handle complex multi-dropdown children age groups"""
         try:
@@ -1155,7 +1242,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error handling children age groups: {e}")
             return False
-    
+
     async def _handle_household_composition_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle household composition questions with checkbox support"""
         try:
@@ -1174,7 +1261,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error handling household composition question: {e}")
             return False
-    
+
     async def _handle_pets_question(self, demographics: Dict[str, Any]) -> bool:
         """🧠 Handle pets questions"""
         try:
@@ -1188,7 +1275,8 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error handling pets question: {e}")
             return False
-    
+
+    # 🎯 UI INTERACTION METHODS
     async def _select_radio_option(self, target_value: str, keywords: List[str]) -> bool:
         """🧠 Select a radio button option based on target value and keywords"""
         try:
@@ -1209,7 +1297,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error selecting radio option: {e}")
             return False
-    
+
     async def _select_dropdown_option(self, target_value: str) -> bool:
         """🧠 Select a dropdown option"""
         try:
@@ -1232,7 +1320,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error selecting dropdown option: {e}")
             return False
-    
+
     async def _select_checkbox_option(self, target_value: str, keywords: List[str]) -> bool:
         """🧠 Select a checkbox option based on target value and keywords"""
         try:
@@ -1254,7 +1342,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error selecting checkbox option: {e}")
             return False
-    
+
     async def _fill_text_input(self, value: str) -> bool:
         """🧠 Fill a text input field"""
         try:
@@ -1273,7 +1361,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error filling text input: {e}")
             return False
-    
+
     async def _get_radio_label_text(self, radio_element) -> str:
         """🧠 Get the label text associated with a radio button"""
         try:
@@ -1293,7 +1381,7 @@ class DemographicsHandler(BaseHandler):
             
         except Exception:
             return ""
-    
+
     async def _get_checkbox_label_text(self, checkbox_element) -> str:
         """🧠 Get the label text associated with a checkbox"""
         try:
@@ -1313,7 +1401,7 @@ class DemographicsHandler(BaseHandler):
             
         except Exception:
             return ""
-    
+
     def _text_matches(self, text: str, target: str, keywords: List[str]) -> bool:
         """🧠 Check if text matches target or contains keywords"""
         if not text:
@@ -1332,7 +1420,8 @@ class DemographicsHandler(BaseHandler):
                 return True
         
         return False
-    
+
+    # 🚀 NAVIGATION & TIMING METHODS
     async def _try_navigation(self) -> bool:
         """🧠 Enhanced navigation with brain learning"""
         try:
@@ -1363,7 +1452,7 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Error in navigation: {e}")
             return False
-    
+        
     def page_analysis_delay(self):
         """🧠 Human-like delay for page analysis"""
         try:
@@ -1373,7 +1462,7 @@ class DemographicsHandler(BaseHandler):
             print(f"🧠 Page analysis delay: {delay:.2f}s")
         except Exception as e:
             print(f"⚠️ Error in page analysis delay: {e}")
-    
+
     def human_like_delay(self, action_type: str = "general", text_length: int = 0):
         """🧠 Human-like delays for different actions"""
         try:
@@ -1404,8 +1493,8 @@ class DemographicsHandler(BaseHandler):
             
         except Exception as e:
             print(f"⚠️ Error in human delay: {e}")
-            time.sleep(0.5)  # Fallback delay
-    
+            time.sleep(0.5)  # Fallback delay    
+
     # 🧠 BRAIN LEARNING METHODS
     def _teach_brain_success(self, question_type: str, content: str, confidence: float):
         """🧠 Teach Quenito's brain about successful automations"""
@@ -1415,7 +1504,7 @@ class DemographicsHandler(BaseHandler):
             # This would store successful question/answer patterns for future learning
         except Exception as e:
             print(f"⚠️ Error teaching brain success: {e}")
-    
+
     def _teach_brain_failure(self, question_type: str, content: str):
         """🧠 Teach Quenito's brain about failed attempts"""
         try:
@@ -1423,7 +1512,7 @@ class DemographicsHandler(BaseHandler):
             # Future: Help Quenito learn what doesn't work to avoid similar failures
         except Exception as e:
             print(f"⚠️ Error teaching brain failure: {e}")
-    
+
     def _teach_brain_confidence(self, question_type: str, content: str, confidence: float):
         """🧠 Teach Quenito's brain about confidence calibration"""
         try:
@@ -1431,7 +1520,7 @@ class DemographicsHandler(BaseHandler):
             # Future: Store confidence patterns to improve future assessments
         except Exception as e:
             print(f"⚠️ Error teaching brain confidence: {e}")
-    
+
     def _teach_brain_partial_success(self, question_type: str, content: str, confidence: float):
         """🧠 Teach Quenito's brain about partial successes"""
         try:
@@ -1439,7 +1528,7 @@ class DemographicsHandler(BaseHandler):
             # Future: Learn from partial successes to improve automation
         except Exception as e:
             print(f"⚠️ Error teaching brain partial success: {e}")
-    
+
     def _teach_brain_unknown_pattern(self, content: str):
         """🧠 Teach Quenito's brain about unknown question patterns"""
         try:
@@ -1448,7 +1537,7 @@ class DemographicsHandler(BaseHandler):
             # Future: Analyze unknown patterns to expand question recognition
         except Exception as e:
             print(f"⚠️ Error teaching brain unknown pattern: {e}")
-    
+
     def _teach_brain_fallback(self, question_type: str, content: str, confidence: float):
         """🧠 Teach Quenito's brain about fallback scenarios"""
         try:

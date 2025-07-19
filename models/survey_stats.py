@@ -1,8 +1,15 @@
 """
-🧠 Brain-Enhanced Survey Statistics Module v2.0
+🧠 Brain-Enhanced Survey Statistics Module v2.1 - STEP 3 COMPLETE
 Tracks survey completion statistics and performance metrics WITH BRAIN INTEGRATION.
 
-NEW FEATURES:
+NEW FEATURES FOR STEP 3:
+- ✅ Brain learning correlation tracking with automation success
+- ✅ Pattern discovery correlation with handler performance  
+- ✅ Strategy effectiveness tracking
+- ✅ Learning session data with brain feedback loop
+- ✅ Complete brain learning integration methods
+
+EXISTING FEATURES:
 - ✅ Digital brain learning correlation
 - ✅ Handler performance tracking
 - ✅ Confidence evolution metrics  
@@ -189,6 +196,178 @@ class BrainEnhancedSurveyStats:
             self.knowledge_base.update_handler_performance(handler_type, 0.0, False)
         
         print(f"🧠 Learning opportunity recorded: {handler_type} - {reason}")
+
+    # 🚀 NEW STEP 3 METHODS - Brain Learning Correlation Tracking
+    def record_automation_success(self, handler_type: str, confidence: float,
+                                 question_type: str, strategy_used: str):
+        """Record successful automation with brain learning correlation"""
+        
+        # Update base stats
+        self.increment_automated_count(handler_type, confidence)
+        
+        # 🧠 Record brain learning correlation
+        learning_event = {
+            "timestamp": time.time(),
+            "event_type": "successful_automation",
+            "handler": handler_type,
+            "question_type": question_type,
+            "strategy_used": strategy_used,
+            "confidence": confidence,
+            "brain_learning_triggered": True
+        }
+        
+        self.learning_events.append(learning_event)
+        
+        # Track pattern discovery
+        if question_type not in [event.get('question_type') for event in self.learning_events[:-1]]:
+            self.pattern_discoveries.append({
+                "timestamp": time.time(),
+                "pattern_type": question_type,
+                "confidence": confidence,
+                "first_success": True
+            })
+            print(f"🧠 NEW PATTERN DISCOVERED: {question_type}")
+        
+        print(f"📊 Automation success recorded: {handler_type} → {question_type} using {strategy_used}")
+
+    def record_strategy_effectiveness(self, strategy_name: str, success: bool, 
+                                    execution_time: float, question_type: str):
+        """Record strategy effectiveness for brain learning optimization"""
+        
+        strategy_event = {
+            "timestamp": time.time(),
+            "strategy_name": strategy_name,
+            "success": success,
+            "execution_time": execution_time,
+            "question_type": question_type,
+            "brain_optimization_data": True
+        }
+        
+        self.learning_events.append(strategy_event)
+        
+        # Track brain improvement based on strategy success
+        if success:
+            self.brain_improvements.append({
+                "timestamp": time.time(),
+                "improvement_type": "strategy_optimization",
+                "strategy": strategy_name,
+                "question_type": question_type,
+                "performance_gain": f"Successful in {execution_time:.1f}s"
+            })
+            
+        print(f"🎯 Strategy effectiveness: {strategy_name} {'✅' if success else '❌'} ({execution_time:.1f}s)")
+
+    def record_confidence_calibration(self, handler_type: str, old_confidence: float, 
+                                    new_confidence: float, calibration_reason: str):
+        """Record confidence calibration events for brain learning tracking"""
+        
+        calibration_event = {
+            "timestamp": time.time(),
+            "event_type": "confidence_calibration",
+            "handler": handler_type,
+            "old_confidence": old_confidence,
+            "new_confidence": new_confidence,
+            "confidence_change": new_confidence - old_confidence,
+            "calibration_reason": calibration_reason,
+            "brain_learning_impact": True
+        }
+        
+        self.learning_events.append(calibration_event)
+        self.session_data["confidence_calibrations"] += 1
+        
+        # Track as brain improvement
+        self.brain_improvements.append({
+            "timestamp": time.time(),
+            "improvement_type": "confidence_calibration",
+            "handler": handler_type,
+            "improvement_details": f"{old_confidence:.2f} → {new_confidence:.2f}",
+            "reason": calibration_reason
+        })
+        
+        print(f"🧠 Confidence calibrated: {handler_type} {old_confidence:.2f} → {new_confidence:.2f} ({calibration_reason})")
+
+    def record_learning_session_data(self, session_type: str, learning_data: Dict[str, Any]):
+        """Record comprehensive learning session data for brain evolution tracking"""
+        
+        session_event = {
+            "timestamp": time.time(),
+            "session_type": session_type,
+            "learning_data": learning_data,
+            "session_id": self.session_data["session_id"],
+            "brain_evolution_marker": True
+        }
+        
+        self.learning_events.append(session_event)
+        
+        # Update session metrics
+        if session_type == "pattern_learning":
+            self.session_data["new_patterns_learned"] += learning_data.get("patterns_count", 0)
+        elif session_type == "strategy_optimization":
+            # Track strategy improvements
+            self.brain_improvements.append({
+                "timestamp": time.time(),
+                "improvement_type": "strategy_learning",
+                "optimization_data": learning_data
+            })
+        elif session_type == "handler_evolution":
+            # Track handler performance evolution
+            handler = learning_data.get("handler_type")
+            if handler:
+                if handler not in self.stats["handler_improvements"]:
+                    self.stats["handler_improvements"][handler] = []
+                self.stats["handler_improvements"][handler].append(learning_data)
+        
+        print(f"🧠 Learning session recorded: {session_type} with {len(learning_data)} data points")
+
+    def correlate_brain_learning_with_performance(self) -> Dict[str, Any]:
+        """Analyze correlation between brain learning events and automation performance"""
+        
+        correlation_analysis = {
+            "learning_to_automation_ratio": 0.0,
+            "pattern_discovery_effectiveness": 0.0,
+            "strategy_optimization_impact": 0.0,
+            "confidence_calibration_benefit": 0.0,
+            "overall_brain_learning_effectiveness": 0.0
+        }
+        
+        total_learning_events = len(self.learning_events)
+        if total_learning_events == 0:
+            return correlation_analysis
+        
+        # Calculate learning to automation ratio
+        automation_events = [e for e in self.learning_events if e.get("event_type") == "successful_automation"]
+        if total_learning_events > 0:
+            correlation_analysis["learning_to_automation_ratio"] = len(automation_events) / total_learning_events
+        
+        # Calculate pattern discovery effectiveness
+        pattern_events = len(self.pattern_discoveries)
+        if pattern_events > 0 and self.total_questions > 0:
+            correlation_analysis["pattern_discovery_effectiveness"] = pattern_events / self.total_questions
+        
+        # Calculate strategy optimization impact
+        strategy_events = [e for e in self.learning_events if e.get("strategy_name")]
+        successful_strategies = [e for e in strategy_events if e.get("success", False)]
+        if len(strategy_events) > 0:
+            correlation_analysis["strategy_optimization_impact"] = len(successful_strategies) / len(strategy_events)
+        
+        # Calculate confidence calibration benefit
+        calibration_events = [e for e in self.learning_events if e.get("event_type") == "confidence_calibration"]
+        positive_calibrations = [e for e in calibration_events if e.get("confidence_change", 0) > 0]
+        if len(calibration_events) > 0:
+            correlation_analysis["confidence_calibration_benefit"] = len(positive_calibrations) / len(calibration_events)
+        
+        # Calculate overall effectiveness
+        metrics = [
+            correlation_analysis["learning_to_automation_ratio"],
+            correlation_analysis["pattern_discovery_effectiveness"], 
+            correlation_analysis["strategy_optimization_impact"],
+            correlation_analysis["confidence_calibration_benefit"]
+        ]
+        non_zero_metrics = [m for m in metrics if m > 0]
+        if non_zero_metrics:
+            correlation_analysis["overall_brain_learning_effectiveness"] = sum(non_zero_metrics) / len(non_zero_metrics)
+        
+        return correlation_analysis
     
     def record_pattern_discovery(self, pattern_type: str, pattern_data: Dict[str, Any]):
         """Record when Quenito's brain discovers new patterns."""
@@ -265,7 +444,11 @@ class BrainEnhancedSurveyStats:
         return summary
     
     def get_brain_evolution_metrics(self) -> Dict[str, Any]:
-        """Get brain evolution and learning metrics."""
+        """Get brain evolution and learning metrics including Step 3 correlations."""
+        
+        # Get correlation analysis
+        correlation_data = self.correlate_brain_learning_with_performance()
+        
         return {
             "total_learning_events": len(self.learning_events),
             "pattern_discoveries": len(self.pattern_discoveries),
@@ -276,13 +459,19 @@ class BrainEnhancedSurveyStats:
             "brain_intelligence_progression": {
                 "start": self.session_data.get("brain_intelligence_start", {}),
                 "end": self.session_data.get("brain_intelligence_end", {})
-            }
+            },
+            # 🚀 NEW Step 3 correlation metrics
+            "brain_learning_correlations": correlation_data,
+            "learning_effectiveness_score": correlation_data.get("overall_brain_learning_effectiveness", 0.0),
+            "strategy_optimization_events": len([e for e in self.learning_events if e.get("strategy_name")]),
+            "confidence_calibration_events": len([e for e in self.learning_events if e.get("event_type") == "confidence_calibration"]),
+            "pattern_learning_sessions": len([e for e in self.learning_events if e.get("session_type") == "pattern_learning"])
         }
     
     def print_brain_enhanced_summary(self):
-        """Print comprehensive brain-enhanced statistics summary."""
+        """Print comprehensive brain-enhanced statistics summary with Step 3 metrics."""
         print(f"\n🧠 ===============================================")
-        print(f"🧠 BRAIN-ENHANCED SURVEY STATISTICS SUMMARY")
+        print(f"🧠 BRAIN-ENHANCED SURVEY STATISTICS SUMMARY v2.1")
         print(f"🧠 ===============================================")
         
         # Core metrics
@@ -303,6 +492,15 @@ class BrainEnhancedSurveyStats:
         print(f"   Brain improvements: {len(self.brain_improvements)}")
         print(f"   Learning rate: {self.get_brain_learning_rate():.2f} events/question")
         
+        # 🚀 NEW Step 3 correlation metrics
+        correlation_data = self.correlate_brain_learning_with_performance()
+        print(f"\n🚀 BRAIN LEARNING CORRELATIONS (Step 3):")
+        print(f"   Learning effectiveness: {correlation_data['overall_brain_learning_effectiveness']:.1%}")
+        print(f"   Learning → Automation ratio: {correlation_data['learning_to_automation_ratio']:.2f}")
+        print(f"   Pattern discovery rate: {correlation_data['pattern_discovery_effectiveness']:.2f}")
+        print(f"   Strategy optimization success: {correlation_data['strategy_optimization_impact']:.1%}")
+        print(f"   Confidence calibration benefit: {correlation_data['confidence_calibration_benefit']:.1%}")
+        
         # Handler performance
         handler_summary = self.get_handler_performance_summary()
         if handler_summary:
@@ -317,6 +515,8 @@ class BrainEnhancedSurveyStats:
         print(f"\n🚀 BRAIN EVOLUTION:")
         print(f"   Automation improvement: +{evolution['automation_improvement']:.1f}%")
         print(f"   New patterns learned: {evolution['new_patterns_learned']}")
+        print(f"   Strategy optimization events: {evolution['strategy_optimization_events']}")
+        print(f"   Confidence calibration events: {evolution['confidence_calibration_events']}")
         
         brain_start = evolution['brain_intelligence_progression']['start']
         brain_end = evolution['brain_intelligence_progression']['end']
