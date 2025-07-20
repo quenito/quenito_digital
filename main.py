@@ -299,8 +299,8 @@ class QuentioMainInterface:
         print("=" * 50)
         
         try:
-            # Initialize automation components
-            intervention_manager = EnhancedLearningInterventionManager()
+            # Initialize automation components with brain connection
+            intervention_manager = EnhancedLearningInterventionManager(knowledge_base=self.brain)
             handler_factory = HandlerFactory(self.brain, intervention_manager)
             
             question_count = 0
@@ -332,8 +332,16 @@ class QuentioMainInterface:
                     print(f"\n📋 Question {question_count + 1}:")
                     print(f"   🧠 Handler: {handler.__class__.__name__}")
                     print(f"   🎯 Confidence: {confidence:.2f}")
-                    
-                    if confidence > 0.4:  # Automation threshold
+
+                    # Get dynamic threshold from brain
+                    try:
+                        dynamic_threshold = self.brain.data.get('validation_settings', {}).get('handler_confidence_thresholds', {}).get('demographics', 0.4)
+                        print(f"   🧠 Dynamic threshold: {dynamic_threshold}")
+                    except:
+                        dynamic_threshold = 0.4
+                        print(f"   ⚠️ Using fallback threshold: {dynamic_threshold}")
+
+                    if confidence > dynamic_threshold:  # Dynamic brain-connected threshold
                         print("   🤖 Automating...")
                         
                         # Set page for handler
@@ -436,17 +444,42 @@ class QuentioMainInterface:
             return False
     
     async def manual_learning_mode(self, page):
-        """Manual learning mode for training Quenito's brain."""
+        """Enhanced manual learning mode with proper brain integration."""
         
         print("\n🧠 MANUAL LEARNING MODE")
         print("=" * 30)
         print("🎯 Train Quenito's brain by manually answering questions")
         
         try:
-            content = await page.inner_text('body')
-            title = await page.title()
+            # Get current page info
+            try:
+                page_title = await page.title()
+                page_content = await page.inner_text('body')
+                print(f"📄 Current Page: {page_title}")
+            except Exception as e:
+                print(f"⚠️ Page analysis error: {e}")
+                page_content = ""
             
-            print(f"📄 Current Page: {title}")
+            # Analyze question type
+            content_lower = page_content.lower()
+            if 'gender' in content_lower or 'male' in content_lower:
+                question_type = "gender"
+                confidence = 0.85
+            elif 'occupation' in content_lower or 'job' in content_lower:
+                question_type = "occupation"
+                confidence = 0.80
+            elif 'age' in content_lower or 'old' in content_lower:
+                question_type = "age"
+                confidence = 0.90
+            elif 'income' in content_lower or 'salary' in content_lower:
+                question_type = "income"
+                confidence = 0.75
+            else:
+                question_type = "unknown"
+                confidence = 0.5
+            
+            print(f"🔍 Detected: {question_type} question (confidence: {confidence})")
+            
             print("\n🎯 Instructions:")
             print("1. Manually answer the current question in the browser")
             print("2. Click 'Next' to proceed")
@@ -454,11 +487,18 @@ class QuentioMainInterface:
             
             input("\n⏸️ Press Enter when completed...")
             
+            # Record manual intervention with proper parameters
             if self.stats:
-                self.stats.record_manual_intervention("learning_mode")
-            
-            print("✅ Learning recorded - Quenito's brain is smarter!")
-            
+                self.stats.record_manual_intervention(
+                    question_type=question_type,
+                    confidence=confidence,
+                    reason="Manual learning mode",
+                    duration_seconds=0.0
+                )
+                print("✅ Manual learning completed!")
+            else:
+                print("❌ No stats connection available")
+                
         except Exception as e:
             print(f"❌ Learning mode error: {e}")
     

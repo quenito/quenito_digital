@@ -12,32 +12,28 @@ class UnknownHandler(BaseQuestionHandler):
         """Unknown handler can theoretically handle anything, but with very low confidence"""
         return True  # Always can handle, but should be last resort
     
-    def handle(self) -> bool:
-        """Enhanced unknown question handling - prioritize manual intervention"""
-        print("❓ Handling unknown question type")
-        
-        page_content = self.page.inner_text('body')
-        content_lower = page_content.lower()
-        
-        # Only try automated approaches for very simple, safe cases
-        # This conservative approach prevents errors and provides learning data
-        
+    async def handle(self) -> bool:
+        """Fixed handle method with proper async/await."""
         try:
-            # Strategy 1: Try very safe default options
-            if self.try_safe_default_options(content_lower):
-                return True
+            print("❓ Handling unknown question type")
             
-            # Strategy 2: Try neutral/middle options for scales
-            if self.try_neutral_scale_options(content_lower):
-                return True
+            # FIX: Properly await page content
+            page_content = await self.page.inner_text('body')
             
-            # Strategy 3: Try common "don't know" options
-            if self.try_dont_know_options(content_lower):
-                return True
+            if not page_content:
+                print("❌ No page content available")
+                return False
             
-            # If no safe automation worked, request manual intervention
-            print("🔄 No safe automation pattern found - requesting manual intervention")
-            print("💡 This ensures data quality and provides learning opportunities")
+            # Request manual intervention
+            if self.intervention_manager:
+                self.intervention_manager.request_manual_intervention_with_learning(
+                    question_type="unknown",
+                    reason="Unknown question pattern", 
+                    page_content=page_content,
+                    confidence=1.0,
+                    page=self.page
+                )
+                return True
             return False
             
         except Exception as e:

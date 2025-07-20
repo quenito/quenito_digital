@@ -26,8 +26,11 @@ class EnhancedLearningInterventionManager(InterventionManager):
     UPDATED: Now includes enhanced answer capture and all missing methods.
     """
     
-    def __init__(self, signal_handler=None):
+    def __init__(self, signal_handler=None, knowledge_base=None):
         super().__init__()
+        
+        # 🧠 CRITICAL: Brain connection for learning data storage
+        self.brain = knowledge_base
         
         # 🛡️ Signal handler integration for enhanced protection
         self.signal_handler = signal_handler
@@ -42,16 +45,8 @@ class EnhancedLearningInterventionManager(InterventionManager):
             "handler_performance": {}
         }
         
-        # Ultra-conservative confidence thresholds (98-99%)
-        self.confidence_thresholds = {
-            "demographics": 0.98,        # 98% - highest confidence needed
-            "brand_familiarity": 0.98,   # 98% - matrix questions need precision
-            "rating_matrix": 0.99,       # 99% - complex interactions
-            "multi_select": 0.97,        # 97% - multiple selections
-            "trust_rating": 0.96,        # 96% - scaling questions
-            "research_required": 0.95,   # 95% - research complexity
-            "unknown": 0.99              # 99% - unknown patterns
-        }
+        # 🚀 DYNAMIC: Remove static thresholds - use brain's current thresholds instead!
+        # OLD: self.confidence_thresholds = { ... }  # This was static and never updated
         
         # Create learning data directory
         self.learning_data_dir = "learning_data"
@@ -67,7 +62,55 @@ class EnhancedLearningInterventionManager(InterventionManager):
         print("🛡️ Bulletproof protection ready")
         print("🎯 Brand Familiarity Supremacy ARMED AND READY!")
         print("📈 Expected automation boost: 21% → 60-70%!")
-    
+        
+        # 🧠 Brain connection status
+        if self.brain:
+            print("🧠 Brain connection: ACTIVE - Learning data will be stored")
+            print("🔄 Using DYNAMIC confidence thresholds from brain")
+        else:
+            print("⚠️ Brain connection: MISSING - Learning data won't be stored to brain")
+
+    def get_confidence_threshold(self, handler_type: str) -> float:
+        """
+        🧠 DYNAMIC: Get current confidence threshold from brain (auto-updates with learning)
+        """
+        if self.brain and hasattr(self.brain, 'data'):
+            # Get current thresholds from brain's knowledge base
+            validation_settings = self.brain.data.get('validation_settings', {})
+            thresholds = validation_settings.get('handler_confidence_thresholds', {})
+            
+            # Return current threshold (automatically updated by brain learning)
+            return thresholds.get(handler_type, 0.5)  # Default fallback
+        
+        # Fallback thresholds if no brain connection
+        fallback_thresholds = {
+            "demographics": 0.40,
+            "brand_familiarity": 0.70,
+            "rating_matrix": 0.80,
+            "multi_select": 0.75,
+            "trust_rating": 0.75,
+            "research_required": 0.70,
+            "unknown": 0.99
+        }
+        
+        return fallback_thresholds.get(handler_type, 0.5)
+
+    def should_trigger_intervention(self, handler_type: str, confidence: float) -> bool:
+        """
+        🎯 SMART: Check if intervention should trigger using current brain thresholds
+        """
+        current_threshold = self.get_confidence_threshold(handler_type)
+        
+        print(f"🧠 Current {handler_type} threshold: {current_threshold}")
+        print(f"📊 Question confidence: {confidence}")
+        
+        if confidence < current_threshold:
+            print(f"🔄 Triggering intervention: {confidence} < {current_threshold}")
+            return True
+        else:
+            print(f"✅ Confidence sufficient: {confidence} >= {current_threshold}")
+            return False
+        
     # =============================================================================
     # 🚀 MAIN ENTRY POINT - ENHANCED UNIVERSAL INTERVENTION FLOW
     # =============================================================================
@@ -977,6 +1020,66 @@ class EnhancedLearningInterventionManager(InterventionManager):
         finally:
             if self.signal_handler:
                 self.signal_handler.set_intervention_mode(False)
+
+    # 🔥 ADD THE NEW METHOD HERE 🔥
+def request_manual_intervention_with_learning(self, question_type: str, reason: str, 
+                                            page_content: str, confidence: float, page):
+    """Manual intervention with proper learning data capture."""
+    try:
+        print(f"\n🧠 MANUAL INTERVENTION WITH LEARNING")
+        print(f"📊 Question Type: {question_type}")
+        print(f"📊 Confidence: {confidence}")
+        print(f"❌ Reason: {reason}")
+        
+        # Detect element type
+        element_type = "unknown"
+        try:
+            if page.query_selector('input[type="radio"]'):
+                element_type = "radio"
+            elif page.query_selector('select'):
+                element_type = "dropdown"
+            elif page.query_selector('input[type="text"], input[type="number"]'):
+                element_type = "text"
+        except:
+            pass
+        
+        print(f"🔍 Element Type: {element_type}")
+        
+        print(f"\n🎯 MANUAL INTERVENTION INSTRUCTIONS:")
+        print(f"1. Complete the {question_type} question manually in the browser")
+        print(f"2. Click 'Next' or 'Continue' to proceed")
+        print(f"3. Press Enter here when done")
+        
+        # Get user response
+        if element_type == "radio":
+            answer = input("🔘 Which option did you select? (exact text): ").strip()
+        elif element_type == "text":
+            answer = input("📝 What text did you enter?: ").strip()
+        else:
+            answer = input("✅ What did you select/enter?: ").strip()
+        
+        # Wait for completion
+        input("⏸️ Press Enter AFTER completing and moving to next question: ")
+        
+        # Store learning data
+        learning_data = {
+            "timestamp": time.time(),
+            "question_type": question_type,
+            "confidence": confidence,
+            "user_response": answer,
+            "element_type": element_type
+        }
+        
+        # Store in intervention manager's learning session
+        self.learning_session_data["interventions"].append(learning_data)
+        
+        print(f"🧠 Learning data stored!")
+        
+        return True
+        
+    except Exception as e:
+        print(f"❌ Manual intervention error: {e}")
+        return False
 
     # =============================================================================
     # 🔧 SUPPORTING METHODS FROM YOUR ORIGINAL FILE + MISSING METHODS
