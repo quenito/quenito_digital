@@ -218,85 +218,20 @@ class DemographicsHandler(BaseHandler):
 
     # 🎯 MAIN HANDLER METHODS
     def can_handle(self, page_content: str) -> float:
-        """
-        🧠 Quenito's Brain-Enhanced confidence calculation.
-        Learns from every assessment to get smarter over time.
-        """
+        """🧠 Quenito's Brain-Enhanced confidence calculation with Phase 1 improvements"""
+        print("🧠 DEBUG: can_handle method CALLED!")
+        
         if not page_content:
             return 0.0
         
         try:
-            content_lower = page_content.lower()
-            
-            # 🧠 BRAIN-POWERED STEP 1: Check against learned patterns from Quenito's brain
-            brain_patterns = self.brain.get_question_pattern('demographics_questions')
-            
-            # STEP 1: Check for strong age question indicators (highest priority)
-            strong_age_patterns = [
-                'how old are you', 'what is your age', 'please enter your age',
-                'enter your age', 'your age:', 'age in years'
-            ]
-            
-            age_match = any(pattern in content_lower for pattern in strong_age_patterns)
-            if age_match:
-                confidence = 0.95
-                print(f"🧠 QUENITO'S BRAIN: Strong age question detected! Confidence: {confidence}")
-                self.last_confidence = confidence
-                self._teach_brain_success('age', content_lower, confidence)
-                
-                # 🔗 NEW: Record confidence to stats
-                self.record_confidence_to_stats(confidence)
-                
-                return confidence
-            
-            # STEP 2: Check for other demographic patterns
-            demographic_score = 0
-            total_patterns = len(self.question_patterns)
-            
-            for question_type, pattern in self.question_patterns.items():
-                keyword_matches = sum(1 for keyword in pattern['keywords'] if keyword in content_lower)
-                if keyword_matches > 0:
-                    # Weight score based on number of keyword matches
-                    pattern_score = min(keyword_matches / len(pattern['keywords']), 1.0)
-                    demographic_score += pattern_score
-                    print(f"🔍 {question_type}: {keyword_matches} matches, score: {pattern_score:.2f}")
-            
-            # STEP 3: Calculate final confidence
-            if demographic_score > 0:
-                base_confidence = min(demographic_score / total_patterns, 1.0)
-                
-                # Boost confidence for single demographic questions
-                if demographic_score >= 0.3:  # At least 30% of a pattern matched
-                    base_confidence = min(base_confidence + 0.2, 1.0)
-                
-                print(f"🧠 Quenito's demographics confidence: {base_confidence:.2f} (score: {demographic_score:.2f})")
-                self.last_confidence = base_confidence
-                self._teach_brain_confidence('demographics', content_lower, base_confidence)
-                
-                # 🔗 NEW: Record confidence to stats
-                self.record_confidence_to_stats(base_confidence)
-                
-                return base_confidence
-            
-            # STEP 4: Fallback check for simple demographic indicators
-            simple_indicators = ['age', 'gender', 'male', 'female', 'postcode', 'employment']
-            simple_matches = sum(1 for indicator in simple_indicators if indicator in content_lower)
-            
-            if simple_matches > 0:
-                fallback_confidence = min(simple_matches * 0.15, 0.6)  # Cap at 0.6
-                print(f"🔍 Fallback demographics confidence: {fallback_confidence:.2f}")
-                self.last_confidence = fallback_confidence
-                self._teach_brain_fallback('demographics', content_lower, fallback_confidence)
-                
-                # 🔗 NEW: Record confidence to stats
-                self.record_confidence_to_stats(fallback_confidence)
-                
-                return fallback_confidence
-            
-            return 0.0
+            # 🧠 NEW: Use enhanced confidence calculation  
+            enhanced_confidence = self._calculate_enhanced_confidence(page_content)
+            self.last_confidence = enhanced_confidence
+            return enhanced_confidence
             
         except Exception as e:
-            print(f"❌ Error in Quenito's brain confidence calculation: {e}")
+            print(f"❌ Error in enhanced confidence calculation: {e}")
             return 0.0
     
     async def handle(self) -> bool:
@@ -584,6 +519,198 @@ class DemographicsHandler(BaseHandler):
                 
         print(f"🔍 Best match: {best_match} (score: {best_score})")
         return best_match if best_score > 0 else None
+    
+    # Add these enhanced pattern detection methods to your demographics_handler_brain.py
+    def _enhanced_gender_detection(self, content_lower: str) -> float:
+        """🎯 Enhanced gender question detection with multiple patterns"""
+        gender_indicators = {
+            # Direct gender questions
+            "primary": ["gender", "sex", "male", "female", "non-binary", "gender identity"],
+            
+            # Form field patterns
+            "form_patterns": ["select your gender", "what is your gender", "gender:", "sex:"],
+            
+            # Option text patterns
+            "option_patterns": ["male female", "man woman", "prefer not to say", "other gender"],
+            
+            # Survey-specific patterns
+            "survey_patterns": ["demographic survey", "gender question", "gender selection"]
+        }
+        
+        score = 0.0
+        
+        # Check primary indicators (high weight)
+        for indicator in gender_indicators["primary"]:
+            if indicator in content_lower:
+                score += 0.3
+        
+        # Check form patterns (medium weight)
+        for pattern in gender_indicators["form_patterns"]:
+            if pattern in content_lower:
+                score += 0.25
+        
+        # Check option patterns (medium weight)
+        for pattern in gender_indicators["option_patterns"]:
+            if pattern in content_lower:
+                score += 0.2
+        
+        # Check survey patterns (low weight)
+        for pattern in gender_indicators["survey_patterns"]:
+            if pattern in content_lower:
+                score += 0.1
+        
+        # Bonus for radio button detection (gender questions are typically radio buttons)
+        if any(radio_indicator in content_lower for radio_indicator in ["male", "female", "radio", "select one"]):
+            score += 0.15
+        
+        # Cap the maximum score
+        return min(score, 0.95)
+
+    def _enhanced_occupation_detection(self, content_lower: str) -> float:
+        """🎯 Enhanced occupation question detection with multiple patterns"""
+        occupation_indicators = {
+            # Direct occupation questions
+            "primary": ["occupation", "job", "work", "profession", "career", "employment"],
+            
+            # Question patterns
+            "question_patterns": [
+                "what is your occupation", "what do you do for work", "your job title",
+                "what is your job", "employment status", "work situation", "profession"
+            ],
+            
+            # Form field patterns
+            "form_patterns": ["occupation:", "job:", "profession:", "work:", "employment:"],
+            
+            # Context patterns
+            "context_patterns": ["current job", "work experience", "professional role", "job description"]
+        }
+        
+        score = 0.0
+        
+        # Check primary indicators (high weight)
+        for indicator in occupation_indicators["primary"]:
+            if indicator in content_lower:
+                score += 0.3
+        
+        # Check question patterns (high weight)
+        for pattern in occupation_indicators["question_patterns"]:
+            if pattern in content_lower:
+                score += 0.35
+        
+        # Check form patterns (medium weight)
+        for pattern in occupation_indicators["form_patterns"]:
+            if pattern in content_lower:
+                score += 0.25
+        
+        # Check context patterns (low weight)
+        for pattern in occupation_indicators["context_patterns"]:
+            if pattern in content_lower:
+                score += 0.15
+        
+        # Bonus for text field detection (occupation questions are often text input)
+        if any(text_indicator in content_lower for text_indicator in ["text", "input", "type", "enter"]):
+            score += 0.1
+        
+        # Cap the maximum score
+        return min(score, 0.95)
+
+    def _calculate_enhanced_confidence(self, page_content: str) -> float:
+        """🧠 Enhanced confidence calculation using improved pattern detection"""
+        print("🧠 DEBUG: Enhanced confidence calculation CALLED!")
+        content_lower = page_content.lower()
+        
+        # Get individual question type scores
+        age_score = self._get_age_confidence(content_lower)
+        gender_score = self._enhanced_gender_detection(content_lower)
+        occupation_score = self._enhanced_occupation_detection(content_lower)
+        location_score = self._get_location_confidence(content_lower)
+        
+        # Determine best match
+        scores = {
+            "age": age_score,
+            "gender": gender_score,
+            "occupation": occupation_score,
+            "location": location_score
+        }
+        
+        best_score = max(scores.values())
+        best_type = max(scores, key=scores.get)
+        
+        # Store detected question type for strategy selection
+        if best_score > 0.3:  # Lowered threshold for better detection
+            self.detected_question_type = best_type
+            print(f"🎯 Enhanced detection: {best_type} (confidence: {best_score:.3f})")
+        
+        # Apply learning-based confidence adjustments if available
+        if hasattr(self, 'brain') and self.brain:
+            adjusted_confidence = self._apply_learning_confidence_adjustment(best_type, best_score)
+            if adjusted_confidence != best_score:
+                print(f"🧠 Confidence adjusted by learning: {best_score:.3f} → {adjusted_confidence:.3f}")
+                return adjusted_confidence
+        
+        return best_score
+
+    def _apply_learning_confidence_adjustment(self, question_type: str, base_confidence: float) -> float:
+        """🧠 Apply confidence adjustments based on intervention learning data"""
+        try:
+            if hasattr(self.brain, 'get_confidence_adjustment_suggestions'):
+                # Try to get element type from current page
+                element_type = "unknown"
+                if hasattr(self, 'page'):
+                    try:
+                        if self.page.query_selector('input[type="radio"]'):
+                            element_type = "radio_button"
+                        elif self.page.query_selector('select'):
+                            element_type = "dropdown"
+                        elif self.page.query_selector('input[type="text"]'):
+                            element_type = "text_field"
+                    except:
+                        pass
+                
+                # Get adjustment suggestion
+                suggested_threshold = self.brain.get_confidence_adjustment_suggestions(
+                    "demographics", question_type, element_type
+                )
+                
+                if suggested_threshold is not None:
+                    # If we have a learning-based adjustment, use it to boost confidence
+                    if base_confidence < suggested_threshold:
+                        adjusted = min(base_confidence + 0.2, 0.8)  # Boost but cap at 0.8
+                        return adjusted
+            
+            return base_confidence
+            
+        except Exception as e:
+            print(f"⚠️ Error applying learning adjustment: {e}")
+            return base_confidence
+
+    def _get_location_confidence(self, content_lower: str) -> float:
+        """🎯 Enhanced location detection"""
+        location_patterns = [
+            "postcode", "zip code", "address", "location", "state", "territory",
+            "where do you live", "your location", "postal code", "suburb", "city"
+        ]
+        
+        score = 0.0
+        for pattern in location_patterns:
+            if pattern in content_lower:
+                score += 0.3
+        
+        return min(score, 0.95)
+
+    def _get_age_confidence(self, content_lower: str) -> float:
+        """🎯 Enhanced age detection (existing method enhanced)"""
+        age_patterns = [
+            "age", "how old", "birth", "born", "year old", "age group",
+            "your age", "what is your age", "age range", "age bracket"
+        ]
+        
+        score = 0.0
+        for pattern in age_patterns:
+            if pattern in content_lower:
+                score += 0.4
+        
+        return min(score, 0.95)
 
     async def _detect_question_type(self, question_text: str) -> Optional[str]:
         """🧠 Detect question type using brain patterns"""

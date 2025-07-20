@@ -705,7 +705,236 @@ class KnowledgeBase:
         self.save()
         
         print(f"🧠 PERFORMANCE UPDATED: {handler_type} -> {perf['success_rate']:.1%} success, trending {perf['improvement_trend']}")
-    
+
+    # ========================================
+    # 🧠 NEW: PHASE 1 INTERVENTION LEARNING METHODS
+    # ========================================
+    #!/usr/bin/env python3
+    """
+    Enhanced Knowledge Base - Learning Data Integration
+    Adds comprehensive learning data storage and handler improvement capabilities.
+    🧠 Stores intervention learning data
+    🎯 Tracks handler improvement patterns  
+    📊 Updates confidence calibration
+    🔄 Enables pattern-based learning
+    """
+
+    def store_intervention_learning(self, learning_data: Dict[str, Any]):
+        """🧠 Store intervention learning data for handler improvement"""
+        try:
+            # Ensure intervention_learning section exists
+            if "intervention_learning" not in self.data:
+                self.data["intervention_learning"] = {
+                    "sessions": [],
+                    "question_patterns": {},
+                    "element_type_patterns": {},
+                    "confidence_failures": {},
+                    "improvement_suggestions": []
+                }
+            
+            # Store the intervention session
+            session_summary = {
+                "intervention_id": learning_data["intervention_id"],
+                "timestamp": learning_data["timestamp"],
+                "question_type": learning_data["question_analysis"]["question_type"],
+                "element_type": learning_data["question_analysis"]["element_type"],
+                "failed_confidence": learning_data["question_analysis"]["confidence_attempted"],
+                "user_answer": learning_data["user_response"]["answer_provided"],
+                "duration": learning_data["duration_seconds"]
+            }
+            
+            self.data["intervention_learning"]["sessions"].append(session_summary)
+            
+            # Update question patterns for improved detection
+            question_type = learning_data["question_analysis"]["question_type"]
+            if question_type not in self.data["intervention_learning"]["question_patterns"]:
+                self.data["intervention_learning"]["question_patterns"][question_type] = {
+                    "failed_attempts": [],
+                    "element_types_seen": {},
+                    "common_answers": [],
+                    "confidence_thresholds": []
+                }
+            
+            pattern_data = self.data["intervention_learning"]["question_patterns"][question_type]
+            pattern_data["failed_attempts"].append({
+                "confidence": learning_data["question_analysis"]["confidence_attempted"],
+                "reason": learning_data["question_analysis"]["failure_reason"],
+                "timestamp": learning_data["timestamp"]
+            })
+            
+            # Track element types for this question type
+            element_type = learning_data["question_analysis"]["element_type"]
+            if element_type not in pattern_data["element_types_seen"]:
+                pattern_data["element_types_seen"][element_type] = 0
+            pattern_data["element_types_seen"][element_type] += 1
+            
+            # Store user answer for pattern recognition
+            user_answer = learning_data["user_response"]["answer_provided"]
+            if user_answer not in pattern_data["common_answers"]:
+                pattern_data["common_answers"].append(user_answer)
+            
+            # Update confidence failure tracking
+            confidence = learning_data["question_analysis"]["confidence_attempted"]
+            if question_type not in self.data["intervention_learning"]["confidence_failures"]:
+                self.data["intervention_learning"]["confidence_failures"][question_type] = []
+            
+            self.data["intervention_learning"]["confidence_failures"][question_type].append(confidence)
+            
+            print(f"🧠 Intervention learning stored for {question_type}")
+            
+            # Auto-save after storing learning data
+            self.save()
+            
+        except Exception as e:
+            print(f"❌ Error storing intervention learning: {e}")
+
+    def store_handler_improvement_pattern(self, handler_name: str, improvement_pattern: Dict[str, Any]):
+        """🎯 Store handler improvement patterns for future automation enhancement"""
+        try:
+            # Ensure handler_improvements section exists
+            if "handler_improvements" not in self.data:
+                self.data["handler_improvements"] = {}
+            
+            if handler_name not in self.data["handler_improvements"]:
+                self.data["handler_improvements"][handler_name] = {
+                    "improvement_patterns": [],
+                    "confidence_adjustments": {},
+                    "suggested_enhancements": [],
+                    "learning_priority": "medium"
+                }
+            
+            # Store the improvement pattern
+            self.data["handler_improvements"][handler_name]["improvement_patterns"].append(improvement_pattern)
+            
+            # Analyze confidence adjustments needed
+            failed_confidence = improvement_pattern["failed_confidence"]
+            element_type = improvement_pattern["element_type"]
+            
+            # Suggest confidence adjustment
+            adjustment_key = f"{improvement_pattern['question_type']}_{element_type}"
+            if adjustment_key not in self.data["handler_improvements"][handler_name]["confidence_adjustments"]:
+                self.data["handler_improvements"][handler_name]["confidence_adjustments"][adjustment_key] = []
+            
+            self.data["handler_improvements"][handler_name]["confidence_adjustments"][adjustment_key].append({
+                "failed_at": failed_confidence,
+                "suggested_threshold": max(0.1, failed_confidence - 0.1),  # Lower threshold
+                "timestamp": improvement_pattern["learning_timestamp"]
+            })
+            
+            print(f"🎯 Handler improvement pattern stored for {handler_name}")
+            
+            # Auto-save
+            self.save()
+            
+        except Exception as e:
+            print(f"❌ Error storing handler improvement pattern: {e}")
+
+    def get_confidence_adjustment_suggestions(self, handler_name: str, question_type: str, element_type: str) -> float:
+        """📊 Get confidence adjustment suggestions based on learning data"""
+        try:
+            if "handler_improvements" not in self.data:
+                return None
+            
+            if handler_name not in self.data["handler_improvements"]:
+                return None
+            
+            adjustment_key = f"{question_type}_{element_type}"
+            adjustments = self.data["handler_improvements"][handler_name].get("confidence_adjustments", {})
+            
+            if adjustment_key in adjustments and adjustments[adjustment_key]:
+                # Get the most recent suggestion
+                recent_adjustment = adjustments[adjustment_key][-1]
+                suggested_threshold = recent_adjustment["suggested_threshold"]
+                
+                print(f"🧠 Confidence adjustment suggestion for {handler_name}: {suggested_threshold}")
+                return suggested_threshold
+            
+            return None
+            
+        except Exception as e:
+            print(f"❌ Error getting confidence adjustment: {e}")
+            return None
+
+    def get_intervention_insights(self, question_type: str = None) -> Dict[str, Any]:
+        """📊 Get insights from intervention learning data"""
+        try:
+            if "intervention_learning" not in self.data:
+                return {"insights": "No intervention data available"}
+            
+            insights = {
+                "total_interventions": len(self.data["intervention_learning"]["sessions"]),
+                "question_types_needing_help": {},
+                "common_element_types": {},
+                "confidence_failure_patterns": {}
+            }
+            
+            # Analyze sessions
+            for session in self.data["intervention_learning"]["sessions"]:
+                q_type = session["question_type"]
+                if q_type not in insights["question_types_needing_help"]:
+                    insights["question_types_needing_help"][q_type] = 0
+                insights["question_types_needing_help"][q_type] += 1
+                
+                # Track element types
+                element_type = session["element_type"]
+                if element_type not in insights["common_element_types"]:
+                    insights["common_element_types"][element_type] = 0
+                insights["common_element_types"][element_type] += 1
+            
+            # Confidence failure analysis
+            if "confidence_failures" in self.data["intervention_learning"]:
+                for q_type, failures in self.data["intervention_learning"]["confidence_failures"].items():
+                    if failures:
+                        insights["confidence_failure_patterns"][q_type] = {
+                            "average_failed_confidence": sum(failures) / len(failures),
+                            "lowest_failed_confidence": min(failures),
+                            "failure_count": len(failures)
+                        }
+            
+            return insights
+            
+        except Exception as e:
+            print(f"❌ Error getting intervention insights: {e}")
+            return {"error": str(e)}
+
+    def suggest_handler_improvements(self, handler_name: str) -> List[str]:
+        """💡 Generate improvement suggestions based on learning data"""
+        try:
+            suggestions = []
+            
+            if "handler_improvements" not in self.data or handler_name not in self.data["handler_improvements"]:
+                return ["No improvement data available for this handler"]
+            
+            improvements = self.data["handler_improvements"][handler_name]
+            
+            # Analyze confidence adjustments
+            if "confidence_adjustments" in improvements:
+                for pattern, adjustments in improvements["confidence_adjustments"].items():
+                    if adjustments:
+                        avg_failed = sum(adj["failed_at"] for adj in adjustments) / len(adjustments)
+                        suggestions.append(f"Lower confidence threshold for {pattern} - currently failing at {avg_failed:.2f}")
+            
+            # Analyze improvement patterns
+            if "improvement_patterns" in improvements:
+                element_types = {}
+                for pattern in improvements["improvement_patterns"]:
+                    et = pattern.get("element_type", "unknown")
+                    if et not in element_types:
+                        element_types[et] = 0
+                    element_types[et] += 1
+                
+                for element_type, count in element_types.items():
+                    if count > 1:
+                        suggestions.append(f"Improve {element_type} detection - failed {count} times")
+            
+            if not suggestions:
+                suggestions.append("Handler performing well - no specific improvements needed")
+            
+            return suggestions
+            
+        except Exception as e:
+            return [f"Error generating suggestions: {e}"]
+
     # ========================================
     # 🧠 USER DATA ACCESS METHODS
     # ========================================
