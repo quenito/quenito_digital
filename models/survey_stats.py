@@ -197,6 +197,57 @@ class BrainEnhancedSurveyStats:
         
         print(f"🧠 Learning opportunity recorded: {handler_type} - {reason}")
 
+    def record_manual_intervention(self, question_type: str, confidence: float, 
+                                reason: str, duration_seconds: float = 0.0):
+        """
+        Record detailed manual intervention with learning data capture.
+        Enhanced version that provides comprehensive learning data for brain training.
+        """
+        try:
+            intervention_data = {
+                "timestamp": time.time(),
+                "question_type": question_type,
+                "confidence": confidence,
+                "reason": reason,
+                "duration": duration_seconds,
+                "handler_type": "manual_intervention"
+            }
+            
+            # Store in internal tracking
+            if not hasattr(self, 'manual_interventions_list'):
+                self.manual_interventions_list = []
+            self.manual_interventions_list.append(intervention_data)
+            
+            # Update statistics using existing methods
+            self.increment_question_count()
+            self.increment_intervention_count(handler_type="manual", reason=reason)
+            
+            # Add detailed learning event for brain correlation
+            learning_event = {
+                "timestamp": time.time(),
+                "event_type": "detailed_manual_intervention",
+                "question_type": question_type,
+                "confidence": confidence,
+                "reason": reason,
+                "duration": duration_seconds,
+                "learning_value": "high",
+                "brain_training_opportunity": True
+            }
+            self.learning_events.append(learning_event)
+            
+            # Track as potential pattern discovery opportunity
+            if question_type not in [event.get('question_type') for event in self.learning_events[:-1]]:
+                self.record_pattern_discovery(question_type, {
+                    "discovery_method": "manual_intervention",
+                    "initial_confidence": confidence,
+                    "intervention_reason": reason
+                })
+            
+            print(f"📊 Manual intervention recorded: {question_type} (conf: {confidence:.2f})")
+            
+        except Exception as e:
+            print(f"❌ Error recording manual intervention: {e}")
+
     # 🚀 NEW STEP 3 METHODS - Brain Learning Correlation Tracking
     def record_automation_success(self, handler_type: str, confidence: float,
                                  question_type: str, strategy_used: str):
