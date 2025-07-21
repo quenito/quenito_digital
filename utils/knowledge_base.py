@@ -383,7 +383,7 @@ class KnowledgeBase:
             self.data['brain_learning']['confidence_calibration'][question_type] = {
                 'predictions': [],
                 'success_rate_by_confidence': {},
-                'optimal_threshold': 0.4,
+                'optimal_threshold': 0.3,
                 'total_predictions': 0,
                 'successful_predictions': 0
             }
@@ -414,21 +414,53 @@ class KnowledgeBase:
 
     async def _recalibrate_optimal_threshold(self, question_type: str):
         """Recalibrate optimal confidence threshold for question type"""
-        cal_data = self.data['brain_learning']['confidence_calibration'][question_type]
-        
-        if len(cal_data['predictions']) >= 3:  # Need minimum data points
-            # Find the lowest confidence that still achieves high success rate
-            confidence_buckets = cal_data['success_rate_by_confidence']
+        try:
+            cal_data = self.data['brain_learning']['confidence_calibration'][question_type]
             
-            for confidence_level in sorted(confidence_buckets.keys()):
-                bucket = confidence_buckets[confidence_level]
-                success_rate = bucket['successes'] / bucket['total']
+            if len(cal_data['predictions']) >= 3:  # Need minimum data points
+                # Find the lowest confidence that still achieves high success rate
+                confidence_buckets = cal_data['success_rate_by_confidence']
                 
-                # If this confidence level has good success rate, it could be our threshold
-                if success_rate >= 0.8 and bucket['total'] >= 2:  # At least 80% success with 2+ attempts
-                    cal_data['optimal_threshold'] = max(0.2, confidence_level - 0.1)  # Slightly below the working level
-                    print(f"🎯 OPTIMAL THRESHOLD UPDATED: {question_type} → {cal_data['optimal_threshold']:.2f}")
-                    break
+                # ✅ FIX: Convert all keys to floats before sorting to handle mixed types
+                try:
+                    sorted_confidence_levels = sorted([float(k) for k in confidence_buckets.keys()])
+                except (ValueError, TypeError):
+                    # Fallback: use original keys but handle mixed types safely
+                    sorted_confidence_levels = []
+                    for k in confidence_buckets.keys():
+                        try:
+                            sorted_confidence_levels.append(float(k))
+                        except (ValueError, TypeError):
+                            continue
+                    sorted_confidence_levels.sort()
+                
+                # ✅ COMPLETE the for loop with proper logic
+                for confidence_level in sorted_confidence_levels:
+                    bucket = confidence_buckets[confidence_level]
+                    
+                    # Calculate success rate for this confidence level
+                    if bucket['total'] > 0:
+                        success_rate = bucket['successes'] / bucket['total']
+                        
+                        # If this confidence level has good success rate, it could be our threshold
+                        if success_rate >= 0.8 and bucket['total'] >= 2:  # At least 80% success with 2+ attempts
+                            # Set threshold slightly below the working level
+                            cal_data['optimal_threshold'] = max(0.2, confidence_level - 0.1)
+                            print(f"🎯 THRESHOLD UPDATED: {question_type} → {cal_data['optimal_threshold']:.2f} (based on {confidence_level:.1f} success)")
+                            break
+                else:
+                    # If no good threshold found, use conservative default
+                    cal_data['optimal_threshold'] = 0.3
+                    print(f"🎯 THRESHOLD DEFAULT: {question_type} → 0.3 (insufficient data)")
+                    
+            print(f"🧠 CONFIDENCE RECALIBRATED: {question_type}")
+            
+        except Exception as e:
+            print(f"❌ Error in _recalibrate_optimal_threshold: {e}")
+            # Set safe default on error
+            if 'brain_learning' in self.data and 'confidence_calibration' in self.data['brain_learning']:
+                if question_type in self.data['brain_learning']['confidence_calibration']:
+                    self.data['brain_learning']['confidence_calibration'][question_type]['optimal_threshold'] = 0.3
 
     def _generate_pattern_key(self, question_text: str) -> str:
         """Generate a key for storing question patterns"""
@@ -565,7 +597,7 @@ class KnowledgeBase:
             self.data['brain_learning']['confidence_calibration'][calibration_key] = {
                 "predictions": [],
                 "accuracy_rate": 0.0,
-                "recommended_threshold": 0.4
+                "recommended_threshold": 0.3
             }
         
         # Add new prediction result
@@ -597,14 +629,14 @@ class KnowledgeBase:
         
         # Fallback to default thresholds
         defaults = {
-            "demographics": 0.4,
+            "demographics": 0.3,
             "brand_familiarity": 0.5,
             "rating_matrix": 0.6,
-            "multi_select": 0.4,
+            "multi_select": 0.3,
             "research": 0.3
         }
         
-        return defaults.get(handler_type, 0.4)
+        return defaults.get(handler_type, 0.3)
     
     def add_discovered_question_pattern(self, question_text: str, question_type: str, 
                                       keywords_found: List[str], successful_response: str):
@@ -934,6 +966,7 @@ class KnowledgeBase:
             
         except Exception as e:
             return [f"Error generating suggestions: {e}"]
+
 
     # ========================================
     # 🧠 USER DATA ACCESS METHODS
@@ -1459,7 +1492,7 @@ class KnowledgeBase:
             for handler_pattern, cal_data in calibrations.items():
                 if isinstance(cal_data, dict):
                     accuracy = cal_data.get('accuracy_rate', 0) * 100
-                    threshold = cal_data.get('recommended_threshold', 0.4)
+                    threshold = cal_data.get('recommended_threshold', 0.3)
                     predictions = len(cal_data.get('predictions', []))
                     print(f"   {handler_pattern}: {accuracy:.1f}% accuracy, "
                           f"threshold: {threshold:.2f}, {predictions} predictions")

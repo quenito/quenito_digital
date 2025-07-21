@@ -320,8 +320,8 @@ class QuentioMainInterface:
                         print("🎉 Survey completed successfully!")
                         break
                     
-                    # Get best handler
-                    handler, handler_name, confidence = handler_factory.get_best_handler(page, content)
+                    # Get best handler with async support
+                    handler, confidence = await handler_factory.select_handler(content, page)
                     
                     # Update statistics
                     self.stats.increment_question_count(
@@ -335,10 +335,10 @@ class QuentioMainInterface:
 
                     # Get dynamic threshold from brain
                     try:
-                        dynamic_threshold = self.brain.data.get('validation_settings', {}).get('handler_confidence_thresholds', {}).get('demographics', 0.4)
+                        dynamic_threshold = self.brain.data.get('validation_settings', {}).get('handler_confidence_thresholds', {}).get('demographics', 0.30)
                         print(f"   🧠 Dynamic threshold: {dynamic_threshold}")
                     except:
-                        dynamic_threshold = 0.4
+                        dynamic_threshold = 0.30
                         print(f"   ⚠️ Using fallback threshold: {dynamic_threshold}")
 
                     if confidence > dynamic_threshold:  # Dynamic brain-connected threshold

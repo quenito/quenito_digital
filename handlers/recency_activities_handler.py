@@ -45,3 +45,15 @@ class RecencyActivitiesHandler(BaseQuestionHandler):
         return self.request_intervention(
             "RecencyActivitiesHandler not yet fully implemented - manual completion recommended"
         )
+
+    def check_keywords_in_content(self, content: str, keywords: list) -> float:
+        """Basic keyword checking method for handlers missing this functionality"""
+        if not content or not keywords:
+            return 0.0
+        
+        content_lower = content.lower()
+        matches = sum(1 for keyword in keywords if keyword.lower() in content_lower)
+        confidence = min(matches / len(keywords), 1.0) if keywords else 0.0
+        
+        print(f"🔍 Keyword check: {matches}/{len(keywords)} matches = {confidence:.3f} confidence")
+        return confidence
