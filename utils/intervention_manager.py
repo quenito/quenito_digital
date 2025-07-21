@@ -64,7 +64,11 @@ class EnhancedLearningInterventionManager(InterventionManager):
         print("🎯 Brand Familiarity Supremacy ARMED AND READY!")
         print("📈 Expected automation boost: 21% → 60-70%!")
 
-    def request_manual_intervention_with_learning(self, question_type: str, reason: str, 
+    # =============================================================================
+    # 🧠 CORE LEARNING INTERVENTION METHODS - PROPERLY ORGANIZED
+    # =============================================================================
+
+    async def request_manual_intervention_with_learning(self, question_type: str, reason: str, 
                                                 page_content: str, confidence: float, page) -> bool:
         """
         🧠 FIXED METHOD: Manual intervention with complete learning data capture.
@@ -79,140 +83,196 @@ class EnhancedLearningInterventionManager(InterventionManager):
             self.protection_active = True
         
         try:
-            print(f"\n🧠 MANUAL INTERVENTION WITH LEARNING")
-            print(f"📊 Question Type: {question_type}")
-            print(f"📊 Confidence: {confidence:.3f}")
-            print(f"❌ Reason: {reason}")
-            print(f"🆔 Intervention ID: {intervention_id}")
+            print(f"\n📝 MANUAL INTERVENTION REQUIRED")
+            print("========================================")
+            print(f"🧠 Quenito will learn from your action!")
+            print(f"📋 Question Preview: {page_content[:200]}...")
             
-            # 📸 STEP 1: Capture BEFORE state (page screenshot + data)
-            before_data = self._capture_complete_page_state(page, question_type, reason)
-            screenshot_before = self._take_screenshot(page, f"{intervention_id}_before")
+            # 📸 STEP 1: Take BEFORE screenshot
+            screenshot_before = await self._take_screenshot_async(page, f"{intervention_id}_before")
             
-            # 🔍 STEP 2: Detect element type for better learning
-            element_type = self._detect_element_type(page)
+            # 🔍 STEP 2: Detect element type
+            element_type = await self._detect_element_type_async(page)
             question_text = self._extract_question_text(page_content)
             
-            print(f"🔍 Element Type Detected: {element_type}")
-            print(f"📝 Question Text: {question_text[:100]}...")
-            
             # 🎯 STEP 3: Guide user through manual completion
-            print(f"\n📋 Question Preview: {page_content[:200]}...")
+            print(f"\n🎯 Manual Action Options:")
+            print(f"   1. Complete manually and continue")
+            print(f"   2. Skip this question") 
+            print(f"   3. Stop automation")
             
-            print(f"\n🎯 MANUAL INTERVENTION INSTRUCTIONS:")
-            print(f"1. Complete the {question_type} question manually in the browser")
-            print(f"2. Click 'Next' or 'Continue' to proceed to next question")
-            print(f"3. Wait for the page to load completely")
-            print(f"4. Then provide your answer details below")
+            choice = input("Select option: ").strip()
             
-            # Get user response based on element type
-            answer_provided = self._get_user_response_by_element_type(element_type)
-            
-            # Wait for completion
-            print("\n⏸️ Press Enter AFTER completing and moving to next question: ")
-            try:
-                input()
-            except KeyboardInterrupt:
-                print("🛡️ Ctrl+C protection active - continuing safely...")
-                answer_provided = "Manual completion - details protected"
-            
-            # 📸 STEP 4: Capture AFTER state (confirmation screenshot + data)
-            after_data = self._capture_complete_page_state(page, f"{question_type}_completed", "intervention_success")
-            screenshot_after = self._take_screenshot(page, f"{intervention_id}_after")
-            
-            # 🧠 STEP 5: Build comprehensive learning data
-            comprehensive_learning_data = {
-                "intervention_id": intervention_id,
-                "session_id": self.learning_session_data["session_id"],
-                "timestamp": intervention_start_time,
-                "duration_seconds": time.time() - intervention_start_time,
+            if choice == "1":
+                print(f"\n✋ Please complete the question manually, then press Enter to continue...")
+                input()  # Wait for user to complete
                 
-                # Question Analysis
-                "question_analysis": {
+                # 📸 STEP 4: Take AFTER screenshot
+                screenshot_after = await self._take_screenshot_async(page, f"{intervention_id}_after")
+                
+                # 📝 STEP 5: Capture what the user did
+                answer_provided = self._get_user_response_safely(element_type)
+                
+                # 🧠 STEP 6: Create comprehensive learning data
+                learning_data = {
+                    "timestamp": time.time(),
+                    "intervention_id": intervention_id,
                     "question_type": question_type,
                     "question_text": question_text,
-                    "confidence_attempted": confidence,
-                    "failure_reason": reason,
-                    "element_type": element_type
-                },
-                
-                # User Response Data
-                "user_response": {
-                    "answer_provided": answer_provided,
-                    "completion_method": "manual_intervention",
-                    "element_interaction": element_type
-                },
-                
-                # Page State Capture
-                "page_states": {
-                    "before_intervention": before_data,
-                    "after_intervention": after_data
-                },
-                
-                # Visual Learning Data
-                "screenshots": {
-                    "before": screenshot_before,
-                    "after": screenshot_after
-                },
-                
-                # Learning Classification
-                "learning_tags": {
+                    "element_type": element_type,
+                    "confidence_score": confidence,
+                    "user_response": answer_provided,
+                    "execution_time": time.time() - intervention_start_time,
+                    "result": "MANUAL_SUCCESS",
                     "automation_failed": True,
-                    "manual_success": True,
                     "learning_opportunity": True,
-                    "handler_improvement_needed": question_type
+                    "screenshots": {
+                        "before": screenshot_before,
+                        "after": screenshot_after
+                    }
                 }
-            }
-            
-            # 🧠 STEP 6: Store learning data in brain and session
-            self._store_comprehensive_learning_data(comprehensive_learning_data)
-            
-            # 🧠 STEP 7: Update handler confidence patterns for future improvement
-            self._update_handler_learning_patterns(question_type, confidence, element_type, answer_provided)
-            
-            print("✅ COMPREHENSIVE LEARNING DATA CAPTURED!")
-            print(f"📸 Screenshots saved: {screenshot_before}, {screenshot_after}")
-            print(f"🧠 Learning data stored for {question_type} improvement")
-            print(f"⏱️ Total intervention time: {time.time() - intervention_start_time:.1f}s")
-            
-            return True
-            
+                
+                # 🧠 STEP 7: Save learning data to JSON file
+                self._save_learning_data_to_file(learning_data)
+                
+                # 🧠 STEP 8: Store in brain
+                if self.brain:
+                    await self._store_intervention_learning_in_brain(learning_data)
+                
+                print("🧠 Learning captured - Quenito's brain updated!")
+                return True
+                
+            elif choice == "2":
+                print("⏭️ Question skipped")
+                return False
+                
+            else:
+                print("🛑 Automation stopped")
+                return False
+                
         except Exception as e:
-            print(f"❌ Error during manual intervention: {e}")
+            print(f"❌ Error in manual intervention: {e}")
             return False
-        
+            
         finally:
-            # 🛡️ DEACTIVATE PROTECTION
             if self.signal_handler:
                 self.signal_handler.set_intervention_mode(False)
                 self.protection_active = False
 
-    def _detect_element_type(self, page) -> str:
-        """🔍 Detect the input element type for better learning classification"""
+    async def _take_screenshot_async(self, page, filename_prefix: str) -> str:
+        """📸 FIXED: Take screenshot asynchronously"""
+        try:
+            timestamp = int(time.time())
+            screenshot_filename = f"{filename_prefix}_{timestamp}.png"
+            screenshot_path = os.path.join(self.screenshots_dir, screenshot_filename)
+            
+            # Take screenshot (await the async method)
+            await page.screenshot(path=screenshot_path, full_page=True)
+            
+            print(f"📸 Screenshot saved: {screenshot_filename}")
+            return screenshot_filename
+            
+        except Exception as e:
+            print(f"⚠️ Screenshot failed: {e}")
+            return f"screenshot_failed_{filename_prefix}"
+
+    async def _detect_element_type_async(self, page) -> str:
+        """🔍 FIXED: Detect element type asynchronously"""
         try:
             # Check for different input types
-            if page.query_selector('input[type="radio"]'):
-                return "radio_button"
-            elif page.query_selector('input[type="checkbox"]'):
+            if await page.query_selector('input[type="radio"]'):
+                radios = await page.query_selector_all('input[type="radio"]')
+                if len(radios) > 1:
+                    return "radio_buttons"
+            
+            if await page.query_selector('input[type="checkbox"]'):
                 return "checkbox"
-            elif page.query_selector('select'):
-                return "dropdown"
-            elif page.query_selector('input[type="text"]'):
-                return "text_field"
-            elif page.query_selector('input[type="number"]'):
-                return "number_field"
-            elif page.query_selector('textarea'):
-                return "textarea"
-            elif page.query_selector('input[type="range"]'):
-                return "slider"
-            elif page.query_selector('button'):
-                return "button_selection"
-            else:
-                return "unknown_element"
                 
+            if await page.query_selector('select'):
+                return "dropdown"
+                
+            if await page.query_selector('input[type="text"]'):
+                return "text_field"
+                
+            if await page.query_selector('input[type="number"]'):
+                return "number_field"
+                
+            if await page.query_selector('textarea'):
+                return "textarea"
+                
+            return "unknown"
+            
         except Exception as e:
             print(f"⚠️ Error detecting element type: {e}")
-            return "detection_failed"
+            return "unknown"
+
+    # =============================================================================
+    # 🆕 NEW REQUIRED METHODS - ADDED FOR COMPLETE FUNCTIONALITY
+    # =============================================================================
+
+    def _save_learning_data_to_file(self, learning_data: dict):
+        """💾 FIXED: Save learning data to JSON file"""
+        try:
+            timestamp = int(time.time())
+            filename = f"learning_data_{timestamp}.json"
+            filepath = os.path.join(self.learning_data_dir, filename)
+            
+            with open(filepath, 'w') as f:
+                json.dump(learning_data, f, indent=2)
+            
+            print(f"💾 Learning data saved: {filename}")
+            
+        except Exception as e:
+            print(f"❌ Error saving learning data: {e}")
+
+    async def _store_intervention_learning_in_brain(self, learning_data: dict):
+        """🧠 FIXED: Store intervention learning in brain"""
+        try:
+            if self.brain:
+                # Store intervention learning
+                success = await self.brain.store_intervention_learning(
+                    intervention_id=learning_data.get('intervention_id'),
+                    question_type=learning_data.get('question_type'),
+                    element_type=learning_data.get('element_type'),
+                    user_response=learning_data.get('user_response'),
+                    confidence_before=learning_data.get('confidence_score', 0.0),
+                    success=True,
+                    failure_reason="automation_failed"
+                )
+                
+                if success:
+                    print("🧠 Learning data stored in brain!")
+                else:
+                    print("⚠️ Failed to store learning data in brain")
+                    
+        except Exception as e:
+            print(f"❌ Error storing learning in brain: {e}")
+
+    def _get_user_response_safely(self, element_type: str) -> str:
+        """📝 FIXED: Safely get user response without breaking on Ctrl+C"""
+        try:
+            if element_type == "radio_buttons":
+                return input("🔘 Which radio option did you select? ").strip()
+            elif element_type == "checkbox":
+                return input("☑️ Which checkbox options did you select? (comma separated): ").strip()
+            elif element_type == "dropdown":
+                return input("📋 What option did you select from the dropdown?: ").strip()
+            elif element_type in ["text_field", "textarea"]:
+                return input("📝 What text did you enter?: ").strip()
+            elif element_type == "number_field":
+                return input("🔢 What number did you enter?: ").strip()
+            else:
+                return input("✅ What action did you take? (describe): ").strip()
+                
+        except KeyboardInterrupt:
+            print("\n🛡️ Ctrl+C protection - using safe fallback")
+            return f"Manual {element_type} completion - details protected"
+        except Exception as e:
+            return f"Response capture failed: {e}"
+
+    # =============================================================================
+    # 🔧 HELPER METHODS - SUPPORTING FUNCTIONALITY
+    # =============================================================================
 
     def _extract_question_text(self, page_content: str) -> str:
         """📝 Extract the actual question text from page content"""
@@ -261,23 +321,6 @@ class EnhancedLearningInterventionManager(InterventionManager):
             return f"Manual {element_type} completion - details protected"
         except Exception as e:
             return f"Response capture failed: {e}"
-
-    def _take_screenshot(self, page, filename_prefix: str) -> str:
-        """📸 Take screenshot for visual learning data"""
-        try:
-            timestamp = int(time.time())
-            screenshot_filename = f"{filename_prefix}_{timestamp}.png"
-            screenshot_path = os.path.join(self.screenshots_dir, screenshot_filename)
-            
-            # Take screenshot
-            page.screenshot(path=screenshot_path, full_page=True)
-            
-            print(f"📸 Screenshot saved: {screenshot_filename}")
-            return screenshot_filename
-            
-        except Exception as e:
-            print(f"⚠️ Screenshot failed: {e}")
-            return f"screenshot_failed_{filename_prefix}"
 
     def _capture_complete_page_state(self, page, question_type: str, reason: str) -> Dict[str, Any]:
         """📊 Capture comprehensive page state for learning analysis"""
