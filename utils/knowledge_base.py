@@ -96,118 +96,158 @@ class KnowledgeBase:
             brain_data = self.data.get('brain_learning', {})
             success_patterns = len(brain_data.get('success_patterns', {}))
             handler_performance = len(brain_data.get('handler_performance', {}))
-            strategy_preferences = len(brain_data.get('strategy_preferences', {}))
-            
+
+            # 🔧 FIXED: Check both locations for strategy preferences
+            strategy_preferences_brain = len(brain_data.get('strategy_preferences', {}))
+            strategy_preferences_root = len(self.data.get('strategy_preferences', {}))
+            strategy_preferences = max(strategy_preferences_brain, strategy_preferences_root)
+
             print(f"🧠 Brain Status After Save: {success_patterns} patterns, {handler_performance} handlers, {strategy_preferences} strategy preferences")
             
             return True
         except Exception as e:
             print(f"❌ Error saving knowledge base: {e}")
             return False
-    
+
+    async def save_knowledge_base(self) -> bool:
+        """💾 FIXED: Async wrapper for existing save method"""
+        try:
+            return self.save()  # FIXED: Removed 'await' since save() is not async
+        except Exception as e:
+            print(f"❌ Error in async save wrapper: {e}")
+            return False
+
     # ========================================
     # 🧠 NEW: AUTOMATION SUCCESS LEARNING METHODS
     # ========================================
     
-    async def learn_successful_automation(self, learning_data: Dict[str, Any]) -> bool:
-        """🧠 Learn from successful automation and SAVE to disk"""
+    async def learn_successful_automation(self, learning_data: dict) -> bool:
+        """🧠 FIXED: Learn from successful automation with proper data structure"""
         try:
-            print(f"🧠 LEARNING FROM AUTOMATION SUCCESS: {learning_data.get('question_type')} using {learning_data.get('strategy_used')}")
-            
-            # Ensure brain learning structure exists
+            # Create learning session entry
             if 'brain_learning' not in self.data:
                 self.data['brain_learning'] = {}
             
-            # Initialize sub-structures if missing
-            required_structures = ['handler_performance', 'success_patterns', 'strategy_preferences', 'confidence_calibration', 'learning_history']
-            for structure in required_structures:
-                if structure not in self.data['brain_learning']:
-                    self.data['brain_learning'][structure] = {}
+            if 'last_session' not in self.data['brain_learning']:
+                self.data['brain_learning']['last_session'] = {
+                    'learning_events': [],
+                    'session_id': f'session_{int(time.time())}',
+                    'start_time': time.time()
+                }
             
-            # Store in learning history
-            if 'learning_history' not in self.data['brain_learning']:
-                self.data['brain_learning']['learning_history'] = []
-            self.data['brain_learning']['learning_history'].append(learning_data)
+            # Add learning event to current session
+            learning_event = {
+                'timestamp': learning_data.get('timestamp', time.time()),
+                'session_id': learning_data.get('session_id', 'unknown'),
+                'question_type': learning_data.get('question_type', 'unknown'),
+                'question_text': learning_data.get('question_text', ''),
+                'strategy_used': learning_data.get('strategy_used', ''),
+                'execution_time': learning_data.get('execution_time', 0.0),
+                'confidence_score': learning_data.get('confidence_score', 0.0),  # FIXED: Use confidence_score
+                'response_value': learning_data.get('response_value', ''),
+                'result': learning_data.get('result', 'SUCCESS'),
+                'element_type': learning_data.get('element_type', 'unknown'),
+                'automation_success': learning_data.get('automation_success', True)
+            }
             
-            # Update handler performance
-            await self._update_handler_performance_detailed(learning_data)
+            # Add to session events
+            self.data['brain_learning']['last_session']['learning_events'].append(learning_event)
             
-            # Store success pattern
-            await self._store_success_pattern_detailed(learning_data)
+            # Store successful strategy
+            question_type = learning_data.get('question_type', 'unknown')
+            strategy = learning_data.get('strategy_used', '')
             
-            # Update strategy preferences
-            await self._update_strategy_preferences_detailed(learning_data)
-            
-            # Update confidence calibration
-            await self._update_confidence_calibration_detailed(learning_data)
-            
-            # Add to current session
-            self.learning_session['learning_events'].append({
-                'type': 'automation_success',
-                'data': learning_data,
-                'timestamp': time.time()
-            })
-            
-            # 🔧 CRITICAL FIX: SAVE TO DISK
-            save_success = self.save()
-            
-            if save_success:
-                print(f"🧠 ✅ LEARNING SAVED: {learning_data['question_type']} using {learning_data['strategy_used']}")
-                return True
-            else:
-                print(f"❌ Failed to save learning data to disk")
-                return False
+            if strategy and question_type != 'unknown':
+                if 'strategy_preferences' not in self.data:
+                    self.data['strategy_preferences'] = {}
                 
+                if question_type not in self.data['strategy_preferences']:
+                    self.data['strategy_preferences'][question_type] = {
+                        'name': strategy,
+                        'success_count': 0,
+                        'total_attempts': 0
+                    }
+                
+                # Update strategy stats
+                self.data['strategy_preferences'][question_type]['success_count'] += 1
+                self.data['strategy_preferences'][question_type]['total_attempts'] += 1
+                
+                success_rate = self.data['strategy_preferences'][question_type]['success_count'] / \
+                            self.data['strategy_preferences'][question_type]['total_attempts']
+                
+                print(f"🧠 STRATEGY LEARNED: {question_type} → {strategy} ({success_rate:.1%} success)")
+            
+            # Save to knowledge base
+            await self.save_knowledge_base()
+            
+            return True
+            
         except Exception as e:
             print(f"❌ Error in learn_successful_automation: {e}")
+            import traceback
+            traceback.print_exc()
             return False
 
-    async def learn_from_failure(self, learning_data: Dict[str, Any]) -> bool:
-        """🧠 Learn from automation failure"""
+    async def learn_from_failure(self, learning_data: dict) -> bool:
+        """🧠 FIXED: Learn from automation failure"""
         try:
-            print(f"🧠 LEARNING FROM AUTOMATION FAILURE: {learning_data.get('question_type')} - {learning_data.get('error_message')}")
-            
-            # Ensure brain learning structure exists
+            # Add failure event to brain learning
             if 'brain_learning' not in self.data:
                 self.data['brain_learning'] = {}
-            if 'failure_analysis' not in self.data['brain_learning']:
-                self.data['brain_learning']['failure_analysis'] = []
             
-            # Store failure data for analysis
-            self.data['brain_learning']['failure_analysis'].append(learning_data)
+            if 'last_session' not in self.data['brain_learning']:
+                self.data['brain_learning']['last_session'] = {
+                    'learning_events': [],
+                    'session_id': f'session_{int(time.time())}',
+                    'start_time': time.time()
+                }
             
-            # Update handler performance (failure case)
-            if learning_data.get('question_type'):
-                await self._update_handler_performance_failure(learning_data)
+            # Add failure event
+            failure_event = {
+                'timestamp': learning_data.get('timestamp', time.time()),
+                'question_type': learning_data.get('question_type', 'unknown'),
+                'error_message': learning_data.get('error_message', ''),
+                'confidence_score': learning_data.get('confidence_score', 0.0),
+                'result': 'FAILURE',
+                'automation_success': False
+            }
             
-            # Add to current session
-            self.learning_session['learning_events'].append({
-                'type': 'automation_failure',
-                'data': learning_data,
-                'timestamp': time.time()
-            })
+            self.data['brain_learning']['last_session']['learning_events'].append(failure_event)
             
-            # Save the failure learning
-            save_success = self.save()
+            print(f"🧠 FAILURE LEARNED: {learning_data.get('question_type')} - {learning_data.get('error_message')}")
             
-            if save_success:
-                print(f"🧠 ✅ FAILURE LEARNED: {learning_data.get('question_type')}")
-                return True
-            else:
-                print(f"❌ Failed to save failure learning data")
-                return False
-                
+            # Save to knowledge base
+            await self.save_knowledge_base()
+            
+            return True
+            
         except Exception as e:
-            print(f"❌ Error in learn_from_failure: {e}")
+            print(f"❌ Error learning from failure: {e}")
             return False
 
     async def get_preferred_strategy(self, question_type: str, element_type: str = None) -> Optional[Dict[str, Any]]:
-        """🧠 Get learned preferred strategy for question type"""
+        """🧠 FIXED: Get learned preferred strategy for question type"""
         try:
-            strategy_prefs = self.data.get('brain_learning', {}).get('strategy_preferences', {})
+            # 🔧 FIXED: Check BOTH locations for strategy preferences
+            strategy_prefs_brain = self.data.get('brain_learning', {}).get('strategy_preferences', {})
+            strategy_prefs_root = self.data.get('strategy_preferences', {})
             
-            if question_type in strategy_prefs:
-                pref = strategy_prefs[question_type]
+            # Use root level preferences first (where current strategies are stored)
+            if question_type in strategy_prefs_root:
+                pref = strategy_prefs_root[question_type]
+                strategy_info = {
+                    'name': pref['name'],
+                    'success_rate': (pref.get('success_count', 0) / max(pref.get('total_attempts', 1), 1)),
+                    'success_count': pref.get('success_count', 0),
+                    'total_attempts': pref.get('total_attempts', 0)
+                }
+                
+                print(f"🧠 STRATEGY RECALLED: {question_type} → {strategy_info['name']} (success rate: {strategy_info['success_rate']:.1%})")
+                return strategy_info
+            
+            # Fallback to brain_learning location
+            elif question_type in strategy_prefs_brain:
+                pref = strategy_prefs_brain[question_type]
                 strategy_info = {
                     'name': pref['preferred_strategy'],
                     'success_rate': pref.get('success_rate', 0.0),
@@ -861,31 +901,41 @@ class KnowledgeBase:
         except Exception as e:
             print(f"❌ Error storing handler improvement pattern: {e}")
 
-    def get_confidence_adjustment_suggestions(self, handler_name: str, question_type: str, element_type: str) -> float:
-        """📊 Get confidence adjustment suggestions based on learning data"""
+    def get_confidence_adjustment_suggestions(self, handler_name: str, question_type: str, element_type: str = "unknown") -> float:
+        """🧠 FIXED: Get confidence adjustment suggestions from intervention learning data"""
         try:
-            if "handler_improvements" not in self.data:
-                return None
+            interventions = self.data.get('intervention_learning', {})
             
-            if handler_name not in self.data["handler_improvements"]:
-                return None
+            # Look for similar question types and handlers
+            adjustment = 0.0
+            matches = 0
             
-            adjustment_key = f"{question_type}_{element_type}"
-            adjustments = self.data["handler_improvements"][handler_name].get("confidence_adjustments", {})
+            for intervention_id, intervention_data in interventions.items():
+                if (intervention_data.get('handler_name') == handler_name and 
+                    intervention_data.get('question_type') == question_type):
+                    
+                    # If this combination has been successful before, boost confidence
+                    if intervention_data.get('result') == 'SUCCESS':
+                        adjustment += 0.2
+                    else:
+                        adjustment -= 0.1
+                    matches += 1
             
-            if adjustment_key in adjustments and adjustments[adjustment_key]:
-                # Get the most recent suggestion
-                recent_adjustment = adjustments[adjustment_key][-1]
-                suggested_threshold = recent_adjustment["suggested_threshold"]
-                
-                print(f"🧠 Confidence adjustment suggestion for {handler_name}: {suggested_threshold}")
-                return suggested_threshold
+            # Average the adjustment
+            if matches > 0:
+                adjustment = adjustment / matches
             
-            return None
+            # Cap adjustments to reasonable range
+            adjustment = max(-0.3, min(0.3, adjustment))
+            
+            if adjustment != 0:
+                print(f"🧠 Confidence adjustment for {handler_name}.{question_type}: {adjustment:+.2f}")
+            
+            return adjustment
             
         except Exception as e:
             print(f"❌ Error getting confidence adjustment: {e}")
-            return None
+            return 0.0
 
     def get_intervention_insights(self, question_type: str = None) -> Dict[str, Any]:
         """📊 Get insights from intervention learning data"""
