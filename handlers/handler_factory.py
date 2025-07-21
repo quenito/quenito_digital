@@ -7,6 +7,7 @@ MAJOR UPDATE: Includes the GAME-CHANGING Brand Familiarity Handler
 Expected impact: 21% → 60-70% automation improvement!
 FIXED: Critical error resolution for "too many values to unpack"
 """
+import inspect
 
 from .demographics_handler_brain import DemographicsHandler
 from .brand_familiarity_handler import BrandFamiliarityHandler  # THE GAME CHANGER!
@@ -45,7 +46,7 @@ class HandlerFactory:
         
         # Ultra-conservative confidence thresholds (98-99%) for enhanced learning
         self.confidence_thresholds = {
-            "demographics": 0.40,        # 40% - full demographics profile in knowledge base decreased to 40% confidence needed TESTING
+            "demographics": 0.30,        # 30% - adjusted for age detection
             "brand_familiarity": 0.98,   # 98% - THE CRITICAL HANDLER for matrix questions
             "rating_matrix": 0.99,       # 99% - complex interactions
             "multi_select": 0.97,        # 97% - multiple choice complexity
@@ -146,6 +147,65 @@ class HandlerFactory:
             # CRITICAL FIX: Always return exactly 3 values
             return best_handler, best_name, best_confidence
     
+    async def select_handler(self, page_content: str, page) -> tuple:
+        """Select the best handler for the current page with async support"""
+        
+        best_handler = None
+        best_confidence = 0.0
+        handler_scores = {}
+        
+        print("\n🔍 Handler Analysis with Brand Familiarity Priority:")
+        
+        # Test each handler using async-safe approach
+        for name, handler in self.handlers.items():
+            try:
+                # Set the page for this handler
+                handler.page = page
+                
+                # Get confidence score with async support
+                confidence = await self._get_handler_confidence(handler, page_content)
+                
+                # Apply context-aware adjustments
+                adjusted_confidence = self._apply_context_adjustments(name, confidence, page_content)
+                
+                # Record results
+                handler_scores[name] = adjusted_confidence
+                
+                if adjusted_confidence > best_confidence:
+                    best_confidence = adjusted_confidence
+                    best_handler = handler
+                
+            except Exception as e:
+                print(f"   ❌ {name}: Error getting confidence - {e}")
+                handler_scores[name] = 0.0
+        
+        # Display scores
+        for handler_name, score in handler_scores.items():
+            print(f"   📊 {handler_name}: {score:.3f}")
+        
+        # Apply dynamic threshold logic using proper handler thresholds
+        threshold = self.confidence_thresholds.get('demographics', 0.30)  # Use the actual demographics threshold
+        
+        # Skip unknown handler unless it's the only option
+        if best_handler and best_handler.__class__.__name__ == 'UnknownHandler':
+            # Look for any non-unknown handler that meets a lower threshold
+            for name, handler in self.handlers.items():
+                if name != 'unknown' and handler_scores.get(name, 0.0) >= 0.3:
+                    best_handler = handler
+                    best_confidence = handler_scores[name]
+                    print(f"✅ Selected non-unknown handler: {name} (confidence: {best_confidence:.3f})")
+                    break
+        
+        if best_handler and best_confidence >= threshold:
+            handler_name = best_handler.__class__.__name__.replace('Handler', '').lower()
+            print(f"✅ Selected handler: {handler_name} (confidence: {best_confidence:.3f}, threshold: {threshold})")
+            print(f"🚀 Brand Familiarity Priority: {'CRITICAL HANDLER SELECTED!' if handler_name == 'brand_familiarity' else 'Standard handler'}")
+            return best_handler, best_confidence
+        else:
+            print(f"❌ No handler meets threshold: best={best_confidence:.3f}, required={threshold}")
+            print("🔄 Will request manual intervention for learning data capture")
+            return None, 0.0
+ 
     def _apply_context_adjustments(self, handler_name: str, confidence: float, page_content: str) -> float:
         """
         Apply context-aware confidence adjustments with Brand Familiarity Priority.
@@ -197,6 +257,19 @@ class HandlerFactory:
 
         return confidence
     
+    async def _get_handler_confidence(self, handler, page_content: str) -> float:
+            """Get confidence from handler, handling both sync and async methods"""
+            
+            try:
+                # Check if can_handle is async
+                if inspect.iscoroutinefunction(handler.can_handle):
+                    return await handler.can_handle(page_content)  # Async handler (like demographics)
+                else:
+                    return handler.can_handle(page_content)  # Sync handler (like others)
+            except Exception as e:
+                print(f"   ❌ {handler.__class__.__name__}: Error getting confidence - {e}")
+                return 0.0
+
     def record_handler_success(self, handler_name: str, success: bool):
         """
         Record the success/failure of a handler execution with Brand Familiarity tracking.
