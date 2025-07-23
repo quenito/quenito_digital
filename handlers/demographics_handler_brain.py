@@ -726,6 +726,9 @@ class DemographicsHandler(BaseHandler):
         
         return best_score
 
+# QUICK FIX for demographics_handler_brain.py
+# Replace the _apply_learning_confidence_adjustment method (around line 392)
+
     async def _apply_learning_confidence_adjustment(self, question_type: str, base_confidence: float) -> float:
         """🧠 Apply confidence adjustments based on intervention learning data"""
         try:
@@ -737,9 +740,19 @@ class DemographicsHandler(BaseHandler):
                 )
                 
                 if adjustment:
-                    adjusted_confidence = min(base_confidence + adjustment, 1.0)
-                    print(f"🧠 Learning adjustment: {base_confidence:.3f} → {adjusted_confidence:.3f} (+{adjustment:.3f})")
-                    return adjusted_confidence
+                    # 🔧 CRITICAL FIX: Only apply POSITIVE adjustments for now
+                    # This preserves working automation while keeping learning system
+                    if adjustment > 0:
+                        adjusted_confidence = min(base_confidence + adjustment, 1.0)
+                        print(f"🧠 Learning adjustment: {base_confidence:.3f} → {adjusted_confidence:.3f} (+{adjustment:.3f})")
+                        return adjusted_confidence
+                    else:
+                        # For negative adjustments, apply them more conservatively
+                        # Only reduce by half the suggested amount to prevent breaking working automation
+                        conservative_adjustment = adjustment * 0.5
+                        adjusted_confidence = max(base_confidence + conservative_adjustment, 0.1)  # Never go below 0.1
+                        print(f"🧠 Conservative adjustment: {base_confidence:.3f} → {adjusted_confidence:.3f} ({conservative_adjustment:.3f})")
+                        return adjusted_confidence
             
             return base_confidence
             

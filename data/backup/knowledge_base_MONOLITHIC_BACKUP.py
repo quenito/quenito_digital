@@ -2,51 +2,46 @@
 🧠 Enhanced Knowledge Base with Digital Brain Integration v2.1
 Handles loading, saving, and accessing the survey automation knowledge base.
 NOW WITH BRAIN LEARNING CAPABILITIES - Quenito gets smarter with every interaction!
-
-New Digital Brain Features:
-- ✅ Auto-Learning from interventions  
-- ✅ Pattern recognition improvement
-- ✅ Confidence calibration evolution
-- ✅ Handler performance tracking
-- ✅ Question mapping expansion
-- ✅ Success pattern storage
-- ✅ AUTOMATION SUCCESS LEARNING - NEW!
-- ✅ STRATEGY PREFERENCE LEARNING - NEW!
 """
 
 import json
 import os
 import time
-from typing import Dict, Any, List, Optional, Tuple
 from pathlib import Path
+from typing import Dict, Any, List, Optional, Tuple
+from data.user_profile import UserProfile
+from data.pattern_manager import PatternManager
+from data.brain_learning import BrainLearning 
+from data.brain_reporting import BrainReporting 
 
 
 class KnowledgeBase:
-    """
-    🧠 Enhanced Knowledge Base with Digital Brain Integration
-    Manages the survey automation knowledge base with user preferences,
-    question patterns, response strategies, AND LEARNING CAPABILITIES.
-    
-    The brain gets smarter with every interaction!
-    """
-    
     def __init__(self, knowledge_base_path="data/knowledge_base.json"):
         self.path = knowledge_base_path
         self.data = {}
+        # ... existing initialization ...
         
-        # 🧠 Brain learning tracking
-        self.learning_session = {
-            "session_id": f"brain_session_{int(time.time())}",
-            "learning_events": [],
-            "performance_improvements": [],
-            "new_patterns_discovered": []
-        }
+        self.load()  # This loads from knowledge_base.json
         
-        self.load()
-        
-        # Initialize brain learning structures if missing
-        self._ensure_brain_structures()
-    
+        # 🧠 NEW: Initialize user profile module with loaded data
+        user_profile_data = self.data.get("user_profile", {})
+        self.user_profile = UserProfile(user_profile_data)
+        print(f"🧠 UserProfile module initialized with data from {knowledge_base_path}")
+
+        # 🧠 NEW: Initialize pattern manager with demographics_questions section
+        pattern_data = self.data.get("demographics_questions", {})
+        self.pattern_manager = PatternManager(self.user_profile, pattern_data)
+        print("🧠 Pattern Manager module initialized!")
+
+        # 🧠 NEW: Initialize brain learning module
+        brain_learning_data = self.data.get("brain_learning", {})
+        self.brain_learning = BrainLearning(self.user_profile, self.pattern_manager, brain_learning_data)
+        print("🧠 Brain Learning module initialized!")
+
+        # 🧠 NEW: Initialize brain reporting module
+        self.brain_reporting = BrainReporting(self.brain_learning)
+        print("🧠 Brain Reporting module initialized!")
+
     def load(self):
         """Load the knowledge base from JSON file."""
         try:
@@ -791,74 +786,9 @@ class KnowledgeBase:
     🔄 Enables pattern-based learning
     """
 
-    def store_intervention_learning(self, learning_data: Dict[str, Any]):
-        """🧠 Store intervention learning data for handler improvement"""
-        try:
-            # Ensure intervention_learning section exists
-            if "intervention_learning" not in self.data:
-                self.data["intervention_learning"] = {
-                    "sessions": [],
-                    "question_patterns": {},
-                    "element_type_patterns": {},
-                    "confidence_failures": {},
-                    "improvement_suggestions": []
-                }
-            
-            # Store the intervention session
-            session_summary = {
-                "intervention_id": learning_data["intervention_id"],
-                "timestamp": learning_data["timestamp"],
-                "question_type": learning_data["question_analysis"]["question_type"],
-                "element_type": learning_data["question_analysis"]["element_type"],
-                "failed_confidence": learning_data["question_analysis"]["confidence_attempted"],
-                "user_answer": learning_data["user_response"]["answer_provided"],
-                "duration": learning_data["duration_seconds"]
-            }
-            
-            self.data["intervention_learning"]["sessions"].append(session_summary)
-            
-            # Update question patterns for improved detection
-            question_type = learning_data["question_analysis"]["question_type"]
-            if question_type not in self.data["intervention_learning"]["question_patterns"]:
-                self.data["intervention_learning"]["question_patterns"][question_type] = {
-                    "failed_attempts": [],
-                    "element_types_seen": {},
-                    "common_answers": [],
-                    "confidence_thresholds": []
-                }
-            
-            pattern_data = self.data["intervention_learning"]["question_patterns"][question_type]
-            pattern_data["failed_attempts"].append({
-                "confidence": learning_data["question_analysis"]["confidence_attempted"],
-                "reason": learning_data["question_analysis"]["failure_reason"],
-                "timestamp": learning_data["timestamp"]
-            })
-            
-            # Track element types for this question type
-            element_type = learning_data["question_analysis"]["element_type"]
-            if element_type not in pattern_data["element_types_seen"]:
-                pattern_data["element_types_seen"][element_type] = 0
-            pattern_data["element_types_seen"][element_type] += 1
-            
-            # Store user answer for pattern recognition
-            user_answer = learning_data["user_response"]["answer_provided"]
-            if user_answer not in pattern_data["common_answers"]:
-                pattern_data["common_answers"].append(user_answer)
-            
-            # Update confidence failure tracking
-            confidence = learning_data["question_analysis"]["confidence_attempted"]
-            if question_type not in self.data["intervention_learning"]["confidence_failures"]:
-                self.data["intervention_learning"]["confidence_failures"][question_type] = []
-            
-            self.data["intervention_learning"]["confidence_failures"][question_type].append(confidence)
-            
-            print(f"🧠 Intervention learning stored for {question_type}")
-            
-            # Auto-save after storing learning data
-            self.save()
-            
-        except Exception as e:
-            print(f"❌ Error storing intervention learning: {e}")
+    def store_intervention_learning(self, learning_data: Dict[str, Any]) -> bool:
+        """Store intervention learning data - delegates to brain learning module"""
+        return self.brain_learning.store_intervention_learning(learning_data)
 
     def store_handler_improvement_pattern(self, handler_name: str, improvement_pattern: Dict[str, Any]):
         """🎯 Store handler improvement patterns for future automation enhancement"""
@@ -1017,55 +947,46 @@ class KnowledgeBase:
         except Exception as e:
             return [f"Error generating suggestions: {e}"]
 
+    # ========================================
+    # 🧠 NEW: BRAIN INTELLIGENCE REPORTING METHODS  
+    # ========================================
+
+    def get_learning_insights(self) -> Dict[str, Any]:
+        """Get learning insights - delegates to brain learning module"""
+        return self.brain_learning.get_learning_insights()
+
+    def get_handler_performance_summary(self) -> Dict[str, Any]:
+        """Get handler performance - delegates to brain learning module"""  
+        return self.brain_learning.get_handler_performance_summary()            
+
+    def generate_intelligence_report(self) -> str:
+        """Generate brain intelligence report - delegates to reporting module"""
+        return self.brain_reporting.generate_intelligence_report()
+
+    def generate_performance_summary(self) -> Dict[str, Any]:
+        """Generate performance summary - delegates to reporting module"""
+        return self.brain_reporting.generate_performance_summary()
+
+    def save_intelligence_report(self, report_type: str = "intelligence") -> str:
+        """Save intelligence report to file"""
+        report_content = self.generate_intelligence_report()
+        return self.brain_reporting.save_report_to_file(report_content, report_type)
 
     # ========================================
     # 🧠 USER DATA ACCESS METHODS
     # ========================================
     
     async def get_user_age(self) -> Optional[str]:
-        """🧠 Get user age from demographics"""
-        try:
-            demographics = self.get_demographics()
-            age = demographics.get('age')
-            if age:
-                print(f"🧠 Retrieved user age: {age}")
-                return str(age)
-            else:
-                print(f"⚠️ No age found in user profile")
-                return None
-        except Exception as e:
-            print(f"❌ Error getting user age: {e}")
-            return None
+        """🧠 Get user age from loaded JSON data"""
+        return self.user_profile.get_age()
     
     async def get_user_gender(self) -> Optional[str]:
-        """🧠 Get user gender from demographics"""
-        try:
-            demographics = self.get_demographics()
-            gender = demographics.get('gender')
-            if gender:
-                print(f"🧠 Retrieved user gender: {gender}")
-                return str(gender)
-            else:
-                print(f"⚠️ No gender found in user profile")
-                return None
-        except Exception as e:
-            print(f"❌ Error getting user gender: {e}")
-            return None
+        """🧠 Get user gender from loaded JSON data"""
+        return self.user_profile.get_gender()
     
     async def get_user_location(self) -> Optional[str]:
-        """🧠 Get user location from demographics"""
-        try:
-            demographics = self.get_demographics()
-            location = demographics.get('location')
-            if location:
-                print(f"🧠 Retrieved user location: {location}")
-                return str(location)
-            else:
-                print(f"⚠️ No location found in user profile")
-                return None
-        except Exception as e:
-            print(f"❌ Error getting user location: {e}")
-            return None
+        """🧠 Get user location from loaded JSON data"""
+        return self.user_profile.get_location()
 
     # ========================================
     # 🧠 BRAIN INTELLIGENCE HELPERS
@@ -1182,9 +1103,9 @@ class KnowledgeBase:
         return self.data.get("user_profile", {})
     
     def get_demographics(self) -> Dict[str, Any]:
-        """Get user demographics."""
-        return self.get_user_profile().get("demographics", {})
-    
+        """Get user demographics - maintains backward compatibility"""
+        return self.user_profile.get_full_profile()
+        
     def get_brand_preferences(self) -> Dict[str, Any]:
         """Get user brand preferences."""
         return self.get_user_profile().get("existing_brands", {})
@@ -1711,3 +1632,18 @@ class KnowledgeBase:
                 readiness_score += avg_success_rate * 0.2
         
         return min(readiness_score * 100, 100.0)  # Cap at 100%
+    
+
+    # ========================================
+    # 🔧 BACKWARD COMPATIBILITY PROPERTIES
+    # ========================================
+
+    @property
+    def learning_session(self):
+        """Backward compatibility: Redirect to brain_learning.current_session"""
+        return self.brain_learning.current_session
+
+    @learning_session.setter
+    def learning_session(self, value):
+        """Backward compatibility: Update brain_learning.current_session"""
+        self.brain_learning.current_session = value
