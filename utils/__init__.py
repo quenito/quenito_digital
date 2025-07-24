@@ -3,7 +3,7 @@ Survey Automation Utility Services
 Enhanced with brain intelligence and stealth reporting.
 """
 
-from .knowledge_base import KnowledgeBase
+from data.knowledge_base import KnowledgeBase
 from .reporting import BrainEnhancedReportGenerator, ReportGenerator
 
 # Import existing components

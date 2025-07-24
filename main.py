@@ -19,7 +19,7 @@ from typing import Optional, Dict, Any
 from core.stealth_browser_manager import StealthBrowserManager
 from models.survey_stats import BrainEnhancedSurveyStats
 from utils.reporting import BrainEnhancedReportGenerator
-from utils.knowledge_base import KnowledgeBase
+from data.knowledge_base import KnowledgeBase
 from handlers.handler_factory import HandlerFactory
 from utils.intervention_manager import EnhancedLearningInterventionManager
 
@@ -335,10 +335,10 @@ class QuentioMainInterface:
 
                     # Get dynamic threshold from brain
                     try:
-                        dynamic_threshold = self.brain.data.get('validation_settings', {}).get('handler_confidence_thresholds', {}).get('demographics', 0.30)
+                        dynamic_threshold = self.brain.data.get('validation_settings', {}).get('handler_confidence_thresholds', {}).get('demographics', 0.20)
                         print(f"   🧠 Dynamic threshold: {dynamic_threshold}")
                     except:
-                        dynamic_threshold = 0.30
+                        dynamic_threshold = 0.20
                         print(f"   ⚠️ Using fallback threshold: {dynamic_threshold}")
 
                     if confidence > dynamic_threshold:  # Dynamic brain-connected threshold

@@ -184,7 +184,7 @@ class HandlerFactory:
             print(f"   📊 {handler_name}: {score:.3f}")
         
         # Apply dynamic threshold logic using proper handler thresholds
-        threshold = self.confidence_thresholds.get('demographics', 0.30)  # Use the actual demographics threshold
+        threshold = self.confidence_thresholds.get('demographics', 0.20)  # Use the actual demographics threshold
         
         # Skip unknown handler unless it's the only option
         if best_handler and best_handler.__class__.__name__ == 'UnknownHandler':
