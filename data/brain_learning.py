@@ -108,6 +108,38 @@ class BrainLearning:
             print(f"❌ Error storing intervention learning: {e}")
             return False
     
+    async def learn_from_failure(self, learning_data):
+        """🧠 Learn from automation failure (captures manual intervention data)"""
+        try:
+            # 🔧 CRITICAL FIX: Use self.brain_data instead of self.data
+            if not hasattr(self, 'brain_data'):
+                print("⚠️ No brain_data structure available for learning")
+                return False
+                
+            # Ensure intervention_learning section exists
+            if 'intervention_learning' not in self.brain_data:
+                self.brain_data['intervention_learning'] = {}
+            
+            # Create unique ID for this learning session
+            session_id = f"failure_{int(learning_data.get('timestamp', time.time()))}"
+            
+            # Store the failure data for future learning
+            self.brain_data['intervention_learning'][session_id] = {
+                **learning_data,
+                'result': 'FAILURE',
+                'learned_at': time.time(),
+                'needs_learning': True
+            }
+            
+            print(f"🧠 FAILURE LEARNED: {learning_data.get('error_message', 'Unknown error')}")
+            print(f"🧠 Question type: {learning_data.get('question_type')}")
+            print(f"🧠 Manual answer needed: {learning_data.get('manual_response', 'Unknown')}")
+            return True
+            
+        except Exception as e:
+            print(f"❌ Error in learn_from_failure: {e}")
+            return False
+    
     def _learn_intervention_patterns(self, learning_data: Dict[str, Any]):
         """Learn patterns from manual interventions to improve future automation"""
         try:
@@ -337,7 +369,36 @@ class BrainLearning:
         except Exception as e:
             print(f"❌ Error storing success pattern: {e}")
             return False
-    
+
+    async def learn_successful_automation(self, learning_data):
+        """🧠 Learn from successful automation (method was missing after refactoring)"""
+        try:
+            # 🔧 CRITICAL FIX: Use self.brain_data instead of self.data
+            if not hasattr(self, 'brain_data'):
+                print("⚠️ No brain_data structure available for learning")
+                return False
+                
+            # Ensure intervention_learning section exists
+            if 'intervention_learning' not in self.brain_data:
+                self.brain_data['intervention_learning'] = {}
+            
+            # Create unique ID for this learning session
+            session_id = f"success_{int(learning_data.get('timestamp', time.time()))}"
+            
+            # Store the successful automation data
+            self.brain_data['intervention_learning'][session_id] = {
+                **learning_data,
+                'result': 'SUCCESS',
+                'learned_at': time.time()
+            }
+            
+            print(f"🧠 SUCCESS LEARNED: {learning_data.get('strategy_used')} for {learning_data.get('question_type')}")
+            return True
+            
+        except Exception as e:
+            print(f"❌ Error in learn_successful_automation: {e}")
+            return False
+
     def _calculate_pattern_strength(self, success_count: int) -> str:
         """Calculate pattern strength based on success count"""
         if success_count >= 10:
@@ -403,23 +464,25 @@ class BrainLearning:
             print(f"❌ Error learning strategy preference: {e}")
             return False
     
-    def get_preferred_strategy(self, question_type: str) -> Optional[str]:
-        """Get the preferred strategy for a question type based on learning"""
+    async def get_preferred_strategy(self, question_type, **kwargs):
+        """🧠 Get preferred strategy (fixed parameter handling)"""
         try:
-            preferences = self.brain_data['strategy_preferences'].get(question_type, {})
-            if not preferences:
+            # Remove problematic kwargs
+            kwargs.pop('element_type', None)
+            
+            if not hasattr(self, 'brain_data'):
                 return None
+                
+            strategy_prefs = self.brain_data.get('strategy_preferences', {})
             
-            # Return strategy with highest success rate (minimum 3 attempts)
-            best_strategy = None
-            best_rate = 0.0
-            
-            for strategy, stats in preferences.items():
-                if stats['total_attempts'] >= 3 and stats['success_rate'] > best_rate:
-                    best_rate = stats['success_rate']
-                    best_strategy = strategy
-            
-            return best_strategy
+            if question_type in strategy_prefs:
+                strategy_info = strategy_prefs[question_type]
+                if strategy_info.get('success_count', 0) >= 3:  # Need minimum successes
+                    preferred_strategy = strategy_info.get('name')
+                    print(f"🧠 USING LEARNED STRATEGY: {preferred_strategy} for {question_type}")
+                    return {'name': preferred_strategy, 'success_rate': 1.0}
+                    
+            return None
             
         except Exception as e:
             print(f"⚠️ Error getting preferred strategy: {e}")

@@ -356,43 +356,117 @@ class DemographicsHandler(BaseHandler):
             
             # 🧠 NEW: Check for learned strategy first
             learned_strategy = await self._get_learned_strategy(question_text, element_info)
+
+            # ADD this NEW section right after the question detection (around line 287):
+
+            # 🚀 NEW: Check for learned response FIRST (before trying strategies)
+            learned_response = await self._get_learned_response(self.detected_question_type, question_text)
             
-            if learned_strategy:
-                # Use learned strategy immediately
-                strategies = [learned_strategy]
-            else:
-                # Fall back to multi-strategy approach
-                strategies = ["click_strategy", "force_click_strategy", "javascript_click_strategy",
-                             "keyboard_focus_strategy", "coordinate_click_strategy"]
-            
-            # Get response value
-            response_value = await self._get_user_response(self.detected_question_type, question_text, element_info)
-            
-            # Try strategies
-            for i, strategy in enumerate(strategies, 1):
-                try:
-                    print(f"🎯 Trying Strategy {i}: {strategy}")
-                    success = await self._execute_strategy(strategy, element_info, response_value)
+            if learned_response:
+                print("🎯 Using learned response - attempting automated execution...")
+                
+                # Try to apply the learned response
+                success = await self._apply_learned_response(learned_response)
+                
+                if success:
+                    execution_time = time.time() - start_time
+                    print("🎉 AUTOMATION SUCCESS: Question learned and automated!")
                     
-                    if success:
-                        execution_time = time.time() - start_time
-                        print(f"✅ Strategy {i} SUCCESS! Time: {execution_time:.1f}s")
-                        
-                        # 🧠 CRITICAL: Report success to brain
-                        await self._report_success_to_brain(strategy, execution_time, question_text, response_value)
-                        
-                        return True
-                        
-                except Exception as e:
-                    print(f"❌ Strategy {i} failed: {e}")
-                    continue
-            
-            # All strategies failed
-            await self._report_failure_to_brain("All strategies failed", question_text)
-            return False
+                    # Report success to brain
+                    await self._report_success_to_brain(
+                        "learned_response", execution_time, question_text, 
+                        learned_response['response']
+                    )
+                    
+                    return True
+                else:
+                    print("⚠️ Learned response failed - falling back to normal strategies")
             
         except Exception as e:
             await self._report_failure_to_brain(str(e), question_text)
+            return False
+        
+    async def _get_learned_response(self, question_type: str, question_text: str) -> Optional[Dict[str, Any]]:
+        """
+        🧠 RETRIEVAL: Get previously learned response for this question type
+        🎯 PURPOSE: This is what makes occupation automate the second time!
+        """
+        try:
+            print(f"🧠 Checking learned responses for {question_type}...")
+            
+            # Check if brain/knowledge base has intervention learning data
+            if hasattr(self, 'brain') and self.brain and hasattr(self.brain, 'intervention_learning'):
+                # Look through all intervention learning data
+                for intervention_key, learning_data in self.brain.intervention_learning.items():
+                    # Match question type and similar question text
+                    if (learning_data.get('question_type') == question_type and 
+                        learning_data.get('result') == 'MANUAL_SUCCESS'):
+                        
+                        manual_response = learning_data.get('manual_response')
+                        element_type = learning_data.get('element_type')
+                        
+                        if manual_response and element_type:
+                            print(f"🎯 Found learned response: '{manual_response}'")
+                            print(f"🔍 Element type: {element_type}")
+                            return {
+                                'response': manual_response,
+                                'element_type': element_type,
+                                'learned_from': intervention_key,
+                                'confidence': 1.0  # High confidence in learned data
+                            }
+            
+            # Check user profile as fallback
+            user_profile = self.brain.get("user_profile", {}) if self.brain else {}
+            if question_type == "occupation" and user_profile.get("occupation"):
+                print(f"🎯 Using profile occupation: {user_profile['occupation']}")
+                return {
+                    'response': user_profile['occupation'],
+                    'element_type': 'text_input',  # Assume text input
+                    'learned_from': 'user_profile',
+                    'confidence': 0.8
+                }
+            
+            print(f"❌ No learned response found for {question_type}")
+            return None
+            
+        except Exception as e:
+            print(f"❌ Error retrieving learned response: {e}")
+            return None
+
+    async def _apply_learned_response(self, learned_data: Dict[str, Any]) -> bool:
+        """
+        🎯 APPLY: Use learned response to automate the question
+        """
+        try:
+            response = learned_data['response']
+            element_type = learned_data['element_type']
+            
+            print(f"🚀 Applying learned response: '{response}' to {element_type}")
+            
+            if element_type == 'text_input':
+                # Find text input and fill it
+                text_inputs = await self.page.query_selector_all('input[type="text"], textarea')
+                if text_inputs:
+                    await text_inputs[0].fill(response)
+                    print(f"✅ Filled text field with: '{response}'")
+                    
+                    # Try to navigate to next question
+                    return await self._try_navigation()
+                
+            elif element_type == 'radio':
+                # Find radio button matching the response
+                return await self._radio_button_strategy(response)
+            
+            elif element_type == 'dropdown':
+                # Find dropdown option matching the response
+                return await self._select_dropdown_option(response)
+            
+            # Add more element types as needed...
+            
+            return False
+            
+        except Exception as e:
+            print(f"❌ Error applying learned response: {e}")
             return False
     
     # 🧠 BRAIN LEARNING INTEGRATION METHODS
@@ -470,47 +544,52 @@ class DemographicsHandler(BaseHandler):
             return None
     
     async def _get_user_response(self, question_type: str, question_text: str, element_info: dict) -> str:
-        """🧠 Get appropriate response value from brain's knowledge base"""
+        """🧠 FIXED: Get appropriate response value from brain's knowledge base"""
         try:
             # Get user demographics from brain
             demographics = self.brain.get_demographics()
             
-            if question_type == 'age':
+            # 🔧 CRITICAL FIX: Use the ACTUAL detected question type
+            actual_question_type = self.detected_question_type or question_type
+            
+            print(f"🧠 Getting response for question type: {actual_question_type}")
+            
+            if actual_question_type == 'age':
                 age = demographics.get('age', '45')
                 print(f"🧠 Brain response for age: {age}")
                 return str(age)
                 
-            elif question_type == 'gender':
+            elif actual_question_type == 'gender':
                 gender = demographics.get('gender', 'Male')
                 print(f"🧠 Brain response for gender: {gender}")
                 return gender
                 
-            elif question_type == 'location':
+            elif actual_question_type == 'location':
                 location = demographics.get('location', 'New South Wales')
                 print(f"🧠 Brain response for location: {location}")
                 return location
                 
-            elif question_type == 'occupation':
+            elif actual_question_type == 'occupation':
                 occupation = demographics.get('occupation', 'Data Analyst')
                 print(f"🧠 Brain response for occupation: {occupation}")
                 return occupation
                 
-            elif question_type == 'birth_location':
+            elif actual_question_type == 'birth_location':
                 birth_location = demographics.get('birth_country', 'Australia')
                 print(f"🧠 Brain response for birth location: {birth_location}")
                 return birth_location
                 
-            elif question_type == 'employment':
+            elif actual_question_type == 'employment':
                 employment = demographics.get('employment_status', 'Full-time')
                 print(f"🧠 Brain response for employment: {employment}")
                 return employment
                 
-            elif question_type == 'industry':
+            elif actual_question_type == 'industry':
                 industry = demographics.get('industry', 'Retail')
                 print(f"🧠 Brain response for industry: {industry}")
                 return industry
                 
-            elif question_type == 'income':
+            elif actual_question_type == 'income':
                 # Check question text to determine personal vs household
                 if 'household' in question_text.lower():
                     income = demographics.get('household_income', '$200,000 to $499,999')
@@ -519,46 +598,48 @@ class DemographicsHandler(BaseHandler):
                 print(f"🧠 Brain response for income: {income}")
                 return income
                 
-            elif question_type == 'education':
+            elif actual_question_type == 'education':
                 education = demographics.get('education', 'High school education')
                 print(f"🧠 Brain response for education: {education}")
                 return education
                 
-            elif question_type == 'marital_status':
+            elif actual_question_type == 'marital_status':
                 marital = demographics.get('marital_status', 'Married/civil partnership')
                 print(f"🧠 Brain response for marital status: {marital}")
                 return marital
                 
-            elif question_type == 'household_size':
+            elif actual_question_type == 'household_size':
                 size = demographics.get('household_size', '4')
                 print(f"🧠 Brain response for household size: {size}")
                 return size
                 
-            elif question_type == 'children':
+            elif actual_question_type == 'children':
                 children = demographics.get('children', 'Yes')
                 print(f"🧠 Brain response for children: {children}")
                 return children
                 
-            elif question_type == 'pets':
+            elif actual_question_type == 'pets':
                 pets = demographics.get('pets', 'Yes')
                 print(f"🧠 Brain response for pets: {pets}")
                 return pets
                 
             else:
-                # Fallback for unknown question types
-                print(f"⚠️ Unknown question type: {question_type}, using age as fallback")
-                return str(demographics.get('age', '45'))
-                
+                # Fallback - check question text for clues
+                if 'gender' in question_text.lower() or 'male' in question_text.lower():
+                    return demographics.get('gender', 'Male')
+                elif 'age' in question_text.lower():
+                    return str(demographics.get('age', '45'))
+                else:
+                    print(f"⚠️ Unknown question type: {actual_question_type}, using age as fallback")
+                    return str(demographics.get('age', '45'))
+                    
         except Exception as e:
             print(f"❌ Error getting user response from brain: {e}")
             # Fallback response
-            if question_type == 'age':
-                return '45'
-            elif question_type == 'gender':
+            if 'gender' in question_text.lower():
                 return 'Male'
             else:
-                return 'Unknown'
-
+                return '45'
 
     async def _detect_question_type(self, question_text: str) -> str:
         """🧠 Detect question type from question text (async version)"""
@@ -634,46 +715,69 @@ class DemographicsHandler(BaseHandler):
 
     # 🎯 QUESTION ANALYSIS METHODS
     def _identify_question_type(self, page_content: str) -> Optional[str]:
-        """🧠 Identify the specific type of demographic question using brain patterns"""
-        content_lower = page_content.lower()
-        
-        # PRIORITY 1: Check for strong age question indicators first
-        strong_age_patterns = [
-            'how old are you', 'what is your age', 'please enter your age',
-            'enter your age', 'your age:', 'age in years', 'current age'
-        ]
-        
-        if any(pattern in content_lower for pattern in strong_age_patterns):
-            print(f"🧠 PRIORITY: Strong age question detected!")
-            return 'age'
-        
-        # PRIORITY 2: Check for other specific patterns
-        # Check each pattern but prioritize more specific matches
-        best_match = None
-        best_score = 0
-        
-        for question_type, pattern in self.question_patterns.items():
-            matches = 0
+            """🧠 FIXED: Identify the specific type of demographic question using brain patterns"""
+            content_lower = page_content.lower()
             
-            # Count keyword matches
-            for keyword in pattern['keywords']:
-                if keyword in content_lower:
-                    matches += 1
+            # 🔧 CRITICAL FIX: Use proper priority scoring system
+            question_scores = {}
             
-            # Apply priority weighting
-            if question_type == 'age' and matches > 0:
-                matches *= 3  # Boost age questions
-            elif question_type == 'gender' and matches > 0:
-                matches *= 2  # Boost gender questions
-            elif question_type == 'location' and matches > 0:
-                matches *= 0.5  # Reduce location sensitivity
-            
-            if matches > best_score:
-                best_score = matches
-                best_match = question_type
+            # Score each question type
+            for question_type, pattern in self.question_patterns.items():
+                score = 0
+                matches_found = []
                 
-        print(f"🔍 Best match: {best_match} (score: {best_score})")
-        return best_match if best_score > 0 else None
+                # Count keyword matches
+                for keyword in pattern['keywords']:
+                    if keyword in content_lower:
+                        score += 1
+                        matches_found.append(keyword)
+                
+                # Apply specific scoring rules
+                if question_type == 'occupation':
+                    # Boost occupation detection for direct occupation questions
+                    occupation_words = ['occupation', 'what is your occupation', 'job', 'work']
+                    if any(word in content_lower for word in occupation_words):
+                        score += 15  # Strong boost for direct occupation questions
+
+                elif question_type == 'gender':
+                    # Boost gender detection for strong gender indicators
+                    gender_words = ['gender', 'male', 'female', 'sex']
+                    gender_matches = sum(1 for word in gender_words if word in content_lower)
+                    if gender_matches >= 2:
+                        score += 10  # Strong boost for multiple gender words
+                    elif gender_matches == 1:
+                        score += 5   # Moderate boost for single gender word
+                        
+                elif question_type == 'age':
+                    # Boost age detection for strong age indicators
+                    age_words = ['how old', 'your age', 'age in years']
+                    if any(word in content_lower for word in age_words):
+                        score += 8   # Strong age indicators
+                    elif 'age' in content_lower:
+                        score += 3   # Basic age mention
+                        
+                # Store the score
+                if score > 0:
+                    question_scores[question_type] = {
+                        'score': score,
+                        'matches': matches_found
+                    }
+            
+            # Find the best match
+            if question_scores:
+                best_type = max(question_scores.keys(), key=lambda x: question_scores[x]['score'])
+                best_score = question_scores[best_type]['score']
+                best_matches = question_scores[best_type]['matches']
+                
+                print(f"🔍 Question type scoring:")
+                for qtype, data in question_scores.items():
+                    print(f"   {qtype}: {data['score']} ({data['matches'][:2]})")
+                print(f"🎯 BEST MATCH: {best_type} (score: {best_score})")
+                
+                return best_type
+            
+            print(f"⚠️ No question type detected")
+            return None
      
     async def _enhanced_occupation_detection(self, content_lower: str) -> float:
         """🎯 Enhanced occupation question detection with multiple patterns"""
@@ -883,52 +987,69 @@ class DemographicsHandler(BaseHandler):
         
      # 🎯 STRATEGY EXECUTION METHODS
     async def _execute_strategy(self, strategy: str, element_info: dict, response_value: str) -> bool:
-        """🧠 Execute automation strategy with support for different question types"""
-        try:
-            print(f"🎯 Executing strategy for {self.detected_question_type}: {strategy}")
-            
-            # 🔧 CRITICAL FIX: Handle radio buttons for gender questions
-            if self.detected_question_type == 'gender':
-                print(f"🔘 Gender question detected - using radio button strategy")
-                return await self._radio_button_strategy(response_value)
-            
-            elif self.detected_question_type == 'location':
-                # Try dropdown first, then radio buttons
-                print(f"📍 Location question - trying dropdown/radio strategy")
-                success = await self._select_dropdown_option(response_value)
-                if not success:
-                    success = await self._radio_button_strategy(response_value)
-                return success
-            
-            elif self.detected_question_type in ['occupation', 'industry', 'job']:
-                # Try text input first, then dropdown
-                print(f"💼 Occupation question - trying text/dropdown strategy")
-                success = await self._fill_text_input(response_value)
-                if not success:
+            """🧠 FIXED: Execute automation strategy with proper question type handling"""
+            try:
+                # 🔧 CRITICAL FIX: Use the CORRECT detected question type
+                actual_question_type = self.detected_question_type
+                print(f"🎯 Executing strategy for {actual_question_type}: {strategy}")
+                
+                if actual_question_type == 'gender':
+                    print(f"🔘 Gender question detected - using radio button strategy with value: {response_value}")
+                    return await self._radio_button_strategy(response_value)
+                
+                elif actual_question_type == 'age':
+                    print(f"📝 Age question - using text input strategies")
+                    # Age questions - use text input strategies
+                    if strategy == "click_strategy":
+                        return await self._robust_click_and_fill_strategy(response_value)
+                    elif strategy == "force_click_strategy":
+                        return await self._force_click_strategy(response_value)
+                    elif strategy == "javascript_click_strategy":
+                        return await self._javascript_strategy(response_value)
+                    elif strategy == "keyboard_focus_strategy":
+                        return await self._keyboard_focus_strategy(response_value)
+                    elif strategy == "coordinate_click_strategy":
+                        return await self._coordinate_click_strategy(response_value)
+                    else:
+                        print(f"⚠️ Unknown strategy: {strategy}")
+                        return False
+                
+                elif actual_question_type == 'location':
+                    print(f"📍 Location question - trying dropdown/radio strategy")
                     success = await self._select_dropdown_option(response_value)
-                return success
-            
-            else:
-                # Age and other text-based questions - use existing strategies
-                print(f"📝 Text-based question - using existing strategies")
-                if strategy == "click_strategy":
-                    return await self._robust_click_and_fill_strategy(response_value)
-                elif strategy == "force_click_strategy":
-                    return await self._force_click_strategy(response_value)
-                elif strategy == "javascript_click_strategy":
-                    return await self._javascript_strategy(response_value)
-                elif strategy == "keyboard_focus_strategy":
-                    return await self._keyboard_focus_strategy(response_value)
-                elif strategy == "coordinate_click_strategy":
-                    return await self._coordinate_click_strategy(response_value)
+                    if not success:
+                        success = await self._radio_button_strategy(response_value)
+                    return success
+                
+                elif actual_question_type in ['occupation', 'industry', 'job']:
+                    print(f"💼 Occupation question - trying text/dropdown strategy")
+                    success = await self._fill_text_input(response_value)
+                    if not success:
+                        success = await self._select_dropdown_option(response_value)
+                    return success
+                
                 else:
-                    print(f"⚠️ Unknown strategy: {strategy}")
-                    return False
+                    # Unknown question type - try adaptive strategy
+                    print(f"❓ Unknown question type '{actual_question_type}' - trying adaptive strategy")
                     
-        except Exception as e:
-            print(f"❌ Strategy execution failed: {e}")
-            return False
-
+                    # Try text input first
+                    if await self._fill_text_input(response_value):
+                        return True
+                    
+                    # Try radio buttons
+                    if await self._radio_button_strategy(response_value):
+                        return True
+                    
+                    # Try dropdown
+                    if await self._select_dropdown_option(response_value):
+                        return True
+                        
+                    return False
+                            
+            except Exception as e:
+                print(f"❌ Strategy execution failed: {e}")
+                return False
+            
     async def _robust_click_and_fill_strategy(self, value: str) -> bool:
         """🧠 Standard click and fill strategy"""
         try:

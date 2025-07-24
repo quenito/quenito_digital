@@ -225,6 +225,18 @@ class KnowledgeBase:
         """Get preferred strategy - delegates to brain learning"""
         return self.brain_learning.get_preferred_strategy(question_type)
     
+    async def learn_successful_automation(self, learning_data):
+        """Delegate to brain learning module"""
+        return await self.brain_learning.learn_successful_automation(learning_data)
+    
+    async def learn_from_failure(self, learning_data):
+        """Delegate to brain learning module"""
+        return await self.brain_learning.learn_from_failure(learning_data)
+    
+    async def get_preferred_strategy(self, question_type, **kwargs):
+        """Delegate to brain learning module"""
+        return await self.brain_learning.get_preferred_strategy(question_type, **kwargs)
+
     def get_best_strategy_for_question_type(self, question_type: str) -> Optional[Dict[str, Any]]:
         """Get best strategy - delegates to brain learning"""
         return self.brain_learning.get_best_strategy_for_question_type(question_type)
