@@ -22,42 +22,83 @@
     "location_type": "In a large metropolitan city",
     "existing_brands": {
       "currently_use": [
-        "Netflix", "Spotify", "Commonwealth Bank", "Toyota", "Telstra"
+        "Netflix",
+        "Spotify",
+        "Commonwealth Bank",
+        "Toyota",
+        "Telstra"
       ],
       "familiar_with": [
-        "Samsung", "LG", "Sony", "Westpac", "ANZ"
+        "Samsung",
+        "LG",
+        "Sony",
+        "Westpac",
+        "ANZ"
       ]
     },
     "interests_and_preferences": {
-      "high_interest": ["technology", "news", "finance"],
-      "medium_interest": ["sports", "music", "travel"],
-      "low_interest": ["fashion", "celebrities"]
+      "high_interest": [
+        "technology",
+        "news",
+        "finance"
+      ],
+      "medium_interest": [
+        "sports",
+        "music",
+        "travel"
+      ],
+      "low_interest": [
+        "fashion",
+        "celebrities"
+      ]
     }
   },
-
   "demographics_questions": {
     "age": {
       "patterns": [
-        "age", "how old", "your age", "what is your age", 
-        "please enter your age", "enter your age", "how old are you",
-        "age in years", "current age", "enter a number"
+        "age",
+        "how old",
+        "your age",
+        "what is your age",
+        "please enter your age",
+        "enter your age",
+        "how old are you",
+        "age in years",
+        "current age",
+        "enter a number"
       ],
-      "responses": ["45", "forty-five"],
+      "responses": [
+        "45",
+        "forty-five"
+      ],
       "confidence_threshold": 0.6,
       "learned_patterns": [],
       "success_rate": 0.85,
       "element_strategies": {
         "text_input": "fill_strategy",
-        "dropdown": "select_strategy", 
+        "dropdown": "select_strategy",
         "radio": "click_strategy"
       }
     },
     "gender": {
       "patterns": [
-        "gender", "male", "female", "what gender", "which gender",
-        "sex", "gender identity", "gender do you identify", "man", "woman"
+        "gender",
+        "male",
+        "female",
+        "what gender",
+        "which gender",
+        "sex",
+        "gender identity",
+        "gender do you identify",
+        "man",
+        "woman"
       ],
-      "responses": ["Male", "male", "Man", "man"],
+      "responses": [
+        "Male",
+        "male",
+        "Man",
+        "man"
+      ],
       "confidence_threshold": 0.5,
       "learned_patterns": [],
       "success_rate": 0.92,
@@ -69,10 +110,21 @@
     },
     "occupation": {
       "patterns": [
-        "occupation", "job", "work", "profession", "career", 
-        "job title", "what do you do", "current job", "employment"
+        "occupation",
+        "job",
+        "work",
+        "profession",
+        "career",
+        "job title",
+        "what do you do",
+        "current job",
+        "employment"
       ],
-      "responses": ["Data Analyst", "data analyst", "analyst"],
+      "responses": [
+        "Data Analyst",
+        "data analyst",
+        "analyst"
+      ],
       "confidence_threshold": 0.4,
       "learned_patterns": [],
       "success_rate": 0.67,
@@ -84,10 +136,21 @@
     },
     "location": {
       "patterns": [
-        "location", "state", "where do you live", "NSW", "New South Wales",
-        "postcode", "postal code", "zip code", "address"
+        "location",
+        "state",
+        "where do you live",
+        "NSW",
+        "New South Wales",
+        "postcode",
+        "postal code",
+        "zip code",
+        "address"
       ],
-      "responses": ["New South Wales", "NSW", "2217"],
+      "responses": [
+        "New South Wales",
+        "NSW",
+        "2217"
+      ],
       "confidence_threshold": 0.5,
       "learned_patterns": [],
       "success_rate": 0.78,
@@ -96,9 +159,15 @@
         "radio": "click_strategy",
         "text_input": "fill_strategy"
       }
-    }
+    },
+    "demographics_questions": {},
+    "brand_familiarity_questions": {},
+    "rating_matrix_questions": {},
+    "multi_select_questions": {},
+    "trust_rating_questions": {},
+    "recency_activities_questions": {},
+    "research_required_questions": {}
   },
-
   "brain_learning": {
     "intervention_history": [],
     "success_patterns": {},
@@ -108,10 +177,31 @@
         "total_attempts": 150,
         "successful_attempts": 100,
         "success_rate": 0.667,
-        "confidence_history": [0.30, 0.65, 0.72],
+        "confidence_history": [
+          0.3,
+          0.65,
+          0.72
+        ],
         "average_confidence": 0.56,
         "improvement_trend": "improving",
         "last_updated": "2024-01-15T10:30:00Z"
+      },
+      "DemographicsHandler": {
+        "total_attempts": 7,
+        "successful_attempts": 4,
+        "success_rate": 0.5714285714285714,
+        "confidence_history": [
+          0.0,
+          0.0,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.0
+        ],
+        "average_confidence": 0.17142857142857143,
+        "improvement_trend": "improving",
+        "last_updated": 1753451904.7463646
       }
     },
     "confidence_calibration": {},
@@ -123,12 +213,69 @@
       "automation_improvement_rate": 0.78,
       "last_learning_session": "brain_session_1753201838",
       "learning_velocity": "accelerating"
+    },
+    "intervention_learning": {
+      "success_1753451872": {
+        "timestamp": 1753451872.9728792,
+        "session_id": "automation_1753451872",
+        "question_type": "occupation",
+        "question_text": "Skip to contentDemographics Survey3.What is your occupation?Current Progress, 2 of 3 answeredPrevDonePowered bySurveyMonkey logo with text in primarySee how easy it is to create surveys and forms.{\"props\":{\"pageProps\":{\"staticData\":{\"user\":{\"isAuthenticated\":false,\"id\":\"1\",\"username\":null,\"languageId\":1,\"package\":\"1\",\"email\":\"\",\"group\":null,\"hipaa\":null,\"session\":null},\"client-config\":{\"amplitudeToken\":\"beb247315464a13bc86a0940b8c9bf9f\",\"loggingAPIPath\":\"/resp/api/logger\",\"dataAnalyticsAPIPath\":\"/resp/api/metrics\",\"dataAnalyticsLogsName\":\"unused\",\"dataAnalyticsLogsPath\":\"unused/unused\",\"gtmId\":\"GTM-NGMP3BG\",\"amplitudeForceAnonymous\":true,\"assetsHost\":\"//prod.smassets.net\",\"assetsPath\":\"/assets/smweb/\"},\"environment\":{\"countryCode\":\"AU\",\"languageCode\":\"en\",\"languageId\":1,\"slLanguageLocale\":\"en-US\",\"ip\":\"124.171.139.240\",\"subdomain\":\"www\",\"domain\":\"surveymonkey\",\"countryRegion\":\"NSW\",\"tld\":\"com\"},\"locale\":{\"isEUDC\":false,\"isEUSubdomain\":false},\"GDPR\":{\"isGDPRCountry\":false,\"hasGDPRConsent\":true,\"hasExplictlyDenied\":false,\"fidesBannerEnabled\":false,\"onetrustBannerEnabled\":false},\"pageRequestId\":\"DVpTHMtMpK4TIWbv5tdY0L_g-OVRGPkCLzIrIq0Vjo6Kfnyj7pA3Jw==\"},\"authToken\":\"eyJhbGciOiJFUzI1NiIsImtpZCI6Im1JVVk5T1lUQkpxazRXZ0c5d0VtR2diQjdMSWt4Zy1WcDBvUDJOdDl5QUEifQ.eyJzdWIiOiJCNThBSm1sZndmRG53b0ZxcF9lcl93IiwiemlkIjoiU19VbnNGazR3ZkR6YllOZHlvQ0RYQSJ9.orPP_XbS1M5KtlNGOynD8Qm2BvFr3BE9yUNfu2wYzyMfgDYZjLYhXet4fxj0GxUZ491psyVBxpLtbvXhsKMwaQ\",\"translationData\":{\"localeCode\":\"en-US\",\"languageCode\":\"en\"},\"fetchServerSideDataSuccess\":true,\"spageSessionData\":{\"spageSession\":{\"surveyOwnerPackageId\":\"1\",\"isSurveyEndPageEnabled\":false,\"pageIds\":[67491039,67490785,67491143,67491146],\"groupId\":null,\"__typename\":\"SpageSessionResponse\"}},\"surveyPageData\":{\"surveyPage\":{\"id\":\"67491039\",\"firstQuestionNumber\":1,\"heading\":\"Welcome to my survey\",\"subHeading\":\"Thank you for participating in our survey. Your feedback is important.\",\"position\":1,\"surveyPageQuestions\":{\"items\":[],\"__typename\":\"SurveyQuestionListQM\"},\"__typename\":\"SurveyPage\"}},\"surveyTheme\":{\"id\":\"10292568\",\"isAccessible\":true,\"isCustomTheme\":false,\"isStockTheme\":true,\"isTeamTheme\":false,\"name\":\"Heritage\",\"version\":\"V3\",\"layout\":\"BACKGROUND_FULL_TEXT_CENTER\",\"surveyPage\":{\"overlayColor\":\"rgba(255,255,255,1.0)\",\"__typename\":\"SurveyPageStyle\"},\"surveyTitle\":{\"color\":null,\"fontSize\":26,\"fontFamily\":\"National2\",\"fontWeight\":\"BOLD\",\"fontStyle\":\"NORMAL\",\"textDecoration\":\"NONE\",\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"pageTitle\":{\"color\":null,\"fontSize\":24,\"fontFamily\":\"National2\",\"fontWeight\":\"REGULAR\",\"fontStyle\":\"NORMAL\",\"textDecoration\":\"NONE\",\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"questionTitle\":{\"color\":null,\"fontSize\":20,\"fontFamily\":\"National2\",\"fontWeight\":\"LIGHT\",\"fontStyle\":\"NORMAL\",\"textDecoration\":\"NONE\",\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"questionBody\":{\"highlightColor\":\"rgba(208,210,211,1)\",\"fontFamily\":\"National2\",\"fontSize\":18,\"fontStyle\":\"NORMAL\",\"fontWeight\":\"LIGHT\",\"textDecoration\":\"NONE\",\"__typename\":\"QuestionBodyStyle\"},\"button\":{\"color\":null,\"fontSize\":15,\"fontFamily\":\"National2\",\"fontWeight\":\"REGULAR\",\"fontStyle\":null,\"textDecoration\":null,\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"error\":{\"color\":null,\"fontSize\":16,\"fontFamily\":null,\"fontWeight\":\"LIGHT\",\"fontStyle\":\"NORMAL\",\"textDecoration\":\"NONE\",\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"progressBarStyle\":null,\"persistentProgressBar\":null,\"progressBarIndicator\":null,\"pageDescription\":null,\"logoStyle\":null,\"artifacts\":{\"background\":{\"url\":null,\"__typename\":\"Image\"},\"title\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"SurveyThemeImages\"},\"selectedColorPalette\":{\"titleColor\":\"rgba(0,131,35,1)\",\"questionColor\":\"rgba(64,64,64,1)\",\"answerColor\":\"rgba(64,64,64,1)\",\"primaryAccentColor\":\"rgba(0,131,35,1)\",\"secondaryAccentColor\":\"rgba(255,255,255,1)\",\"primaryBackgroundColor\":\"rgba(255,255,255,1)\",\"secondaryBackgroundColor\":\"rgba(255,255,255,1)\",\"__typename\":\"ColorPalette\"},\"surveyContainer\":null,\"__typename\":\"SurveyTheme\"},\"respondentData\":null,\"collector\":{\"id\":\"461364440\",\"surveyId\":\"524028967\",\"editResponseType\":\"UNTIL_COMPLETE\",\"isAnonymous\":false,\"isUserCanned\":false,\"surveyResultsUrl\":null,\"allowMultipleResponses\":false,\"ipAddressFilter\":null,\"surveyEndPageOptions\":{\"redirectType\":\"URL\",\"completionUrl\":\"https://www.surveymonkey.com\"},\"isClosed\":false,\"createdAt\":\"2025-07-05T00:38:00.000Z\",\"type\":\"WEBLINK\",\"responseCount\":43,\"status\":\"OPEN\",\"subdomain\":\"www\",\"fqdn\":\"www.surveymonkey.com\",\"weblink\":{\"type\":\"STANDARD\",\"__typename\":\"CollectorWeblink\"},\"closedPage\":{\"closedMessage\":\"This survey is currently closed.  Please contact the author of this survey for further assistance.\",\"__typename\":\"CollectorClosedPage\"},\"thankYouPage\":{\"isEnabled\":false,\"message\":\"Thank you for submitting your responses!\",\"__typename\":\"CollectorThankYouPage\"},\"disqualificationPage\":{\"defaultMessage\":\"Thank you for completing our survey!\",\"message\":\"Thank you for completing our survey!\",\"type\":\"message\",\"url\":\"https://www.surveymonkey.com\",\"__typename\":\"CollectorDisqualificationPage\"},\"confirmationEmailEnabled\":false,\"customMetaData\":{\"title\":\"Demographics Survey\",\"description\":\"Take this survey powered by surveymonkey.com. Create your own surveys for free.\",\"imageUrl\":\"https://www.surveymonkey.com/collect/images/default_custom_meta_image.jpg\",\"__typename\":\"CollectorCustomMetaData\"},\"passwordOptions\":{\"isEnabled\":false,\"__typename\":\"CollectorPasswordOptions\"},\"__typename\":\"Collector\"},\"existingResponses\":[],\"survey\":{\"id\":\"524028967\",\"isQuiz\":false,\"title\":\"Demographics Survey\",\"titleHTML\":\"Demographics Survey\",\"format\":\"ONE_QUESTION_AT_A_TIME\",\"questionCount\":3,\"answerableQuestionCount\":3,\"userId\":\"519367400\",\"version\":16,\"generatedCategory\":{\"id\":\"10\",\"__typename\":\"GeneratedSurveyCategory\"},\"language\":{\"id\":\"1\",\"name\":\"English\",\"code\":\"en\",\"__typename\":\"Language\",\"overriddenCode\":\"en\",\"overriddenId\":\"1\"},\"defaultSurveyLanguage\":{\"id\":\"1\",\"name\":\"English\",\"displayName\":\"English\",\"code\":\"en\",\"__typename\":\"LanguageTag\"},\"availableSurveyLanguages\":[],\"pages\":{\"totalCount\":4,\"__typename\":\"SurveyPageList\"},\"quizOptions\":{\"showResults\":false,\"__typename\":\"SurveyQuizOptions\"},\"navigation\":{\"ok\":{\"label\":\"continue\",\"__typename\":\"SurveyButton\"},\"previous\":{\"label\":\"Prev\",\"__typename\":\"SurveyButton\"},\"next\":{\"label\":\"Next\",\"__typename\":\"SurveyButton\"},\"done\":{\"label\":\"Done\",\"__typename\":\"SurveyButton\"},\"__typename\":\"SurveyNavigation\"},\"design\":{\"surveyTitle\":{\"enabled\":true,\"horizontalAlignment\":\"LEFT\",\"__typename\":\"SurveyTitle\"},\"showPageTitles\":true,\"showPageNumbers\":false,\"footer\":{\"enabled\":true,\"grayscale\":false,\"__typename\":\"SurveyFooter\"},\"progressBar\":{\"enabled\":true,\"position\":\"BOTTOM\",\"showPercent\":false,\"showPageNumber\":false,\"__typename\":\"SurveyProgressBar\"},\"logo\":{\"enabled\":false,\"height\":null,\"verticalAlignment\":null,\"width\":null,\"size\":null,\"image\":null,\"__typename\":\"SurveyLogo\"},\"questionNumbering\":{\"enabled\":true,\"type\":\"SURVEY\",\"__typename\":\"SurveyQuestionNumbering\"},\"showRequiredQuestionAsterisks\":true,\"themeId\":\"10292568\",\"__typename\":\"SurveyDesign\"},\"__typename\":\"Survey\"},\"collectorKey\":\"HX39G27\",\"encryptedSmSubject\":null,\"endPageUrl\":\"https://www.surveymonkey.com/survey-thanks\",\"isEndPageUrlExternal\":false,\"hasSurveyVersionChanged\":false,\"pageOptions\":{\"epTemplate\":\"\",\"reqLocale\":\"en\",\"slLanguageLocale\":\"en-US\",\"languageCode\":\"en\",\"languageId\":\"1\",\"tier\":\"\",\"logo\":\"\",\"surveyId\":null,\"collectorId\":\"461364440\",\"collectorKey\":\"\",\"hasStandard\":false,\"subDomain\":\"www\",\"canonical\":\"https://www.surveymonkey.com/mp/take-a-tour/\",\"canonicalHostname\":\"https://www.surveymonkey.com\",\"randomNumber\":0.0652628366521706,\"isExistingUser\":false,\"firstQuestionResponse\":null,\"recipientId\":null,\"inEmailResponseCaptureEnabled\":false,\"isWhiteLabel\":false,\"isGovernment\":false,\"isNonBrandedSmParam\":false,\"isEmbeddedSmParam\":false,\"isKiosk\":false,\"isBasicEndpageGroup\":false,\"baseLanguageId\":\"1\",\"collectorAllowMultipleResponses\":false,\"encryptedSmParam\":\"8VpvVmpsNb1co7rt7Cx3rNgzDJfg3vX4DW_2BJG1rkMxL2i70IM_2BQFdI_2B5Sg6C0LvCrRIGivDk6P4Bg0BJMVhfkGxPR11nlmhIkIxxHcbGOewEt_2BUKOsEJuv0sTovgNnxrLkAuAwCaDxs_2F_2B0quMLwEk56296GFkAkIBJiuZg5dwogL4voLJGhVb09UPhCFwGv00cORhRdzfDDMnV_2BdotLrNjjg2vM3XLjp3zntuWreTfg_3D\",\"shouldShowSurveyTaken\":false,\"shouldShowSurveyClosed\":false,\"shouldRemoveRPCookie\":false,\"encryptedCookieValue\":null},\"spageGoogleFontsLink\":null,\"layout\":{\"variant\":\"SurveyMonkey\",\"options\":{\"actionFlow\":\"SurveyTaking\",\"pageId\":\"SurveyTaking\",\"legacyWeb\":\"responseweb\",\"includeHeader\":false,\"includeFooter\":false}},\"respondent\":null,\"rum\":{\"enabled\":true,\"cdn\":{\"version\":\"latest\",\"integrity\":\"\"},\"settings\":{\"app\":\"respweb\",\"beaconUrl\":\"https://rum-ingest.us1.signalfx.com/v1/rum\",\"rumAuth\":\"OCrwYn6e-K-2HPcOrYlKvg\",\"environment\":\"prod\",\"version\":\"main-20250723-18377\",\"sampleRate\":1,\"debug\":false,\"instrumentations\":{\"interactions\":false}}}},\"__N_SSP\":true},\"page\":\"/r/surveyTaking/[collectKey]\",\"query\":{\"collectKey\":\"HX39G27\"},\"buildId\":\"respweb-dev\",\"assetPrefix\":\"//prod.smassets.net/assets/smweb\",\"isFallback\":false,\"gssp\":true,\"scriptLoader\":[]}",
+        "strategy_used": "learned_response",
+        "execution_time": 0.9080047607421875,
+        "confidence_score": 0.0,
+        "response_value": "Data Analyst",
+        "result": "SUCCESS",
+        "element_type": "text_input",
+        "automation_success": true,
+        "learned_at": 1753451872.9729004
+      },
+      "success_1753451877": {
+        "timestamp": 1753451877.4733655,
+        "session_id": "automation_1753451877",
+        "question_type": "occupation",
+        "question_text": "Skip to contentDemographics Survey3.What is your occupation?continueCurrent Progress, 3 of 3 answeredPrevDonePowered bySurveyMonkey logo with text in primarySee how easy it is to create surveys and forms.{\"props\":{\"pageProps\":{\"staticData\":{\"user\":{\"isAuthenticated\":false,\"id\":\"1\",\"username\":null,\"languageId\":1,\"package\":\"1\",\"email\":\"\",\"group\":null,\"hipaa\":null,\"session\":null},\"client-config\":{\"amplitudeToken\":\"beb247315464a13bc86a0940b8c9bf9f\",\"loggingAPIPath\":\"/resp/api/logger\",\"dataAnalyticsAPIPath\":\"/resp/api/metrics\",\"dataAnalyticsLogsName\":\"unused\",\"dataAnalyticsLogsPath\":\"unused/unused\",\"gtmId\":\"GTM-NGMP3BG\",\"amplitudeForceAnonymous\":true,\"assetsHost\":\"//prod.smassets.net\",\"assetsPath\":\"/assets/smweb/\"},\"environment\":{\"countryCode\":\"AU\",\"languageCode\":\"en\",\"languageId\":1,\"slLanguageLocale\":\"en-US\",\"ip\":\"124.171.139.240\",\"subdomain\":\"www\",\"domain\":\"surveymonkey\",\"countryRegion\":\"NSW\",\"tld\":\"com\"},\"locale\":{\"isEUDC\":false,\"isEUSubdomain\":false},\"GDPR\":{\"isGDPRCountry\":false,\"hasGDPRConsent\":true,\"hasExplictlyDenied\":false,\"fidesBannerEnabled\":false,\"onetrustBannerEnabled\":false},\"pageRequestId\":\"DVpTHMtMpK4TIWbv5tdY0L_g-OVRGPkCLzIrIq0Vjo6Kfnyj7pA3Jw==\"},\"authToken\":\"eyJhbGciOiJFUzI1NiIsImtpZCI6Im1JVVk5T1lUQkpxazRXZ0c5d0VtR2diQjdMSWt4Zy1WcDBvUDJOdDl5QUEifQ.eyJzdWIiOiJCNThBSm1sZndmRG53b0ZxcF9lcl93IiwiemlkIjoiU19VbnNGazR3ZkR6YllOZHlvQ0RYQSJ9.orPP_XbS1M5KtlNGOynD8Qm2BvFr3BE9yUNfu2wYzyMfgDYZjLYhXet4fxj0GxUZ491psyVBxpLtbvXhsKMwaQ\",\"translationData\":{\"localeCode\":\"en-US\",\"languageCode\":\"en\"},\"fetchServerSideDataSuccess\":true,\"spageSessionData\":{\"spageSession\":{\"surveyOwnerPackageId\":\"1\",\"isSurveyEndPageEnabled\":false,\"pageIds\":[67491039,67490785,67491143,67491146],\"groupId\":null,\"__typename\":\"SpageSessionResponse\"}},\"surveyPageData\":{\"surveyPage\":{\"id\":\"67491039\",\"firstQuestionNumber\":1,\"heading\":\"Welcome to my survey\",\"subHeading\":\"Thank you for participating in our survey. Your feedback is important.\",\"position\":1,\"surveyPageQuestions\":{\"items\":[],\"__typename\":\"SurveyQuestionListQM\"},\"__typename\":\"SurveyPage\"}},\"surveyTheme\":{\"id\":\"10292568\",\"isAccessible\":true,\"isCustomTheme\":false,\"isStockTheme\":true,\"isTeamTheme\":false,\"name\":\"Heritage\",\"version\":\"V3\",\"layout\":\"BACKGROUND_FULL_TEXT_CENTER\",\"surveyPage\":{\"overlayColor\":\"rgba(255,255,255,1.0)\",\"__typename\":\"SurveyPageStyle\"},\"surveyTitle\":{\"color\":null,\"fontSize\":26,\"fontFamily\":\"National2\",\"fontWeight\":\"BOLD\",\"fontStyle\":\"NORMAL\",\"textDecoration\":\"NONE\",\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"pageTitle\":{\"color\":null,\"fontSize\":24,\"fontFamily\":\"National2\",\"fontWeight\":\"REGULAR\",\"fontStyle\":\"NORMAL\",\"textDecoration\":\"NONE\",\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"questionTitle\":{\"color\":null,\"fontSize\":20,\"fontFamily\":\"National2\",\"fontWeight\":\"LIGHT\",\"fontStyle\":\"NORMAL\",\"textDecoration\":\"NONE\",\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"questionBody\":{\"highlightColor\":\"rgba(208,210,211,1)\",\"fontFamily\":\"National2\",\"fontSize\":18,\"fontStyle\":\"NORMAL\",\"fontWeight\":\"LIGHT\",\"textDecoration\":\"NONE\",\"__typename\":\"QuestionBodyStyle\"},\"button\":{\"color\":null,\"fontSize\":15,\"fontFamily\":\"National2\",\"fontWeight\":\"REGULAR\",\"fontStyle\":null,\"textDecoration\":null,\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"error\":{\"color\":null,\"fontSize\":16,\"fontFamily\":null,\"fontWeight\":\"LIGHT\",\"fontStyle\":\"NORMAL\",\"textDecoration\":\"NONE\",\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"progressBarStyle\":null,\"persistentProgressBar\":null,\"progressBarIndicator\":null,\"pageDescription\":null,\"logoStyle\":null,\"artifacts\":{\"background\":{\"url\":null,\"__typename\":\"Image\"},\"title\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"SurveyThemeImages\"},\"selectedColorPalette\":{\"titleColor\":\"rgba(0,131,35,1)\",\"questionColor\":\"rgba(64,64,64,1)\",\"answerColor\":\"rgba(64,64,64,1)\",\"primaryAccentColor\":\"rgba(0,131,35,1)\",\"secondaryAccentColor\":\"rgba(255,255,255,1)\",\"primaryBackgroundColor\":\"rgba(255,255,255,1)\",\"secondaryBackgroundColor\":\"rgba(255,255,255,1)\",\"__typename\":\"ColorPalette\"},\"surveyContainer\":null,\"__typename\":\"SurveyTheme\"},\"respondentData\":null,\"collector\":{\"id\":\"461364440\",\"surveyId\":\"524028967\",\"editResponseType\":\"UNTIL_COMPLETE\",\"isAnonymous\":false,\"isUserCanned\":false,\"surveyResultsUrl\":null,\"allowMultipleResponses\":false,\"ipAddressFilter\":null,\"surveyEndPageOptions\":{\"redirectType\":\"URL\",\"completionUrl\":\"https://www.surveymonkey.com\"},\"isClosed\":false,\"createdAt\":\"2025-07-05T00:38:00.000Z\",\"type\":\"WEBLINK\",\"responseCount\":43,\"status\":\"OPEN\",\"subdomain\":\"www\",\"fqdn\":\"www.surveymonkey.com\",\"weblink\":{\"type\":\"STANDARD\",\"__typename\":\"CollectorWeblink\"},\"closedPage\":{\"closedMessage\":\"This survey is currently closed.  Please contact the author of this survey for further assistance.\",\"__typename\":\"CollectorClosedPage\"},\"thankYouPage\":{\"isEnabled\":false,\"message\":\"Thank you for submitting your responses!\",\"__typename\":\"CollectorThankYouPage\"},\"disqualificationPage\":{\"defaultMessage\":\"Thank you for completing our survey!\",\"message\":\"Thank you for completing our survey!\",\"type\":\"message\",\"url\":\"https://www.surveymonkey.com\",\"__typename\":\"CollectorDisqualificationPage\"},\"confirmationEmailEnabled\":false,\"customMetaData\":{\"title\":\"Demographics Survey\",\"description\":\"Take this survey powered by surveymonkey.com. Create your own surveys for free.\",\"imageUrl\":\"https://www.surveymonkey.com/collect/images/default_custom_meta_image.jpg\",\"__typename\":\"CollectorCustomMetaData\"},\"passwordOptions\":{\"isEnabled\":false,\"__typename\":\"CollectorPasswordOptions\"},\"__typename\":\"Collector\"},\"existingResponses\":[],\"survey\":{\"id\":\"524028967\",\"isQuiz\":false,\"title\":\"Demographics Survey\",\"titleHTML\":\"Demographics Survey\",\"format\":\"ONE_QUESTION_AT_A_TIME\",\"questionCount\":3,\"answerableQuestionCount\":3,\"userId\":\"519367400\",\"version\":16,\"generatedCategory\":{\"id\":\"10\",\"__typename\":\"GeneratedSurveyCategory\"},\"language\":{\"id\":\"1\",\"name\":\"English\",\"code\":\"en\",\"__typename\":\"Language\",\"overriddenCode\":\"en\",\"overriddenId\":\"1\"},\"defaultSurveyLanguage\":{\"id\":\"1\",\"name\":\"English\",\"displayName\":\"English\",\"code\":\"en\",\"__typename\":\"LanguageTag\"},\"availableSurveyLanguages\":[],\"pages\":{\"totalCount\":4,\"__typename\":\"SurveyPageList\"},\"quizOptions\":{\"showResults\":false,\"__typename\":\"SurveyQuizOptions\"},\"navigation\":{\"ok\":{\"label\":\"continue\",\"__typename\":\"SurveyButton\"},\"previous\":{\"label\":\"Prev\",\"__typename\":\"SurveyButton\"},\"next\":{\"label\":\"Next\",\"__typename\":\"SurveyButton\"},\"done\":{\"label\":\"Done\",\"__typename\":\"SurveyButton\"},\"__typename\":\"SurveyNavigation\"},\"design\":{\"surveyTitle\":{\"enabled\":true,\"horizontalAlignment\":\"LEFT\",\"__typename\":\"SurveyTitle\"},\"showPageTitles\":true,\"showPageNumbers\":false,\"footer\":{\"enabled\":true,\"grayscale\":false,\"__typename\":\"SurveyFooter\"},\"progressBar\":{\"enabled\":true,\"position\":\"BOTTOM\",\"showPercent\":false,\"showPageNumber\":false,\"__typename\":\"SurveyProgressBar\"},\"logo\":{\"enabled\":false,\"height\":null,\"verticalAlignment\":null,\"width\":null,\"size\":null,\"image\":null,\"__typename\":\"SurveyLogo\"},\"questionNumbering\":{\"enabled\":true,\"type\":\"SURVEY\",\"__typename\":\"SurveyQuestionNumbering\"},\"showRequiredQuestionAsterisks\":true,\"themeId\":\"10292568\",\"__typename\":\"SurveyDesign\"},\"__typename\":\"Survey\"},\"collectorKey\":\"HX39G27\",\"encryptedSmSubject\":null,\"endPageUrl\":\"https://www.surveymonkey.com/survey-thanks\",\"isEndPageUrlExternal\":false,\"hasSurveyVersionChanged\":false,\"pageOptions\":{\"epTemplate\":\"\",\"reqLocale\":\"en\",\"slLanguageLocale\":\"en-US\",\"languageCode\":\"en\",\"languageId\":\"1\",\"tier\":\"\",\"logo\":\"\",\"surveyId\":null,\"collectorId\":\"461364440\",\"collectorKey\":\"\",\"hasStandard\":false,\"subDomain\":\"www\",\"canonical\":\"https://www.surveymonkey.com/mp/take-a-tour/\",\"canonicalHostname\":\"https://www.surveymonkey.com\",\"randomNumber\":0.0652628366521706,\"isExistingUser\":false,\"firstQuestionResponse\":null,\"recipientId\":null,\"inEmailResponseCaptureEnabled\":false,\"isWhiteLabel\":false,\"isGovernment\":false,\"isNonBrandedSmParam\":false,\"isEmbeddedSmParam\":false,\"isKiosk\":false,\"isBasicEndpageGroup\":false,\"baseLanguageId\":\"1\",\"collectorAllowMultipleResponses\":false,\"encryptedSmParam\":\"8VpvVmpsNb1co7rt7Cx3rNgzDJfg3vX4DW_2BJG1rkMxL2i70IM_2BQFdI_2B5Sg6C0LvCrRIGivDk6P4Bg0BJMVhfkGxPR11nlmhIkIxxHcbGOewEt_2BUKOsEJuv0sTovgNnxrLkAuAwCaDxs_2F_2B0quMLwEk56296GFkAkIBJiuZg5dwogL4voLJGhVb09UPhCFwGv00cORhRdzfDDMnV_2BdotLrNjjg2vM3XLjp3zntuWreTfg_3D\",\"shouldShowSurveyTaken\":false,\"shouldShowSurveyClosed\":false,\"shouldRemoveRPCookie\":false,\"encryptedCookieValue\":null},\"spageGoogleFontsLink\":null,\"layout\":{\"variant\":\"SurveyMonkey\",\"options\":{\"actionFlow\":\"SurveyTaking\",\"pageId\":\"SurveyTaking\",\"legacyWeb\":\"responseweb\",\"includeHeader\":false,\"includeFooter\":false}},\"respondent\":null,\"rum\":{\"enabled\":true,\"cdn\":{\"version\":\"latest\",\"integrity\":\"\"},\"settings\":{\"app\":\"respweb\",\"beaconUrl\":\"https://rum-ingest.us1.signalfx.com/v1/rum\",\"rumAuth\":\"OCrwYn6e-K-2HPcOrYlKvg\",\"environment\":\"prod\",\"version\":\"main-20250723-18377\",\"sampleRate\":1,\"debug\":false,\"instrumentations\":{\"interactions\":false}}}},\"__N_SSP\":true},\"page\":\"/r/surveyTaking/[collectKey]\",\"query\":{\"collectKey\":\"HX39G27\"},\"buildId\":\"respweb-dev\",\"assetPrefix\":\"//prod.smassets.net/assets/smweb\",\"isFallback\":false,\"gssp\":true,\"scriptLoader\":[]}",
+        "strategy_used": "learned_response",
+        "execution_time": 1.032682180404663,
+        "confidence_score": 0.0,
+        "response_value": "Data Analyst",
+        "result": "SUCCESS",
+        "element_type": "text_input",
+        "automation_success": true,
+        "learned_at": 1753451877.4734037
+      },
+      "success_1753451881": {
+        "timestamp": 1753451881.6953442,
+        "session_id": "automation_1753451881",
+        "question_type": "occupation",
+        "question_text": "Skip to contentDemographics Survey3.What is your occupation?continueCurrent Progress, 3 of 3 answeredPrevDonePowered bySurveyMonkey logo with text in primarySee how easy it is to create surveys and forms.{\"props\":{\"pageProps\":{\"staticData\":{\"user\":{\"isAuthenticated\":false,\"id\":\"1\",\"username\":null,\"languageId\":1,\"package\":\"1\",\"email\":\"\",\"group\":null,\"hipaa\":null,\"session\":null},\"client-config\":{\"amplitudeToken\":\"beb247315464a13bc86a0940b8c9bf9f\",\"loggingAPIPath\":\"/resp/api/logger\",\"dataAnalyticsAPIPath\":\"/resp/api/metrics\",\"dataAnalyticsLogsName\":\"unused\",\"dataAnalyticsLogsPath\":\"unused/unused\",\"gtmId\":\"GTM-NGMP3BG\",\"amplitudeForceAnonymous\":true,\"assetsHost\":\"//prod.smassets.net\",\"assetsPath\":\"/assets/smweb/\"},\"environment\":{\"countryCode\":\"AU\",\"languageCode\":\"en\",\"languageId\":1,\"slLanguageLocale\":\"en-US\",\"ip\":\"124.171.139.240\",\"subdomain\":\"www\",\"domain\":\"surveymonkey\",\"countryRegion\":\"NSW\",\"tld\":\"com\"},\"locale\":{\"isEUDC\":false,\"isEUSubdomain\":false},\"GDPR\":{\"isGDPRCountry\":false,\"hasGDPRConsent\":true,\"hasExplictlyDenied\":false,\"fidesBannerEnabled\":false,\"onetrustBannerEnabled\":false},\"pageRequestId\":\"DVpTHMtMpK4TIWbv5tdY0L_g-OVRGPkCLzIrIq0Vjo6Kfnyj7pA3Jw==\"},\"authToken\":\"eyJhbGciOiJFUzI1NiIsImtpZCI6Im1JVVk5T1lUQkpxazRXZ0c5d0VtR2diQjdMSWt4Zy1WcDBvUDJOdDl5QUEifQ.eyJzdWIiOiJCNThBSm1sZndmRG53b0ZxcF9lcl93IiwiemlkIjoiU19VbnNGazR3ZkR6YllOZHlvQ0RYQSJ9.orPP_XbS1M5KtlNGOynD8Qm2BvFr3BE9yUNfu2wYzyMfgDYZjLYhXet4fxj0GxUZ491psyVBxpLtbvXhsKMwaQ\",\"translationData\":{\"localeCode\":\"en-US\",\"languageCode\":\"en\"},\"fetchServerSideDataSuccess\":true,\"spageSessionData\":{\"spageSession\":{\"surveyOwnerPackageId\":\"1\",\"isSurveyEndPageEnabled\":false,\"pageIds\":[67491039,67490785,67491143,67491146],\"groupId\":null,\"__typename\":\"SpageSessionResponse\"}},\"surveyPageData\":{\"surveyPage\":{\"id\":\"67491039\",\"firstQuestionNumber\":1,\"heading\":\"Welcome to my survey\",\"subHeading\":\"Thank you for participating in our survey. Your feedback is important.\",\"position\":1,\"surveyPageQuestions\":{\"items\":[],\"__typename\":\"SurveyQuestionListQM\"},\"__typename\":\"SurveyPage\"}},\"surveyTheme\":{\"id\":\"10292568\",\"isAccessible\":true,\"isCustomTheme\":false,\"isStockTheme\":true,\"isTeamTheme\":false,\"name\":\"Heritage\",\"version\":\"V3\",\"layout\":\"BACKGROUND_FULL_TEXT_CENTER\",\"surveyPage\":{\"overlayColor\":\"rgba(255,255,255,1.0)\",\"__typename\":\"SurveyPageStyle\"},\"surveyTitle\":{\"color\":null,\"fontSize\":26,\"fontFamily\":\"National2\",\"fontWeight\":\"BOLD\",\"fontStyle\":\"NORMAL\",\"textDecoration\":\"NONE\",\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"pageTitle\":{\"color\":null,\"fontSize\":24,\"fontFamily\":\"National2\",\"fontWeight\":\"REGULAR\",\"fontStyle\":\"NORMAL\",\"textDecoration\":\"NONE\",\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"questionTitle\":{\"color\":null,\"fontSize\":20,\"fontFamily\":\"National2\",\"fontWeight\":\"LIGHT\",\"fontStyle\":\"NORMAL\",\"textDecoration\":\"NONE\",\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"questionBody\":{\"highlightColor\":\"rgba(208,210,211,1)\",\"fontFamily\":\"National2\",\"fontSize\":18,\"fontStyle\":\"NORMAL\",\"fontWeight\":\"LIGHT\",\"textDecoration\":\"NONE\",\"__typename\":\"QuestionBodyStyle\"},\"button\":{\"color\":null,\"fontSize\":15,\"fontFamily\":\"National2\",\"fontWeight\":\"REGULAR\",\"fontStyle\":null,\"textDecoration\":null,\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"error\":{\"color\":null,\"fontSize\":16,\"fontFamily\":null,\"fontWeight\":\"LIGHT\",\"fontStyle\":\"NORMAL\",\"textDecoration\":\"NONE\",\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"progressBarStyle\":null,\"persistentProgressBar\":null,\"progressBarIndicator\":null,\"pageDescription\":null,\"logoStyle\":null,\"artifacts\":{\"background\":{\"url\":null,\"__typename\":\"Image\"},\"title\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"SurveyThemeImages\"},\"selectedColorPalette\":{\"titleColor\":\"rgba(0,131,35,1)\",\"questionColor\":\"rgba(64,64,64,1)\",\"answerColor\":\"rgba(64,64,64,1)\",\"primaryAccentColor\":\"rgba(0,131,35,1)\",\"secondaryAccentColor\":\"rgba(255,255,255,1)\",\"primaryBackgroundColor\":\"rgba(255,255,255,1)\",\"secondaryBackgroundColor\":\"rgba(255,255,255,1)\",\"__typename\":\"ColorPalette\"},\"surveyContainer\":null,\"__typename\":\"SurveyTheme\"},\"respondentData\":null,\"collector\":{\"id\":\"461364440\",\"surveyId\":\"524028967\",\"editResponseType\":\"UNTIL_COMPLETE\",\"isAnonymous\":false,\"isUserCanned\":false,\"surveyResultsUrl\":null,\"allowMultipleResponses\":false,\"ipAddressFilter\":null,\"surveyEndPageOptions\":{\"redirectType\":\"URL\",\"completionUrl\":\"https://www.surveymonkey.com\"},\"isClosed\":false,\"createdAt\":\"2025-07-05T00:38:00.000Z\",\"type\":\"WEBLINK\",\"responseCount\":43,\"status\":\"OPEN\",\"subdomain\":\"www\",\"fqdn\":\"www.surveymonkey.com\",\"weblink\":{\"type\":\"STANDARD\",\"__typename\":\"CollectorWeblink\"},\"closedPage\":{\"closedMessage\":\"This survey is currently closed.  Please contact the author of this survey for further assistance.\",\"__typename\":\"CollectorClosedPage\"},\"thankYouPage\":{\"isEnabled\":false,\"message\":\"Thank you for submitting your responses!\",\"__typename\":\"CollectorThankYouPage\"},\"disqualificationPage\":{\"defaultMessage\":\"Thank you for completing our survey!\",\"message\":\"Thank you for completing our survey!\",\"type\":\"message\",\"url\":\"https://www.surveymonkey.com\",\"__typename\":\"CollectorDisqualificationPage\"},\"confirmationEmailEnabled\":false,\"customMetaData\":{\"title\":\"Demographics Survey\",\"description\":\"Take this survey powered by surveymonkey.com. Create your own surveys for free.\",\"imageUrl\":\"https://www.surveymonkey.com/collect/images/default_custom_meta_image.jpg\",\"__typename\":\"CollectorCustomMetaData\"},\"passwordOptions\":{\"isEnabled\":false,\"__typename\":\"CollectorPasswordOptions\"},\"__typename\":\"Collector\"},\"existingResponses\":[],\"survey\":{\"id\":\"524028967\",\"isQuiz\":false,\"title\":\"Demographics Survey\",\"titleHTML\":\"Demographics Survey\",\"format\":\"ONE_QUESTION_AT_A_TIME\",\"questionCount\":3,\"answerableQuestionCount\":3,\"userId\":\"519367400\",\"version\":16,\"generatedCategory\":{\"id\":\"10\",\"__typename\":\"GeneratedSurveyCategory\"},\"language\":{\"id\":\"1\",\"name\":\"English\",\"code\":\"en\",\"__typename\":\"Language\",\"overriddenCode\":\"en\",\"overriddenId\":\"1\"},\"defaultSurveyLanguage\":{\"id\":\"1\",\"name\":\"English\",\"displayName\":\"English\",\"code\":\"en\",\"__typename\":\"LanguageTag\"},\"availableSurveyLanguages\":[],\"pages\":{\"totalCount\":4,\"__typename\":\"SurveyPageList\"},\"quizOptions\":{\"showResults\":false,\"__typename\":\"SurveyQuizOptions\"},\"navigation\":{\"ok\":{\"label\":\"continue\",\"__typename\":\"SurveyButton\"},\"previous\":{\"label\":\"Prev\",\"__typename\":\"SurveyButton\"},\"next\":{\"label\":\"Next\",\"__typename\":\"SurveyButton\"},\"done\":{\"label\":\"Done\",\"__typename\":\"SurveyButton\"},\"__typename\":\"SurveyNavigation\"},\"design\":{\"surveyTitle\":{\"enabled\":true,\"horizontalAlignment\":\"LEFT\",\"__typename\":\"SurveyTitle\"},\"showPageTitles\":true,\"showPageNumbers\":false,\"footer\":{\"enabled\":true,\"grayscale\":false,\"__typename\":\"SurveyFooter\"},\"progressBar\":{\"enabled\":true,\"position\":\"BOTTOM\",\"showPercent\":false,\"showPageNumber\":false,\"__typename\":\"SurveyProgressBar\"},\"logo\":{\"enabled\":false,\"height\":null,\"verticalAlignment\":null,\"width\":null,\"size\":null,\"image\":null,\"__typename\":\"SurveyLogo\"},\"questionNumbering\":{\"enabled\":true,\"type\":\"SURVEY\",\"__typename\":\"SurveyQuestionNumbering\"},\"showRequiredQuestionAsterisks\":true,\"themeId\":\"10292568\",\"__typename\":\"SurveyDesign\"},\"__typename\":\"Survey\"},\"collectorKey\":\"HX39G27\",\"encryptedSmSubject\":null,\"endPageUrl\":\"https://www.surveymonkey.com/survey-thanks\",\"isEndPageUrlExternal\":false,\"hasSurveyVersionChanged\":false,\"pageOptions\":{\"epTemplate\":\"\",\"reqLocale\":\"en\",\"slLanguageLocale\":\"en-US\",\"languageCode\":\"en\",\"languageId\":\"1\",\"tier\":\"\",\"logo\":\"\",\"surveyId\":null,\"collectorId\":\"461364440\",\"collectorKey\":\"\",\"hasStandard\":false,\"subDomain\":\"www\",\"canonical\":\"https://www.surveymonkey.com/mp/take-a-tour/\",\"canonicalHostname\":\"https://www.surveymonkey.com\",\"randomNumber\":0.0652628366521706,\"isExistingUser\":false,\"firstQuestionResponse\":null,\"recipientId\":null,\"inEmailResponseCaptureEnabled\":false,\"isWhiteLabel\":false,\"isGovernment\":false,\"isNonBrandedSmParam\":false,\"isEmbeddedSmParam\":false,\"isKiosk\":false,\"isBasicEndpageGroup\":false,\"baseLanguageId\":\"1\",\"collectorAllowMultipleResponses\":false,\"encryptedSmParam\":\"8VpvVmpsNb1co7rt7Cx3rNgzDJfg3vX4DW_2BJG1rkMxL2i70IM_2BQFdI_2B5Sg6C0LvCrRIGivDk6P4Bg0BJMVhfkGxPR11nlmhIkIxxHcbGOewEt_2BUKOsEJuv0sTovgNnxrLkAuAwCaDxs_2F_2B0quMLwEk56296GFkAkIBJiuZg5dwogL4voLJGhVb09UPhCFwGv00cORhRdzfDDMnV_2BdotLrNjjg2vM3XLjp3zntuWreTfg_3D\",\"shouldShowSurveyTaken\":false,\"shouldShowSurveyClosed\":false,\"shouldRemoveRPCookie\":false,\"encryptedCookieValue\":null},\"spageGoogleFontsLink\":null,\"layout\":{\"variant\":\"SurveyMonkey\",\"options\":{\"actionFlow\":\"SurveyTaking\",\"pageId\":\"SurveyTaking\",\"legacyWeb\":\"responseweb\",\"includeHeader\":false,\"includeFooter\":false}},\"respondent\":null,\"rum\":{\"enabled\":true,\"cdn\":{\"version\":\"latest\",\"integrity\":\"\"},\"settings\":{\"app\":\"respweb\",\"beaconUrl\":\"https://rum-ingest.us1.signalfx.com/v1/rum\",\"rumAuth\":\"OCrwYn6e-K-2HPcOrYlKvg\",\"environment\":\"prod\",\"version\":\"main-20250723-18377\",\"sampleRate\":1,\"debug\":false,\"instrumentations\":{\"interactions\":false}}}},\"__N_SSP\":true},\"page\":\"/r/surveyTaking/[collectKey]\",\"query\":{\"collectKey\":\"HX39G27\"},\"buildId\":\"respweb-dev\",\"assetPrefix\":\"//prod.smassets.net/assets/smweb\",\"isFallback\":false,\"gssp\":true,\"scriptLoader\":[]}",
+        "strategy_used": "learned_response",
+        "execution_time": 0.755481481552124,
+        "confidence_score": 0.0,
+        "response_value": "Data Analyst",
+        "result": "SUCCESS",
+        "element_type": "text_input",
+        "automation_success": true,
+        "learned_at": 1753451881.6953795
+      },
+      "success_1753451886": {
+        "timestamp": 1753451886.7957962,
+        "session_id": "automation_1753451886",
+        "question_type": "occupation",
+        "question_text": "Skip to contentDemographics Survey3.What is your occupation?continueCurrent Progress, 3 of 3 answeredPrevDonePowered bySurveyMonkey logo with text in primarySee how easy it is to create surveys and forms.{\"props\":{\"pageProps\":{\"staticData\":{\"user\":{\"isAuthenticated\":false,\"id\":\"1\",\"username\":null,\"languageId\":1,\"package\":\"1\",\"email\":\"\",\"group\":null,\"hipaa\":null,\"session\":null},\"client-config\":{\"amplitudeToken\":\"beb247315464a13bc86a0940b8c9bf9f\",\"loggingAPIPath\":\"/resp/api/logger\",\"dataAnalyticsAPIPath\":\"/resp/api/metrics\",\"dataAnalyticsLogsName\":\"unused\",\"dataAnalyticsLogsPath\":\"unused/unused\",\"gtmId\":\"GTM-NGMP3BG\",\"amplitudeForceAnonymous\":true,\"assetsHost\":\"//prod.smassets.net\",\"assetsPath\":\"/assets/smweb/\"},\"environment\":{\"countryCode\":\"AU\",\"languageCode\":\"en\",\"languageId\":1,\"slLanguageLocale\":\"en-US\",\"ip\":\"124.171.139.240\",\"subdomain\":\"www\",\"domain\":\"surveymonkey\",\"countryRegion\":\"NSW\",\"tld\":\"com\"},\"locale\":{\"isEUDC\":false,\"isEUSubdomain\":false},\"GDPR\":{\"isGDPRCountry\":false,\"hasGDPRConsent\":true,\"hasExplictlyDenied\":false,\"fidesBannerEnabled\":false,\"onetrustBannerEnabled\":false},\"pageRequestId\":\"DVpTHMtMpK4TIWbv5tdY0L_g-OVRGPkCLzIrIq0Vjo6Kfnyj7pA3Jw==\"},\"authToken\":\"eyJhbGciOiJFUzI1NiIsImtpZCI6Im1JVVk5T1lUQkpxazRXZ0c5d0VtR2diQjdMSWt4Zy1WcDBvUDJOdDl5QUEifQ.eyJzdWIiOiJCNThBSm1sZndmRG53b0ZxcF9lcl93IiwiemlkIjoiU19VbnNGazR3ZkR6YllOZHlvQ0RYQSJ9.orPP_XbS1M5KtlNGOynD8Qm2BvFr3BE9yUNfu2wYzyMfgDYZjLYhXet4fxj0GxUZ491psyVBxpLtbvXhsKMwaQ\",\"translationData\":{\"localeCode\":\"en-US\",\"languageCode\":\"en\"},\"fetchServerSideDataSuccess\":true,\"spageSessionData\":{\"spageSession\":{\"surveyOwnerPackageId\":\"1\",\"isSurveyEndPageEnabled\":false,\"pageIds\":[67491039,67490785,67491143,67491146],\"groupId\":null,\"__typename\":\"SpageSessionResponse\"}},\"surveyPageData\":{\"surveyPage\":{\"id\":\"67491039\",\"firstQuestionNumber\":1,\"heading\":\"Welcome to my survey\",\"subHeading\":\"Thank you for participating in our survey. Your feedback is important.\",\"position\":1,\"surveyPageQuestions\":{\"items\":[],\"__typename\":\"SurveyQuestionListQM\"},\"__typename\":\"SurveyPage\"}},\"surveyTheme\":{\"id\":\"10292568\",\"isAccessible\":true,\"isCustomTheme\":false,\"isStockTheme\":true,\"isTeamTheme\":false,\"name\":\"Heritage\",\"version\":\"V3\",\"layout\":\"BACKGROUND_FULL_TEXT_CENTER\",\"surveyPage\":{\"overlayColor\":\"rgba(255,255,255,1.0)\",\"__typename\":\"SurveyPageStyle\"},\"surveyTitle\":{\"color\":null,\"fontSize\":26,\"fontFamily\":\"National2\",\"fontWeight\":\"BOLD\",\"fontStyle\":\"NORMAL\",\"textDecoration\":\"NONE\",\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"pageTitle\":{\"color\":null,\"fontSize\":24,\"fontFamily\":\"National2\",\"fontWeight\":\"REGULAR\",\"fontStyle\":\"NORMAL\",\"textDecoration\":\"NONE\",\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"questionTitle\":{\"color\":null,\"fontSize\":20,\"fontFamily\":\"National2\",\"fontWeight\":\"LIGHT\",\"fontStyle\":\"NORMAL\",\"textDecoration\":\"NONE\",\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"questionBody\":{\"highlightColor\":\"rgba(208,210,211,1)\",\"fontFamily\":\"National2\",\"fontSize\":18,\"fontStyle\":\"NORMAL\",\"fontWeight\":\"LIGHT\",\"textDecoration\":\"NONE\",\"__typename\":\"QuestionBodyStyle\"},\"button\":{\"color\":null,\"fontSize\":15,\"fontFamily\":\"National2\",\"fontWeight\":\"REGULAR\",\"fontStyle\":null,\"textDecoration\":null,\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"error\":{\"color\":null,\"fontSize\":16,\"fontFamily\":null,\"fontWeight\":\"LIGHT\",\"fontStyle\":\"NORMAL\",\"textDecoration\":\"NONE\",\"backgroundColor\":null,\"backgroundImage\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"CommonStyle\"},\"progressBarStyle\":null,\"persistentProgressBar\":null,\"progressBarIndicator\":null,\"pageDescription\":null,\"logoStyle\":null,\"artifacts\":{\"background\":{\"url\":null,\"__typename\":\"Image\"},\"title\":{\"url\":null,\"__typename\":\"Image\"},\"__typename\":\"SurveyThemeImages\"},\"selectedColorPalette\":{\"titleColor\":\"rgba(0,131,35,1)\",\"questionColor\":\"rgba(64,64,64,1)\",\"answerColor\":\"rgba(64,64,64,1)\",\"primaryAccentColor\":\"rgba(0,131,35,1)\",\"secondaryAccentColor\":\"rgba(255,255,255,1)\",\"primaryBackgroundColor\":\"rgba(255,255,255,1)\",\"secondaryBackgroundColor\":\"rgba(255,255,255,1)\",\"__typename\":\"ColorPalette\"},\"surveyContainer\":null,\"__typename\":\"SurveyTheme\"},\"respondentData\":null,\"collector\":{\"id\":\"461364440\",\"surveyId\":\"524028967\",\"editResponseType\":\"UNTIL_COMPLETE\",\"isAnonymous\":false,\"isUserCanned\":false,\"surveyResultsUrl\":null,\"allowMultipleResponses\":false,\"ipAddressFilter\":null,\"surveyEndPageOptions\":{\"redirectType\":\"URL\",\"completionUrl\":\"https://www.surveymonkey.com\"},\"isClosed\":false,\"createdAt\":\"2025-07-05T00:38:00.000Z\",\"type\":\"WEBLINK\",\"responseCount\":43,\"status\":\"OPEN\",\"subdomain\":\"www\",\"fqdn\":\"www.surveymonkey.com\",\"weblink\":{\"type\":\"STANDARD\",\"__typename\":\"CollectorWeblink\"},\"closedPage\":{\"closedMessage\":\"This survey is currently closed.  Please contact the author of this survey for further assistance.\",\"__typename\":\"CollectorClosedPage\"},\"thankYouPage\":{\"isEnabled\":false,\"message\":\"Thank you for submitting your responses!\",\"__typename\":\"CollectorThankYouPage\"},\"disqualificationPage\":{\"defaultMessage\":\"Thank you for completing our survey!\",\"message\":\"Thank you for completing our survey!\",\"type\":\"message\",\"url\":\"https://www.surveymonkey.com\",\"__typename\":\"CollectorDisqualificationPage\"},\"confirmationEmailEnabled\":false,\"customMetaData\":{\"title\":\"Demographics Survey\",\"description\":\"Take this survey powered by surveymonkey.com. Create your own surveys for free.\",\"imageUrl\":\"https://www.surveymonkey.com/collect/images/default_custom_meta_image.jpg\",\"__typename\":\"CollectorCustomMetaData\"},\"passwordOptions\":{\"isEnabled\":false,\"__typename\":\"CollectorPasswordOptions\"},\"__typename\":\"Collector\"},\"existingResponses\":[],\"survey\":{\"id\":\"524028967\",\"isQuiz\":false,\"title\":\"Demographics Survey\",\"titleHTML\":\"Demographics Survey\",\"format\":\"ONE_QUESTION_AT_A_TIME\",\"questionCount\":3,\"answerableQuestionCount\":3,\"userId\":\"519367400\",\"version\":16,\"generatedCategory\":{\"id\":\"10\",\"__typename\":\"GeneratedSurveyCategory\"},\"language\":{\"id\":\"1\",\"name\":\"English\",\"code\":\"en\",\"__typename\":\"Language\",\"overriddenCode\":\"en\",\"overriddenId\":\"1\"},\"defaultSurveyLanguage\":{\"id\":\"1\",\"name\":\"English\",\"displayName\":\"English\",\"code\":\"en\",\"__typename\":\"LanguageTag\"},\"availableSurveyLanguages\":[],\"pages\":{\"totalCount\":4,\"__typename\":\"SurveyPageList\"},\"quizOptions\":{\"showResults\":false,\"__typename\":\"SurveyQuizOptions\"},\"navigation\":{\"ok\":{\"label\":\"continue\",\"__typename\":\"SurveyButton\"},\"previous\":{\"label\":\"Prev\",\"__typename\":\"SurveyButton\"},\"next\":{\"label\":\"Next\",\"__typename\":\"SurveyButton\"},\"done\":{\"label\":\"Done\",\"__typename\":\"SurveyButton\"},\"__typename\":\"SurveyNavigation\"},\"design\":{\"surveyTitle\":{\"enabled\":true,\"horizontalAlignment\":\"LEFT\",\"__typename\":\"SurveyTitle\"},\"showPageTitles\":true,\"showPageNumbers\":false,\"footer\":{\"enabled\":true,\"grayscale\":false,\"__typename\":\"SurveyFooter\"},\"progressBar\":{\"enabled\":true,\"position\":\"BOTTOM\",\"showPercent\":false,\"showPageNumber\":false,\"__typename\":\"SurveyProgressBar\"},\"logo\":{\"enabled\":false,\"height\":null,\"verticalAlignment\":null,\"width\":null,\"size\":null,\"image\":null,\"__typename\":\"SurveyLogo\"},\"questionNumbering\":{\"enabled\":true,\"type\":\"SURVEY\",\"__typename\":\"SurveyQuestionNumbering\"},\"showRequiredQuestionAsterisks\":true,\"themeId\":\"10292568\",\"__typename\":\"SurveyDesign\"},\"__typename\":\"Survey\"},\"collectorKey\":\"HX39G27\",\"encryptedSmSubject\":null,\"endPageUrl\":\"https://www.surveymonkey.com/survey-thanks\",\"isEndPageUrlExternal\":false,\"hasSurveyVersionChanged\":false,\"pageOptions\":{\"epTemplate\":\"\",\"reqLocale\":\"en\",\"slLanguageLocale\":\"en-US\",\"languageCode\":\"en\",\"languageId\":\"1\",\"tier\":\"\",\"logo\":\"\",\"surveyId\":null,\"collectorId\":\"461364440\",\"collectorKey\":\"\",\"hasStandard\":false,\"subDomain\":\"www\",\"canonical\":\"https://www.surveymonkey.com/mp/take-a-tour/\",\"canonicalHostname\":\"https://www.surveymonkey.com\",\"randomNumber\":0.0652628366521706,\"isExistingUser\":false,\"firstQuestionResponse\":null,\"recipientId\":null,\"inEmailResponseCaptureEnabled\":false,\"isWhiteLabel\":false,\"isGovernment\":false,\"isNonBrandedSmParam\":false,\"isEmbeddedSmParam\":false,\"isKiosk\":false,\"isBasicEndpageGroup\":false,\"baseLanguageId\":\"1\",\"collectorAllowMultipleResponses\":false,\"encryptedSmParam\":\"8VpvVmpsNb1co7rt7Cx3rNgzDJfg3vX4DW_2BJG1rkMxL2i70IM_2BQFdI_2B5Sg6C0LvCrRIGivDk6P4Bg0BJMVhfkGxPR11nlmhIkIxxHcbGOewEt_2BUKOsEJuv0sTovgNnxrLkAuAwCaDxs_2F_2B0quMLwEk56296GFkAkIBJiuZg5dwogL4voLJGhVb09UPhCFwGv00cORhRdzfDDMnV_2BdotLrNjjg2vM3XLjp3zntuWreTfg_3D\",\"shouldShowSurveyTaken\":false,\"shouldShowSurveyClosed\":false,\"shouldRemoveRPCookie\":false,\"encryptedCookieValue\":null},\"spageGoogleFontsLink\":null,\"layout\":{\"variant\":\"SurveyMonkey\",\"options\":{\"actionFlow\":\"SurveyTaking\",\"pageId\":\"SurveyTaking\",\"legacyWeb\":\"responseweb\",\"includeHeader\":false,\"includeFooter\":false}},\"respondent\":null,\"rum\":{\"enabled\":true,\"cdn\":{\"version\":\"latest\",\"integrity\":\"\"},\"settings\":{\"app\":\"respweb\",\"beaconUrl\":\"https://rum-ingest.us1.signalfx.com/v1/rum\",\"rumAuth\":\"OCrwYn6e-K-2HPcOrYlKvg\",\"environment\":\"prod\",\"version\":\"main-20250723-18377\",\"sampleRate\":1,\"debug\":false,\"instrumentations\":{\"interactions\":false}}}},\"__N_SSP\":true},\"page\":\"/r/surveyTaking/[collectKey]\",\"query\":{\"collectKey\":\"HX39G27\"},\"buildId\":\"respweb-dev\",\"assetPrefix\":\"//prod.smassets.net/assets/smweb\",\"isFallback\":false,\"gssp\":true,\"scriptLoader\":[]}",
+        "strategy_used": "learned_response",
+        "execution_time": 1.4177277088165283,
+        "confidence_score": 0.0,
+        "response_value": "Data Analyst",
+        "result": "SUCCESS",
+        "element_type": "text_input",
+        "automation_success": true,
+        "learned_at": 1753451886.7958112
+      }
     }
   },
-
   "confidence_system": {
     "version": "3.0_dynamic",
-    "last_updated": "2024-01-15T10:30:00Z",
+    "last_updated": "2025-07-25T23:58:24.746518",
     "global_settings": {
       "learning_rate": 0.1,
       "confidence_decay": 0.95,
@@ -140,9 +287,9 @@
     },
     "handler_thresholds": {
       "demographics": {
-        "base_threshold": 0.30,
+        "base_threshold": 0.3,
         "dynamic_adjustment": 0.0,
-        "current_threshold": 0.30,
+        "current_threshold": 0.3,
         "success_rate": 0.67,
         "total_attempts": 148,
         "successful_attempts": 99,
@@ -152,7 +299,7 @@
       "brand_familiarity": {
         "base_threshold": 0.85,
         "dynamic_adjustment": -0.05,
-        "current_threshold": 0.80,
+        "current_threshold": 0.8,
         "success_rate": 0.95,
         "total_attempts": 42,
         "successful_attempts": 40,
@@ -160,9 +307,9 @@
         "trending": "stable"
       },
       "rating_matrix": {
-        "base_threshold": 0.90,
+        "base_threshold": 0.9,
         "dynamic_adjustment": 0.0,
-        "current_threshold": 0.90,
+        "current_threshold": 0.9,
         "success_rate": 0.88,
         "total_attempts": 25,
         "successful_attempts": 22,
@@ -191,12 +338,12 @@
       "consecutive_successes_boost": {
         "3_successes": 0.02,
         "5_successes": 0.05,
-        "10_successes": 0.10
+        "10_successes": 0.1
       },
       "consecutive_failures_penalty": {
         "2_failures": -0.02,
         "3_failures": -0.05,
-        "5_failures": -0.10
+        "5_failures": -0.1
       },
       "time_based_decay": {
         "days_since_success": {
@@ -232,16 +379,18 @@
           "pattern": "occupation + dropdown",
           "confidence_penalty": -0.05,
           "failure_rate": 0.45,
-          "common_issues": ["dropdown_option_not_found", "text_to_dropdown_conversion"]
+          "common_issues": [
+            "dropdown_option_not_found",
+            "text_to_dropdown_conversion"
+          ]
         }
       }
     }
   },
-
   "detailed_intervention_learning": {
     "success_1753282588": {
       "timestamp": 1753282588.9198196,
-      "session_id": "automation_1753282588", 
+      "session_id": "automation_1753282588",
       "question_type": "age",
       "strategy_used": "fill_strategy",
       "execution_time": 11.828978538513184,
@@ -255,7 +404,7 @@
     "success_1753282593": {
       "timestamp": 1753282593.9699616,
       "session_id": "automation_1753282593",
-      "question_type": "gender", 
+      "question_type": "gender",
       "strategy_used": "click_strategy",
       "execution_time": 1.3615565299987793,
       "confidence_score": 0.8,
@@ -273,18 +422,17 @@
       "execution_time": 2.814443349838257,
       "confidence_score": 0.4,
       "response_value": "Data Analyst",
-      "result": "SUCCESS", 
+      "result": "SUCCESS",
       "element_type": "text_input",
       "automation_success": true,
       "learned_at": 1753289365.0543165
     }
   },
-
   "question_patterns": {},
   "automation_settings": {
     "confirmed_survey_domains": [
       "yoursurveynow.com",
-      "qualtrics.com", 
+      "qualtrics.com",
       "decipherinc.com",
       "surveycmix.com",
       "surveymonkey.com"
