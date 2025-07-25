@@ -23,6 +23,7 @@ from data.user_profile import UserProfile
 from data.pattern_manager import PatternManager
 from data.brain_learning import BrainLearning
 from data.brain_reporting import BrainReporting
+from data.confidence_manager import ConfidenceManager
 
 
 class KnowledgeBase:
@@ -53,6 +54,8 @@ class KnowledgeBase:
     
     def _initialize_modules(self):
         """Initialize all specialized modules with appropriate data"""
+        # ... existing module initialization ...
+        
         # Initialize user profile module
         user_profile_data = self.data.get("user_profile", {})
         self.user_profile = UserProfile(user_profile_data)
@@ -71,12 +74,17 @@ class KnowledgeBase:
         # Initialize brain reporting module
         self.brain_reporting = BrainReporting(self.brain_learning)
         print("🧠 Brain Reporting module initialized!")
+        
+        # 🆕 Initialize confidence manager module
+        confidence_data = self.data.get("confidence_system", {})
+        self.confidence_manager = ConfidenceManager(confidence_data)
+        print("🎯 Confidence Manager module initialized!")
     
     def _get_module_count(self) -> int:
         """Get count of initialized modules"""
-        modules = ['user_profile', 'pattern_manager', 'brain_learning', 'brain_reporting']
+        modules = ['user_profile', 'pattern_manager', 'brain_learning', 'brain_reporting', 'confidence_manager'] 
         return len([m for m in modules if hasattr(self, m)])
-    
+        
     # ========================================
     # CORE DATA MANAGEMENT
     # ========================================
@@ -140,7 +148,11 @@ class KnowledgeBase:
             # Update brain learning data
             if hasattr(self, 'brain_learning'):
                 self.data['brain_learning'] = self.brain_learning.brain_data
-            
+
+            # Update confidence data
+            if hasattr(self, 'confidence_manager'):
+                self.data['confidence_system'] = self.confidence_manager.export_for_central_memory()
+
         except Exception as e:
             print(f"⚠️ Error syncing module data: {e}")
     
@@ -266,7 +278,6 @@ class KnowledgeBase:
             print(f"⚠️ Error updating handler performance: {e}")
             return False
 
-
     # ========================================
     # BRAIN REPORTING DELEGATION METHODS
     # ========================================
@@ -311,6 +322,37 @@ class KnowledgeBase:
     def get_report_summary_stats(self) -> Dict[str, Any]:
         """Get report summary stats - delegates to brain reporting"""
         return self.brain_reporting.get_report_summary_stats()
+    
+    # ========================================
+    # CONFIDENCE MANAGER DELEGATION METHODS
+    # ========================================
+    
+    def get_dynamic_threshold(self, handler_name: str, question_type: str = None) -> float:
+        """Get dynamic confidence threshold (delegates to confidence manager)"""
+        return self.confidence_manager.get_dynamic_threshold(handler_name, question_type)
+
+    def should_automate(self, handler_name: str, confidence: float, question_type: str = None) -> bool:
+        """Intelligent automation decision (delegates to confidence manager)"""
+        should_automate, reason = self.confidence_manager.should_attempt_automation(
+            handler_name, confidence, question_type
+        )
+        print(f"🎯 Automation decision: {should_automate} ({reason})")
+        return should_automate
+
+    def record_automation_result(self, handler_name: str, question_type: str, 
+                               confidence: float, success: bool) -> None:
+        """Record automation result for learning (delegates to confidence manager)"""
+        self.confidence_manager.record_automation_result(
+            handler_name, question_type, confidence, success
+        )
+        
+        # Save learning back to central memory
+        self.data["confidence_system"] = self.confidence_manager.export_for_central_memory()
+        self.save()
+
+    def get_confidence_statistics(self) -> dict:
+        """Get confidence system statistics (delegates to confidence manager)"""
+        return self.confidence_manager.get_confidence_statistics()
     
     # ========================================
     # LEGACY COMPATIBILITY METHODS
@@ -416,7 +458,7 @@ class KnowledgeBase:
         }
         
         # Check module presence
-        required_modules = ['user_profile', 'pattern_manager', 'brain_learning', 'brain_reporting']
+        required_modules = ['user_profile', 'pattern_manager', 'brain_learning', 'brain_reporting', 'confidence_manager']
         for module in required_modules:
             if hasattr(self, module):
                 validation['modules_present'].append(module)
@@ -441,7 +483,6 @@ class KnowledgeBase:
         
         return validation
 
-
 # ========================================
 # CONVENIENCE FUNCTIONS
 # ========================================
@@ -449,7 +490,6 @@ class KnowledgeBase:
 def create_knowledge_base(path: str = "data/knowledge_base.json") -> KnowledgeBase:
     """Factory function to create KnowledgeBase instance"""
     return KnowledgeBase(path)
-
 
 # ========================================
 # MODULE TEST
