@@ -19,250 +19,222 @@
     "work_arrangement": "Mix of on-site and home-based",
     "sub_industry": "Supermarkets",
     "occupation_level": "Academic/Professional",
-    "location_type": "In a large metropolitan city"
-  },
-  
-  "demographics_questions": {
-    "age": {
-      "patterns": [
-        "how old",
-        "age", 
-        "what is your age",
-        "How old are you?"
+    "location_type": "In a large metropolitan city",
+    "existing_brands": {
+      "currently_use": [
+        "Netflix", "Spotify", "Commonwealth Bank", "Toyota", "Telstra"
       ],
-      "responses": [
-        "45",
-        "forty-five"
-      ],
-      "confidence_boost": 0.15,
-      "successful_strategy": "force_click_strategy",
-      "success_rate": 0.91,
-      "last_success": "2025-01-22T10:30:00Z",
-      "automation_status": "highly_reliable"
+      "familiar_with": [
+        "Samsung", "LG", "Sony", "Westpac", "ANZ"
+      ]
     },
-    "gender": {
-      "patterns": [
-        "gender",
-        "male",
-        "female", 
-        "sex",
-        "Gender"
-      ],
-      "responses": [
-        "Male",
-        "M"
-      ],
-      "confidence_boost": 0.12,
-      "successful_strategy": "click_strategy", 
-      "success_rate": 0.95,
-      "last_success": "2025-01-22T10:25:00Z",
-      "automation_status": "highly_reliable"
-    },
-    "occupation": {
-      "patterns": [
-        "occupation",
-        "job title", 
-        "what is your occupation",
-        "What is your occupation?"
-      ],
-      "responses": [
-        "Data Analyst"
-      ],
-      "confidence_boost": 0.10,
-      "learned_response": "Data Analyst",
-      "learning_strategy": "learned_response",
-      "success_rate": 0.83,
-      "last_success": "2025-01-22T10:20:00Z", 
-      "automation_status": "learning_improved",
-      "learning_note": "Evolved from 0.0 to 0.85 confidence through intervention learning"
-    },
-    "location": {
-      "patterns": [
-        "state",
-        "location",
-        "where do you live"
-      ],
-      "responses": [
-        "New South Wales",
-        "NSW"
-      ],
-      "confidence_boost": 0.0,
-      "success_rate": 0.0,
-      "automation_status": "needs_learning",
-      "learning_note": "Consistent failures - requires pattern analysis"
+    "interests_and_preferences": {
+      "high_interest": ["technology", "news", "finance"],
+      "medium_interest": ["sports", "music", "travel"],
+      "low_interest": ["fashion", "celebrities"]
     }
   },
 
-  "confidence_insights": {
-    "demographics_baseline": 0.433,
-    "current_threshold": 0.30,
-    "successful_confidence_ranges": {
-      "age": [0.44, 0.45],
-      "gender": [0.35, 1.0], 
-      "occupation": [0.0, 0.85]
+  "demographics_questions": {
+    "age": {
+      "patterns": [
+        "age", "how old", "your age", "what is your age", 
+        "please enter your age", "enter your age", "how old are you",
+        "age in years", "current age", "enter a number"
+      ],
+      "responses": ["45", "forty-five"],
+      "confidence_threshold": 0.6,
+      "learned_patterns": [],
+      "success_rate": 0.85,
+      "element_strategies": {
+        "text_input": "fill_strategy",
+        "dropdown": "select_strategy", 
+        "radio": "click_strategy"
+      }
     },
-    "automation_improvement_evidence": {
-      "total_attempts": 148,
-      "success_rate": 0.905,
-      "improvement_trend": "improving",
-      "confidence_evolution": "stable_with_learning_spikes"
+    "gender": {
+      "patterns": [
+        "gender", "male", "female", "what gender", "which gender",
+        "sex", "gender identity", "gender do you identify", "man", "woman"
+      ],
+      "responses": ["Male", "male", "Man", "man"],
+      "confidence_threshold": 0.5,
+      "learned_patterns": [],
+      "success_rate": 0.92,
+      "element_strategies": {
+        "radio": "click_strategy",
+        "dropdown": "select_strategy",
+        "text_input": "fill_strategy"
+      }
     },
-    "strategy_effectiveness": {
-      "force_click_strategy": {
-        "success_rate": 1.0,
-        "recommended_for": ["age"],
-        "attempts": 11
-      },
-      "click_strategy": {
-        "success_rate": 1.0, 
-        "recommended_for": ["gender"],
-        "attempts": 8
-      },
-      "learned_response": {
-        "success_rate": 0.83,
-        "recommended_for": ["occupation"],
-        "attempts": 6
+    "occupation": {
+      "patterns": [
+        "occupation", "job", "work", "profession", "career", 
+        "job title", "what do you do", "current job", "employment"
+      ],
+      "responses": ["Data Analyst", "data analyst", "analyst"],
+      "confidence_threshold": 0.4,
+      "learned_patterns": [],
+      "success_rate": 0.67,
+      "element_strategies": {
+        "text_input": "fill_strategy",
+        "dropdown": "select_strategy",
+        "radio": "click_strategy"
+      }
+    },
+    "location": {
+      "patterns": [
+        "location", "state", "where do you live", "NSW", "New South Wales",
+        "postcode", "postal code", "zip code", "address"
+      ],
+      "responses": ["New South Wales", "NSW", "2217"],
+      "confidence_threshold": 0.5,
+      "learned_patterns": [],
+      "success_rate": 0.78,
+      "element_strategies": {
+        "dropdown": "select_strategy",
+        "radio": "click_strategy",
+        "text_input": "fill_strategy"
       }
     }
   },
 
   "brain_learning": {
-    "success_patterns": {},
-    "handler_performance": {
-      "DemographicsHandler": {
-        "total_attempts": 148,
-        "successful_attempts": 134,
-        "success_rate": 0.9054054054054054,
-        "confidence_history": [
-          0.35, 0.35, 0.0, 0.35, 1.0, 0.0, 0.35, 1.0, 0.35, 1.0, 0.0, 0.35, 1.0,
-          0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45,
-          0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45,
-          0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45,
-          0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45,
-          0.35, 1.0, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45,
-          0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45,
-          0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45,
-          0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.45, 0.35, 0.0,
-          0.45, 0.45, 0.35, 1.0, 0.0, 0.35, 1.0, 0.0, 0.3, 0.0, 0.4, 0.4, 0.4,
-          0.4, 0.3, 1.0, 0.0, 0.3, 1.0, 0.0, 0.3, 1.0, 0.0, 0.3, 1.0, 0.0, 0.0,
-          0.0, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.0
-        ],
-        "average_confidence": 0.43310810810810807,
-        "improvement_trend": "improving",
-        "last_updated": 1753289402.6858547,
-        "performance_analysis": {
-          "peak_performance_period": "middle_sessions",
-          "learning_breakthrough": "recent_occupation_successes", 
-          "confidence_stability": "good_with_occasional_spikes"
-        }
-      },
-      "UnknownHandler": {
-        "total_attempts": 205,
-        "successful_attempts": 205,
-        "success_rate": 1.0,
-        "average_confidence": 1.0,
-        "improvement_trend": "stable",
-        "last_updated": 1753271331.413777,
-        "note": "Fallback handler - perfect success rate expected"
-      }
-    },
-    
-    "strategy_preferences": {
-      "age": {
-        "name": "force_click_strategy",
-        "success_count": 11,
-        "total_attempts": 11,
-        "success_rate": 1.0,
-        "confidence_level": "very_high"
-      },
-      "gender": {
-        "name": "click_strategy", 
-        "success_count": 8,
-        "total_attempts": 8,
-        "success_rate": 1.0,
-        "confidence_level": "very_high"
-      },
-      "occupation": {
-        "name": "learned_response",
-        "success_count": 5,
-        "total_attempts": 6,
-        "success_rate": 0.83,
-        "confidence_level": "high",
-        "learning_note": "Breakthrough strategy - evolved from failures to successes"
-      }
-    },
-
-    "intervention_learning_summary": {
-      "total_interventions": 9,
-      "successful_interventions": 7,
-      "success_rate": 0.78,
-      "learned_responses": {
-        "occupation": {
-          "response": "Data Analyst",
-          "strategy": "learned_response",
-          "confidence_evolution": {
-            "before_learning": 0.0,
-            "after_learning": 0.85,
-            "improvement": 0.85
-          },
-          "success_streak": 5,
-          "automation_breakthrough": true
-        }
-      },
-      "failure_patterns": {
-        "location": {
-          "failure_count": 2,
-          "strategies_attempted": ["click_strategy", "force_click_strategy"],
-          "needs_analysis": true
-        }
-      }
-    },
-
-    "last_session": {
-      "session_id": "brain_session_1753201838",
-      "learning_events": [
-        {
-          "timestamp": 1753201870.4726002,
-          "session_id": "automation_1753201870",
-          "question_type": "gender",
-          "strategy_used": "click_strategy",
-          "execution_time": 1.3422155380249023,
-          "confidence_score": 0.0,
-          "response_value": "Male",
-          "result": "SUCCESS",
-          "element_type": "text_input",
-          "automation_success": true
-        },
-        {
-          "timestamp": 1753201874.0111089,
-          "question_type": "location",
-          "error_message": "All strategies failed",
-          "confidence_score": 0.0,
-          "result": "FAILURE",
-          "automation_success": false
-        }
-      ],
-      "performance_improvements": [],
-      "new_patterns_discovered": [],
-      "session_analysis": {
-        "success_rate": 0.5,
-        "breakthrough_moments": ["gender_automation_success"],
-        "areas_needing_attention": ["location_automation"]
-      }
-    },
-
-    "last_updated": 1753201928.70733,
     "intervention_history": [],
+    "success_patterns": {},
+    "strategy_preferences": {},
+    "handler_performance": {
+      "demographics": {
+        "total_attempts": 150,
+        "successful_attempts": 100,
+        "success_rate": 0.667,
+        "confidence_history": [0.30, 0.65, 0.72],
+        "average_confidence": 0.56,
+        "improvement_trend": "improving",
+        "last_updated": "2024-01-15T10:30:00Z"
+      }
+    },
     "confidence_calibration": {},
     "failure_analysis": [],
     "learning_history": [],
     "pattern_evolution": {},
     "learning_metrics": {
-      "total_interventions": 9,
+      "total_interventions": 25,
       "automation_improvement_rate": 0.78,
       "last_learning_session": "brain_session_1753201838",
-      "learning_velocity": "accelerating",
-      "breakthrough_achievements": ["occupation_learning_success"]
+      "learning_velocity": "accelerating"
+    }
+  },
+
+  "confidence_system": {
+    "version": "3.0_dynamic",
+    "last_updated": "2024-01-15T10:30:00Z",
+    "global_settings": {
+      "learning_rate": 0.1,
+      "confidence_decay": 0.95,
+      "success_boost": 0.05,
+      "failure_penalty": -0.02,
+      "min_threshold": 0.1,
+      "max_threshold": 0.95,
+      "manual_intervention_threshold": 0.3
+    },
+    "handler_thresholds": {
+      "demographics": {
+        "base_threshold": 0.30,
+        "dynamic_adjustment": 0.0,
+        "current_threshold": 0.30,
+        "success_rate": 0.67,
+        "total_attempts": 148,
+        "successful_attempts": 99,
+        "last_success": "2024-01-15T09:45:00Z",
+        "trending": "improving"
+      },
+      "brand_familiarity": {
+        "base_threshold": 0.85,
+        "dynamic_adjustment": -0.05,
+        "current_threshold": 0.80,
+        "success_rate": 0.95,
+        "total_attempts": 42,
+        "successful_attempts": 40,
+        "last_success": "2024-01-14T16:20:00Z",
+        "trending": "stable"
+      },
+      "rating_matrix": {
+        "base_threshold": 0.90,
+        "dynamic_adjustment": 0.0,
+        "current_threshold": 0.90,
+        "success_rate": 0.88,
+        "total_attempts": 25,
+        "successful_attempts": 22,
+        "last_success": "2024-01-13T14:15:00Z",
+        "trending": "stable"
+      }
+    },
+    "question_type_modifiers": {
+      "age": {
+        "confidence_modifier": 0.1,
+        "reason": "high_success_rate_learned",
+        "success_pattern": "simple_demographics"
+      },
+      "gender": {
+        "confidence_modifier": 0.05,
+        "reason": "recent_improvements",
+        "success_pattern": "binary_choice"
+      },
+      "occupation": {
+        "confidence_modifier": -0.1,
+        "reason": "complex_text_input",
+        "success_pattern": "requires_learning"
+      }
+    },
+    "dynamic_confidence_rules": {
+      "consecutive_successes_boost": {
+        "3_successes": 0.02,
+        "5_successes": 0.05,
+        "10_successes": 0.10
+      },
+      "consecutive_failures_penalty": {
+        "2_failures": -0.02,
+        "3_failures": -0.05,
+        "5_failures": -0.10
+      },
+      "time_based_decay": {
+        "days_since_success": {
+          "7": -0.01,
+          "14": -0.03,
+          "30": -0.05
+        }
+      }
+    },
+    "learning_patterns": {
+      "successful_combinations": {
+        "demographics_age_text_input": {
+          "pattern": "age + text_input",
+          "confidence_boost": 0.15,
+          "success_rate": 0.98,
+          "sample_size": 87
+        },
+        "demographics_gender_radio": {
+          "pattern": "gender + radio_selection",
+          "confidence_boost": 0.12,
+          "success_rate": 0.94,
+          "sample_size": 56
+        },
+        "demographics_occupation_text_input": {
+          "pattern": "occupation + text_input",
+          "confidence_boost": 0.08,
+          "success_rate": 0.72,
+          "sample_size": 34
+        }
+      },
+      "failure_patterns": {
+        "occupation_dropdown_mismatch": {
+          "pattern": "occupation + dropdown",
+          "confidence_penalty": -0.05,
+          "failure_rate": 0.45,
+          "common_issues": ["dropdown_option_not_found", "text_to_dropdown_conversion"]
+        }
+      }
     }
   },
 
@@ -271,9 +243,9 @@
       "timestamp": 1753282588.9198196,
       "session_id": "automation_1753282588", 
       "question_type": "age",
-      "strategy_used": "force_click_strategy",
+      "strategy_used": "fill_strategy",
       "execution_time": 11.828978538513184,
-      "confidence_score": 0.0,
+      "confidence_score": 0.6,
       "response_value": "45",
       "result": "SUCCESS",
       "element_type": "text_input",
@@ -286,67 +258,36 @@
       "question_type": "gender", 
       "strategy_used": "click_strategy",
       "execution_time": 1.3615565299987793,
-      "confidence_score": 0.0,
+      "confidence_score": 0.8,
       "response_value": "Male",
       "result": "SUCCESS",
-      "element_type": "text_input", 
+      "element_type": "radio",
       "automation_success": true,
       "learned_at": 1753282593.9699986
     },
     "success_1753289365": {
-      "timestamp": 1753289365.681522,
+      "timestamp": 1753289365.0542812,
       "session_id": "automation_1753289365",
       "question_type": "occupation",
-      "strategy_used": "learned_response",
-      "execution_time": 1.3322737216949463,
-      "confidence_score": 0.0,
+      "strategy_used": "fill_strategy",
+      "execution_time": 2.814443349838257,
+      "confidence_score": 0.4,
       "response_value": "Data Analyst",
-      "result": "SUCCESS",
+      "result": "SUCCESS", 
       "element_type": "text_input",
       "automation_success": true,
-      "learned_at": 1753289365.681555,
-      "breakthrough_moment": true,
-      "note": "First successful occupation automation using learned response"
-    },
-    "failure_1753282597": {
-      "timestamp": 1753282597.3933406,
-      "session_id": "automation_1753282597",
-      "question_type": "location",
-      "error_message": "All strategies failed",
-      "confidence_score": 0.0,
-      "result": "FAILURE", 
-      "automation_success": false,
-      "learned_at": 1753282597.3933525,
-      "needs_learning": true,
-      "analysis_required": true
-    },
-    "failure_1753284491": {
-      "timestamp": 1753284491.8210986,
-      "session_id": "automation_1753284491",
-      "question_type": "occupation",
-      "error_message": "All strategies failed",
-      "confidence_score": 0.0,
-      "result": "FAILURE",
-      "automation_success": false,
-      "learned_at": 1753284491.8211267,
-      "needs_learning": true,
-      "note": "Before learning breakthrough - led to learned_response strategy development"
+      "learned_at": 1753289365.0543165
     }
   },
 
-  "automation_stats": {
-    "total_questions": 148,
-    "successful_automations": 134,
-    "manual_interventions": 14,
-    "success_rate": 0.905,
-    "improvement_trajectory": "strong_upward_trend",
-    "breakthrough_moments": [
-      "occupation_learning_success",
-      "strategy_preference_discovery"
-    ],
-    "next_optimization_targets": [
-      "location_question_automation",
-      "confidence_threshold_optimization"
+  "question_patterns": {},
+  "automation_settings": {
+    "confirmed_survey_domains": [
+      "yoursurveynow.com",
+      "qualtrics.com", 
+      "decipherinc.com",
+      "surveycmix.com",
+      "surveymonkey.com"
     ]
   }
 }
