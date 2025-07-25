@@ -386,45 +386,83 @@ class DemographicsHandler(BaseHandler):
             await self._report_failure_to_brain(str(e), question_text)
             return False
         
-    async def _get_learned_response(self, question_type: str, question_text: str) -> Optional[Dict[str, Any]]:
+    async def _get_learned_response(self, question_type: str, content: str = "") -> Optional[Dict[str, Any]]:
         """
-        🧠 RETRIEVAL: Get previously learned response for this question type
-        🎯 PURPOSE: This is what makes occupation automate the second time!
+        🧠 FIXED: Get learned response from correct knowledge base structure
+        
+        Looks in the RIGHT places:
+        1. demographics_questions[question_type]['responses'] - Basic stored responses
+        2. detailed_intervention_learning - Successful automation records  
+        3. user_profile - Fallback demographic values
         """
         try:
             print(f"🧠 Checking learned responses for {question_type}...")
             
-            # Check if brain/knowledge base has intervention learning data
-            if hasattr(self, 'brain') and self.brain and hasattr(self.brain, 'intervention_learning'):
-                # Look through all intervention learning data
-                for intervention_key, learning_data in self.brain.intervention_learning.items():
-                    # Match question type and similar question text
+            # ✅ METHOD 1: Check demographics_questions structure
+            if hasattr(self, 'brain') and self.brain:
+                demographics_questions = self.brain.get("demographics_questions", {})
+                question_data = demographics_questions.get(question_type, {})
+                responses = question_data.get("responses", [])
+                
+                if responses:
+                    # Use the first response as the primary learned response
+                    response = responses[0]
+                    print(f"🎯 Found stored response for {question_type}: '{response}'")
+                    return {
+                        'response': response,
+                        'element_type': 'auto_detect',  # Will auto-detect element type
+                        'learned_from': 'demographics_questions',
+                        'confidence': 0.9
+                    }
+            
+            # ✅ METHOD 2: Check detailed_intervention_learning for successful automations
+            if hasattr(self, 'brain') and self.brain:
+                detailed_learning = self.brain.get("detailed_intervention_learning", {})
+                
+                for intervention_key, learning_data in detailed_learning.items():
+                    # Look for successful automations of this question type
                     if (learning_data.get('question_type') == question_type and 
-                        learning_data.get('result') == 'MANUAL_SUCCESS'):
+                        learning_data.get('result') == 'SUCCESS' and
+                        learning_data.get('automation_success') == True):
                         
-                        manual_response = learning_data.get('manual_response')
-                        element_type = learning_data.get('element_type')
+                        response_value = learning_data.get('response_value')
+                        element_type = learning_data.get('element_type', 'auto_detect')
                         
-                        if manual_response and element_type:
-                            print(f"🎯 Found learned response: '{manual_response}'")
-                            print(f"🔍 Element type: {element_type}")
+                        if response_value:
+                            print(f"🎯 Found successful automation record: '{response_value}'")
                             return {
-                                'response': manual_response,
+                                'response': response_value,
                                 'element_type': element_type,
                                 'learned_from': intervention_key,
-                                'confidence': 1.0  # High confidence in learned data
+                                'confidence': 1.0  # High confidence - proven success
                             }
             
-            # Check user profile as fallback
-            user_profile = self.brain.get("user_profile", {}) if self.brain else {}
-            if question_type == "occupation" and user_profile.get("occupation"):
-                print(f"🎯 Using profile occupation: {user_profile['occupation']}")
-                return {
-                    'response': user_profile['occupation'],
-                    'element_type': 'text_input',  # Assume text input
-                    'learned_from': 'user_profile',
-                    'confidence': 0.8
+            # ✅ METHOD 3: Check user_profile as fallback
+            if hasattr(self, 'brain') and self.brain:
+                user_profile = self.brain.get("user_profile", {})
+                
+                # Map question types to user profile fields
+                profile_mappings = {
+                    'age': user_profile.get('age'),
+                    'gender': user_profile.get('gender'), 
+                    'location': user_profile.get('location'),
+                    'occupation': user_profile.get('occupation'),
+                    'education': user_profile.get('education'),
+                    'income': user_profile.get('personal_income'),
+                    'employment': user_profile.get('employment_status'),
+                    'marital_status': user_profile.get('marital_status'),
+                    'household_size': user_profile.get('household_size')
                 }
+                
+                profile_value = profile_mappings.get(question_type)
+                if profile_value:
+                    print(f"🎯 Using profile value for {question_type}: '{profile_value}'")
+                    return {
+                        'response': str(profile_value),
+                        'element_type': 'auto_detect',
+                        'learned_from': 'user_profile',
+                        'confidence': 0.8
+                    }
             
             print(f"❌ No learned response found for {question_type}")
             return None
@@ -1974,32 +2012,63 @@ class DemographicsHandler(BaseHandler):
     async def _try_navigation(self) -> bool:
         """🧠 Enhanced navigation with brain learning"""
         try:
-            # Look for next/continue buttons
-            button_selectors = [
-                'button[type="submit"]',
-                'input[type="submit"]',
-                'button:has-text("Next")',
-                'button:has-text("Continue")',
-                '.btn-primary',
-                '.next-button'
-            ]
+            # Find the button using enhanced detection
+            button = await self._find_next_button(self.page)  # ← Fixed: added self.
             
-            for selector in button_selectors:
-                try:
-                    button = await self.page.query_selector(selector)
-                    if button and await button.is_visible():
-                        self.human_like_delay(action_type="decision")
-                        await button.click()
-                        print("🧠 ✅ Quenito navigation successful")
-                        return True
-                except Exception:
-                    continue
+            if not button:
+                print("❌ No navigation button found to click")
+                return False
             
-            print("⚠️ No navigation button found")
+            # Get button info for debugging
+            button_text = await button.inner_text() or await button.get_attribute("value") or "Unknown"
+            print(f"🎯 Attempting to click navigation button: '{button_text}'")
+            
+            # ✅ CLICKING STRATEGY 1: Standard click
+            try:
+                await button.click()
+                await self.page.wait_for_timeout(500)  # ← Fixed: added self.
+                print(f"✅ Successfully clicked navigation button: '{button_text}'")
+                return True
+                
+            except Exception as e:
+                print(f"⚠️ Standard click failed: {e}")
+            
+            # ✅ CLICKING STRATEGY 2: Force click
+            try:
+                await button.click(force=True)
+                await self.page.wait_for_timeout(500)  # ← Fixed: added self.
+                print(f"✅ Successfully force-clicked navigation button: '{button_text}'")
+                return True
+                
+            except Exception as e:
+                print(f"⚠️ Force click failed: {e}")
+            
+            # ✅ CLICKING STRATEGY 3: JavaScript click
+            try:
+                await button.evaluate("element => element.click()")
+                await self.page.wait_for_timeout(500)  # ← Fixed: added self.
+                print(f"✅ Successfully JavaScript-clicked navigation button: '{button_text}'")
+                return True
+                
+            except Exception as e:
+                print(f"⚠️ JavaScript click failed: {e}")
+            
+            # ✅ CLICKING STRATEGY 4: Keyboard Enter
+            try:
+                await button.focus()
+                await self.page.keyboard.press("Enter")
+                await self.page.wait_for_timeout(500)  # ← Fixed: added self.
+                print(f"✅ Successfully Enter-pressed navigation button: '{button_text}'")
+                return True
+                
+            except Exception as e:
+                print(f"⚠️ Keyboard press failed: {e}")
+            
+            print(f"❌ All clicking strategies failed for button: '{button_text}'")
             return False
             
         except Exception as e:
-            print(f"❌ Error in navigation: {e}")
+            print(f"❌ Error in enhanced button clicking: {e}")
             return False
         
     def page_analysis_delay(self):
@@ -2077,6 +2146,218 @@ class DemographicsHandler(BaseHandler):
         except Exception as e:
             print(f"❌ Enhanced dropdown selection failed: {e}")
             return False
+        
+    async def _find_next_button(self, page) -> Optional[Any]:
+        """
+        🔧 ENHANCED: Find Next/Continue/Submit button with comprehensive detection
+        
+        Uses multiple strategies to find navigation buttons reliably.
+        """
+        try:
+            print("🔍 Enhanced navigation button detection...")
+            
+            # ✅ STRATEGY 1: Common button text patterns (exact matches)
+            exact_button_texts = [
+                "Next", "next", "NEXT",
+                "Continue", "continue", "CONTINUE", 
+                "Submit", "submit", "SUBMIT",
+                "Done", "done", "DONE",
+                "Proceed", "proceed", "PROCEED"
+            ]
+            
+            for button_text in exact_button_texts:
+                try:
+                    # Try different selectors for buttons with exact text
+                    selectors = [
+                        f"button:has-text('{button_text}')",
+                        f"input[type='submit'][value='{button_text}']",
+                        f"input[type='button'][value='{button_text}']",
+                        f"a:has-text('{button_text}')",
+                        f"[role='button']:has-text('{button_text}')"
+                    ]
+                    
+                    for selector in selectors:
+                        element = await page.query_selector(selector)
+                        if element and await element.is_visible():
+                            print(f"✅ Found navigation button: '{button_text}' using {selector}")
+                            return element
+                            
+                except Exception as e:
+                    continue
+            
+            # ✅ STRATEGY 2: Button attributes and classes
+            attribute_selectors = [
+                "button[type='submit']",
+                "input[type='submit']", 
+                "button[class*='next']",
+                "button[class*='continue']",
+                "button[class*='submit']",
+                ".btn-primary",
+                ".btn-next",
+                ".btn-continue",
+                ".next-button",
+                ".continue-button",
+                ".submit-button"
+            ]
+            
+            for selector in attribute_selectors:
+                try:
+                    element = await page.query_selector(selector)
+                    if element and await element.is_visible():
+                        button_text = await element.inner_text()
+                        print(f"✅ Found navigation button by attribute: '{button_text}' using {selector}")
+                        return element
+                except Exception as e:
+                    continue
+            
+            # ✅ STRATEGY 3: Generic button detection with text analysis
+            try:
+                all_buttons = await page.query_selector_all("button, input[type='submit'], input[type='button'], a[role='button']")
+                
+                for button in all_buttons:
+                    try:
+                        if not await button.is_visible():
+                            continue
+                            
+                        # Get button text and analyze
+                        text = await button.inner_text()
+                        text_lower = text.lower().strip()
+                        
+                        # Check for navigation keywords
+                        navigation_keywords = [
+                            "next", "continue", "submit", "done", "proceed", 
+                            "forward", "advance", "go", "finish", "complete"
+                        ]
+                        
+                        if any(keyword in text_lower for keyword in navigation_keywords):
+                            print(f"✅ Found navigation button by text analysis: '{text}'")
+                            return button
+                            
+                        # Check button attributes for navigation hints
+                        onclick = await button.get_attribute("onclick") or ""
+                        class_name = await button.get_attribute("class") or ""
+                        
+                        if any(keyword in (onclick + class_name).lower() for keyword in navigation_keywords):
+                            print(f"✅ Found navigation button by attributes: '{text}'")
+                            return button
+                            
+                    except Exception as e:
+                        continue
+                        
+            except Exception as e:
+                print(f"⚠️ Error in generic button detection: {e}")
+            
+            # ✅ STRATEGY 4: Form submission detection
+            try:
+                # Look for forms that might be submitted
+                forms = await page.query_selector_all("form")
+                
+                for form in forms:
+                    # Look for submit buttons within forms
+                    submit_buttons = await form.query_selector_all("button[type='submit'], input[type='submit']")
+                    
+                    for button in submit_buttons:
+                        if await button.is_visible():
+                            text = await button.inner_text() or await button.get_attribute("value") or "Submit"
+                            print(f"✅ Found form submit button: '{text}'")
+                            return button
+                            
+            except Exception as e:
+                print(f"⚠️ Error in form submission detection: {e}")
+            
+            # ✅ STRATEGY 5: SurveyMonkey specific patterns
+            try:
+                # SurveyMonkey has specific button patterns
+                surveymonkey_selectors = [
+                    ".sv-next-button",
+                    ".sv_next_btn", 
+                    "[data-testid='next-button']",
+                    ".notranslate.btn.btn-primary",
+                    "button.btn.btn-primary",
+                    ".survey-button-next"
+                ]
+                
+                for selector in surveymonkey_selectors:
+                    element = await page.query_selector(selector)
+                    if element and await element.is_visible():
+                        text = await element.inner_text() or "Next"
+                        print(f"✅ Found SurveyMonkey button: '{text}' using {selector}")
+                        return element
+                        
+            except Exception as e:
+                print(f"⚠️ Error in SurveyMonkey detection: {e}")
+            
+            print("❌ No navigation button found with any strategy")
+            return None
+            
+        except Exception as e:
+            print(f"❌ Error in navigation button detection: {e}")
+            return None
+
+    async def _click_next_button_enhanced(self, page) -> bool:
+        """
+        🚀 ENHANCED: Click next button with multiple retry strategies
+        """
+        try:
+            # Find the button using enhanced detection
+            button = await self._find_next_button(self.page)
+            
+            if not button:
+                print("❌ No navigation button found to click")
+                return False
+            
+            # Get button info for debugging
+            button_text = await button.inner_text() or await button.get_attribute("value") or "Unknown"
+            print(f"🎯 Attempting to click navigation button: '{button_text}'")
+            
+            # ✅ CLICKING STRATEGY 1: Standard click
+            try:
+                await button.click()
+                await self.page.wait_for_timeout(500)  # Brief wait for navigation
+                print(f"✅ Successfully clicked navigation button: '{button_text}'")
+                return True
+                
+            except Exception as e:
+                print(f"⚠️ Standard click failed: {e}")
+            
+            # ✅ CLICKING STRATEGY 2: Force click
+            try:
+                await button.click(force=True)
+                await page.wait_for_timeout(500)
+                print(f"✅ Successfully force-clicked navigation button: '{button_text}'")
+                return True
+                
+            except Exception as e:
+                print(f"⚠️ Force click failed: {e}")
+            
+            # ✅ CLICKING STRATEGY 3: JavaScript click
+            try:
+                await button.evaluate("element => element.click()")
+                await page.wait_for_timeout(500)
+                print(f"✅ Successfully JavaScript-clicked navigation button: '{button_text}'")
+                return True
+                
+            except Exception as e:
+                print(f"⚠️ JavaScript click failed: {e}")
+            
+            # ✅ CLICKING STRATEGY 4: Keyboard Enter
+            try:
+                await button.focus()
+                await page.keyboard.press("Enter")
+                await page.wait_for_timeout(500)
+                print(f"✅ Successfully Enter-pressed navigation button: '{button_text}'")
+                return True
+                
+            except Exception as e:
+                print(f"⚠️ Keyboard press failed: {e}")
+            
+            print(f"❌ All clicking strategies failed for button: '{button_text}'")
+            return False
+            
+        except Exception as e:
+            print(f"❌ Error in enhanced button clicking: {e}")
+            return False
+
 
     # 🧠 BRAIN LEARNING METHODS
     def _teach_brain_success(self, question_type: str, content: str, confidence: float):
