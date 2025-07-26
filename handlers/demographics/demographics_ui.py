@@ -372,11 +372,18 @@ class DemographicsUI(BaseUI):
     # ========================================
     
     async def fill_text_input(self, value: str) -> bool:
-        """🧠 Fill a text input field"""
+        """🧠 Fill a text input field with loop prevention"""
         try:
             inputs = await self.detect_text_input_elements()
             
             for input_elem in inputs:
+                # Check if already filled
+                current = await input_elem.input_value()
+                if current and value.lower() in current.lower():
+                    print(f"✅ Input already contains '{value}'")
+                    return True  # Don't fill again!
+                
+                # If not filled, try to fill it
                 if await self.robust_click_and_fill(input_elem, value):
                     print(f"🧠 ✅ Filled text input: {value}")
                     return True
@@ -386,7 +393,7 @@ class DemographicsUI(BaseUI):
         except Exception as e:
             print(f"❌ Error filling text input: {e}")
             return False
-    
+            
     # ========================================
     # NAVIGATION (Use base class)
     # ========================================
