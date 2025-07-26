@@ -12,7 +12,7 @@ Key Features:
 - Optimized for MyOpinions.com.au layouts
 """
 
-from .base_handler import BaseQuestionHandler
+from ..base_handler import BaseQuestionHandler
 import time
 import re
 from typing import List, Dict, Optional

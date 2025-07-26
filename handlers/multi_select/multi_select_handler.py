@@ -3,7 +3,7 @@ Multi Select Handler Module
 Handles multiple selection checkbox questions.
 """
 
-from .base_handler import BaseQuestionHandler
+from ..base_handler import BaseQuestionHandler
 
 
 class MultiSelectHandler(BaseQuestionHandler):
