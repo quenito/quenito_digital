@@ -57,6 +57,22 @@ class HandlerFactory:
             'research_required': ResearchRequiredHandler(None, knowledge_base, intervention_manager),
             'unknown': UnknownHandler(None, knowledge_base, intervention_manager)
         }
+
+    def _update_handlers_page(self, page):
+        """Update page reference for all handlers"""
+        print("🔄 Updating page reference for all handlers...")
+        
+        for name, handler in self.handlers.items():
+            # Update the handler's page
+            handler.page = page
+            
+            # Update UI module's page if it exists
+            if hasattr(handler, 'ui') and handler.ui:
+                handler.ui.page = page
+                print(f"✅ Updated {name} handler and UI module with page")
+            else:
+                print(f"✅ Updated {name} handler with page")
+
         
         # Handler statistics for performance tracking (enhanced with centralized data)
         self.handler_stats = {
@@ -121,6 +137,9 @@ class HandlerFactory:
         """
         print("\n🏭 Handler Factory: Intelligent handler selection with dynamic confidence...")
         
+        # Update all handlers with the current page
+        self._update_handlers_page(page)
+
         # ✅ SAFETY CHECK: Ensure page_content is always a string
         if isinstance(page_content, list):
             page_content = ' '.join(str(item) for item in page_content)
