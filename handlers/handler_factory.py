@@ -21,12 +21,12 @@ from typing import Dict, Any, Optional, Tuple, List
 from datetime import datetime
 
 from handlers.demographics.demographics_handler import DemographicsHandler
-from handlers.brand_familiarity_handler import BrandFamiliarityHandler
-from handlers.rating_matrix_handler import RatingMatrixHandler
-from handlers.multi_select_handler import MultiSelectHandler
-from handlers.trust_rating_handler import TrustRatingHandler
-from handlers.recency_activities_handler import RecencyActivitiesHandler
-from handlers.research_required_handler import ResearchRequiredHandler
+from handlers.brand_familiarity.brand_familiarity_handler import BrandFamiliarityHandler
+from handlers.rating_matrix.rating_matrix_handler import RatingMatrixHandler
+from handlers.multi_select.multi_select_handler import MultiSelectHandler
+from handlers.trust_rating.trust_rating_handler import TrustRatingHandler
+from handlers.recency_activities.recency_activities_handler import RecencyActivitiesHandler
+from handlers.research_required.research_required_handler import ResearchRequiredHandler
 from handlers.unknown_handler import UnknownHandler
 
 

@@ -3,7 +3,7 @@ Research Required Handler Module
 Handles questions requiring research questions.
 """
 
-from .base_handler import BaseQuestionHandler
+from ..base_handler import BaseQuestionHandler
 
 class ResearchRequiredHandler(BaseQuestionHandler):
     """Handler for questions requiring research"""

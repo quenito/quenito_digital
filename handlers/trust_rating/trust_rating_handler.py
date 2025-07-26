@@ -3,7 +3,7 @@ Trust Rating Handler Module
 Handles trust and rating scale questions.
 """
 
-from .base_handler import BaseQuestionHandler
+from ..base_handler import BaseQuestionHandler
 import random
 
 class TrustRatingHandler(BaseQuestionHandler):

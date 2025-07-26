@@ -1,27 +1,27 @@
 """
-Recency Activities Handler Module
-Handles activity recency (last 12 months) questions.
+Rating Matrix Handler Module
+Handles rating matrix and agreement scale questions.
 """
 
-from .base_handler import BaseQuestionHandler
+from ..base_handler import BaseQuestionHandler
 
 
-class RecencyActivitiesHandler(BaseQuestionHandler):
+class RatingMatrixHandler(BaseQuestionHandler):
     """
-    Handles activity recency (last 12 months) questions.
+    Handles rating matrix and agreement scale questions.
     """
     
     def can_handle(self, page_content: str) -> float:
         """
-        Determine confidence for handling activity recency (last 12 months) questions.
+        Determine confidence for handling rating matrix and agreement scale questions.
         
         Returns:
             float: Confidence score (0.0-1.0)
         """
         content_lower = page_content.lower()
         
-        # TODO: Implement specific detection logic for activity recency (last 12 months)
-        keywords = ['last 12 months', 'past year', 'activities', 'things you have done']
+        # TODO: Implement specific detection logic for rating matrix and agreement scale
+        keywords = ['strongly agree', 'somewhat agree', 'disagree', 'rating', 'scale']
         
         if self.check_keywords_in_content(keywords, content_lower):
             matches = self.count_keyword_matches(keywords, content_lower)
@@ -32,18 +32,18 @@ class RecencyActivitiesHandler(BaseQuestionHandler):
     
     def handle(self) -> bool:
         """
-        Process activity recency (last 12 months) questions.
+        Process rating matrix and agreement scale questions.
         
         Returns:
             bool: True if successfully handled
         """
         self.log_handler_start()
         
-        # TODO: Implement specific handling logic for activity recency (last 12 months)
+        # TODO: Implement specific handling logic for rating matrix and agreement scale
         
         # For now, request manual intervention
         return self.request_intervention(
-            "RecencyActivitiesHandler not yet fully implemented - manual completion recommended"
+            "RatingMatrixHandler not yet fully implemented - manual completion recommended"
         )
 
     def check_keywords_in_content(self, content: str, keywords: list) -> float:
