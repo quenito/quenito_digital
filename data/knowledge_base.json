@@ -187,9 +187,9 @@
         "last_updated": "2024-01-15T10:30:00Z"
       },
       "DemographicsHandler": {
-        "total_attempts": 7,
-        "successful_attempts": 4,
-        "success_rate": 0.5714285714285714,
+        "total_attempts": 14,
+        "successful_attempts": 11,
+        "success_rate": 0.7857142857142857,
         "confidence_history": [
           0.0,
           0.0,
@@ -197,11 +197,18 @@
           0.3,
           0.3,
           0.3,
-          0.0
+          0.0,
+          0.57,
+          0.784,
+          0.356,
+          0.356,
+          0.356,
+          0.356,
+          0.356
         ],
-        "average_confidence": 0.17142857142857143,
-        "improvement_trend": "improving",
-        "last_updated": 1753451904.7463646
+        "average_confidence": 0.30957142857142855,
+        "improvement_trend": "stable",
+        "last_updated": 1753507447.1875856
       }
     },
     "confidence_calibration": {},
@@ -270,12 +277,110 @@
         "element_type": "text_input",
         "automation_success": true,
         "learned_at": 1753451886.7958112
+      },
+      "success_1753507391": {
+        "timestamp": 1753507391.0620306,
+        "session_id": "automation_1753507391",
+        "question_type": "age",
+        "question_text": "Skip to contentDemographics Survey1.How old are you?Current Progress, 0 of 3 answeredPrevNextPowered bySurveyMonkey logo with text in primarySee how easy it is to create surveys and forms.{\"props\":{\"p",
+        "strategy_used": "learned_response",
+        "execution_time": 1.2699735164642334,
+        "confidence_score": 0.57,
+        "response_value": "45",
+        "result": "SUCCESS",
+        "element_type": "unknown",
+        "automation_success": true,
+        "learned_at": 1753507391.0620728
+      },
+      "success_1753507396": {
+        "timestamp": 1753507396.053476,
+        "session_id": "automation_1753507396",
+        "question_type": "gender",
+        "question_text": "Skip to contentDemographics Survey2.GenderMaleFemaleNon-binaryPrefer not to sayCurrent Progress, 1 of 3 answeredPrevNextPowered bySurveyMonkey logo with text in primarySee how easy it is to create sur",
+        "strategy_used": "learned_response",
+        "execution_time": 1.8188793659210205,
+        "confidence_score": 0.784,
+        "response_value": "Male",
+        "result": "SUCCESS",
+        "element_type": "unknown",
+        "automation_success": true,
+        "learned_at": 1753507396.0535302
+      },
+      "success_1753507429": {
+        "timestamp": 1753507429.746048,
+        "session_id": "automation_1753507429",
+        "question_type": "occupation",
+        "question_text": "Skip to contentDemographics Survey3.What is your occupation?Current Progress, 2 of 3 answeredPrevDonePowered bySurveyMonkey logo with text in primarySee how easy it is to create surveys and forms.{\"pr",
+        "strategy_used": "learned_response",
+        "execution_time": 30.859190940856934,
+        "confidence_score": 0.356,
+        "response_value": "Data Analyst",
+        "result": "SUCCESS",
+        "element_type": "unknown",
+        "automation_success": true,
+        "learned_at": 1753507429.7460783
+      },
+      "success_1753507433": {
+        "timestamp": 1753507433.717161,
+        "session_id": "automation_1753507433",
+        "question_type": "occupation",
+        "question_text": "Skip to contentDemographics Survey3.What is your occupation?continueCurrent Progress, 3 of 3 answeredPrevDonePowered bySurveyMonkey logo with text in primarySee how easy it is to create surveys and fo",
+        "strategy_used": "learned_response",
+        "execution_time": 1.21933913230896,
+        "confidence_score": 0.356,
+        "response_value": "Data Analyst",
+        "result": "SUCCESS",
+        "element_type": "unknown",
+        "automation_success": true,
+        "learned_at": 1753507433.7171938
+      },
+      "success_1753507437": {
+        "timestamp": 1753507437.9576657,
+        "session_id": "automation_1753507437",
+        "question_type": "occupation",
+        "question_text": "Skip to contentDemographics Survey3.What is your occupation?continueCurrent Progress, 3 of 3 answeredPrevDonePowered bySurveyMonkey logo with text in primarySee how easy it is to create surveys and fo",
+        "strategy_used": "learned_response",
+        "execution_time": 1.204810380935669,
+        "confidence_score": 0.356,
+        "response_value": "Data Analyst",
+        "result": "SUCCESS",
+        "element_type": "unknown",
+        "automation_success": true,
+        "learned_at": 1753507437.9576976
+      },
+      "success_1753507441": {
+        "timestamp": 1753507441.6919358,
+        "session_id": "automation_1753507441",
+        "question_type": "occupation",
+        "question_text": "Skip to contentDemographics Survey3.What is your occupation?continueCurrent Progress, 3 of 3 answeredPrevDonePowered bySurveyMonkey logo with text in primarySee how easy it is to create surveys and fo",
+        "strategy_used": "learned_response",
+        "execution_time": 1.1874465942382812,
+        "confidence_score": 0.356,
+        "response_value": "Data Analyst",
+        "result": "SUCCESS",
+        "element_type": "unknown",
+        "automation_success": true,
+        "learned_at": 1753507441.691981
+      },
+      "success_1753507446": {
+        "timestamp": 1753507446.3815405,
+        "session_id": "automation_1753507446",
+        "question_type": "occupation",
+        "question_text": "Skip to contentDemographics Survey3.What is your occupation?continueCurrent Progress, 3 of 3 answeredPrevDonePowered bySurveyMonkey logo with text in primarySee how easy it is to create surveys and fo",
+        "strategy_used": "learned_response",
+        "execution_time": 1.2101643085479736,
+        "confidence_score": 0.356,
+        "response_value": "Data Analyst",
+        "result": "SUCCESS",
+        "element_type": "unknown",
+        "automation_success": true,
+        "learned_at": 1753507446.381572
       }
     }
   },
   "confidence_system": {
     "version": "3.0_dynamic",
-    "last_updated": "2025-07-25T23:58:24.746518",
+    "last_updated": "2025-07-26T15:24:07.187695",
     "global_settings": {
       "learning_rate": 0.1,
       "confidence_decay": 0.95,
