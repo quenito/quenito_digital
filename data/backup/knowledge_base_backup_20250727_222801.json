@@ -149,8 +149,6 @@
       "responses": [
         "New South Wales",
         "NSW",
-        "Sydney",
-        "Kogarah",
         "2217"
       ],
       "confidence_threshold": 0.5,
@@ -189,9 +187,9 @@
         "last_updated": "2024-01-15T10:30:00Z"
       },
       "DemographicsHandler": {
-        "total_attempts": 51,
-        "successful_attempts": 43,
-        "success_rate": 0.8431372549019608,
+        "total_attempts": 48,
+        "successful_attempts": 40,
+        "success_rate": 0.8333333333333334,
         "confidence_history": [
           0.0,
           0.0,
@@ -240,14 +238,11 @@
           0.356,
           0.57,
           0.784,
-          0.356,
-          0.57,
-          0.784,
           0.356
         ],
-        "average_confidence": 0.4132549019607843,
+        "average_confidence": 0.4034583333333333,
         "improvement_trend": "stable",
-        "last_updated": 1753621560.7150507
+        "last_updated": 1753526238.727354
       },
       "manual": {
         "total_attempts": 6,
@@ -896,54 +891,12 @@
         "element_type": "unknown",
         "automation_success": true,
         "learned_at": 1753526237.8487298
-      },
-      "success_1753621522": {
-        "timestamp": 1753621522.0238967,
-        "session_id": "automation_1753621522",
-        "question_type": "age",
-        "question_text": "Skip to contentDemographics Survey1.How old are you?Current Progress, 0 of 3 answeredPrevNextPowered bySurveyMonkey logo with text in primarySee how easy it is to create surveys and forms.{\"props\":{\"p",
-        "strategy_used": "learned_response",
-        "execution_time": 30.773385763168335,
-        "confidence_score": 0.57,
-        "response_value": "45",
-        "result": "SUCCESS",
-        "element_type": "unknown",
-        "automation_success": true,
-        "learned_at": 1753621522.0239317
-      },
-      "success_1753621526": {
-        "timestamp": 1753621526.1877253,
-        "session_id": "automation_1753621526",
-        "question_type": "gender",
-        "question_text": "Skip to contentDemographics Survey2.GenderMaleFemaleNon-binaryPrefer not to sayCurrent Progress, 1 of 3 answeredPrevNextPowered bySurveyMonkey logo with text in primarySee how easy it is to create sur",
-        "strategy_used": "learned_response",
-        "execution_time": 1.732198715209961,
-        "confidence_score": 0.784,
-        "response_value": "Male",
-        "result": "SUCCESS",
-        "element_type": "unknown",
-        "automation_success": true,
-        "learned_at": 1753621526.1878245
-      },
-      "success_1753621559": {
-        "timestamp": 1753621559.770693,
-        "session_id": "automation_1753621559",
-        "question_type": "occupation",
-        "question_text": "Skip to contentDemographics Survey3.What is your occupation?Current Progress, 2 of 3 answeredPrevDonePowered bySurveyMonkey logo with text in primarySee how easy it is to create surveys and forms.{\"pr",
-        "strategy_used": "learned_response",
-        "execution_time": 30.739264488220215,
-        "confidence_score": 0.356,
-        "response_value": "Data Analyst",
-        "result": "SUCCESS",
-        "element_type": "unknown",
-        "automation_success": true,
-        "learned_at": 1753621559.770761
       }
     }
   },
   "confidence_system": {
     "version": "3.0_dynamic",
-    "last_updated": "2025-07-27T23:06:00.715247",
+    "last_updated": "2025-07-26T23:41:33.712770",
     "global_settings": {
       "learning_rate": 0.1,
       "confidence_decay": 0.95,
@@ -1096,292 +1049,7 @@
       "learned_at": 1753289365.0543165
     }
   },
-  "question_patterns": {
-    "brand_familiarity_questions": {
-      "keywords": [
-        "familiar",
-        "brand",
-        "heard of",
-        "currently use",
-        "aware of",
-        "recognize",
-        "know",
-        "experience with",
-        "used before",
-        "awareness",
-        "familiarity"
-      ],
-      "matrix_indicators": [
-        "how familiar are you with",
-        "rate your familiarity",
-        "please indicate your familiarity",
-        "familiarity with these brands",
-        "which of these brands",
-        "brand awareness",
-        "rate each brand",
-        "for each brand"
-      ],
-      "enhanced_patterns": [
-        "familiar.*with.*brands?",
-        "brand.*familiar",
-        "heard.*of.*brand",
-        "aware.*of.*these",
-        "recognize.*brand",
-        "experience.*with.*brand",
-        "used.*these.*brands",
-        "know.*about.*brands"
-      ],
-      "response_levels": {
-        "very_familiar": [
-          "very familiar",
-          "extremely familiar",
-          "highly familiar",
-          "know very well",
-          "use regularly",
-          "definitely know"
-        ],
-        "somewhat_familiar": [
-          "somewhat familiar",
-          "moderately familiar",
-          "familiar",
-          "heard of",
-          "know of",
-          "aware of",
-          "recognize"
-        ],
-        "not_familiar": [
-          "not familiar",
-          "slightly familiar",
-          "barely familiar",
-          "not very familiar",
-          "limited familiarity",
-          "vaguely familiar"
-        ],
-        "never_heard": [
-          "never heard",
-          "not heard of",
-          "unknown",
-          "unfamiliar",
-          "don't know",
-          "no familiarity",
-          "completely unfamiliar"
-        ]
-      },
-      "matrix_layouts": [
-        "radio button matrix",
-        "grid layout",
-        "multiple rows",
-        "rate each",
-        "for each brand",
-        "each of the following",
-        "matrix-table",
-        "brand-grid",
-        "familiarity-matrix"
-      ],
-      "common_brands": {
-        "technology": [
-          "apple",
-          "samsung",
-          "microsoft",
-          "google",
-          "sony",
-          "dell",
-          "hp",
-          "lenovo",
-          "asus",
-          "lg",
-          "intel",
-          "amd",
-          "nvidia",
-          "ibm",
-          "oracle",
-          "adobe"
-        ],
-        "sports": [
-          "nike",
-          "adidas",
-          "puma",
-          "reebok",
-          "under armour",
-          "new balance",
-          "asics",
-          "converse",
-          "vans",
-          "fila",
-          "champion",
-          "sketchers",
-          "brooks",
-          "mizuno"
-        ],
-        "food": [
-          "coca-cola",
-          "pepsi",
-          "mcdonald's",
-          "kfc",
-          "subway",
-          "starbucks",
-          "nestle",
-          "kraft",
-          "kellogg's",
-          "general mills",
-          "domino's",
-          "pizza hut",
-          "burger king",
-          "wendy's",
-          "taco bell",
-          "Bakers Delight",
-          "Red Rooster",
-          "Hungry Jack's",
-          "Domino's Pizza",
-          "Pizza Hut",
-          "Grill'd",
-          "Nando's",
-          "Boost Juice",
-          "Gloria Jean's Coffees",
-          "Hudsons Coffee",
-          "Soul Origin",
-          "Oliver's Real Food"
-        ],
-        "automotive": [
-          "toyota",
-          "ford",
-          "chevrolet",
-          "honda",
-          "nissan",
-          "bmw",
-          "mercedes",
-          "volkswagen",
-          "audi",
-          "mazda",
-          "hyundai",
-          "kia",
-          "subaru",
-          "tesla",
-          "volvo"
-        ],
-        "retail": [
-          "walmart",
-          "target",
-          "amazon",
-          "costco",
-          "kroger",
-          "walgreens",
-          "cvs",
-          "home depot",
-          "lowe's",
-          "best buy",
-          "macy's",
-          "nordstrom",
-          "kohl's",
-          "tjmaxx",
-          "ross",
-          "woolworths",
-          "aldi",
-          "ikea",
-          "coles",
-          "jb hi-fi",
-          "bunnings",
-          "big w",
-          "myer",
-          "harvey norman",
-          "target australia",
-          "kmart",
-          "officeworks",
-          "spotlight",
-          "david jones",
-          "rebel sport",
-          "supercheap auto",
-          "petbarn",
-          "the good guys",
-          "eb games",
-          "bunnings warehouse",
-          "liquorland",
-          "bottle-o",
-          "first choice liquor",
-          "cellarbrations",
-          "dan murphy's",
-          "aldi australia",
-          "coles express",
-          "7-eleven",
-          "caltex",
-          "bp",
-          "shell",
-          "mobil",
-          "ampol",
-          "Kogan",
-          "Chemist Warehouse",
-          "Priceline",
-          "The Reject Shop"
-        ],
-        "finance": [
-          "visa",
-          "mastercard",
-          "american express",
-          "paypal",
-          "chase",
-          "bank of america",
-          "wells fargo",
-          "citi",
-          "capital one",
-          "discover",
-          "square",
-          "stripe"
-        ],
-        "fashion": [
-          "zara",
-          "h&m",
-          "gap",
-          "old navy",
-          "forever 21",
-          "uniqlo",
-          "gucci",
-          "louis vuitton",
-          "chanel",
-          "prada",
-          "ralph lauren",
-          "tommy hilfiger",
-          "calvin klein"
-        ],
-        "entertainment": [
-          "netflix",
-          "disney",
-          "hulu",
-          "amazon prime",
-          "hbo",
-          "spotify",
-          "apple music",
-          "youtube",
-          "twitch",
-          "tiktok",
-          "facebook",
-          "instagram",
-          "twitter",
-          "snapchat"
-        ]
-      },
-      "default_response": "somewhat_familiar",
-      "confidence_thresholds": {
-        "base": 0.4,
-        "matrix_boost": 0.3,
-        "pattern_boost": 0.2,
-        "option_boost": 0.2,
-        "brand_count_boost": 0.1
-      },
-      "strategy_settings": {
-        "variety_ratios": {
-          "very_familiar": 0.2,
-          "somewhat_familiar": 0.5,
-          "not_familiar": 0.2,
-          "never_heard": 0.1
-        },
-        "category_preferences": {
-          "high_interest": "very_familiar",
-          "medium_interest": "somewhat_familiar",
-          "low_interest": "not_familiar"
-        }
-      }
-    }
-  },
+  "question_patterns": {},
   "automation_settings": {
     "confirmed_survey_domains": [
       "yoursurveynow.com",

@@ -1,391 +1,272 @@
 #!/usr/bin/env python3
 """
-Brand Familiarity Handler - THE AUTOMATION GAME CHANGER!
+🏢 Brand Familiarity Handler v3.0 - REFACTORED MODULAR ARCHITECTURE
+Orchestrates brand familiarity automation using clean module separation.
 
-Based on JSON analysis showing 12/12 (100%) failures in brand familiarity questions.
-This handler is expected to boost automation from 21% → 60-70%!
+This handler coordinates:
+- Pattern matching (brand_familiarity_patterns.py)
+- UI interactions (brand_familiarity_ui.py)
+- Brain learning (brand_familiarity_brain.py)
 
-Key Features:
-- Matrix/grid brand detection
-- Smart response selection based on brand recognition
-- Pattern learning from user interactions
-- Optimized for MyOpinions.com.au layouts
+ARCHITECTURE: Clean orchestration with delegated responsibilities
+Expected to boost automation from 21% → 60-70%!
 """
 
-from ..base_handler import BaseQuestionHandler
 import time
-import re
-from typing import List, Dict, Optional
+import random
+from typing import Dict, Any, Optional
+from handlers.base_handler import BaseHandler
+from .brand_familiarity_patterns import BrandFamiliarityPatterns
+from .brand_familiarity_ui import BrandFamiliarityUI
+from .brand_familiarity_brain import BrandFamiliarityBrain
 
 
-class BrandFamiliarityHandler(BaseQuestionHandler):
-    """Enhanced Brand Familiarity Handler with matrix detection and smart response patterns"""
+class BrandFamiliarityHandler(BaseHandler):
+    """
+    🏢 Refactored Brand Familiarity Handler - Clean Orchestration
+    
+    Handles brand familiarity matrix questions using centralized brain patterns.
+    Expected to be the biggest automation improvement!
+    """
     
     def __init__(self, page, knowledge_base, intervention_manager):
+        """Initialize handler with modular components"""
         super().__init__(page, knowledge_base, intervention_manager)
         
-        # Brand familiarity response preferences (learned from user patterns)
-        self.familiarity_preferences = {
-            'default_response': 'somewhat_familiar',  # Safe middle ground
-            'known_brands': {},  # Will be populated from learning data
-            'response_patterns': {
-                'very_familiar': ['very familiar', 'extremely familiar', 'highly familiar', 'know very well'],
-                'somewhat_familiar': ['somewhat familiar', 'moderately familiar', 'familiar', 'heard of', 'know of'],
-                'not_familiar': ['not familiar', 'slightly familiar', 'barely familiar', 'not very familiar'],
-                'never_heard': ['never heard', 'not heard of', 'unknown', 'unfamiliar', 'don\'t know']
-            }
-        }
+        # Get patterns from centralized brain
+        brand_patterns = {}
+        if knowledge_base:
+            all_patterns = knowledge_base.get("question_patterns", {})
+            brand_patterns = all_patterns.get("brand_familiarity_questions", {})
         
-        # Matrix detection patterns
-        self.matrix_indicators = [
-            'how familiar are you with',
-            'rate your familiarity',
-            'please indicate your familiarity',
-            'familiarity with these brands',
-            'which of these brands',
-            'brand awareness'
-        ]
+        # Initialize modular components
+        self.patterns = BrandFamiliarityPatterns(brand_patterns)
+        self.ui = BrandFamiliarityUI(page)
+        self.brain = BrandFamiliarityBrain(knowledge_base)
         
-        # Brand recognition patterns
-        self.brand_keywords = [
-            'familiar', 'brand', 'heard of', 'currently use', 'aware of', 
-            'recognize', 'know', 'experience with', 'used before'
-        ]
+        # Handler state
+        self.detected_question_type = None
+        self.detected_brands = []
+        self.detected_category = None
+        
+        print("🏢 Refactored Brand Familiarity Handler initialized!")
+        print("🧠 Modular architecture active: Patterns + UI + Brain")
+        
+        # Validate configuration
+        validation = self.patterns.validate_patterns()
+        if all(validation.values()):
+            print("✅ All patterns loaded from centralized brain")
+        else:
+            print("⚠️ Some patterns missing:", 
+                  [k for k, v in validation.items() if not v])
     
-    def can_handle(self, page_content: str) -> float:
-        """
-        Detect brand familiarity questions with enhanced matrix awareness.
-        
-        Returns:
-            float: Ultra-high confidence score (targeting 98% threshold)
-        """
-        content_lower = page_content.lower()
-        confidence = 0.0
-        
-        # Primary brand familiarity detection
-        matrix_matches = sum(1 for indicator in self.matrix_indicators if indicator in content_lower)
-        brand_matches = sum(1 for keyword in self.brand_keywords if keyword in content_lower)
-        
-        # Base confidence from keyword matches
-        if matrix_matches > 0:
-            confidence += 0.4  # Strong matrix indicator
-        if brand_matches >= 2:
-            confidence += 0.3  # Multiple brand keywords
-        
-        # Enhanced pattern detection for common MyOpinions layouts
-        enhanced_patterns = [
-            r'familiar.*with.*brands?',
-            r'brand.*familiar',
-            r'heard.*of.*brand',
-            r'aware.*of.*these',
-            r'recognize.*brand',
-            r'experience.*with.*brand'
-        ]
-        
-        pattern_matches = sum(1 for pattern in enhanced_patterns 
-                            if re.search(pattern, content_lower))
-        
-        if pattern_matches > 0:
-            confidence += 0.2
-        
-        # Matrix layout detection (consecutive radio groups)
-        if self._detect_brand_matrix(content_lower):
-            confidence += 0.3  # Strong matrix indicator
-        
-        # Response option detection (familiar/unfamiliar scales)
-        familiar_options = [
-            'very familiar', 'somewhat familiar', 'not familiar', 'never heard',
-            'extremely familiar', 'moderately familiar', 'slightly familiar'
-        ]
-        
-        option_matches = sum(1 for option in familiar_options if option in content_lower)
-        if option_matches >= 2:
-            confidence += 0.2
-        
-        # Cap at 98% to meet ultra-conservative threshold
-        return min(confidence, 0.98)
+    # ========================================
+    # MAIN HANDLER METHODS
+    # ========================================
     
-    def _detect_brand_matrix(self, content: str) -> bool:
+    async def can_handle(self, page_content: str) -> float:
         """
-        Detect if this is a brand matrix/grid layout.
+        Determine if this handler can process the current page
         
-        Args:
-            content: Page content to analyze
+        Uses patterns from centralized brain to detect brand questions
+        """
+        if not page_content:
+            return 0.0
+        
+        try:
+            # Reset state
+            self.detected_question_type = None
+            self.detected_brands = []
+            self.detected_category = None
             
-        Returns:
-            bool: True if matrix detected
-        """
-        # Look for multiple brand mentions
-        brand_indicators = ['nike', 'adidas', 'puma', 'apple', 'samsung', 'coca-cola', 
-                           'pepsi', 'mcdonald', 'kfc', 'toyota', 'ford', 'bmw']
-        
-        brand_count = sum(1 for brand in brand_indicators if brand in content)
-        
-        # Matrix layouts typically have 3+ brands
-        if brand_count >= 3:
-            return True
-        
-        # Look for matrix-specific layout indicators
-        matrix_layouts = [
-            'radio button matrix', 'grid layout', 'multiple rows',
-            'rate each', 'for each brand', 'each of the following'
-        ]
-        
-        return any(layout in content for layout in matrix_layouts)
+            # Detect question type using patterns module
+            question_type = self.patterns.detect_question_type(page_content)
+            if not question_type:
+                return 0.0
+            
+            self.detected_question_type = question_type
+            
+            # Calculate base confidence from patterns
+            confidence = self.patterns.calculate_keyword_confidence(page_content, question_type)
+            
+            # Detect brands in content
+            self.detected_brands = self.patterns.get_brands_from_content(page_content)
+            if self.detected_brands:
+                print(f"🏢 Detected {len(self.detected_brands)} brands in content")
+            
+            # Detect brand categories for additional context
+            categories = self.patterns.detect_brand_categories(page_content)
+            if categories:
+                self.detected_category = categories[0]  # Primary category
+                confidence += 0.1
+                print(f"🏢 Detected brand categories: {categories}")
+            
+            # Apply brain learning adjustments
+            if self.detected_brands:
+                # Average confidence boost across detected brands
+                total_boost = 0
+                for brand in self.detected_brands[:5]:  # Check first 5 brands
+                    adjusted = self.brain.calculate_brand_confidence(brand, confidence)
+                    total_boost += (adjusted - confidence)
+                
+                if total_boost > 0:
+                    avg_boost = total_boost / min(len(self.detected_brands), 5)
+                    confidence += avg_boost
+            
+            # Apply general learning adjustments
+            learning_adjustment = self.brain.get_confidence_adjustment(
+                self.detected_question_type, confidence
+            )
+            confidence += learning_adjustment
+            
+            # Cap at threshold
+            confidence = min(confidence, 0.98)
+            
+            print(f"🏢 Brand Familiarity confidence: {confidence:.3f} ({question_type})")
+            return confidence
+            
+        except Exception as e:
+            print(f"❌ Error in brand familiarity can_handle: {e}")
+            return 0.0
     
-    def handle(self) -> bool:
+    async def handle(self) -> bool:
         """
-        Process brand familiarity questions with enhanced automation.
+        Process brand familiarity questions
         
-        Returns:
-            bool: True if successfully handled
+        Orchestrates pattern detection, brain strategy, and UI execution
         """
         self.log_handler_start()
         
         try:
-            # Get current page content for analysis
-            page_content = self.page.content().lower()
+            print(f"🏢 Processing {self.detected_question_type} question...")
             
-            # Detect if this is a matrix layout
-            is_matrix = self._detect_brand_matrix(page_content)
+            # Take screenshot for debugging
+            await self.ui.take_screenshot("brand_matrix_detected.png")
             
-            if is_matrix:
-                return self._handle_brand_matrix()
+            # Detect matrix elements using UI module
+            elements = await self.ui.detect_brand_matrix_elements()
+            
+            if not elements['brands']:
+                print("❌ No brand matrix detected by UI module")
+                # Try fallback if we detected brands in content
+                if self.detected_brands:
+                    print(f"🔄 Using detected brands from content: {self.detected_brands}")
+                    elements['brands'] = self.detected_brands
+                else:
+                    return await self._request_intervention_with_learning(
+                        "No brand matrix found"
+                    )
+            
+            brands_to_process = elements['brands']
+            print(f"🏢 Found {len(brands_to_process)} brands to process")
+            
+            # Analyze category if detected
+            category_analysis = None
+            if self.detected_category:
+                category_analysis = self.brain.analyze_brand_category(self.detected_category)
+                print(f"🏢 Category analysis for '{self.detected_category}':")
+                print(f"   - Default response: {category_analysis['default_response']}")
+                print(f"   - Known brands: {len(category_analysis['known_brands'])}")
+            
+            # Get response strategy from brain
+            brand_strategy = self.brain.get_brand_strategy(brands_to_process)
+            
+            # Apply category insights if available
+            if category_analysis and category_analysis['confidence_boost'] > 0:
+                print(f"🏢 Applying category insights (boost: {category_analysis['confidence_boost']:.2f})")
+            
+            # Execute UI automation
+            success = await self.ui.handle_brand_matrix(brand_strategy)
+            
+            if success:
+                print("✅ Brand matrix completed successfully!")
+                
+                # Store learning data for each brand
+                for brand, response in brand_strategy.items():
+                    self.brain.store_brand_response(brand, response, True)
+                
+                # Log success
+                self.log_handler_success({
+                    'brands_processed': len(brand_strategy),
+                    'question_type': self.detected_question_type,
+                    'category': self.detected_category
+                })
+                
+                # Navigate to next
+                if await self.ui.click_next_button():
+                    print("✅ Navigation successful")
+                    return True
+                else:
+                    print("⚠️ Navigation failed but matrix completed")
+                    return True
             else:
-                return self._handle_single_brand_question()
+                # Partial success still counts
+                successful_brands = sum(1 for brand in brand_strategy 
+                                      if brand in self.brain.session_responses)
+                
+                if successful_brands > 0:
+                    print(f"⚠️ Partial success: {successful_brands}/{len(brand_strategy)} brands")
+                    return True
+                else:
+                    return await self._request_intervention_with_learning(
+                        "Failed to complete brand matrix"
+                    )
                 
         except Exception as e:
             self.logger.error(f"Brand familiarity handler error: {e}")
-            return self.request_intervention(
-                f"Brand familiarity handler encountered error: {str(e)}"
+            return await self._request_intervention_with_learning(
+                f"Error: {str(e)}"
             )
     
-    def _handle_brand_matrix(self) -> bool:
-        """
-        Handle brand familiarity matrix questions.
-        
-        Returns:
-            bool: True if successfully handled
-        """
-        try:
-            # Find all radio button groups in the matrix
-            radio_groups = self.page.query_selector_all('input[type="radio"]')
-            
-            if not radio_groups:
-                return self.request_intervention("No radio buttons found in brand matrix")
-            
-            # Group radios by name attribute (each brand = one group)
-            brand_groups = {}
-            for radio in radio_groups:
-                name = radio.get_attribute('name')
-                if name:
-                    if name not in brand_groups:
-                        brand_groups[name] = []
-                    brand_groups[name].append(radio)
-            
-            if len(brand_groups) < 2:
-                return self.request_intervention("Insufficient brand groups detected")
-            
-            # Process each brand group
-            success_count = 0
-            for group_name, radios in brand_groups.items():
-                if self._select_brand_response(radios, group_name):
-                    success_count += 1
-                    # Human-like delay between brand selections
-                    time.sleep(self.get_random_delay(0.3, 0.8))
-            
-            # Consider successful if we handled most brands
-            success_rate = success_count / len(brand_groups)
-            if success_rate >= 0.7:  # 70% success threshold
-                self.logger.info(f"Brand matrix completed: {success_count}/{len(brand_groups)} brands")
-                return True
-            else:
-                return self.request_intervention(
-                    f"Brand matrix partial success: {success_count}/{len(brand_groups)} brands"
-                )
-                
-        except Exception as e:
-            self.logger.error(f"Brand matrix handling error: {e}")
-            return self.request_intervention(f"Brand matrix error: {str(e)}")
+    # ========================================
+    # PRIVATE HELPER METHODS
+    # ========================================
     
-    def _handle_single_brand_question(self) -> bool:
+    async def _request_intervention_with_learning(self, reason: str) -> bool:
         """
-        Handle single brand familiarity questions.
+        Request manual intervention with enhanced learning
         
-        Returns:
-            bool: True if successfully handled
+        Captures brand-specific learning data
         """
-        try:
-            # Find radio options for single brand question
-            radios = self.page.query_selector_all('input[type="radio"]')
+        # Prepare learning context
+        learning_context = {
+            'handler': 'brand_familiarity',
+            'question_type': self.detected_question_type,
+            'detected_brands': self.detected_brands,
+            'category': self.detected_category,
+            'reason': reason
+        }
+        
+        # Request intervention
+        result = self.request_intervention(reason)
+        
+        # Capture post-intervention learning
+        if result:
+            print("🧠 Capturing brand familiarity learning data...")
             
-            if not radios:
-                return self.request_intervention("No radio options found for brand question")
-            
-            # Select appropriate response
-            if self._select_brand_response(radios, "single_brand"):
-                return True
-            else:
-                return self.request_intervention("Could not select brand familiarity response")
-                
-        except Exception as e:
-            self.logger.error(f"Single brand question error: {e}")
-            return self.request_intervention(f"Single brand error: {str(e)}")
+            # Suggest improvements based on failure
+            suggestions = self.brain.suggest_handler_improvements()
+            if suggestions:
+                print("🧠 Improvement suggestions:")
+                for suggestion in suggestions:
+                    print(f"   - {suggestion}")
+        
+        return result
     
-    def _select_brand_response(self, radios: List, brand_identifier: str) -> bool:
-        """
-        Select appropriate brand familiarity response.
-        
-        Args:
-            radios: List of radio button elements
-            brand_identifier: Brand name or group identifier
-            
-        Returns:
-            bool: True if response selected successfully
-        """
-        try:
-            # Analyze radio options to find best match
-            radio_options = []
-            for radio in radios:
-                label_text = self._get_radio_label(radio)
-                radio_options.append({
-                    'element': radio,
-                    'label': label_text.lower(),
-                    'value': radio.get_attribute('value') or ''
-                })
-            
-            # Smart response selection based on label analysis
-            selected_option = None
-            
-            # Priority 1: Look for "somewhat familiar" (safe middle ground)
-            for option in radio_options:
-                if any(phrase in option['label'] for phrase in self.familiarity_preferences['response_patterns']['somewhat_familiar']):
-                    selected_option = option
-                    break
-            
-            # Priority 2: Look for "familiar" or "heard of"
-            if not selected_option:
-                for option in radio_options:
-                    if 'familiar' in option['label'] or 'heard' in option['label']:
-                        selected_option = option
-                        break
-            
-            # Priority 3: Avoid extreme responses, pick middle option
-            if not selected_option and len(radio_options) >= 3:
-                # Select middle option as safe choice
-                middle_index = len(radio_options) // 2
-                selected_option = radio_options[middle_index]
-            
-            # Priority 4: Fallback to first available option
-            if not selected_option and radio_options:
-                selected_option = radio_options[0]
-            
-            # Click the selected option
-            if selected_option:
-                # Scroll element into view if needed
-                selected_option['element'].scroll_into_view_if_needed()
-                time.sleep(self.get_random_delay(0.1, 0.3))
-                
-                # Click with human-like timing
-                selected_option['element'].click()
-                time.sleep(self.get_random_delay(0.2, 0.5))
-                
-                self.logger.info(f"Selected brand response: {selected_option['label']} for {brand_identifier}")
-                return True
-            
-            return False
-            
-        except Exception as e:
-            self.logger.error(f"Brand response selection error: {e}")
-            return False
+    def log_handler_start(self):
+        """Log handler start with context"""
+        super().log_handler_start()
+        print(f"   - Question type: {self.detected_question_type}")
+        print(f"   - Brands detected: {len(self.detected_brands)}")
+        print(f"   - Category: {self.detected_category or 'Unknown'}")
     
-    def _get_radio_label(self, radio_element) -> str:
-        """
-        Extract label text for radio button using multiple strategies.
+    def log_handler_success(self, details: Dict[str, Any]):
+        """Log handler success with details"""
+        print(f"✅ Brand Familiarity Handler Success!")
+        print(f"   - Brands processed: {details.get('brands_processed', 0)}")
+        print(f"   - Question type: {details.get('question_type', 'Unknown')}")
+        print(f"   - Category: {details.get('category', 'Unknown')}")
         
-        Args:
-            radio_element: Radio button element
-            
-        Returns:
-            str: Label text or fallback description
-        """
-        try:
-            # Strategy 1: Label with 'for' attribute
-            radio_id = radio_element.get_attribute('id')
-            if radio_id:
-                label = self.page.query_selector(f'label[for="{radio_id}"]')
-                if label:
-                    return label.inner_text().strip()
-            
-            # Strategy 2: Parent label element
-            try:
-                parent = radio_element.locator('xpath=..')
-                parent_tag = parent.get_attribute('tagName')
-                if parent_tag and 'label' in parent_tag.lower():
-                    return parent.inner_text().strip()
-            except:
-                pass
-            
-            # Strategy 3: Next sibling text
-            try:
-                next_text = radio_element.locator('xpath=following-sibling::text()[1]')
-                if next_text.count() > 0:
-                    return next_text.first.text_content().strip()
-            except:
-                pass
-            
-            # Strategy 4: Table cell text (for matrix layouts)
-            try:
-                td_parent = radio_element.locator('xpath=ancestor::td[1]')
-                if td_parent.count() > 0:
-                    return td_parent.first.inner_text().strip()
-            except:
-                pass
-            
-            # Strategy 5: Adjacent text content
-            try:
-                # Look for text in same container
-                container = radio_element.locator('xpath=ancestor::div[1]')
-                if container.count() > 0:
-                    container_text = container.first.inner_text().strip()
-                    # Extract meaningful text (not just radio value)
-                    if len(container_text) > 0 and container_text != radio_element.get_attribute('value'):
-                        return container_text
-            except:
-                pass
-            
-            # Fallback: Use value attribute or generic description
-            value = radio_element.get_attribute('value')
-            return value if value else 'Unknown Option'
-            
-        except Exception as e:
-            return f'Label extraction error: {str(e)}'
-    
-    def get_response_preference(self, brand_name: str) -> str:
-        """
-        Get preferred response for a specific brand based on learning data.
-        
-        Args:
-            brand_name: Name of the brand
-            
-        Returns:
-            str: Preferred response level
-        """
-        # Check if we have learned preferences for this brand
-        if brand_name.lower() in self.familiarity_preferences['known_brands']:
-            return self.familiarity_preferences['known_brands'][brand_name.lower()]
-        
-        # Default to somewhat familiar (safe middle ground)
-        return self.familiarity_preferences['default_response']
-    
-    def learn_brand_preference(self, brand_name: str, response_level: str):
-        """
-        Learn user's preference for a specific brand.
-        
-        Args:
-            brand_name: Name of the brand
-            response_level: User's selected response level
-        """
-        if brand_name and response_level:
-            self.familiarity_preferences['known_brands'][brand_name.lower()] = response_level
-            self.logger.info(f"Learned brand preference: {brand_name} -> {response_level}")
+        # Update performance metrics
+        if hasattr(self, 'stats') and self.stats:
+            self.stats.record_automation_success('brand_familiarity', details)
