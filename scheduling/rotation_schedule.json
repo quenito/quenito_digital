@@ -1,0 +1,57 @@
+{
+  "week_template": {
+    "monday": {
+      "quenito": [
+        "myopinions",
+        "lifepointspanel"
+      ],
+      "quenita": [
+        "primeopinion",
+        "opinionworld"
+      ]
+    },
+    "tuesday": {
+      "quenito": [
+        "primeopinion",
+        "opinionworld"
+      ],
+      "quenita": [
+        "myopinions",
+        "lifepointspanel"
+      ]
+    },
+    "wednesday": "REST_DAY",
+    "thursday": {
+      "quenito": [
+        "myopinions",
+        "octopus"
+      ],
+      "quenita": [
+        "primeopinion",
+        "lifepointspanel"
+      ]
+    },
+    "friday": {
+      "quenito": [
+        "lifepointspanel",
+        "opinionworld"
+      ],
+      "quenita": [
+        "myopinions",
+        "octopus"
+      ]
+    },
+    "saturday": {
+      "quenito": [
+        "myopinions"
+      ],
+      "quenita": "REST_DAY"
+    },
+    "sunday": {
+      "quenito": "REST_DAY",
+      "quenita": [
+        "primeopinion"
+      ]
+    }
+  }
+}

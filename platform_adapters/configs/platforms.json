@@ -1,0 +1,18 @@
+{
+  "platforms": {
+    "myopinions": {
+      "name": "MyOpinions Australia",
+      "url": "https://www.myopinions.com.au",
+      "points_per_dollar": 100,
+      "login_url": "/auth/login",
+      "dashboard_url": "/auth/dashboard"
+    },
+    "primeopinion": {
+      "name": "Prime Opinion",
+      "url": "https://app.primeopinion.com.au",
+      "points_per_dollar": 65,
+      "login_url": "/login",
+      "dashboard_url": "/surveys"
+    }
+  }
+}

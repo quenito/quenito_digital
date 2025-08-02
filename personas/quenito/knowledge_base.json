@@ -1,0 +1,10 @@
+{
+  "demographics": {
+    "age": 34,
+    "gender": "male",
+    "location": "Sydney, NSW",
+    "postcode": "2000"
+  },
+  "response_patterns": {},
+  "learned_responses": {}
+}

@@ -1,161 +1,278 @@
+#!/usr/bin/env python3
 """
-Research Required Handler Module
-Handles questions requiring research questions.
+🔬 Research Required Handler - Main Orchestrator
+Refactored to use modular architecture with centralized patterns
 """
 
-from ..base_handler import BaseQuestionHandler
+from typing import Dict, List, Any, Optional, Tuple
+import asyncio
+from ..base_handler import BaseHandler
+from .research_required_patterns import ResearchRequiredPatterns
+from .research_required_ui import ResearchRequiredUI
+from .research_required_brain import ResearchRequiredBrain
 
-class ResearchRequiredHandler(BaseQuestionHandler):
-    """Handler for questions requiring research"""
+class ResearchRequiredHandler(BaseHandler):
+    """
+    Handles research-based questions using modular architecture
+    Examples: "Please research the following...", "Look up information about..."
+    """
     
-    def can_handle(self, page_content: str) -> bool:
-        """Check if this question requires research"""
-        content_lower = page_content.lower()
+    def __init__(self, page, knowledge_base, intervention_manager):
+        """Initialize handler with modular components"""
+        super().__init__(page, knowledge_base, intervention_manager)
         
-        research_indicators = [
-            "sponsor", "venue", "location", "stadium", "documentary",
-            "which company sponsors", "where is", "what is the name of",
-            "who sponsors", "main sponsor", "official sponsor",
-            "what stadium", "which venue", "where does", "home ground",
-            "which documentary", "what documentary", "film about"
-        ]
+        # Get patterns from knowledge base
+        question_patterns = knowledge_base.get("question_patterns", {})
+        research_patterns = question_patterns.get("research_required_questions", {})
         
-        # Also check for patterns that suggest research is needed
-        research_question_patterns = [
-            "which company",
-            "what is the",
-            "where is the",
-            "who is the",
-            "name of the",
-            "which brand",
-            "official"
-        ]
+        # Initialize modular components
+        self.patterns = ResearchRequiredPatterns(research_patterns)
+        self.ui = ResearchRequiredUI(page)
+        self.brain = ResearchRequiredBrain(knowledge_base)
         
-        has_research_indicator = any(indicator in content_lower for indicator in research_indicators)
-        has_question_pattern = any(pattern in content_lower for pattern in research_question_patterns)
+        # Get user preferences
+        self.user_preferences = self._get_user_preferences()
         
-        return has_research_indicator or has_question_pattern
+        print("🔬 Refactored Research Required Handler initialized!")
+        print("🧠 Patterns loaded from centralized knowledge base")
     
-    def handle(self) -> bool:
-        """Handle research-required questions"""
-        print("🔍 Handling research-required question")
-        
-        page_content = self.page.inner_text('body')
-        content_lower = page_content.lower()
-        
-        # For Phase 1 implementation, prioritize manual intervention for research questions
-        # This ensures accuracy and provides data for future automation enhancement
-        
-        research_reason = self.categorize_research_type(content_lower)
-        print(f"🎯 Research type detected: {research_reason}")
-        print("🔄 Prioritizing manual intervention for accuracy and learning")
-        
-        # Log this as a research opportunity for future enhancement
-        self.log_research_opportunity(page_content, research_reason)
-        
-        # Return False to trigger manual intervention
-        return False
-    
-    def categorize_research_type(self, content_lower):
-        """Categorize the type of research needed"""
-        
-        if any(word in content_lower for word in ["sponsor", "sponsors", "sponsorship"]):
-            return "Brand/Company Sponsorship Research"
-        elif any(word in content_lower for word in ["stadium", "venue", "ground", "arena"]):
-            return "Sports Venue/Location Research"
-        elif any(word in content_lower for word in ["documentary", "film", "movie"]):
-            return "Media/Entertainment Research"
-        elif any(word in content_lower for word in ["location", "where is", "city", "state"]):
-            return "Geographic Location Research"
-        elif any(word in content_lower for word in ["company", "brand", "business"]):
-            return "Company/Brand Information Research"
-        else:
-            return "General Knowledge Research"
-    
-    def log_research_opportunity(self, page_content, research_type):
-        """Log research opportunity for future automation enhancement"""
-        
+    async def can_handle(self, question_text: str) -> Tuple[bool, float]:
+        """
+        Determine if this handler can handle the question
+        Returns: (can_handle, confidence_score)
+        """
         try:
-            # Extract key information for future research automation
-            research_data = {
-                "research_type": research_type,
-                "page_content_sample": page_content[:200],
-                "timestamp": "current_session",
-                "potential_search_terms": self.extract_search_terms(page_content),
-                "automation_potential": "high" if research_type in [
-                    "Brand/Company Sponsorship Research",
-                    "Sports Venue/Location Research"
-                ] else "medium"
+            # Calculate confidence using patterns module
+            confidence = self.patterns.calculate_confidence(question_text)
+            
+            # Check if it's actually a research instruction
+            if self.patterns.is_research_instruction(question_text):
+                confidence += 0.2  # Boost for clear instructions
+            
+            # Log decision
+            if confidence > 0.3:  # Lower threshold for research questions
+                print(f"🔬 Research Required: CAN handle (confidence: {confidence:.2f})")
+                print(f"📝 Question: {question_text[:100]}...")
+                return True, confidence
+            else:
+                return False, confidence
+                
+        except Exception as e:
+            print(f"❌ Error in can_handle: {e}")
+            return False, 0.0
+    
+    async def handle(self, question_text: str) -> bool:
+        """
+        Handle the research required question
+        Returns: True if handled successfully, False otherwise
+        """
+        try:
+            print("\n" + "="*50)
+            print("🔬 HANDLING RESEARCH REQUIRED QUESTION")
+            print("="*50)
+            
+            # Detect research type
+            research_type = self.patterns.detect_research_type(question_text)
+            print(f"📊 Research type: {research_type}")
+            
+            # Extract research topics if any
+            topics = self.patterns.extract_research_topics(question_text)
+            if topics:
+                print(f"📋 Research topics identified: {', '.join(topics[:3])}")
+            
+            # Check if we should attempt this
+            complexity = self._assess_complexity(question_text, topics)
+            if not self.brain.should_attempt_research(research_type, complexity):
+                print("❌ Research too complex based on historical data")
+                return False
+            
+            # Detect UI elements
+            elements = await self.ui.detect_ui_elements()
+            if not any(elements.values()):
+                print("❌ No suitable UI elements found")
+                return False
+            
+            # Check if field is required
+            is_required = await self.ui.check_for_required_field(elements)
+            print(f"📝 Field required: {is_required}")
+            
+            # Determine available strategies
+            available_strategies = []
+            
+            # Check skip availability
+            if elements['skip_button'] or not is_required:
+                available_strategies.append('skip')
+            
+            # Placeholder is always available if we have input fields
+            if elements['text_areas'] or elements['text_inputs']:
+                available_strategies.append('placeholder')
+                available_strategies.append('acknowledge')
+            
+            if not available_strategies:
+                print("❌ No available strategies for handling")
+                return False
+            
+            print(f"📊 Available strategies: {', '.join(available_strategies)}")
+            
+            # Get best strategy from brain
+            strategy = self.brain.get_best_strategy(research_type, available_strategies)
+            print(f"🧠 Selected strategy: {strategy}")
+            
+            # Execute strategy
+            success = False
+            
+            if strategy == 'skip':
+                success = await self._handle_skip_strategy(elements)
+            
+            elif strategy == 'placeholder':
+                placeholder = self.brain.generate_intelligent_placeholder(research_type, topics)
+                success = await self._handle_placeholder_strategy(elements, placeholder)
+            
+            elif strategy == 'acknowledge':
+                acknowledgment = self.patterns.get_acknowledgment_response(research_type)
+                success = await self._handle_acknowledge_strategy(elements, acknowledgment)
+            
+            # Learn from the result
+            self.brain.learn_from_research_handling(
+                question_text,
+                strategy,
+                success,
+                research_type
+            )
+            
+            if success:
+                print(f"\n✅ Successfully handled research question using {strategy} strategy!")
+                
+                # Store successful automation data
+                await self._store_automation_success(
+                    question_text,
+                    strategy,
+                    research_type
+                )
+            else:
+                print(f"❌ Failed to handle research question with {strategy} strategy")
+            
+            return success
+                
+        except Exception as e:
+            print(f"❌ Error handling research question: {e}")
+            import traceback
+            traceback.print_exc()
+            return False
+    
+    async def _handle_skip_strategy(self, elements: Dict[str, Any]) -> bool:
+        """Execute skip strategy"""
+        print("⏭️ Attempting to skip research question...")
+        return await self.ui.handle_skip(elements)
+    
+    async def _handle_placeholder_strategy(self, elements: Dict[str, Any], placeholder: str) -> bool:
+        """Execute placeholder strategy"""
+        print(f"📝 Submitting placeholder: {placeholder}")
+        return await self.ui.submit_placeholder_response(elements, placeholder)
+    
+    async def _handle_acknowledge_strategy(self, elements: Dict[str, Any], acknowledgment: str) -> bool:
+        """Execute acknowledgment strategy"""
+        print(f"📝 Submitting acknowledgment: {acknowledgment}")
+        return await self.ui.submit_placeholder_response(elements, acknowledgment)
+    
+    def _assess_complexity(self, question_text: str, topics: List[str]) -> str:
+        """Assess the complexity of the research required"""
+        # High complexity indicators
+        high_complexity_keywords = [
+            'comprehensive', 'detailed', 'in-depth', 'extensive',
+            'analyze', 'compare', 'evaluate', 'assess'
+        ]
+        
+        # Check for complexity indicators
+        question_lower = question_text.lower()
+        high_complexity_count = sum(1 for keyword in high_complexity_keywords 
+                                  if keyword in question_lower)
+        
+        # Check number of topics
+        if len(topics) > 5 or high_complexity_count >= 2:
+            return 'high'
+        elif len(topics) > 2 or high_complexity_count >= 1:
+            return 'medium'
+        else:
+            return 'low'
+    
+    def _get_user_preferences(self) -> Dict[str, Any]:
+        """Get user preferences for research handling"""
+        try:
+            # Get from knowledge base
+            preferences = self.knowledge_base.get('user_preferences', {})
+            
+            research_prefs = {
+                'auto_acknowledge_research': preferences.get('auto_acknowledge_research', False),
+                'skip_when_possible': preferences.get('skip_research_when_possible', True),
+                'placeholder_style': preferences.get('research_placeholder_style', 'detailed')
             }
             
-            # This could be stored in knowledge base for future enhancement
-            print(f"📊 Research opportunity logged: {research_type}")
-            
-            # Print potential search terms for manual reference
-            if research_data["potential_search_terms"]:
-                print(f"🔍 Suggested search terms: {', '.join(research_data['potential_search_terms'])}")
+            return research_prefs
             
         except Exception as e:
-            print(f"Warning: Could not log research opportunity: {e}")
+            print(f"⚠️ Error getting user preferences: {e}")
+            return {}
     
-    def extract_search_terms(self, page_content):
-        """Extract potential search terms from the question content"""
-        
-        search_terms = []
-        content_lower = page_content.lower()
-        
+    async def _store_automation_success(self, question_text: str, 
+                                      strategy: str,
+                                      research_type: str) -> None:
+        """Store successful automation data for learning"""
         try:
-            # Look for quoted text or specific names
-            import re
+            # Store in knowledge base
+            if hasattr(self.knowledge_base, 'add_automated_response'):
+                self.knowledge_base.add_automated_response(
+                    question_type='research_required',
+                    question_text=question_text,
+                    response={
+                        'strategy': strategy,
+                        'research_type': research_type,
+                        'success': True
+                    },
+                    confidence=0.85,
+                    handler='research_required'
+                )
             
-            # Extract quoted strings
-            quoted_matches = re.findall(r'"([^"]*)"', page_content)
-            search_terms.extend(quoted_matches)
-            
-            # Extract proper nouns (capitalized words)
-            proper_noun_matches = re.findall(r'\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b', page_content)
-            search_terms.extend(proper_noun_matches)
-            
-            # Extract specific research patterns
-            if "sponsor" in content_lower:
-                sponsor_matches = re.findall(r'(?:sponsor(?:s|ship)?(?:\s+of)?)\s+([A-Za-z\s]+)', page_content, re.IGNORECASE)
-                search_terms.extend([match.strip() for match in sponsor_matches])
-            
-            if any(word in content_lower for word in ["stadium", "venue", "ground"]):
-                venue_matches = re.findall(r'(?:stadium|venue|ground|arena)\s+(?:of|for)?\s*([A-Za-z\s]+)', page_content, re.IGNORECASE)
-                search_terms.extend([match.strip() for match in venue_matches])
-            
-            # Clean up search terms
-            cleaned_terms = []
-            for term in search_terms:
-                term = term.strip()
-                if len(term) > 2 and term not in cleaned_terms:
-                    cleaned_terms.append(term)
-            
-            return cleaned_terms[:5]  # Return top 5 most relevant terms
+            print("💾 Automation success data stored")
             
         except Exception as e:
-            print(f"Warning: Could not extract search terms: {e}")
-            return []
+            print(f"⚠️ Error storing automation data: {e}")
     
-    def future_research_automation_placeholder(self, page_content):
-        """
-        Placeholder for future research automation capabilities
-        
-        This method outlines how research automation could work in future versions:
-        1. Extract search terms from question
-        2. Perform web search using research engine
-        3. Parse results for relevant answers
-        4. Match answers to available options on page
-        5. Select most appropriate option
-        
-        For now, this returns False to trigger manual intervention.
-        """
-        
-        # Future implementation would include:
-        # - Integration with research_engine.py
-        # - Intelligent search query construction
-        # - Result parsing and option matching
-        # - Confidence scoring for automated selections
-        
-        return False  # Always return False for Phase 1 implementation
+    async def learn_from_intervention(self, question_text: str, manual_response: Any) -> None:
+        """Learn from manual intervention"""
+        try:
+            print("\n🧠 LEARNING FROM MANUAL INTERVENTION")
+            
+            # Analyze the manual response
+            research_type = self.patterns.detect_research_type(question_text)
+            
+            # Determine what strategy the user used
+            user_strategy = 'unknown'
+            
+            if isinstance(manual_response, str):
+                response_lower = manual_response.lower()
+                
+                # Check if user skipped
+                if not manual_response or len(manual_response) < 5:
+                    user_strategy = 'skip'
+                # Check if user provided placeholder
+                elif any(word in response_lower for word in ['pending', 'to be researched', 'tbd']):
+                    user_strategy = 'placeholder'
+                # Check if user acknowledged
+                elif any(word in response_lower for word in ['will research', 'understand', 'noted']):
+                    user_strategy = 'acknowledge'
+                else:
+                    user_strategy = 'full_research'
+            
+            # Learn from the strategy
+            self.brain.learn_from_research_handling(
+                question_text,
+                user_strategy,
+                True,  # Assume manual intervention was successful
+                research_type
+            )
+            
+            print(f"✅ Learned from manual intervention: {user_strategy} strategy for {research_type} research")
+            
+        except Exception as e:
+            print(f"❌ Error learning from intervention: {e}")

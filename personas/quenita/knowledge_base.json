@@ -1,0 +1,10 @@
+{
+  "demographics": {
+    "age": 32,
+    "gender": "female",
+    "location": "Parramatta, NSW",
+    "postcode": "2150"
+  },
+  "response_patterns": {},
+  "learned_responses": {}
+}
