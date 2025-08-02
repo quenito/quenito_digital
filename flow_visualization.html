@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyOpinions Survey Flow</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #FAA636;
+            margin-bottom: 40px;
+        }
+        
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #333;
+            transition: all 0.3s ease;
+        }
+        
+        .flow-step:hover {
+            border-color: #FAA636;
+            box-shadow: 0 0 20px rgba(250, 166, 54, 0.3);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #FAA636;
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex-grow: 1;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #FAA636;
+        }
+        
+        .step-description {
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+        
+        .step-status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .status-automated {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .status-manual {
+            background: #FF9800;
+            color: white;
+        }
+        
+        .status-partial {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .arrow {
+            text-align: center;
+            font-size: 24px;
+            color: #FAA636;
+            margin: 10px 0;
+        }
+        
+        .tabs-visual {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .tab {
+            padding: 5px 15px;
+            background: #444;
+            border-radius: 5px 5px 0 0;
+            font-size: 12px;
+        }
+        
+        .tab.active {
+            background: #FAA636;
+            color: #000;
+        }
+        
+        .code-snippet {
+            background: #1a1a1a;
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            overflow-x: auto;
+        }
+        
+        .legend {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .vision-note {
+            background: #2a2a2a;
+            border: 2px dashed #FAA636;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .vision-note h3 {
+            color: #FAA636;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Quenito MyOpinions Survey Flow</h1>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <span class="step-status status-automated">AUTOMATED</span>
+                <span>Fully Automated</span>
+            </div>
+            <div class="legend-item">
+                <span class="step-status status-partial">PARTIAL</span>
+                <span>Partially Automated</span>
+            </div>
+            <div class="legend-item">
+                <span class="step-status status-manual">MANUAL</span>
+                <span>Manual Required</span>
+            </div>
+        </div>
+        
+        <div class="flow-container">
+            <div class="flow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Dashboard Login</div>
+                    <div class="step-description">Navigate to MyOpinions and login with credentials</div>
+                    <span class="step-status status-manual">MANUAL</span>
+                    <div class="tabs-visual">
+                        <div class="tab active">Tab 1: Dashboard</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="arrow">↓</div>
+            
+            <div class="flow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Handle Dashboard Popups</div>
+                    <div class="step-description">Automatically close promo banners and dismiss "No Thanks" popups</div>
+                    <span class="step-status status-automated">AUTOMATED</span>
+                    <div class="code-snippet">
+await flow_handler.handle_dashboard_popups(page)
+# Closes: X buttons, "No Thanks", overlays
+                    </div>
+                </div>
+            </div>
+            
+            <div class="arrow">↓</div>
+            
+            <div class="flow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Detect & Select Best Survey</div>
+                    <div class="step-description">Find all available surveys and select highest points</div>
+                    <span class="step-status status-automated">AUTOMATED</span>
+                    <div class="code-snippet">
+surveys = await adapter.detect_available_surveys()
+best_survey = surveys[0]  # Sorted by points
+                    </div>
+                </div>
+            </div>
+            
+            <div class="arrow">↓</div>
+            
+            <div class="flow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="step-title">Click Survey & Handle New Tab</div>
+                    <div class="step-description">Click "START SURVEY" button and switch to new tab</div>
+                    <span class="step-status status-automated">AUTOMATED</span>
+                    <div class="tabs-visual">
+                        <div class="tab">Tab 1: Dashboard</div>
+                        <div class="tab active">Tab 2: Intermediate</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="arrow">↓</div>
+            
+            <div class="flow-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <div class="step-title">Handle Intermediate Page</div>
+                    <div class="step-description">Click "START SURVEY NOW" on survey details page</div>
+                    <span class="step-status status-automated">AUTOMATED</span>
+                </div>
+            </div>
+            
+            <div class="arrow">↓</div>
+            
+            <div class="flow-step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <div class="step-title">Switch to Survey Tab</div>
+                    <div class="step-description">Automatically switch to 3rd tab with actual survey</div>
+                    <span class="step-status status-automated">AUTOMATED</span>
+                    <div class="tabs-visual">
+                        <div class="tab">Tab 1: Dashboard</div>
+                        <div class="tab">Tab 2: Intermediate</div>
+                        <div class="tab active">Tab 3: Survey</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="arrow">↓</div>
+            
+            <div class="flow-step">
+                <div class="step-number">7</div>
+                <div class="step-content">
+                    <div class="step-title">Handle Consent Forms</div>
+                    <div class="step-description">Scroll consent text, check boxes, click accept</div>
+                    <span class="step-status status-automated">AUTOMATED</span>
+                    <div class="code-snippet">
+await flow_handler.handle_consent_form(page)
+# Scrolls terms, checks boxes, clicks "I Agree"
+                    </div>
+                </div>
+            </div>
+            
+            <div class="arrow">↓</div>
+            
+            <div class="flow-step">
+                <div class="step-number">8</div>
+                <div class="step-content">
+                    <div class="step-title">Captcha Detection & Solving</div>
+                    <div class="step-description">Detect captcha type (text, image grid, puzzle)</div>
+                    <span class="step-status status-partial">PARTIAL</span>
+                    <span style="margin-left: 10px; color: #999;">(Vision integration pending)</span>
+                </div>
+            </div>
+            
+            <div class="arrow">↓</div>
+            
+            <div class="flow-step">
+                <div class="step-number">9</div>
+                <div class="step-content">
+                    <div class="step-title">Pre-Screening Questions</div>
+                    <div class="step-description">Demographics and qualifying questions</div>
+                    <span class="step-status status-manual">MANUAL</span>
+                    <span style="margin-left: 10px; color: #999;">(Learning phase)</span>
+                </div>
+            </div>
+            
+            <div class="arrow">↓</div>
+            
+            <div class="flow-step">
+                <div class="step-number">10</div>
+                <div class="step-content">
+                    <div class="step-title">Main Survey Questions</div>
+                    <div class="step-description">Handle all survey question types with existing handlers</div>
+                    <span class="step-status status-automated">AUTOMATED</span>
+                    <div class="code-snippet">
+# Existing handlers: Demographics, Likert, Multiple Choice, etc.
+# 66.7% automation rate on main survey questions
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="vision-note">
+            <h3>🔮 Vision Integration (Coming Soon)</h3>
+            <p>With GPT-4 Vision API or OpenCV integration, Quenito will achieve:</p>
+            <ul style="list-style: none; padding: 0;">
+                <li>✅ Automatic captcha solving</li>
+                <li>✅ Visual element detection</li>
+                <li>✅ 100% autonomous operation</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
