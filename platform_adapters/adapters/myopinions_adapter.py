@@ -132,87 +132,64 @@ class MyOpinionsAdapter(BasePlatformAdapter):
         surveys = []
         
         try:
-            # Try multiple selectors
-            possible_selectors = [
-                "div[class*='survey']",
-                "div.card:has(button)",
-                "a[href*='start-survey']",
-                "div:has(> button:has-text('START SURVEY'))",
-                "[class*='survey-item']"
-            ]
+            # Wait a bit more for dynamic content
+            await self.page.wait_for_timeout(3000)
             
-            survey_elements = []
-            for selector in possible_selectors:
-                elements = await self.page.query_selector_all(selector)
-                if elements:
-                    survey_elements = elements
-                    self.logger.info(f"Found {len(elements)} surveys with selector: {selector}")
-                    break
+            # Get ALL buttons with "START SURVEY" text
+            start_buttons = await self.page.query_selector_all("button:has-text('START SURVEY')")
             
-            if not survey_elements:
-                self.logger.warning("No survey elements found with any selector")
-                # Debug: print page content
-                content = await self.page.content()
-                if len(content) > 1000:
-                    self.logger.debug(f"Page loaded, content length: {len(content)}")
-                return []
+            self.logger.info(f"Found {len(start_buttons)} START SURVEY buttons")
             
-            for idx, element in enumerate(survey_elements):
+            if not start_buttons:
+                # Try alternate approach - find by text content
+                all_elements = await self.page.query_selector_all("div")
+                for element in all_elements:
+                    try:
+                        text = await element.inner_text()
+                        if "START SURVEY" in text and "points" in text:
+                            self.logger.info(f"Found survey element with text: {text[:50]}...")
+                    except:
+                        pass
+            
+            # For each button, go up to find the survey container
+            for idx, button in enumerate(start_buttons):
                 try:
-                    # Get all text content from the element
-                    text_content = await element.inner_text()
+                    # Get the parent container that has all survey info
+                    # Go up the DOM tree until we find points and time
+                    survey_container = button
+                    for _ in range(5):  # Try up to 5 parent levels
+                        survey_container = await survey_container.evaluate_handle("el => el.parentElement")
+                        text = await survey_container.inner_text()
+                        if "points" in text and "min" in text:
+                            break
                     
-                    # Extract points (look for patterns like "220 points", "900 points")
+                    text_content = await survey_container.inner_text()
+                    
+                    # Parse the text content
                     import re
-                    points_match = re.search(r'(\d+)\s*points?', text_content, re.IGNORECASE)
+                    points_match = re.search(r'(\d+)\s*points', text_content)
                     points = int(points_match.group(1)) if points_match else 0
                     
-                    # Extract time (look for patterns like "20 mins", "10 minutes")
-                    time_match = re.search(r'(\d+)\s*min', text_content, re.IGNORECASE)
-                    time_minutes = int(time_match.group(1)) if time_match else 15  # Default 15 mins
+                    time_match = re.search(r'(\d+)\s*mins?', text_content)
+                    time_minutes = int(time_match.group(1)) if time_match else 15
                     
-                    # Extract title (first line or specific text)
-                    lines = text_content.strip().split('\n')
-                    title = lines[0] if lines else f"Survey {idx + 1}"
-                    
-                    # Skip if no points found
-                    if points == 0:
-                        continue
-                    
-                    # Calculate values
-                    dollar_value = self.convert_points_to_currency(points)
-                    hourly_rate = (dollar_value / time_minutes * 60) if time_minutes > 0 else 0
-                    
-                    # Check for bonus/recommended flags
-                    is_recommended = "RECOMMENDED" in text_content.upper()
-                    is_high_reward = "HIGH REWARD" in text_content.upper()
-                    
+                    # Create survey object
                     survey = Survey(
                         id=f"myo_{idx}",
-                        title=title.strip(),
+                        title=f"Survey {idx + 1} - {points} points",
                         points=points,
                         time_minutes=time_minutes,
-                        dollar_value=dollar_value,
-                        hourly_rate=hourly_rate,
-                        element=element,
-                        metadata={
-                            "recommended": is_recommended,
-                            "high_reward": is_high_reward,
-                            "full_text": text_content
-                        }
+                        dollar_value=points / 100,  # 100 points = $1
+                        hourly_rate=(points / 100) / (time_minutes / 60),
+                        element=button,  # Store button for clicking
+                        metadata={"full_text": text_content}
                     )
                     
                     surveys.append(survey)
-                    
-                    self.logger.debug(
-                        f"Survey: {title[:30]}... | "
-                        f"{points} pts | {time_minutes} min | "
-                        f"${dollar_value:.2f} | ${hourly_rate:.2f}/hr"
-                    )
+                    self.logger.info(f"Found survey: {points} points, {time_minutes} mins")
                     
                 except Exception as e:
                     self.logger.warning(f"Failed to parse survey {idx}: {e}")
-                    continue
             
             return surveys
             
