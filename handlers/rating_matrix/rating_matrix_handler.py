@@ -33,13 +33,16 @@ class RatingMatrixHandler(BaseHandler):
     def __init__(self, page, knowledge_base, intervention_manager):
         """Initialize handler with modular components"""
         super().__init__(page, knowledge_base, intervention_manager)
-        
+
+        # Get patterns from knowledge base (UPDATED)
+        question_patterns = knowledge_base.get("question_patterns", {})
+        rating_patterns = question_patterns.get("rating_matrix_questions", {})
+
         # Initialize modular components
-        matrix_data = knowledge_base.get("rating_matrices", {}) if knowledge_base else {}
-        self.patterns = RatingMatrixPatterns(matrix_data)
+        self.patterns = RatingMatrixPatterns(rating_patterns)
         self.ui = RatingMatrixUI(page)
         self.brain = RatingMatrixBrain(knowledge_base)
-        
+            
         # Handler state
         self.detected_matrix_type = None
         self.last_confidence = 0.0

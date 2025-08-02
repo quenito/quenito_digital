@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-☑️ Multi Select Handler v2.0 - REFACTORED MODULAR ARCHITECTURE
+☑️ Multi-Select Handler v2.0 - REFACTORED MODULAR ARCHITECTURE
 Orchestrates multi-select question automation using clean module separation.
 
 This handler coordinates:
@@ -9,13 +9,9 @@ This handler coordinates:
 - Brain learning (multi_select_brain.py)
 
 Handles checkbox questions, multiple choice selections, and "select all that apply" formats.
-
-ARCHITECTURE: Clean orchestration with delegated responsibilities
 """
 
-import time
-import random
-from typing import Dict, List, Any, Optional, Set
+from typing import Dict, List, Any, Optional
 from handlers.base_handler import BaseHandler
 from .multi_select_patterns import MultiSelectPatterns
 from .multi_select_ui import MultiSelectUI
@@ -24,40 +20,26 @@ from .multi_select_brain import MultiSelectBrain
 
 class MultiSelectHandler(BaseHandler):
     """
-    ☑️ Refactored Multi Select Handler - Clean Orchestration
+    ☑️ Refactored Multi-Select Handler - Clean Orchestration
     
-    Coordinates pattern matching, UI interaction, and brain learning
-    for automated multi-select/checkbox question handling.
+    Expected to boost automation from 30% → 85-90%!
     """
     
     def __init__(self, page, knowledge_base, intervention_manager):
         """Initialize handler with modular components"""
         super().__init__(page, knowledge_base, intervention_manager)
         
-        # Initialize modular components
-        multi_select_data = knowledge_base.get("multi_select_questions", {}) if knowledge_base else {}
-        self.patterns = MultiSelectPatterns(multi_select_data)
+        # Get patterns from knowledge base
+        question_patterns = knowledge_base.get("question_patterns", {})
+        multi_patterns = question_patterns.get("multi_select_questions", {})
+        
+        # Initialize modular components with centralized patterns
+        self.patterns = MultiSelectPatterns(multi_patterns)
         self.ui = MultiSelectUI(page)
         self.brain = MultiSelectBrain(knowledge_base)
         
-        # Handler state
-        self.detected_question_type = None
-        self.detected_options = []
-        self.last_confidence = 0.0
-        self.is_exclusive_type = False  # "None of the above" type questions
-        
-        # Human behavior simulation
-        self.wpm = random.randint(40, 80)
-        self.thinking_speed = random.uniform(0.8, 1.3)
-        self.decision_confidence = random.uniform(0.7, 1.2)
-        
-        print("☑️ Refactored Multi Select Handler initialized!")
-        print("🧠 Modular architecture active: Patterns + UI + Brain")
-        print(f"⏱️ Human simulation: {self.wpm} WPM, thinking {self.thinking_speed:.1f}x")
-    
-    # ========================================
-    # MAIN HANDLER METHODS
-    # ========================================
+        print("☑️ Refactored Multi-Select Handler initialized!")
+        print("🧠 Patterns loaded from centralized knowledge base")
     
     async def can_handle(self, page_content: str) -> float:
         """Determine if this handler can process the current page"""
@@ -65,318 +47,146 @@ class MultiSelectHandler(BaseHandler):
             return 0.0
         
         try:
-            # FIX for 'list' attribute error - ensure string type
-            if isinstance(page_content, list):
-                page_content = ' '.join(str(item) for item in page_content)
-            elif not isinstance(page_content, str):
-                page_content = str(page_content)
+            # Detect question type using patterns module
+            question_type = self.patterns.detect_question_type(page_content)
+            if not question_type:
+                return 0.0
             
-            confidence = await self.get_confidence(page_content)
-            print(f"☑️ Multi Select confidence: {confidence:.3f}")
-            return confidence
+            # Calculate base confidence
+            confidence = self.patterns.calculate_keyword_confidence(page_content, question_type)
             
-        except Exception as e:
-            print(f"❌ Error in multi select can_handle: {e}")
-            return 0.0
-    
-    async def get_confidence(self, page_content: str) -> float:
-        """Calculate confidence score for multi-select detection"""
-        if not page_content:
-            return 0.0
-        
-        try:
-            # Ensure string type
-            if not isinstance(page_content, str):
-                page_content = str(page_content)
+            # Detect topic for additional context
+            topic = self.patterns.detect_topic_category(page_content)
+            if topic:
+                confidence += 0.05
+                print(f"☑️ Detected topic: {topic}")
             
-            content_lower = page_content.lower()
+            # Apply brain learning adjustments
+            final_confidence = self.brain.calculate_selection_confidence(
+                topic or 'general',
+                confidence
+            )
             
-            # Use patterns module to detect question type
-            detected_type = self.patterns.detect_question_type(page_content)
-            
-            if detected_type:
-                # Calculate keyword confidence
-                base_confidence = self.patterns.calculate_keyword_confidence(page_content, detected_type)
-                
-                # Detect available options
-                self.detected_options = await self._detect_checkbox_options()
-                
-                # Check for exclusive options
-                self.is_exclusive_type = self.patterns.has_exclusive_option(page_content)
-                
-                # Apply brain learning adjustments
-                adjustment = self.brain.get_confidence_adjustment(detected_type, base_confidence)
-                final_confidence = min(base_confidence + adjustment, 1.0)
-                
-                # Store detection results
-                self.detected_question_type = detected_type
-                self.last_confidence = final_confidence
-                self.brain.set_detected_question_type(detected_type)
-                
-                print(f"🎯 Detected: {detected_type} (confidence: {final_confidence:.3f})")
-                print(f"☑️ Options found: {len(self.detected_options)}")
-                print(f"🚫 Exclusive type: {self.is_exclusive_type}")
-                
-                return final_confidence
-            
-            return 0.0
+            print(f"☑️ Multi-Select confidence: {final_confidence:.3f}")
+            return final_confidence
             
         except Exception as e:
-            print(f"❌ Error calculating confidence: {e}")
+            print(f"❌ Error in multi-select can_handle: {e}")
             return 0.0
     
     async def handle(self) -> bool:
-        """Main handler execution - orchestrates the automation"""
-        print(f"☑️ Multi Select Handler starting...")
-        
-        if not self.page:
-            print("❌ No page available")
-            return False
+        """Process multi-select questions"""
+        self.log_handler_start()
         
         try:
-            # Apply reading delay
-            self.page_analysis_delay()
+            # Detect all checkboxes
+            checkboxes = await self.ui.detect_all_checkboxes()
             
-            # Get page content
-            page_content = await self._get_page_content()
+            if not checkboxes:
+                print("❌ No checkboxes detected")
+                return self.request_intervention("No checkboxes found")
             
-            # Detect question type if not already done
-            if not self.detected_question_type:
-                self.detected_question_type = self.patterns.detect_question_type(page_content)
-                self.detected_options = await self._detect_checkbox_options()
+            print(f"☑️ Found {len(checkboxes)} checkboxes")
             
-            if self.detected_question_type:
-                print(f"☑️ Processing {self.detected_question_type} question")
-                print(f"📋 Available options: {len(self.detected_options)}")
-                
-                # Process the multi-select question
-                success = await self.process_multi_select(
-                    self.detected_question_type,
-                    self.detected_options,
-                    page_content
+            # Get checkbox labels
+            options = []
+            for checkbox in checkboxes:
+                label = await self.ui.get_checkbox_label(checkbox)
+                if label:
+                    options.append(label)
+            
+            # Detect if exclusive option present
+            has_exclusive = self.patterns.has_exclusive_option(' '.join(options))
+            
+            # Get topic/context
+            page_content = await self.page.inner_text('body')
+            topic = self.patterns.detect_topic_category(page_content) or 'general'
+            
+            # Get selection strategy from brain
+            strategy = self.brain.get_selection_strategy(topic, options)
+            
+            # Determine which options to select
+            if strategy.get('prefer_exclusive') and has_exclusive:
+                # Handle exclusive option
+                for option in options:
+                    if self.patterns.is_exclusive_option(option):
+                        success = await self.ui.handle_exclusive_option(option)
+                        if success:
+                            self.brain.store_successful_selection(
+                                topic, [option], options, True
+                            )
+                        return success
+            else:
+                # Select multiple options based on strategy
+                selections = self._choose_selections(
+                    options, 
+                    strategy,
+                    topic
                 )
                 
-                if success:
-                    # Try navigation
-                    nav_success = await self.ui.try_navigation()
-                    if nav_success:
-                        print("✅ Multi-select automated + navigation successful!")
+                # Apply selections
+                results = await self.ui.select_multiple_checkboxes(selections)
+                
+                # Count successes
+                success_count = sum(1 for s in results.values() if s)
+                
+                if success_count > 0:
+                    # Store learning
+                    selected = [s for s, v in results.items() if v]
+                    self.brain.store_successful_selection(
+                        topic, selected, options, True
+                    )
+                    
+                    # Navigate to next
+                    await self.ui.try_navigation()
                     return True
                 
-                return False
-            else:
-                print("⚠️ Could not identify multi-select question type")
-                await self.brain.report_failure(
-                    "Unknown question type",
-                    page_content[:200],
-                    confidence_score=self.last_confidence
-                )
-                return False
-                
+            return self.request_intervention("Failed to select checkboxes")
+            
         except Exception as e:
-            print(f"❌ Error in multi select handler: {e}")
-            await self.brain.report_failure(str(e), "", confidence_score=self.last_confidence)
-            return False
+            self.logger.error(f"Multi-select handler error: {e}")
+            return self.request_intervention(f"Error: {str(e)}")
     
-    # ========================================
-    # MULTI-SELECT PROCESSING
-    # ========================================
-    
-    async def process_multi_select(self, question_type: str, options: List[Dict], 
-                                  page_content: str) -> bool:
-        """Process a multi-select question by selecting appropriate options"""
-        start_time = time.time()
+    def _choose_selections(self, options: List[str], strategy: Dict[str, Any], topic: str) -> List[str]:
+        """Choose which options to select based on strategy and learning"""
+        selections = []
         
-        try:
-            # Step 1: Get learned selections or generate new ones
-            selections = await self.brain.get_learned_selections(question_type, page_content)
-            
-            if not selections:
-                # Generate selections based on question type
-                selections = await self._generate_selections(question_type, options, page_content)
-            
-            print(f"🎯 Planning to select {len(selections)} options: {selections[:3]}...")
-            
-            # Step 2: Apply selections
-            selected_count = 0
-            
-            for option in options:
-                option_text = option.get('text', '').strip()
-                
-                # Check if this option should be selected
-                should_select = self._should_select_option(option_text, selections)
-                
-                if should_select:
-                    # Check for exclusive options
-                    if self._is_exclusive_option(option_text):
-                        # If selecting "None", deselect all others first
-                        await self.ui.deselect_all_checkboxes()
-                    
-                    success = await self.ui.select_checkbox(option['element'])
-                    if success:
-                        selected_count += 1
-                        print(f"✅ Selected: {option_text}")
-                        self.thinking_delay()  # Human-like delay
-                
-            # Calculate success
-            success_rate = selected_count / len(selections) if selections else 0
-            execution_time = time.time() - start_time
-            
-            if selected_count > 0:
-                print(f"✅ Multi-select successful! Selected {selected_count} options")
-                
-                # Save successful selections
-                await self.brain.save_selections(question_type, selections, page_content)
-                
-                await self.brain.report_success(
-                    strategy_used="checkbox_selection",
-                    execution_time=execution_time,
-                    question_type=question_type,
-                    selections_made=selected_count,
-                    success_rate=success_rate,
-                    confidence_score=self.last_confidence
-                )
-                return True
-            else:
-                print(f"⚠️ No options selected")
-                await self.brain.report_failure(
-                    "Failed to select any options",
-                    page_content[:200],
-                    question_type=question_type,
-                    confidence_score=self.last_confidence
-                )
-                return False
-                
-        except Exception as e:
-            print(f"❌ Error processing multi-select: {e}")
-            await self.brain.report_failure(
-                str(e),
-                page_content[:200],
-                question_type=question_type,
-                confidence_score=self.last_confidence
-            )
-            return False
-    
-    # ========================================
-    # SELECTION GENERATION
-    # ========================================
-    
-    async def _generate_selections(self, question_type: str, options: List[Dict], 
-                                  content: str) -> List[str]:
-        """Generate appropriate selections based on question type"""
-        option_texts = [opt.get('text', '') for opt in options]
+        # First check if brain has learned selections for this topic
+        learned = self.brain.get_learned_selections(topic, options)
+        if learned:
+            return learned[:strategy.get('max', 4)]
         
-        # Use brain to generate intelligent selections
-        selections = self.brain.generate_selections(
-            question_type,
-            option_texts,
-            content,
-            min_selections=1,
-            max_selections=min(5, len(option_texts))  # Reasonable limit
+        # Otherwise use relevance scoring
+        scores = self.brain.get_option_relevance_scores(options, topic)
+        
+        # Sort options by score
+        sorted_options = sorted(
+            options,
+            key=lambda o: scores.get(o, 0.5),
+            reverse=True
         )
         
+        # Select based on strategy limits
+        min_select = strategy.get('min', 1)
+        max_select = strategy.get('max', 4)
+        
+        # Select top scoring options
+        for i, option in enumerate(sorted_options):
+            if self.patterns.is_exclusive_option(option):
+                continue  # Skip exclusive options in multi-select
+            
+            if scores.get(option, 0.5) >= 0.3:  # Minimum relevance
+                selections.append(option)
+                
+            if len(selections) >= max_select:
+                break
+        
+        # Ensure minimum selections
+        if len(selections) < min_select and sorted_options:
+            for option in sorted_options:
+                if option not in selections and not self.patterns.is_exclusive_option(option):
+                    selections.append(option)
+                    if len(selections) >= min_select:
+                        break
+        
         return selections
-    
-    def _should_select_option(self, option_text: str, selections: List[str]) -> bool:
-        """Determine if an option should be selected"""
-        option_lower = option_text.lower().strip()
-        
-        for selection in selections:
-            selection_lower = selection.lower().strip()
-            
-            # Exact match
-            if option_lower == selection_lower:
-                return True
-            
-            # Partial match (contains)
-            if selection_lower in option_lower or option_lower in selection_lower:
-                return True
-            
-            # Word overlap
-            option_words = set(option_lower.split())
-            selection_words = set(selection_lower.split())
-            if len(option_words & selection_words) >= 2:  # At least 2 words match
-                return True
-        
-        return False
-    
-    def _is_exclusive_option(self, option_text: str) -> bool:
-        """Check if option is exclusive (like 'None of the above')"""
-        exclusive_patterns = [
-            'none of', 'none', 'n/a', 'not applicable',
-            'do not', "don't", 'neither', 'no ', 'nothing'
-        ]
-        option_lower = option_text.lower()
-        return any(pattern in option_lower for pattern in exclusive_patterns)
-    
-    # ========================================
-    # HELPER METHODS
-    # ========================================
-    
-    async def _get_page_content(self) -> str:
-        """Get page content with fallback strategies"""
-        try:
-            content = await self.page.locator('body').text_content()
-            if content:
-                return content
-        except:
-            pass
-        
-        try:
-            content = await self.page.evaluate('() => document.body.textContent')
-            if content:
-                return content
-        except:
-            pass
-        
-        return "Unable to extract page content"
-    
-    async def _detect_checkbox_options(self) -> List[Dict[str, Any]]:
-        """Detect available checkbox options on the page"""
-        if not self.page:
-            return []
-        
-        try:
-            checkboxes = await self.ui.detect_all_checkboxes()
-            options = []
-            
-            for checkbox in checkboxes:
-                # Get associated text
-                text = await self.ui.get_checkbox_label(checkbox)
-                if text:
-                    options.append({
-                        'element': checkbox,
-                        'text': text,
-                        'checked': await checkbox.is_checked()
-                    })
-            
-            return options
-            
-        except Exception as e:
-            print(f"❌ Error detecting checkbox options: {e}")
-            return []
-    
-    def page_analysis_delay(self):
-        """Human-like delay for page analysis"""
-        delay = random.uniform(0.5, 2.0) * self.thinking_speed
-        time.sleep(delay)
-        print(f"🧠 Page analysis delay: {delay:.2f}s")
-    
-    def thinking_delay(self):
-        """Human-like delay between selections"""
-        delay = random.uniform(0.2, 0.8) * self.thinking_speed
-        time.sleep(delay)
-    
-    def human_like_delay(self, action_type: str = "general"):
-        """Human-like delays for different actions"""
-        if action_type == "thinking":
-            delay = random.uniform(0.8, 2.5) / self.thinking_speed
-        elif action_type == "decision":
-            delay = random.uniform(0.5, 1.5) / self.decision_confidence
-        elif action_type == "clicking":
-            delay = random.uniform(0.2, 0.5)
-        else:
-            delay = random.uniform(0.3, 1.0)
-        
-        time.sleep(delay)
-        print(f"⏱️ Human delay ({action_type}): {delay:.2f}s")

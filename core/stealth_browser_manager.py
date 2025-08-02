@@ -447,6 +447,40 @@ class StealthBrowserManager:
             
         except Exception as e:
             print(f"⚠️ Error closing browser (non-critical): {e}")
+ 
+    async def load_saved_cookies(self, cookie_file: str = None):
+        """
+        Load cookies from a saved JSON file
+        
+        Args:
+            cookie_file: Path to cookie file. If None, uses default persona path
+        """
+        if not cookie_file:
+            # Default to persona-specific cookie file
+            persona_name = self.profile_name.split('_')[0]
+            cookie_file = f"personas/{persona_name}/myopinions_cookies.json"
+        
+        try:
+            with open(cookie_file, 'r') as f:
+                cookies = json.load(f)
+            
+            print(f"📥 Loading {len(cookies)} saved cookies from {cookie_file}")
+            
+            if self.context:
+                # Add cookies to browser context
+                await self.context.add_cookies(cookies)
+                print("✅ Cookies loaded successfully")
+                return True
+            else:
+                print("❌ No browser context available")
+                return False
+                
+        except FileNotFoundError:
+            print(f"❌ Cookie file not found: {cookie_file}")
+            return False
+        except Exception as e:
+            print(f"❌ Error loading cookies: {e}")
+            return False
     
     def is_initialized(self) -> bool:
         """Check if browser is properly initialized."""
