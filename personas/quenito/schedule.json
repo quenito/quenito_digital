@@ -1,0 +1,65 @@
+{
+  "persona": "quenito",
+  "created": "2025-08-03T11:03:35.843890",
+  "active_days": [
+    "monday",
+    "tuesday",
+    "thursday",
+    "friday",
+    "saturday"
+  ],
+  "preferred_platforms": [
+    "myopinions",
+    "lifepointspanel",
+    "primeopinion",
+    "opinionworld",
+    "octopus"
+  ],
+  "platform_schedule": {
+    "monday": [
+      "myopinions",
+      "lifepointspanel"
+    ],
+    "tuesday": [
+      "primeopinion",
+      "opinionworld"
+    ],
+    "thursday": [
+      "myopinions",
+      "octopus"
+    ],
+    "friday": [
+      "lifepointspanel",
+      "opinionworld"
+    ],
+    "saturday": [
+      "myopinions"
+    ]
+  },
+  "preferred_time_slots": {
+    "morning": "09:00-12:00",
+    "evening": "19:00-21:00"
+  },
+  "survey_preferences": {
+    "min_points": 50,
+    "max_duration": "25 minutes",
+    "avoid_topics": [],
+    "preferred_topics": [
+      "technology",
+      "consumer_goods",
+      "travel"
+    ]
+  },
+  "daily_limits": {
+    "max_surveys": 3,
+    "max_screen_time": "2 hours",
+    "min_break_between": "30 minutes"
+  },
+  "platform_specific": {
+    "myopinions": {
+      "priority": "high",
+      "daily_check": true,
+      "bonus_tier_target": "gold"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "persona": "quenita",
+  "created": "2025-08-03T11:03:35.843916",
+  "active_days": [
+    "monday",
+    "tuesday",
+    "thursday",
+    "friday",
+    "sunday"
+  ],
+  "preferred_platforms": [
+    "primeopinion",
+    "opinionworld",
+    "myopinions",
+    "lifepointspanel",
+    "octopus"
+  ],
+  "platform_schedule": {
+    "monday": [
+      "primeopinion",
+      "opinionworld"
+    ],
+    "tuesday": [
+      "myopinions",
+      "lifepointspanel"
+    ],
+    "thursday": [
+      "primeopinion",
+      "lifepointspanel"
+    ],
+    "friday": [
+      "myopinions",
+      "octopus"
+    ],
+    "sunday": [
+      "primeopinion"
+    ]
+  },
+  "preferred_time_slots": {
+    "afternoon": "14:00-17:00",
+    "evening": "20:00-22:00"
+  },
+  "survey_preferences": {
+    "min_points": 75,
+    "max_duration": "20 minutes",
+    "avoid_topics": [],
+    "preferred_topics": [
+      "lifestyle",
+      "shopping",
+      "health"
+    ]
+  },
+  "daily_limits": {
+    "max_surveys": 2,
+    "max_screen_time": "1.5 hours",
+    "min_break_between": "45 minutes"
+  },
+  "platform_specific": {}
+}

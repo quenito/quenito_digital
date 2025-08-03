@@ -12,12 +12,13 @@ from platform_adapters.flow_handlers.myopinions_flow_handler import MyOpinionsFl
 class MyOpinionsAdapter(BasePlatformAdapter):
     """MyOpinions.com.au platform adapter with integrated flow handling"""
     
-    def __init__(self, browser_manager):
-        super().__init__(browser_manager)
+    def __init__(self, browser_manager, persona_name="quenito"):
+        super().__init__(browser_manager, persona_name)
         self.platform_name = "myopinions"
         self.base_url = "https://www.myopinions.com.au"
         self.points_per_dollar = 100  # 2000 points = $20 AUD
         self.flow_handler = MyOpinionsFlowHandler(browser_manager)
+        self.page = browser_manager.page
         
         # Platform-specific selectors
         self.selectors = {
@@ -36,6 +37,85 @@ class MyOpinionsAdapter(BasePlatformAdapter):
             "silver": 0.075,   # 7.5% weekly bonus  
             "gold": 0.10       # 10% weekly bonus
         }
+    
+    # ==================== REQUIRED ABSTRACT METHODS ====================
+    
+    async def convert_points_to_currency(self, points: int) -> float:
+        """
+        Convert points to AUD currency
+        2000 points = $20 AUD
+        """
+        return points / self.points_per_dollar
+    
+    async def get_available_surveys(self) -> List[Dict[str, Any]]:
+        """
+        Get available surveys - wraps detect_available_surveys
+        Required by base adapter
+        """
+        return await self.detect_available_surveys()
+    
+    async def is_survey_complete(self) -> bool:
+        """
+        Check if current survey is complete
+        For now, return False (manual completion required)
+        """
+        # In future, check for completion indicators like:
+        # - "Thank you" page
+        # - Points credited message
+        # - Return to dashboard button
+        return False
+    
+    async def select_best_survey(self, surveys: List[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+        """
+        Select the best survey from available options
+        Strategy: Highest points first
+        """
+        if not surveys:
+            return None
+        
+        # Already sorted by points in detect_available_surveys
+        return surveys[0]
+    
+    async def track_bonus_progress(self) -> Dict[str, Any]:
+        """
+        Track bonus tier progress
+        MyOpinions has weekly bonus tiers
+        """
+        try:
+            # Look for bonus tier indicator on dashboard
+            bonus_elem = await self.page.query_selector(self.selectors['bonus_indicator'])
+            
+            if bonus_elem:
+                bonus_text = await bonus_elem.inner_text()
+                
+                # Parse tier from text
+                tier = "starter"
+                for tier_name in ["gold", "silver", "bronze"]:
+                    if tier_name.lower() in bonus_text.lower():
+                        tier = tier_name
+                        break
+                
+                return {
+                    "tier": tier,
+                    "bonus_rate": self.bonus_tiers.get(tier, 0),
+                    "text": bonus_text
+                }
+            
+            return {
+                "tier": "starter",
+                "bonus_rate": 0,
+                "text": "No bonus active"
+            }
+            
+        except Exception as e:
+            print(f"❌ Error tracking bonus: {e}")
+            return {
+                "tier": "unknown",
+                "bonus_rate": 0,
+                "text": "Could not detect bonus"
+            }
+    
+    # ==================== EXISTING METHODS ====================
     
     async def navigate_to_surveys(self) -> bool:
         """Navigate to survey dashboard"""
