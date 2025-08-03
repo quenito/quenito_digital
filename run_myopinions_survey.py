@@ -16,7 +16,7 @@ async def run_survey():
     await browser.load_saved_cookies()
     
     # Create adapter (which now includes the flow handler)
-    adapter = MyOpinionsAdapter(browser)
+    adapter = MyOpinionsAdapter(browser, "quenito")
     
     # Navigate to MyOpinions
     await browser.page.goto("https://www.myopinions.com.au/auth/dashboard")
