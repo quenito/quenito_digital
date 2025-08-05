@@ -39,11 +39,13 @@ class KnowledgeBase:
     ARCHITECTURE: Clean separation of concerns with focused modules
     """
     
-    def __init__(self, knowledge_base_path="data/knowledge_base.json"):
-        self.path = knowledge_base_path
-        self.data = {}
+    def __init__(self, persona_name: str = "quenito", knowledge_base_path: str = None):
+        if knowledge_base_path:
+            self.path = knowledge_base_path
+        else:
+            self.path = f"personas/{persona_name}/knowledge_base.json"
         
-        # Load data from JSON
+        self.data = {}
         self.load()
         
         # Initialize specialized modules with loaded data
