@@ -962,7 +962,7 @@
   },
   "confidence_system": {
     "version": "3.0_dynamic",
-    "last_updated": "2025-08-06T00:21:52.100804",
+    "last_updated": "2025-08-05T21:39:45.361383",
     "global_settings": {
       "learning_rate": 0.1,
       "confidence_decay": 0.95,
@@ -975,12 +975,12 @@
     "handler_thresholds": {
       "demographics": {
         "base_threshold": 0.3,
-        "dynamic_adjustment": -0.1400000000000001,
-        "current_threshold": 0.1599999999999999,
-        "success_rate": 0.7215909090909091,
-        "total_attempts": 176,
-        "successful_attempts": 127,
-        "last_success": "2025-08-06T00:20:04.546697",
+        "dynamic_adjustment": -0.1350000000000001,
+        "current_threshold": 0.1649999999999999,
+        "success_rate": 0.72,
+        "total_attempts": 175,
+        "successful_attempts": 126,
+        "last_success": "2025-08-05T21:39:45.361289",
         "trending": "improving"
       },
       "brand_familiarity": {
@@ -1005,22 +1005,22 @@
       },
       "general": {
         "base_threshold": 0.5,
-        "dynamic_adjustment": -0.16500000000000012,
-        "current_threshold": 0.33499999999999985,
+        "dynamic_adjustment": -0.1550000000000001,
+        "current_threshold": 0.34499999999999986,
         "success_rate": 1.0,
-        "total_attempts": 33,
-        "successful_attempts": 33,
-        "last_success": "2025-08-06T00:21:04.543196",
+        "total_attempts": 31,
+        "successful_attempts": 31,
+        "last_success": "2025-08-05T20:10:02.480407",
         "trending": "excellent"
       },
       "multi_select": {
         "base_threshold": 0.5,
-        "dynamic_adjustment": -0.030000000000000006,
-        "current_threshold": 0.47,
+        "dynamic_adjustment": -0.025000000000000005,
+        "current_threshold": 0.475,
         "success_rate": 1.0,
-        "total_attempts": 6,
-        "successful_attempts": 6,
-        "last_success": "2025-08-06T00:21:52.100700",
+        "total_attempts": 5,
+        "successful_attempts": 5,
+        "last_success": "2025-08-05T19:43:42.915978",
         "trending": "excellent"
       }
     },
@@ -1174,7 +1174,7 @@
           "pattern": "general + unknown",
           "confidence_boost": 0.05,
           "success_rate": 1.0,
-          "sample_size": 4
+          "sample_size": 3
         },
         "age_text": {
           "pattern": "age + text",
@@ -1187,18 +1187,6 @@
           "confidence_boost": 0.05,
           "success_rate": 1.0,
           "sample_size": 2
-        },
-        "general_text": {
-          "pattern": "general + text",
-          "confidence_boost": 0.05,
-          "success_rate": 1.0,
-          "sample_size": 1
-        },
-        "multi_select_unknown": {
-          "pattern": "multi_select + unknown",
-          "confidence_boost": 0.05,
-          "success_rate": 1.0,
-          "sample_size": 1
         }
       },
       "failure_patterns": {
@@ -1254,6 +1242,122 @@
       "automation_success": true,
       "learned_at": 1753289365.0543165
     },
+    "learning_1754200347_1": {
+      "timestamp": 1754200347.1300404,
+      "session_id": "learning_session_1754200173",
+      "question_number": 1,
+      "question_text": "Have you claimed your full 150 bonus points yet?",
+      "question_type": "general",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.1646864414215088,
+      "confidence_score": 0.5,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "automation_success": false,
+      "learned_at": 1754200347.130044,
+      "url": "https://www.myopinions.com.au/auth/dashboard",
+      "page_structure": {
+        "checkboxes": 0,
+        "radios": 22,
+        "text_inputs": 57,
+        "selects": 0,
+        "textareas": 1,
+        "buttons": 0,
+        "primary_type": "radio",
+        "strategy": "radio_selection"
+      }
+    },
+    "learning_1754215869_1": {
+      "timestamp": 1754215869.2232268,
+      "session_id": "learning_session_1754214606",
+      "question_number": 1,
+      "question_text": "Which of the following best describes your gender?",
+      "question_type": "gender",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.6469147205352783,
+      "confidence_score": 0.35,
+      "response_value": "",
+      "response_values": [
+        ""
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "automation_success": false,
+      "learned_at": 1754215869.223244,
+      "url": "https://ts1.eu.qualtrics.com/jfe/form/SV_5A2gXfFhSbSZQeG?Country=Australia&Q_Language=EN&sample_type=recontact&memno=1_fbrzBsfxTfjFlcHRHG_9iQ&psid=m2TdD9LCpEm1mzF2GJYk1A**&panel=c0231&synccid=8voo4v4&_k=10634&_s=4b1ba6bcb77d103c306572b6d2dcca68f8eea3315b440f7a35a684117484d233",
+      "page_structure": {
+        "checkboxes": 0,
+        "radios": 3,
+        "text_inputs": 0,
+        "selects": 1,
+        "textareas": 0,
+        "buttons": 0,
+        "primary_type": "radio",
+        "strategy": "radio_selection"
+      }
+    },
+    "learning_1754217398_2": {
+      "timestamp": 1754217398.7903388,
+      "session_id": "learning_session_1754214606",
+      "question_number": 2,
+      "question_text": "How old are you?",
+      "question_type": "age",
+      "strategy_used": "fill_strategy",
+      "execution_time": 0.5747368335723877,
+      "confidence_score": 0.395,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "text_input",
+      "input_strategy": "fill_strategy",
+      "automation_success": false,
+      "learned_at": 1754217398.7903502,
+      "url": "https://ts1.eu.qualtrics.com/jfe/form/SV_5A2gXfFhSbSZQeG?Country=Australia&Q_Language=EN&sample_type=recontact&memno=1_fbrzBsfxTfjFlcHRHG_9iQ&psid=m2TdD9LCpEm1mzF2GJYk1A**&panel=c0231&synccid=8voo4v4&_k=10634&_s=4b1ba6bcb77d103c306572b6d2dcca68f8eea3315b440f7a35a684117484d233",
+      "page_structure": {
+        "checkboxes": 0,
+        "radios": 0,
+        "text_inputs": 1,
+        "selects": 1,
+        "textareas": 0,
+        "buttons": 0,
+        "primary_type": "text_input",
+        "strategy": "fill_strategy"
+      }
+    },
+    "learning_1754217996_3": {
+      "timestamp": 1754217996.222514,
+      "session_id": "learning_session_1754214606",
+      "question_number": 3,
+      "question_text": "Which of the following best describes your current working status?",
+      "question_type": "occupation",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.688490629196167,
+      "confidence_score": 0.18999999999999997,
+      "response_value": "",
+      "response_values": [
+        ""
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "automation_success": false,
+      "learned_at": 1754217996.2225244,
+      "url": "https://ts1.eu.qualtrics.com/jfe/form/SV_5A2gXfFhSbSZQeG?Country=Australia&Q_Language=EN&sample_type=recontact&memno=1_fbrzBsfxTfjFlcHRHG_9iQ&psid=m2TdD9LCpEm1mzF2GJYk1A**&panel=c0231&synccid=8voo4v4&_k=10634&_s=4b1ba6bcb77d103c306572b6d2dcca68f8eea3315b440f7a35a684117484d233",
+      "page_structure": {
+        "checkboxes": 0,
+        "radios": 8,
+        "text_inputs": 0,
+        "selects": 1,
+        "textareas": 0,
+        "buttons": 0,
+        "primary_type": "radio",
+        "strategy": "radio_selection"
+      }
+    },
     "learning_1754218019_4": {
       "timestamp": 1754218019.252104,
       "session_id": "learning_session_1754214606",
@@ -1284,11 +1388,39 @@
         "strategy": "radio_selection"
       }
     },
+    "learning_1754222366_5": {
+      "timestamp": 1754222366.4818907,
+      "session_id": "learning_session_1754214606",
+      "question_number": 5,
+      "question_text": "What is your current role at your company?",
+      "question_type": "general",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.8746793270111084,
+      "confidence_score": 0.495,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "automation_success": false,
+      "learned_at": 1754222366.4819007,
+      "url": "https://ts1.eu.qualtrics.com/jfe/form/SV_5A2gXfFhSbSZQeG?Country=Australia&Q_Language=EN&sample_type=recontact&memno=1_fbrzBsfxTfjFlcHRHG_9iQ&psid=m2TdD9LCpEm1mzF2GJYk1A**&panel=c0231&synccid=8voo4v4&_k=10634&_s=4b1ba6bcb77d103c306572b6d2dcca68f8eea3315b440f7a35a684117484d233",
+      "page_structure": {
+        "checkboxes": 0,
+        "radios": 11,
+        "text_inputs": 0,
+        "selects": 1,
+        "textareas": 0,
+        "buttons": 0,
+        "primary_type": "radio",
+        "strategy": "radio_selection"
+      }
+    },
     "learning_1754230913_6": {
       "timestamp": 1754230913.536582,
       "session_id": "learning_session_1754214606",
       "question_number": 6,
-      "question_text": "Within your company, do you have responsibility for any of the following?\n \nPlease select all that apply",
+      "question_text": "Within your company, do you have responsibility for any of the following?\n\u00a0\nPlease select all that apply",
       "question_type": "multi_select",
       "strategy_used": "checkbox_multi_select",
       "execution_time": 0.6042728424072266,
@@ -1494,6 +1626,62 @@
         "strategy": "checkbox_multi_select"
       }
     },
+    "learning_1754292336_1": {
+      "timestamp": 1754292336.767363,
+      "session_id": "learning_session_1754292167",
+      "question_number": 1,
+      "question_text": "Please enter the postal code you currently live in:",
+      "question_type": "postcode",
+      "strategy_used": "fill_strategy",
+      "execution_time": 0.6318883895874023,
+      "confidence_score": 0.265,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "text_input",
+      "input_strategy": "fill_strategy",
+      "automation_success": false,
+      "learned_at": 1754292336.7673826,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507460#'",
+      "page_structure": {
+        "checkboxes": 0,
+        "radios": 0,
+        "text_inputs": 2,
+        "selects": 0,
+        "textareas": 0,
+        "buttons": 0,
+        "primary_type": "text_input",
+        "strategy": "fill_strategy"
+      }
+    },
+    "learning_1754292376_2": {
+      "timestamp": 1754292376.866351,
+      "session_id": "learning_session_1754292167",
+      "question_number": 2,
+      "question_text": "How old are you?",
+      "question_type": "age",
+      "strategy_used": "unknown_strategy",
+      "execution_time": 0.6185016632080078,
+      "confidence_score": 0.36,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "unknown",
+      "input_strategy": "unknown",
+      "automation_success": false,
+      "learned_at": 1754292376.8663657,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507460#)",
+      "page_structure": {
+        "checkboxes": 0,
+        "radios": 0,
+        "text_inputs": 0,
+        "selects": 0,
+        "textareas": 0,
+        "buttons": 0,
+        "primary_type": "unknown",
+        "strategy": "unknown"
+      }
+    },
     "learning_1754292429_3": {
       "timestamp": 1754292429.310854,
       "session_id": "learning_session_1754292167",
@@ -1588,7 +1776,7 @@
       "timestamp": 1754292564.6509206,
       "session_id": "learning_session_1754292167",
       "question_number": 6,
-      "question_text": "How satisfied are you with Wilson Parking Australia’s customer service overall?",
+      "question_text": "How satisfied are you with Wilson Parking Australia\u2019s customer service overall?",
       "question_type": "rating_scale",
       "strategy_used": "radio_selection",
       "execution_time": 0.6570186614990234,
@@ -1648,7 +1836,7 @@
       "timestamp": 1754292680.3445387,
       "session_id": "learning_session_1754292167",
       "question_number": 8,
-      "question_text": "Did you encounter any issues while using Wilson Parking Australia’s products or services?",
+      "question_text": "Did you encounter any issues while using Wilson Parking Australia\u2019s products or services?",
       "question_type": "brand_awareness",
       "strategy_used": "radio_selection",
       "execution_time": 0.6784708499908447,
@@ -1672,6 +1860,34 @@
         "buttons": 0,
         "primary_type": "radio",
         "strategy": "radio_selection"
+      }
+    },
+    "learning_1754292702_9": {
+      "timestamp": 1754292702.0731385,
+      "session_id": "learning_session_1754292167",
+      "question_number": 9,
+      "question_text": "On a scale of 0\u201310, how likely are you to recommend Wilson Parking Australia to a friend or colleague?",
+      "question_type": "general",
+      "strategy_used": "checkbox_multi_select",
+      "execution_time": 0.6579182147979736,
+      "confidence_score": 0.475,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "checkbox",
+      "input_strategy": "checkbox_multi_select",
+      "automation_success": false,
+      "learned_at": 1754292702.073152,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507460#-",
+      "page_structure": {
+        "checkboxes": 1,
+        "radios": 0,
+        "text_inputs": 0,
+        "selects": 1,
+        "textareas": 0,
+        "buttons": 0,
+        "primary_type": "checkbox",
+        "strategy": "checkbox_multi_select"
       }
     },
     "learning_1754292758_10": {
@@ -1733,6 +1949,34 @@
         "buttons": 0,
         "primary_type": "radio",
         "strategy": "radio_selection"
+      }
+    },
+    "learning_1754292875_12": {
+      "timestamp": 1754292875.997745,
+      "session_id": "learning_session_1754292167",
+      "question_number": 12,
+      "question_text": "Can you share an example of how the Wilson Parking Australia lives up to the purpose or values you selected above?\n(e.g., specific product features, customer service interactions, company initiatives)",
+      "question_type": "brand_awareness",
+      "strategy_used": "fill_strategy",
+      "execution_time": 0.5964076519012451,
+      "confidence_score": 0.7949999999999999,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "text_input",
+      "input_strategy": "fill_strategy",
+      "automation_success": false,
+      "learned_at": 1754292875.9977498,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507460#@",
+      "page_structure": {
+        "checkboxes": 0,
+        "radios": 0,
+        "text_inputs": 1,
+        "selects": 0,
+        "textareas": 1,
+        "buttons": 0,
+        "primary_type": "text_input",
+        "strategy": "fill_strategy"
       }
     },
     "learning_1754292907_13": {
@@ -1888,6 +2132,36 @@
         }
       }
     },
+    "learning_1754322573_2": {
+      "timestamp": 1754322573.59186,
+      "session_id": "learning_session_1754322304",
+      "question_number": 2,
+      "question_text": "Question text not found",
+      "question_type": "general",
+      "strategy_used": "unknown_strategy",
+      "execution_time": 0.0261383056640625,
+      "confidence_score": 0.44999999999999996,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "unknown",
+      "input_strategy": "unknown_strategy",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754322573.591864,
+      "url": "https://www.myopinions.com.au/auth/dashboard",
+      "page_structure": {
+        "primary_type": "unknown",
+        "strategy": "unknown_strategy",
+        "elements": {
+          "radio": 0,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
     "learning_1754322649_1": {
       "timestamp": 1754322649.6803968,
       "session_id": "learning_session_1754322579",
@@ -1952,15 +2226,169 @@
         }
       }
     },
-    "learning_1754403588_1": {
-      "timestamp": 1754403588.8666127,
-      "session_id": "learning_session_1754403469",
+    "learning_1754322938_1": {
+      "timestamp": 1754322938.31073,
+      "session_id": "learning_session_1754322846",
       "question_number": 1,
+      "question_text": "How do you access the survey? Do you use a ...",
+      "question_type": "general",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.11745905876159668,
+      "confidence_score": 0.43499999999999994,
+      "response_value": "1",
+      "response_values": [
+        "1"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754322938.310735,
+      "url": "https://www.mindvotes.com/uc/admin/d1fd/ospe.php?qb",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 3,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754323045_2": {
+      "timestamp": 1754323045.8853514,
+      "session_id": "learning_session_1754322846",
+      "question_number": 2,
+      "question_text": "In which of the following industries do you or does someone in your family work?",
+      "question_type": "occupation",
+      "strategy_used": "checkbox_multi_select",
+      "execution_time": 0.15864801406860352,
+      "confidence_score": 0.13999999999999996,
+      "response_value": "1",
+      "response_values": [
+        "1"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "checkbox",
+      "input_strategy": "checkbox_multi_select",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754323045.8853586,
+      "url": "https://www.mindvotes.com/uc/admin/d1fd/ospe.php?qb",
+      "page_structure": {
+        "primary_type": "checkbox",
+        "strategy": "checkbox_multi_select",
+        "elements": {
+          "radio": 0,
+          "checkbox": 9,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754323113_3": {
+      "timestamp": 1754323113.7037263,
+      "session_id": "learning_session_1754322846",
+      "question_number": 3,
+      "question_text": "Would you describe yourself as\u2026?",
+      "question_type": "general",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.05209970474243164,
+      "confidence_score": 0.42999999999999994,
+      "response_value": "1",
+      "response_values": [
+        "1"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754323113.7037303,
+      "url": "https://www.mindvotes.com/uc/admin/d1fd/ospe.php?qb",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 3,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754323224_4": {
+      "timestamp": 1754323224.3332276,
+      "session_id": "learning_session_1754322846",
+      "question_number": 4,
+      "question_text": "How old are you?",
+      "question_type": "age",
+      "strategy_used": "fill_strategy",
+      "execution_time": 0.09347701072692871,
+      "confidence_score": 0.33499999999999996,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "text",
+      "input_strategy": "fill_strategy",
+      "age_format": "text",
+      "automation_success": false,
+      "learned_at": 1754323224.3332357,
+      "url": "https://www.mindvotes.com/uc/admin/d1fd/ospe.php?qb",
+      "page_structure": {
+        "primary_type": "text",
+        "strategy": "fill_strategy",
+        "elements": {},
+        "age_format": "text"
+      }
+    },
+    "learning_1754323497_5": {
+      "timestamp": 1754323497.3776848,
+      "session_id": "learning_session_1754322846",
+      "question_number": 5,
+      "question_text": "Which of the following products have you personally bought and used within the past 6 months?",
+      "question_type": "multi_select",
+      "strategy_used": "checkbox_multi_select",
+      "execution_time": 0.16581511497497559,
+      "confidence_score": 0.49,
+      "response_value": "1",
+      "response_values": [
+        "1",
+        "1"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "checkbox",
+      "input_strategy": "checkbox_multi_select",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754323497.3776882,
+      "url": "https://www.mindvotes.com/uc/admin/d1fd/ospe.php?qb",
+      "page_structure": {
+        "primary_type": "checkbox",
+        "strategy": "checkbox_multi_select",
+        "elements": {
+          "radio": 0,
+          "checkbox": 9,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754323540_6": {
+      "timestamp": 1754323540.3657272,
+      "session_id": "learning_session_1754322846",
+      "question_number": 6,
       "question_text": "Question text not found",
       "question_type": "general",
       "strategy_used": "unknown_strategy",
-      "execution_time": 0.09313750267028809,
-      "confidence_score": 0.34499999999999986,
+      "execution_time": 0.04742765426635742,
+      "confidence_score": 0.42499999999999993,
       "response_value": "",
       "response_values": [],
       "result": "MANUAL_LEARNING",
@@ -1968,8 +2396,8 @@
       "input_strategy": "unknown_strategy",
       "age_format": null,
       "automation_success": false,
-      "learned_at": 1754403588.8666193,
-      "url": "https://survey.humaniti.com/wix/p712862858856.aspx",
+      "learned_at": 1754323540.365731,
+      "url": "https://www.myopinions.com.au/surveyEndPage?respondent_id=3300087598&project_id=2317718&reward=20.0&status=disqualified",
       "page_structure": {
         "primary_type": "unknown",
         "strategy": "unknown_strategy",
@@ -1982,45 +2410,186 @@
         }
       }
     },
-    "learning_1754403664_2": {
-      "timestamp": 1754403664.5431721,
-      "session_id": "learning_session_1754403469",
-      "question_number": 2,
-      "question_text": "Question text not found",
+    "learning_1754347630_1": {
+      "timestamp": 1754347630.6903172,
+      "session_id": "learning_session_1754347378",
+      "question_number": 1,
+      "question_text": "What is your gender?",
+      "question_type": "gender",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.13101768493652344,
+      "confidence_score": 0.27999999999999997,
+      "response_value": "0",
+      "response_values": [
+        "0"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754347630.6903226,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#'",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {},
+        "age_format": null
+      }
+    },
+    "learning_1754347801_9": {
+      "timestamp": 1754347801.1375508,
+      "session_id": "learning_session_1754347378",
+      "question_number": 9,
+      "question_text": "Have you flown an international flight (over 6 hours) in the last 12 months?",
       "question_type": "general",
-      "strategy_used": "fill_strategy",
-      "execution_time": 0.18132233619689941,
-      "confidence_score": 0.33999999999999986,
+      "strategy_used": "radio_selection",
+      "execution_time": 0.0681157112121582,
+      "confidence_score": 0.41999999999999993,
       "response_value": "",
       "response_values": [],
       "result": "MANUAL_LEARNING",
-      "element_type": "text",
-      "input_strategy": "fill_strategy",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
       "age_format": null,
       "automation_success": false,
-      "learned_at": 1754403664.5431771,
-      "url": "https://survey.humaniti.com/wix/p712862858856.aspx",
+      "learned_at": 1754347801.13756,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#-",
       "page_structure": {
-        "primary_type": "text",
-        "strategy": "fill_strategy",
+        "primary_type": "radio",
+        "strategy": "radio_selection",
         "elements": {
-          "radio": 0,
+          "radio": 3,
           "checkbox": 0,
-          "text": 1,
+          "text": 0,
           "select": 0,
-          "textarea": 1
+          "textarea": 0
         }
       }
     },
-    "learning_1754403712_3": {
-      "timestamp": 1754403712.1006787,
-      "session_id": "learning_session_1754403469",
-      "question_number": 3,
-      "question_text": "Which of the following products or services do you currently use?",
-      "question_type": "multi_select",
+    "learning_1754348474_10": {
+      "timestamp": 1754348474.4615064,
+      "session_id": "learning_session_1754347378",
+      "question_number": 10,
+      "question_text": "Below is a list of things that some people do. Please select from the list those things you have done in the last 12 months.",
+      "question_type": "general",
+      "strategy_used": "checkbox_multi_select",
+      "execution_time": 0.10722899436950684,
+      "confidence_score": 0.4149999999999999,
+      "response_value": "1",
+      "response_values": [
+        "1",
+        "1"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "checkbox",
+      "input_strategy": "checkbox_multi_select",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754348474.4615102,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#~",
+      "page_structure": {
+        "primary_type": "checkbox",
+        "strategy": "checkbox_multi_select",
+        "elements": {
+          "radio": 0,
+          "checkbox": 5,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754348522_11": {
+      "timestamp": 1754348522.9448178,
+      "session_id": "learning_session_1754347378",
+      "question_number": 11,
+      "question_text": "Below is a list of things that some people do. Please select from the list those things you have done in the last 12 months.",
+      "question_type": "general",
+      "strategy_used": "checkbox_multi_select",
+      "execution_time": 0.19357514381408691,
+      "confidence_score": 0.4099999999999999,
+      "response_value": "1",
+      "response_values": [
+        "1",
+        "1"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "checkbox",
+      "input_strategy": "checkbox_multi_select",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754348522.944822,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#:",
+      "page_structure": {
+        "primary_type": "checkbox",
+        "strategy": "checkbox_multi_select",
+        "elements": {
+          "radio": 0,
+          "checkbox": 8,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754348626_12": {
+      "timestamp": 1754348626.612515,
+      "session_id": "learning_session_1754347378",
+      "question_number": 12,
+      "question_text": "How familiar are you with the following companies?",
+      "question_type": "brand_awareness",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.2565310001373291,
+      "confidence_score": 0.7849999999999999,
+      "response_value": "6",
+      "response_values": [
+        "6",
+        "4",
+        "0",
+        "0",
+        "2",
+        "6",
+        "0",
+        "6",
+        "4",
+        "0",
+        "2",
+        "0",
+        "0",
+        "6",
+        "4",
+        "6",
+        "4",
+        "6",
+        "6",
+        "4",
+        "2",
+        "2"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754348626.612519,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#@",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {},
+        "age_format": null
+      }
+    },
+    "learning_1754348662_13": {
+      "timestamp": 1754348662.7951794,
+      "session_id": "learning_session_1754347378",
+      "question_number": 13,
+      "question_text": "Question text not found",
+      "question_type": "general",
       "strategy_used": "unknown_strategy",
-      "execution_time": 0.06343936920166016,
-      "confidence_score": 0.475,
+      "execution_time": 0.07225966453552246,
+      "confidence_score": 0.4049999999999999,
       "response_value": "",
       "response_values": [],
       "result": "MANUAL_LEARNING",
@@ -2028,13 +2597,593 @@
       "input_strategy": "unknown_strategy",
       "age_format": null,
       "automation_success": false,
-      "learned_at": 1754403712.1006827,
-      "url": "https://survey.humaniti.com/wix/p712862858856.aspx",
+      "learned_at": 1754348662.7951841,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#!",
       "page_structure": {
         "primary_type": "unknown",
         "strategy": "unknown_strategy",
         "elements": {
           "radio": 0,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754348697_14": {
+      "timestamp": 1754348697.164171,
+      "session_id": "learning_session_1754347378",
+      "question_number": 14,
+      "question_text": "We would now like you to evaluate DiDi on a variety of characteristics.\n\nPlease consider the following statements and select a number from \"1\" to \"7\" where \"1\" means \"I strongly disagree\" and \"7\" means \"I strongly agree\".\n\nFor each statement we have provided a \"Not Sure\" option. Please answer \"Not Sure\" only if you have absolutely no opinion about this particular statement.",
+      "question_type": "multi_select",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.16843128204345703,
+      "confidence_score": 0.485,
+      "response_value": "3",
+      "response_values": [
+        "3",
+        "3",
+        "3",
+        "3"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754348697.164175,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#!_",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 32,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754348745_15": {
+      "timestamp": 1754348745.1791697,
+      "session_id": "learning_session_1754347378",
+      "question_number": 15,
+      "question_text": "Please select a number from \"1\" to \"7\" where \"1\" means \"Does not describe well\" and \"7\" means \"Describes very well\".\n\nDiDi:",
+      "question_type": "general",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.27410173416137695,
+      "confidence_score": 0.3999999999999999,
+      "response_value": "3",
+      "response_values": [
+        "3",
+        "3",
+        "3",
+        "3",
+        "3",
+        "3",
+        "3",
+        "3",
+        "3",
+        "3",
+        "3",
+        "3",
+        "3",
+        "3"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754348745.1791744,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#!$",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 112,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754384909_16": {
+      "timestamp": 1754384909.0506718,
+      "session_id": "learning_session_1754347378",
+      "question_number": 16,
+      "question_text": "Please select a number from \"1\" to \"7\" where \"1\" means \"Does not describe well\" and \"7\" means \"Describes very well\".\n\nDiDi:",
+      "question_type": "general",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.1920027732849121,
+      "confidence_score": 0.3949999999999999,
+      "response_value": "7",
+      "response_values": [
+        "7",
+        "7",
+        "7",
+        "7",
+        "7",
+        "7",
+        "7",
+        "7",
+        "7",
+        "7",
+        "7"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754384909.050677,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#!&",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 88,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754386289_17": {
+      "timestamp": 1754386289.8906455,
+      "session_id": "learning_session_1754347378",
+      "question_number": 17,
+      "question_text": "The next questions concern a number of different attitudes or behaviors you might have toward a company.\n\nPlease consider how well they describe your attitude toward DiDi.\n\nPlease select a number from 1 to 7 where \"1\" means \"I strongly disagree\" and \"7\" means \"I strongly agree\".",
+      "question_type": "general",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.14985060691833496,
+      "confidence_score": 0.3899999999999999,
+      "response_value": "3",
+      "response_values": [
+        "3",
+        "3",
+        "3",
+        "3",
+        "3",
+        "3",
+        "3"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754386289.8906498,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#!'",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 56,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754386330_18": {
+      "timestamp": 1754386330.0389004,
+      "session_id": "learning_session_1754347378",
+      "question_number": 18,
+      "question_text": "Please select a number from \u201c1\u201d to \u201c7\u201d where \u201c1\u201d means \u201cI strongly disagree\u201d and \u201c7\u201d means \u201cI strongly agree\u201d.",
+      "question_type": "general",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.24156808853149414,
+      "confidence_score": 0.3849999999999999,
+      "response_value": "7",
+      "response_values": [
+        "7",
+        "7",
+        "3",
+        "7",
+        "7"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754386330.0389059,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#!*",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 40,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754386757_19": {
+      "timestamp": 1754386757.1686761,
+      "session_id": "learning_session_1754347378",
+      "question_number": 19,
+      "question_text": "In the last 12 months, have you used or purchased any products and services from DiDi?",
+      "question_type": "general",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.2060539722442627,
+      "confidence_score": 0.3799999999999999,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754386757.168684,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#!(",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 2,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754386794_20": {
+      "timestamp": 1754386794.805989,
+      "session_id": "learning_session_1754347378",
+      "question_number": 20,
+      "question_text": "Have you read, heard or seen anything relating to DiDi recently?",
+      "question_type": "general",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.08712029457092285,
+      "confidence_score": 0.3749999999999999,
+      "response_value": "1",
+      "response_values": [
+        "1"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754386794.8059933,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#!;",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 2,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754386857_21": {
+      "timestamp": 1754386857.413897,
+      "session_id": "learning_session_1754347378",
+      "question_number": 21,
+      "question_text": "In the last 3 months, have you read, seen, or heard information about DiDi through:",
+      "question_type": "general",
+      "strategy_used": "checkbox_multi_select",
+      "execution_time": 0.22110247611999512,
+      "confidence_score": 0.3699999999999999,
+      "response_value": "1",
+      "response_values": [
+        "1"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "checkbox",
+      "input_strategy": "checkbox_multi_select",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754386857.4139006,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#!=",
+      "page_structure": {
+        "primary_type": "checkbox",
+        "strategy": "checkbox_multi_select",
+        "elements": {
+          "radio": 0,
+          "checkbox": 13,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754386930_22": {
+      "timestamp": 1754386930.0592122,
+      "session_id": "learning_session_1754347378",
+      "question_number": 22,
+      "question_text": "The next questions ask about the societal relevance of DiDi. Again, please consider how well they reflect your opinions.\n\nPlease select a number from \"1\" to \"7\" where \"1\" means \"I strongly disagree\" and \"7\" means \"I strongly agree\".",
+      "question_type": "general",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.25846290588378906,
+      "confidence_score": 0.3649999999999999,
+      "response_value": "7",
+      "response_values": [
+        "7",
+        "7",
+        "3",
+        "3",
+        "7",
+        "7",
+        "7",
+        "7",
+        "7",
+        "7",
+        "7"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754386930.0592165,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#!.",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 96,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754387022_23": {
+      "timestamp": 1754387022.9159608,
+      "session_id": "learning_session_1754347378",
+      "question_number": 23,
+      "question_text": "We would now like you to evaluate HCF on a variety of characteristics.\n\nPlease consider the following statements and select a number from \"1\" to \"7\" where \"1\" means \"I strongly disagree\" and \"7\" means \"I strongly agree\".\n\nFor each statement we have provided a \"Not Sure\" option. Please answer \"Not Sure\" only if you have absolutely no opinion about this particular statement.",
+      "question_type": "multi_select",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.14702224731445312,
+      "confidence_score": 0.48,
+      "response_value": "4",
+      "response_values": [
+        "4",
+        "4",
+        "4",
+        "4"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754387022.9159646,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#!:",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 32,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754387112_24": {
+      "timestamp": 1754387112.6982532,
+      "session_id": "learning_session_1754347378",
+      "question_number": 24,
+      "question_text": "Please select a number from \"1\" to \"7\" where \"1\" means \"Does not describe well\" and \"7\" means \"Describes very well\".\n\nHCF:",
+      "question_type": "general",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.2381281852722168,
+      "confidence_score": 0.3599999999999999,
+      "response_value": "4",
+      "response_values": [
+        "4",
+        "4",
+        "4",
+        "4",
+        "7",
+        "4",
+        "7",
+        "4",
+        "4",
+        "4",
+        "4",
+        "7",
+        "4",
+        "3"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754387112.6982567,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#!!",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 112,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754387162_25": {
+      "timestamp": 1754387162.000966,
+      "session_id": "learning_session_1754347378",
+      "question_number": 25,
+      "question_text": "Please select a number from \"1\" to \"7\" where \"1\" means \"Does not describe well\" and \"7\" means \"Describes very well\".\n\nHCF:",
+      "question_type": "general",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.20754194259643555,
+      "confidence_score": 0.35499999999999987,
+      "response_value": "7",
+      "response_values": [
+        "7",
+        "7",
+        "4",
+        "4",
+        "7",
+        "4",
+        "7",
+        "7",
+        "6",
+        "3",
+        "7"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754387162.0009723,
+      "url": "https://survey-rt.yoursurveynow.com/survey/selfserve/53b/250800#!!_",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 88,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754387676_1": {
+      "timestamp": 1754387676.9333994,
+      "session_id": "learning_session_1754387530",
+      "question_number": 1,
+      "question_text": "Please indicate your current occupation.",
+      "question_type": "occupation",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.11981463432312012,
+      "confidence_score": 0.1,
+      "response_value": "0",
+      "response_values": [
+        "0"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754387676.9334087,
+      "url": "https://survey-d.yoursurveynow.com/survey/selfserve/53c/2507363#&",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 8,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754388586_2": {
+      "timestamp": 1754388586.9915612,
+      "session_id": "learning_session_1754387530",
+      "question_number": 2,
+      "question_text": "What is the size of your business or the business you are working in?",
+      "question_type": "occupation",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.08609962463378906,
+      "confidence_score": 0.1,
+      "response_value": "7",
+      "response_values": [
+        "7"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754388586.9915664,
+      "url": "https://survey-d.yoursurveynow.com/survey/selfserve/53c/2507363#'",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 9,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754388602_3": {
+      "timestamp": 1754388602.480385,
+      "session_id": "learning_session_1754387530",
+      "question_number": 3,
+      "question_text": "What level of involvement, if any, do you have in the financial decision making for your business?",
+      "question_type": "general",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.10517048835754395,
+      "confidence_score": 0.34999999999999987,
+      "response_value": "0",
+      "response_values": [
+        "0"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754388602.4803898,
+      "url": "https://survey-d.yoursurveynow.com/survey/selfserve/53c/2507363#)",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 4,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754393985_6": {
+      "timestamp": 1754393985.3612635,
+      "session_id": "learning_session_1754387530",
+      "question_number": 6,
+      "question_text": "Have you travelled abroad for a continuous period of at least 2 nights in the past 12 months (please exclude cross border commutes, e.g. day trips overground and daily work commute)?",
+      "question_type": "occupation",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.09770750999450684,
+      "confidence_score": 0.1,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754393985.3612697,
+      "url": "https://survey-d.yoursurveynow.com/survey/selfserve/53c/2507363#;",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 2,
           "checkbox": 0,
           "text": 0,
           "select": 0,

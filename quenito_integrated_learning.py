@@ -234,6 +234,9 @@ class IntegratedLearningCapture:
     async def _capture_user_selections(self, page, input_analysis: Dict) -> Dict[str, Any]:
         """Capture what the user selected/entered"""
         
+        # Add a small delay to ensure selections are registered
+        await asyncio.sleep(0.5)
+        
         user_data = {
             'primary_value': '',
             'all_values': []
@@ -241,27 +244,97 @@ class IntegratedLearningCapture:
         
         try:
             if input_analysis['primary_type'] == 'checkbox':
-                # Get checked checkboxes
+                # Get checked checkboxes - improved selector
                 checkboxes = await page.query_selector_all('input[type="checkbox"]:checked')
-                for cb in checkboxes:
-                    # Get label text
-                    cb_id = await cb.get_attribute('id')
-                    if cb_id:
-                        label = await page.query_selector(f'label[for="{cb_id}"]')
-                        if label:
-                            text = await label.inner_text()
-                            user_data['all_values'].append(text.strip())
+                print(f"📦 Found {len(checkboxes)} checked boxes")
                 
+                for cb in checkboxes:
+                    try:
+                        # Try multiple methods to get the label
+                        # Method 1: By ID
+                        cb_id = await cb.get_attribute('id')
+                        if cb_id:
+                            label = await page.query_selector(f'label[for="{cb_id}"]')
+                            if label:
+                                text = await label.inner_text()
+                                user_data['all_values'].append(text.strip())
+                                print(f"  ✓ Captured: {text.strip()}")
+                                continue
+                        
+                        # Method 2: Parent label
+                        parent_label = await cb.evaluate('''el => {
+                            const parent = el.closest('label');
+                            return parent ? parent.innerText : null;
+                        }''')
+                        if parent_label:
+                            user_data['all_values'].append(parent_label.strip())
+                            print(f"  ✓ Captured: {parent_label.strip()}")
+                            continue
+                        
+                        # Method 3: Next sibling
+                        sibling_text = await cb.evaluate('''el => {
+                            const sibling = el.nextElementSibling;
+                            return sibling ? sibling.innerText : null;
+                        }''')
+                        if sibling_text:
+                            user_data['all_values'].append(sibling_text.strip())
+                            print(f"  ✓ Captured: {sibling_text.strip()}")
+                    
+                    except Exception as e:
+                        print(f"  ❌ Error getting checkbox label: {e}")
+                    
             elif input_analysis['primary_type'] == 'radio':
                 # Get selected radio
                 radio = await page.query_selector('input[type="radio"]:checked')
                 if radio:
-                    radio_id = await radio.get_attribute('id')
-                    if radio_id:
-                        label = await page.query_selector(f'label[for="{radio_id}"]')
-                        if label:
-                            text = await label.inner_text()
-                            user_data['all_values'].append(text.strip())
+                    label_text = None
+                    
+                    # Method 1: For Qualtrics table structure
+                    label_text = await radio.evaluate('''el => {
+                        // Check if we're in a table cell
+                        const td = el.closest('td');
+                        if (td) {
+                            // Get the parent row
+                            const tr = td.closest('tr');
+                            if (tr) {
+                                // Find the next td with text (usually class c5 or similar)
+                                const labelTd = tr.querySelector('td:not(.c4)');
+                                if (labelTd) {
+                                    return labelTd.innerText.trim();
+                                }
+                                // Alternative: get all tds and find one with text
+                                const allTds = tr.querySelectorAll('td');
+                                for (let i = 0; i < allTds.length; i++) {
+                                    const text = allTds[i].innerText.trim();
+                                    if (text && !allTds[i].querySelector('input')) {
+                                        return text;
+                                    }
+                                }
+                            }
+                        }
+                        return null;
+                    }''')
+                    
+                    # Method 2: Original fallback methods
+                    if not label_text:
+                        radio_id = await radio.get_attribute('id')
+                        if radio_id:
+                            label = await page.query_selector(f'label[for="{radio_id}"]')
+                            if label:
+                                label_text = await label.inner_text()
+                    
+                    # Method 3: Parent label
+                    if not label_text:
+                        label_text = await radio.evaluate('''el => {
+                            const parent = el.closest('label');
+                            return parent ? parent.innerText : null;
+                        }''')
+                    
+                    if label_text:
+                        user_data['all_values'].append(label_text.strip())
+                        print(f"  ✓ Captured radio selection: {label_text.strip()}")
+                    else:
+                        print("  ❌ Could not capture radio label text")
             
             elif input_analysis['primary_type'] == 'text_input':
                 # Get text input values
@@ -285,9 +358,10 @@ class IntegratedLearningCapture:
             # Set primary value
             if user_data['all_values']:
                 user_data['primary_value'] = user_data['all_values'][0]
+                print(f"📊 Total captured: {len(user_data['all_values'])} values")
         
         except Exception as e:
-            print(f"Error capturing selections: {e}")
+            print(f"❌ Error capturing selections: {e}")
         
         return user_data
     
@@ -355,7 +429,7 @@ async def run_integrated_learning():
     print("="*50)
     
     # Initialize systems
-    kb = KnowledgeBase()
+    kb = KnowledgeBase(persona_name="quenito")
     cm = ConfidenceManager(kb.data.get('confidence_system', {}))
     learner = IntegratedLearningCapture(kb, cm)
     
@@ -415,28 +489,176 @@ async def run_integrated_learning():
     
     # Click survey
     await surveys[0]['element'].click()
-    await asyncio.sleep(3)
+    print("⏳ Waiting for survey to load...")
     
-    # Handle page transitions
-    all_pages = browser.context.pages
-    survey_page = all_pages[-1]
-    await survey_page.bring_to_front()
+    # Enhanced tab handling with retries
+    survey_page = None
+    max_tab_attempts = 5
     
-    # Check page type
-    page_content = await survey_page.inner_text('body')
-    
-    # Handle intermediate page if present
-    if 'start survey now' in page_content.lower():
-        print("📄 Intermediate page detected")
-        for selector in ['button:has-text("Start Survey Now")', 'a:has-text("Start Survey Now")']:
-            try:
-                await survey_page.click(selector)
-                print("✅ Clicked Start Survey Now")
-                await asyncio.sleep(3)
-                break
-            except:
+    for attempt in range(max_tab_attempts):
+        await asyncio.sleep(2)  # Give time for tabs to open
+        
+        all_pages = browser.context.pages
+        print(f"\n📑 Attempt {attempt + 1}: Found {len(all_pages)} tabs open")
+        
+        # Look for non-dashboard pages
+        for i, page in enumerate(all_pages):
+            current_url = page.url
+            print(f"  📄 Tab {i + 1}: {current_url[:80]}...")
+            
+            # Skip dashboard pages
+            if "myopinions.com.au/auth/dashboard" in current_url:
                 continue
+                
+            # Found a potential survey page
+            survey_page = page
+            await survey_page.bring_to_front()
+            print(f"✅ Switched to survey tab: {current_url}")
+            break
+        
+        if survey_page:
+            break
+        
+        print(f"⏳ No survey tab found yet, waiting...")
     
+    if not survey_page:
+        print("❌ Could not find survey tab after multiple attempts!")
+        print("🔧 Please manually switch to the survey tab")
+        input("✅ Press Enter when you're on the survey tab >>> ")
+        # Get the current active page
+        all_pages = browser.context.pages
+        survey_page = all_pages[-1]  # Assume user switched to it
+        await survey_page.bring_to_front()
+    
+    # Now handle the survey flow with better detection
+    print("\n🔄 Detecting survey flow...")
+    
+    # Flow handling loop
+    flow_complete = False
+    max_flow_attempts = 10
+    flow_attempt = 0
+    
+    while not flow_complete and flow_attempt < max_flow_attempts:
+        flow_attempt += 1
+        await asyncio.sleep(2)  # Wait for page load
+        
+        # Re-check for new tabs (survey might open in third tab)
+        current_tab_count = len(browser.context.pages)
+        if current_tab_count > len(all_pages):
+            print(f"🆕 New tab detected! Total tabs: {current_tab_count}")
+            all_pages = browser.context.pages
+            # Switch to the newest tab
+            survey_page = all_pages[-1]
+            await survey_page.bring_to_front()
+            print(f"✅ Switched to new tab: {survey_page.url[:80]}...")
+        
+        # Get current page content
+        try:
+            page_content = await survey_page.inner_text('body')
+            page_content_lower = page_content.lower()
+            current_url = survey_page.url
+        except:
+            print("⚠️ Error reading page content, retrying...")
+            continue
+        
+        print(f"\n🔍 Flow attempt {flow_attempt} - Current URL: {current_url[:80]}...")
+        
+        # Handle intermediate page
+        if 'start survey' in page_content_lower and any(text in page_content_lower for text in ['start survey now', 'begin survey', 'take survey']):
+            print("📄 Intermediate page detected")
+            clicked = False
+            for selector in ['button:has-text("Start Survey Now")', 'a:has-text("Start Survey Now")', 
+                           'button:has-text("Start Survey")', 'a:has-text("Start Survey")',
+                           'button:has-text("Begin Survey")', 'a:has-text("Begin Survey")',
+                           'button.btn-primary', 'a.btn-primary']:
+                try:
+                    await survey_page.click(selector, timeout=2000)
+                    print(f"✅ Clicked survey start button")
+                    clicked = True
+                    await asyncio.sleep(3)
+                    break
+                except:
+                    continue
+            
+            if not clicked:
+                print("⚠️ Could not find start button, please click it manually")
+                input("✅ Press Enter after clicking Start Survey >>> ")
+            continue
+        
+        # Check for captcha
+        elif any(word in page_content_lower for word in ['captcha', 'recaptcha', 'verify you are human', 'drag the pieces', 'drag to complete']):
+            print("\n🤖 CAPTCHA DETECTED!")
+            print("⚠️  Manual intervention required")
+            print("1. Complete the captcha")
+            print("2. Click submit/continue")
+            input("✅ Press Enter when captcha is completed >>> ")
+            continue
+        
+        # Check for consent form
+        elif any(word in page_content_lower for word in ['consent', 'agree to participate', 'terms and conditions', 'privacy policy']):
+            print("📋 Consent form detected")
+            # Try to auto-handle consent
+            consent_handled = False
+            
+            # Try checkbox first
+            try:
+                checkbox = await survey_page.query_selector('input[type="checkbox"]:not(:checked)')
+                if checkbox:
+                    await checkbox.click()
+                    print("✅ Checked consent box")
+                    consent_handled = True
+            except:
+                pass
+            
+            # Try to click continue/agree button
+            for btn_text in ['Continue', 'Agree', 'I Agree', 'Accept', 'Submit', 'Next']:
+                try:
+                    await survey_page.click(f'button:has-text("{btn_text}")', timeout=2000)
+                    print(f"✅ Clicked {btn_text} button")
+                    consent_handled = True
+                    break
+                except:
+                    continue
+            
+            if not consent_handled:
+                print("⚠️  Could not auto-handle consent")
+                input("👉 Please handle consent manually and press Enter >>> ")
+            continue
+        
+        # Check if we have survey questions (main survey detection)
+        elif (any(element in page_content_lower for element in ['radio', 'checkbox', 'select', 'dropdown']) or
+              await survey_page.query_selector_all('input[type="radio"]') or
+              await survey_page.query_selector_all('input[type="checkbox"]')):
+            
+            # Additional check for pre-screening keywords
+            if any(word in page_content_lower for word in ['qualification', 'qualify', 'screening', 'eligible', 'do you live']):
+                print("📝 Pre-screening question detected")
+                print("⚠️  Please answer the pre-screening question")
+                input("✅ Press Enter after answering and clicking Next >>> ")
+                continue
+            else:
+                # We're likely at the main survey
+                print("✅ Main survey questions detected!")
+                flow_complete = True
+                break
+        
+        # If page seems empty or loading
+        else:
+            print(f"⏳ Page appears to be loading or transitioning...")
+            if flow_attempt >= 5:
+                print("🤔 Taking longer than expected...")
+                print("Current page content preview:")
+                print(page_content_lower[:200] + "...")
+                action = input("Press Enter to continue waiting, or type 'ready' if at survey questions >>> ")
+                if action.lower() == 'ready':
+                    flow_complete = True
+                    break
+    
+    if not flow_complete:
+        print("\n⚠️ Flow detection timed out")
+        print("Please navigate to the first survey question manually")
+        input("✅ Press Enter when you see the first survey question >>> ")
+
     print("\n🧠 ACTIVE LEARNING MODE")
     print("="*50)
     print("Instructions:")
