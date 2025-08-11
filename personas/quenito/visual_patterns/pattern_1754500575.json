@@ -1,0 +1,27 @@
+{
+  "id": "pattern_1754500575",
+  "timestamp": "2025-08-07T03:16:15.620394",
+  "screenshot": "vision_data/question_3_1754500537.png",
+  "vision_analysis": {
+    "question_type": "radio and text input",
+    "question_text": "Which gender do you belong to?",
+    "clickable_elements": [
+      "Male (radio button)",
+      "Female (radio button)",
+      "Text input for birth year",
+      "Lesbian (radio button)",
+      "Gay (radio button)",
+      "Bisexual (radio button)",
+      "Heterosexual (radio button)",
+      "Prefer not to say (radio button)",
+      "Dropdown for country selection"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "response_value": "Male",
+    "success": true,
+    "element_type": "radio"
+  }
+}

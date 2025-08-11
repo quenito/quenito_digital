@@ -1,0 +1,33 @@
+{
+  "id": "pattern_1754670472",
+  "timestamp": "2025-08-09T02:27:52.418763",
+  "screenshot": "vision_data/question_8_1754670450.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which of the following brands, if any, has tools that empower parents to set the online guardrails that are right for their families?",
+    "clickable_elements": [
+      "TikTok",
+      "Facebook",
+      "Instagram",
+      "YouTube",
+      "Snapchat",
+      "None of the above",
+      "Continue button"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "response_value": "TikTok",
+    "response_values": [
+     "TikTok",
+      "Facebook",
+      "Instagram",
+      "YouTube",
+      "Snapchat"
+    ],
+    "success": true,
+    "element_type": "checkbox",
+    "capture_type": "manual_learning"
+  }
+}

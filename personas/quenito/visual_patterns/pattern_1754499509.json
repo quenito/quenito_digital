@@ -1,0 +1,31 @@
+{
+  "id": "pattern_1754499509",
+  "timestamp": "2025-08-07T02:58:29.294006",
+  "screenshot": "vision_data/question_1_1754499448.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which of the following activities did you do last weekend? Please select all that apply.",
+    "clickable_elements": [
+      "Flew in a helicopter",
+      "Visited McGrath, Alaska",
+      "Went bungee jumping",
+      "Played poker",
+      "Visited a flea market",
+      "Went Geocaching",
+      "Went skiing",
+      "Watched TV",
+      "None of the above"
+    ],
+    "continue_next_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "response_value": "Watched TV",
+    "response_values": [
+      "Watched TV"
+    ],
+    "success": true,
+    "element_type": "checkbox",
+    "capture_type": "manual_learning"
+  }
+}
