@@ -1988,6 +1988,96 @@
         }
       }
     },
+    "learning_1754403588_1": {
+      "timestamp": 1754403588.8666127,
+      "session_id": "learning_session_1754403469",
+      "question_number": 1,
+      "question_text": "Question text not found",
+      "question_type": "general",
+      "strategy_used": "unknown_strategy",
+      "execution_time": 0.09313750267028809,
+      "confidence_score": 0.34499999999999986,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "unknown",
+      "input_strategy": "unknown_strategy",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754403588.8666193,
+      "url": "https://survey.humaniti.com/wix/p712862858856.aspx",
+      "page_structure": {
+        "primary_type": "unknown",
+        "strategy": "unknown_strategy",
+        "elements": {
+          "radio": 0,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
+    "learning_1754403664_2": {
+      "timestamp": 1754403664.5431721,
+      "session_id": "learning_session_1754403469",
+      "question_number": 2,
+      "question_text": "Question text not found",
+      "question_type": "general",
+      "strategy_used": "fill_strategy",
+      "execution_time": 0.18132233619689941,
+      "confidence_score": 0.33999999999999986,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "text",
+      "input_strategy": "fill_strategy",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754403664.5431771,
+      "url": "https://survey.humaniti.com/wix/p712862858856.aspx",
+      "page_structure": {
+        "primary_type": "text",
+        "strategy": "fill_strategy",
+        "elements": {
+          "radio": 0,
+          "checkbox": 0,
+          "text": 1,
+          "select": 0,
+          "textarea": 1
+        }
+      }
+    },
+    "learning_1754403712_3": {
+      "timestamp": 1754403712.1006787,
+      "session_id": "learning_session_1754403469",
+      "question_number": 3,
+      "question_text": "Which of the following products or services do you currently use?",
+      "question_type": "multi_select",
+      "strategy_used": "unknown_strategy",
+      "execution_time": 0.06343936920166016,
+      "confidence_score": 0.475,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "unknown",
+      "input_strategy": "unknown_strategy",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754403712.1006827,
+      "url": "https://survey.humaniti.com/wix/p712862858856.aspx",
+      "page_structure": {
+        "primary_type": "unknown",
+        "strategy": "unknown_strategy",
+        "elements": {
+          "radio": 0,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      }
+    },
     "learning_1754499509_1": {
       "timestamp": 1754499509.2862556,
       "session_id": "learning_session_1754499354",
@@ -2023,6 +2113,34 @@
       "vision_type": "checkbox",
       "has_vision_analysis": true
     },
+    "learning_1754500721_6": {
+      "timestamp": 1754500721.2091985,
+      "session_id": "learning_session_1754499354",
+      "question_number": 6,
+      "question_text": "In which state (or federal territory) do you currently live in?",
+      "question_type": "multi_select",
+      "strategy_used": "dropdown_selection",
+      "execution_time": 0.09376263618469238,
+      "confidence_score": 0.46499999999999997,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "select",
+      "input_strategy": "dropdown_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754500721.2092037,
+      "url": "https://survey2.yougov.com/vPYJ8qfczF0pCV",
+      "page_structure": {
+        "primary_type": "select",
+        "strategy": "dropdown_selection",
+        "elements": {},
+        "age_format": null
+      },
+      "vision_confidence": 0,
+      "vision_type": "",
+      "has_vision_analysis": true
+    },
     "learning_1754502942_8": {
       "timestamp": 1754502942.289088,
       "session_id": "learning_session_1754499354",
@@ -2056,6 +2174,573 @@
       },
       "vision_confidence": 90,
       "vision_type": "dropdown",
+      "has_vision_analysis": true
+    },
+    "learning_1754669156_1": {
+      "timestamp": 1754669156.613995,
+      "session_id": "learning_session_1754668878",
+      "question_number": 1,
+      "question_text": "Do you currently have any children that are under the age of 18?",
+      "question_type": "age",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.1057119369506836,
+      "confidence_score": 0.33499999999999985,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": "radio_range",
+      "automation_success": false,
+      "learned_at": 1754669156.6140006,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507261#$",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {},
+        "age_format": "radio_range"
+      },
+      "vision_confidence": 95,
+      "vision_type": "radio",
+      "has_vision_analysis": true
+    },
+    "learning_1754669327_4": {
+      "timestamp": 1754669327.9598632,
+      "session_id": "learning_session_1754668878",
+      "question_number": 4,
+      "question_text": "Which area do you live in?",
+      "question_type": "multi_select",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.09393143653869629,
+      "confidence_score": 0.5599999999999999,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754669327.9598696,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507261#'",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 9,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      },
+      "vision_confidence": 95,
+      "vision_type": "radio",
+      "has_vision_analysis": true
+    },
+    "learning_1754669447_5": {
+      "timestamp": 1754669447.404139,
+      "session_id": "learning_session_1754668878",
+      "question_number": 5,
+      "question_text": "Which of the following operating systems are you currently using on your main mobile device? Please select one option only.",
+      "question_type": "rating_scale",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.10780882835388184,
+      "confidence_score": 0.95,
+      "response_value": "0",
+      "response_values": [
+        "0"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754669447.4041438,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507261#)",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {},
+        "age_format": null
+      },
+      "vision_confidence": 90,
+      "vision_type": "radio",
+      "has_vision_analysis": true
+    },
+    "learning_1754669669_6": {
+      "timestamp": 1754669669.1068373,
+      "session_id": "learning_session_1754668878",
+      "question_number": 6,
+      "question_text": "Which of the following brands, if any, supports a safe online environment for children and teenagers?",
+      "question_type": "multi_select",
+      "strategy_used": "fill_strategy",
+      "execution_time": 0.13276338577270508,
+      "confidence_score": 0.5549999999999999,
+      "response_value": "1",
+      "response_values": [
+        "1"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "text",
+      "input_strategy": "fill_strategy",
+      "age_format": "text",
+      "automation_success": false,
+      "learned_at": 1754669669.1068408,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507261#*",
+      "page_structure": {
+        "primary_type": "text",
+        "strategy": "fill_strategy",
+        "elements": {},
+        "age_format": "text"
+      },
+      "vision_confidence": 90,
+      "vision_type": "checkbox",
+      "has_vision_analysis": true
+    },
+    "learning_1754670437_7": {
+      "timestamp": 1754670437.072074,
+      "session_id": "learning_session_1754668878",
+      "question_number": 7,
+      "question_text": "Which of the following brands, if any, has online safety tools for parents? Please select as many as apply.",
+      "question_type": "multi_select",
+      "strategy_used": "checkbox_multi_select",
+      "execution_time": 0.16053318977355957,
+      "confidence_score": 0.5499999999999999,
+      "response_value": "1",
+      "response_values": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "checkbox",
+      "input_strategy": "checkbox_multi_select",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754670437.0720775,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507261#,",
+      "page_structure": {
+        "primary_type": "checkbox",
+        "strategy": "checkbox_multi_select",
+        "elements": {
+          "radio": 0,
+          "checkbox": 6,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      },
+      "vision_confidence": 95,
+      "vision_type": "checkbox",
+      "has_vision_analysis": true
+    },
+    "learning_1754670472_8": {
+      "timestamp": 1754670472.4148724,
+      "session_id": "learning_session_1754668878",
+      "question_number": 8,
+      "question_text": "Which of the following brands, if any, has tools that empower parents to set the online guardrails that are right for their families?",
+      "question_type": "multi_select",
+      "strategy_used": "checkbox_multi_select",
+      "execution_time": 0.20780205726623535,
+      "confidence_score": 0.5449999999999999,
+      "response_value": "1",
+      "response_values": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "checkbox",
+      "input_strategy": "checkbox_multi_select",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754670472.414876,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507261#(",
+      "page_structure": {
+        "primary_type": "checkbox",
+        "strategy": "checkbox_multi_select",
+        "elements": {
+          "radio": 0,
+          "checkbox": 6,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      },
+      "vision_confidence": 95,
+      "vision_type": "checkbox",
+      "has_vision_analysis": true
+    },
+    "learning_1754670712_9": {
+      "timestamp": 1754670712.3635526,
+      "session_id": "learning_session_1754668878",
+      "question_number": 9,
+      "question_text": "Which of the following brands, if any, is committed to improving the safety of their platform for children and teenagers?",
+      "question_type": "multi_select",
+      "strategy_used": "fill_strategy",
+      "execution_time": 0.10267472267150879,
+      "confidence_score": 0.5399999999999999,
+      "response_value": "1",
+      "response_values": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "text",
+      "input_strategy": "fill_strategy",
+      "age_format": "text",
+      "automation_success": false,
+      "learned_at": 1754670712.3635578,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507261#;",
+      "page_structure": {
+        "primary_type": "text",
+        "strategy": "fill_strategy",
+        "elements": {},
+        "age_format": "text"
+      },
+      "vision_confidence": 95,
+      "vision_type": "checkbox",
+      "has_vision_analysis": true
+    },
+    "learning_1754670784_10": {
+      "timestamp": 1754670784.5105166,
+      "session_id": "learning_session_1754668878",
+      "question_number": 10,
+      "question_text": "Which of the following platforms is most suitable for families? Please select as many as apply.",
+      "question_type": "brand_awareness",
+      "strategy_used": "checkbox_multi_select",
+      "execution_time": 0.12246990203857422,
+      "confidence_score": 0.8799999999999999,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "checkbox",
+      "input_strategy": "checkbox_multi_select",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754670784.5105226,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507261#.",
+      "page_structure": {
+        "primary_type": "checkbox",
+        "strategy": "checkbox_multi_select",
+        "elements": {
+          "radio": 0,
+          "checkbox": 6,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      },
+      "vision_confidence": 90,
+      "vision_type": "radio",
+      "has_vision_analysis": true
+    },
+    "learning_1754670891_11": {
+      "timestamp": 1754670891.3516169,
+      "session_id": "learning_session_1754668878",
+      "question_number": 11,
+      "question_text": "Which of the following brands do you consider social media? Please select as many as apply.",
+      "question_type": "multi_select",
+      "strategy_used": "checkbox_multi_select",
+      "execution_time": 0.15193510055541992,
+      "confidence_score": 0.5349999999999999,
+      "response_value": "1",
+      "response_values": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "checkbox",
+      "input_strategy": "checkbox_multi_select",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754670891.351622,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507261#.",
+      "page_structure": {
+        "primary_type": "checkbox",
+        "strategy": "checkbox_multi_select",
+        "elements": {
+          "radio": 0,
+          "checkbox": 6,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      },
+      "vision_confidence": 90,
+      "vision_type": "checkbox",
+      "has_vision_analysis": true
+    },
+    "learning_1754670916_12": {
+      "timestamp": 1754670916.6865053,
+      "session_id": "learning_session_1754668878",
+      "question_number": 12,
+      "question_text": "Which of the following brands is most different from the other platforms?",
+      "question_type": "multi_select",
+      "strategy_used": "checkbox_multi_select",
+      "execution_time": 0.11726212501525879,
+      "confidence_score": 0.5299999999999999,
+      "response_value": "1",
+      "response_values": [
+        "1"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "checkbox",
+      "input_strategy": "checkbox_multi_select",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754670916.6865103,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507261#-",
+      "page_structure": {
+        "primary_type": "checkbox",
+        "strategy": "checkbox_multi_select",
+        "elements": {
+          "radio": 0,
+          "checkbox": 6,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      },
+      "vision_confidence": 90,
+      "vision_type": "checkbox",
+      "has_vision_analysis": true
+    },
+    "learning_1754670948_13": {
+      "timestamp": 1754670948.7028403,
+      "session_id": "learning_session_1754668878",
+      "question_number": 13,
+      "question_text": "Which of the following best describes YouTube? Please select one only.",
+      "question_type": "multi_select",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.06296157836914062,
+      "confidence_score": 0.5249999999999999,
+      "response_value": "3",
+      "response_values": [
+        "3"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754670948.7028453,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507261#~",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 6,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      },
+      "vision_confidence": 95,
+      "vision_type": "radio",
+      "has_vision_analysis": true
+    },
+    "learning_1754671026_14": {
+      "timestamp": 1754671026.573396,
+      "session_id": "learning_session_1754668878",
+      "question_number": 14,
+      "question_text": "In the past 14 days, how often have you visited these following locations in Melbourne?",
+      "question_type": "checkbox or radio (multiple choice)",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.1616349220275879,
+      "confidence_score": 0.4299999999999998,
+      "response_value": "4",
+      "response_values": [
+        "4",
+        "4",
+        "4",
+        "4",
+        "4",
+        "4"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754671026.5734086,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507261#:",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 30,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      },
+      "vision_confidence": 90,
+      "vision_type": "checkbox or radio (multiple choice)",
+      "has_vision_analysis": true
+    },
+    "learning_1754671089_15": {
+      "timestamp": 1754671089.387427,
+      "session_id": "learning_session_1754668878",
+      "question_number": 15,
+      "question_text": "In the past 14 days, how often have you visited these following locations in Sydney?",
+      "question_type": "multi_select",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.14934134483337402,
+      "confidence_score": 0.5199999999999999,
+      "response_value": "2",
+      "response_values": [
+        "2",
+        "4",
+        "4",
+        "4",
+        "4",
+        "4"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754671089.3874328,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507261#@",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 30,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      },
+      "vision_confidence": 90,
+      "vision_type": "checkbox",
+      "has_vision_analysis": true
+    },
+    "learning_1754671105_16": {
+      "timestamp": 1754671105.5965028,
+      "session_id": "learning_session_1754668878",
+      "question_number": 16,
+      "question_text": "In the past 14 days, have you read any of the following publications? If you read any of these publications, please also indicate the number of times the publication was read.",
+      "question_type": "multi_select",
+      "strategy_used": "radio_selection",
+      "execution_time": 0.11961150169372559,
+      "confidence_score": 0.5149999999999999,
+      "response_value": "4",
+      "response_values": [
+        "4",
+        "4",
+        "4"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "radio",
+      "input_strategy": "radio_selection",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754671105.5965066,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507261#!",
+      "page_structure": {
+        "primary_type": "radio",
+        "strategy": "radio_selection",
+        "elements": {
+          "radio": 15,
+          "checkbox": 0,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      },
+      "vision_confidence": 95,
+      "vision_type": "checkbox",
+      "has_vision_analysis": true
+    },
+    "learning_1754671137_17": {
+      "timestamp": 1754671137.1541157,
+      "session_id": "learning_session_1754668878",
+      "question_number": 17,
+      "question_text": "Thinking about the last 14 days, which Radio station did you listen to? If you have tuned in to one of these stations, please also indicate the time of the day you listened.",
+      "question_type": "multi_select",
+      "strategy_used": "checkbox_multi_select",
+      "execution_time": 0.5495526790618896,
+      "confidence_score": 0.5099999999999999,
+      "response_value": "1",
+      "response_values": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "result": "MANUAL_LEARNING",
+      "element_type": "checkbox",
+      "input_strategy": "checkbox_multi_select",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754671137.154119,
+      "url": "https://survey-au.yoursurveynow.com/survey/selfserve/53b/2507261#!_",
+      "page_structure": {
+        "primary_type": "checkbox",
+        "strategy": "checkbox_multi_select",
+        "elements": {
+          "radio": 0,
+          "checkbox": 64,
+          "text": 0,
+          "select": 0,
+          "textarea": 0
+        }
+      },
+      "vision_confidence": 95,
+      "vision_type": "checkbox",
+      "has_vision_analysis": true
+    },
+    "learning_1754671172_18": {
+      "timestamp": 1754671172.491316,
+      "session_id": "learning_session_1754668878",
+      "question_number": 18,
+      "question_text": "Thanks for completing the survey",
+      "question_type": "not applicable",
+      "strategy_used": "fill_strategy",
+      "execution_time": 0.37888145446777344,
+      "confidence_score": 0.32499999999999984,
+      "response_value": "",
+      "response_values": [],
+      "result": "MANUAL_LEARNING",
+      "element_type": "text",
+      "input_strategy": "fill_strategy",
+      "age_format": null,
+      "automation_success": false,
+      "learned_at": 1754671172.4913208,
+      "url": "https://www.myopinions.com.au/surveyEndPage?respondent_id=3300087598&project_id=2303848&reward=120.0&status=complete",
+      "page_structure": {
+        "primary_type": "text",
+        "strategy": "fill_strategy",
+        "elements": {
+          "radio": 0,
+          "checkbox": 0,
+          "text": 57,
+          "select": 0,
+          "textarea": 1
+        }
+      },
+      "vision_confidence": 75,
+      "vision_type": "not applicable",
       "has_vision_analysis": true
     }
   },

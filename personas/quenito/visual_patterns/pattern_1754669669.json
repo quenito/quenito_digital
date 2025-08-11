@@ -1,0 +1,29 @@
+{
+  "id": "pattern_1754669669",
+  "timestamp": "2025-08-09T02:14:29.110526",
+  "screenshot": "vision_data/question_6_1754669474.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which of the following brands, if any, supports a safe online environment for children and teenagers?",
+    "clickable_elements": [
+      "YouTube",
+      "TikTok",
+      "Instagram",
+      "Snapchat",
+      "Facebook",
+      "None of the above",
+      "Continue button"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "response_value": "None of the above",
+    "response_values": [
+      "None of the above"
+    ],
+    "success": true,
+    "element_type": "text",
+    "capture_type": "manual_learning"
+  }
+}

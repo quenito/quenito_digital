@@ -24,6 +24,7 @@ from handlers.demographics.demographics_handler import DemographicsHandler
 from handlers.brand_familiarity.brand_familiarity_handler import BrandFamiliarityHandler
 from handlers.rating_matrix.rating_matrix_handler import RatingMatrixHandler
 from handlers.multi_select.multi_select_handler import MultiSelectHandler
+from handlers.multi_question import MultiQuestionHandler  
 from handlers.trust_rating.trust_rating_handler import TrustRatingHandler
 from handlers.recency_activities.recency_activities_handler import RecencyActivitiesHandler
 from handlers.research_required.research_required_handler import ResearchRequiredHandler
@@ -52,7 +53,7 @@ class HandlerFactory:
             'brand_familiarity': BrandFamiliarityHandler(None, knowledge_base, intervention_manager),
             'rating_matrix': RatingMatrixHandler(None, knowledge_base, intervention_manager),
             'multi_select': MultiSelectHandler(None, knowledge_base, intervention_manager),
-            'trust_rating': TrustRatingHandler(None, knowledge_base, intervention_manager),
+            'multi_question': MultiQuestionHandler(None, knowledge_base, intervention_manager),            'trust_rating': TrustRatingHandler(None, knowledge_base, intervention_manager),
             'recency_activities': RecencyActivitiesHandler(None, knowledge_base, intervention_manager),
             'research_required': ResearchRequiredHandler(None, knowledge_base, intervention_manager),
             'unknown': UnknownHandler(None, knowledge_base, intervention_manager)

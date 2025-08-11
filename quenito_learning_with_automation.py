@@ -1,7 +1,8 @@
 # quenito_learning_with_automation.py
 """
 Complete integrated learning system with enhanced capture AND automation
-This combines all the improvements for Quenito's first automation!
+NOW WITH VISION! 👁️
+ALL FIXES APPLIED - v2.0
 """
 
 import asyncio
@@ -14,6 +15,9 @@ from core.stealth_browser_manager import StealthBrowserManager
 from data.knowledge_base import KnowledgeBase
 from data.confidence_manager import ConfidenceManager
 from platform_adapters.adapters.myopinions_adapter import MyOpinionsAdapter
+from vision_mvp import QuenitoVision 
+from handlers.multi_question import MultiQuestionHandler, MultiQuestionUI, MultiQuestionBrain
+from reporting.quenito_reporting import QuenitoReporting
 
 # Import handlers and factory
 from handler_adapter import create_simple_handlers  # Our simple adapter
@@ -26,18 +30,40 @@ class IntegratedLearningCapture:
         self.cm = confidence_manager
         self.session_id = f"learning_session_{int(time.time())}"
         self.start_time = time.time()
+        self.vision = QuenitoVision()  # Initialize vision!
         
         # Ensure detailed_intervention_learning exists
         if 'detailed_intervention_learning' not in self.kb.data:
             self.kb.data['detailed_intervention_learning'] = {}
     
-    async def capture_and_learn(self, page, question_number: int) -> Dict[str, Any]:
-        """Capture question details and create learning entry"""
+    async def capture_and_learn(self, page, question_number: int, vision_result: Dict = None) -> Dict[str, Any]:
+        """Capture question details and create learning entry - NOW WITH VISION GUIDANCE!"""
         
         capture_start = time.time()
         
         # Extract comprehensive details
         question_data = await self._extract_comprehensive_details(page)
+        
+        # ENHANCE with vision data if available
+        if vision_result:
+            # Override/enhance with vision insights
+            if vision_result.get('question_text'):
+                question_data['question_text'] = vision_result['question_text']
+            if vision_result.get('question_type'):
+                # Map vision types to our types
+                vision_type_map = {
+                    'checkbox': 'multi_select',
+                    'radio': question_data['question_type'],  # Keep our classification
+                    'dropdown': 'select',
+                    'text': 'text',
+                    'matrix': 'rating_matrix'
+                }
+                mapped_type = vision_type_map.get(vision_result['question_type'], vision_result['question_type'])
+                question_data['question_type'] = mapped_type
+                question_data['vision_type'] = vision_result['question_type']
+            
+            # Store vision confidence
+            question_data['vision_confidence'] = vision_result.get('confidence_rating', 0)
         
         # Determine strategy that would be used
         strategy = self._determine_strategy(question_data)
@@ -48,6 +74,10 @@ class IntegratedLearningCapture:
             handler_name, 
             question_data['question_type']
         )
+        
+        # BOOST confidence if vision is confident!
+        if vision_result and vision_result.get('confidence_rating', 0) > 85:
+            confidence = min(confidence + 0.1, 0.95)  # Boost by 10%
         
         # Create detailed learning entry
         learning_key = f"learning_{int(time.time())}_{question_number}"
@@ -65,11 +95,15 @@ class IntegratedLearningCapture:
             "result": "MANUAL_LEARNING",
             "element_type": question_data['element_type'],
             "input_strategy": question_data['input_strategy'],
-            "age_format": question_data.get('page_structure', {}).get('age_format'),  # Track age format
-            "automation_success": False,  # Manual for now
+            "age_format": question_data.get('page_structure', {}).get('age_format'),
+            "automation_success": False,
             "learned_at": time.time(),
             "url": page.url,
-            "page_structure": question_data.get('page_structure', {})
+            "page_structure": question_data.get('page_structure', {}),
+            # NEW VISION FIELDS
+            "vision_confidence": question_data.get('vision_confidence', 0),
+            "vision_type": question_data.get('vision_type', ''),
+            "has_vision_analysis": vision_result is not None
         }
         
         # Store in detailed_intervention_learning
@@ -91,6 +125,8 @@ class IntegratedLearningCapture:
         self.kb.save()
         
         return learning_entry
+    
+    # ... [KEEP ALL YOUR EXISTING METHODS] ...
     
     async def _extract_comprehensive_details(self, page) -> Dict[str, Any]:
         """Extract all question details from the page"""
@@ -229,7 +265,7 @@ class IntegratedLearningCapture:
         return captured_data
     
     async def _analyze_inputs(self, page) -> Dict[str, Any]:
-        """Enhanced input analysis with better type detection"""
+        """Enhanced input analysis with better type detection - FIXED FOR CHECKBOXES"""
         
         analysis = {
             'primary_type': 'unknown',
@@ -251,13 +287,17 @@ class IntegratedLearningCapture:
             analysis['elements']['select'] = len(await page.query_selector_all('select'))
             analysis['elements']['textarea'] = len(await page.query_selector_all('textarea'))
             
-            # Determine primary type
+            # Determine primary type - FIXED to properly identify checkboxes
             max_count = max(analysis['elements'].values())
             if max_count > 0:
-                for elem_type, count in analysis['elements'].items():
-                    if count == max_count:
-                        analysis['primary_type'] = elem_type
-                        break
+                # Prioritize checkbox if present and significant
+                if analysis['elements']['checkbox'] > 0 and analysis['elements']['checkbox'] >= max_count - 1:
+                    analysis['primary_type'] = 'checkbox'
+                else:
+                    for elem_type, count in analysis['elements'].items():
+                        if count == max_count:
+                            analysis['primary_type'] = elem_type
+                            break
             
             # Set strategy based on type
             strategy_map = {
@@ -289,8 +329,8 @@ class IntegratedLearningCapture:
         
         text_lower = question_text.lower()
         
-        # AGE QUESTIONS - Check format
-        if any(word in text_lower for word in ['age', 'old', 'year born', 'birth']):
+        # AGE QUESTIONS - Check format - MORE SPECIFIC
+        if any(phrase in text_lower for phrase in ['your age', 'how old are you', 'year were you born', 'your birth']):
             # First, check if there are age range radio buttons
             age_range_found = False
             
@@ -324,8 +364,8 @@ class IntegratedLearningCapture:
             
             return analysis
         
-        # GENDER QUESTIONS - Always radio
-        elif any(word in text_lower for word in ['gender', 'pronoun', 'are you']):
+        # GENDER QUESTIONS - Always radio - MORE SPECIFIC
+        elif any(phrase in text_lower for phrase in ['your gender', 'are you male', 'are you female']):
             analysis['primary_type'] = 'radio'
             analysis['strategy'] = 'radio_selection'
             return analysis
@@ -383,29 +423,36 @@ class IntegratedLearningCapture:
         return "Question text not found"
     
     def _classify_question_type(self, question_text: str) -> str:
-        """Classify question type based on text"""
+        """Classify question type based on text - FIXED TO BE MORE SPECIFIC"""
         
         text_lower = question_text.lower()
         
-        # Demographics
-        if any(word in text_lower for word in ['age', 'old', 'year born', 'birth']):
+        # Brand/Product questions - CHECK THESE FIRST
+        if 'brands' in text_lower or 'brand' in text_lower:
+            if any(word in text_lower for word in ['committed', 'improving', 'safety', 'support', 'platforms']):
+                return 'multi_select'  # Brand opinion questions
+            else:
+                return 'brand_awareness'
+        
+        # Multi-select patterns - CHECK BEFORE DEMOGRAPHICS
+        elif any(phrase in text_lower for phrase in ['which of the following', 'select all', 'select as many']):
+            return 'multi_select'
+        
+        # Demographics - MORE SPECIFIC, check for personal questions only
+        elif any(phrase in text_lower for phrase in ['your age', 'how old are you', 'year were you born', 'your birth']):
             return 'age'
-        elif any(word in text_lower for word in ['gender', 'sex', 'male', 'female', 'pronoun']):
+        elif any(phrase in text_lower for phrase in ['your gender', 'are you male', 'are you female']):
             return 'gender'
-        elif any(word in text_lower for word in ['income', 'salary', 'earn', 'household income']):
+        elif any(word in text_lower for word in ['income', 'salary', 'earn', 'household income']) and 'your' in text_lower:
             return 'income'
         elif any(word in text_lower for word in ['postcode', 'postal', 'zip', 'post code']):
             return 'postcode'
-        elif any(word in text_lower for word in ['occupation', 'work', 'employment', 'job']):
+        elif any(word in text_lower for word in ['occupation', 'work', 'employment', 'job']) and 'your' in text_lower:
             return 'occupation'
         
-        # Brand/Product
-        elif any(word in text_lower for word in ['brand', 'heard of', 'familiar', 'know about']):
-            return 'brand_awareness'
+        # Rating questions
         elif any(word in text_lower for word in ['rate', 'rating', 'satisfaction', 'experience']):
             return 'rating_scale'
-        elif any(word in text_lower for word in ['which', 'select all', 'following', 'choose']):
-            return 'multi_select'
         
         return 'general'
     
@@ -461,7 +508,7 @@ class IntegratedLearningCapture:
 async def run_integrated_learning():
     """Main learning session with integrated capture AND automation"""
     
-    print("🧠 QUENITO INTEGRATED LEARNING SYSTEM - WITH AUTOMATION!")
+    print("🧠 QUENITO INTEGRATED LEARNING SYSTEM - WITH VISION! 👁️")
     print("="*50)
     
     # Initialize systems
@@ -469,6 +516,19 @@ async def run_integrated_learning():
     cm = ConfidenceManager(kb.data.get('confidence_system', {}))
     learner = IntegratedLearningCapture(kb, cm)
     
+    # 📊 INITIALIZE REPORTING SYSTEM
+    reporter = QuenitoReporting()
+    reporter.start_session(f"myopinions_{datetime.now().strftime('%H%M')}")
+    
+    # 📊 TRACKING VARIABLES
+    survey_start_time = time.time()
+    vision_calls_count = 0
+    pattern_matches_count = 0
+    survey_topic = "General"  # Will try to detect
+    survey_points = 0  # Will extract at the end
+    question_num = 0
+    automated_count = 0
+
     # Create simple handlers for automation
     handlers = create_simple_handlers(kb)
     
@@ -605,252 +665,555 @@ async def run_integrated_learning():
     else:
         print("⚠️ Could not detect survey questions, continuing anyway...")
     
-    print("\n🧠 ACTIVE LEARNING MODE WITH AUTOMATION")
+    print("\n🧠 ACTIVE LEARNING MODE WITH AUTOMATION + VISION!")
     print("="*50)
     print("🚀 Quenito will attempt automation when confident!")
+    print("👁️ Vision system will guide detection and capture!")
     print("="*50)
     
-    question_num = 0
-    automated_count = 0
-    
-    while True:
-        question_num += 1
-        
-        print(f"\n❓ QUESTION {question_num}")
-        print("-"*50)
-        
-        # Analyze question BEFORE user input
-        question_data = await learner._extract_comprehensive_details(survey_page)
-        handler_name = learner._get_handler_name(question_data['question_type'])
-        
-        # Check automation possibility
-        handler = handlers.get(handler_name)
-        if handler:
-            confidence = handler.calculate_confidence(
-                question_data['question_type'],
-                question_data['question_text']
-            )
-            threshold = learner.cm.get_dynamic_threshold(handler_name, question_data['question_type'])
-            should_automate, reason = learner.cm.should_attempt_automation(
-                handler_name, confidence, question_data['question_type']
-            )
+    # MAIN LOOP WITH EXCEPTION HANDLING
+    try:
+        while True:
+            question_num += 1
             
-            print(f"\n🤖 AUTOMATION CHECK:")
-            print(f"   Handler: {handler_name}")
-            print(f"   Type: {question_data['question_type']}")
-            print(f"   Element: {question_data['element_type']}")
-            if question_data['question_type'] == 'age' and 'age_format' in question_data.get('page_structure', {}):
-                print(f"   Age Format: {question_data['page_structure']['age_format']}")
-            print(f"   Confidence: {confidence:.3f} vs Threshold: {threshold:.3f}")
-            print(f"   Decision: {'✅ AUTOMATE!' if should_automate else '❌ Manual'}")
-            print(f"   Reason: {reason}")
+            print(f"\n❓ QUESTION {question_num}")
+            print("-"*50)
             
-            if should_automate and confidence >= threshold:
-                print("\n🚀 ATTEMPTING AUTOMATION...")
+            # 👁️ VISION ANALYSIS FIRST!
+            screenshot_path = f"vision_data/question_{question_num}_{int(time.time())}.png"
+            await survey_page.screenshot(path=screenshot_path)
+            
+            print("\n👁️ VISION ANALYSIS...")
+            vision_result = await learner.vision.analyze_screenshot(screenshot_path)
+            vision_calls_count += 1 
+            
+            # Parse vision result
+            if isinstance(vision_result, dict):
+                if 'raw_response' in vision_result:
+                    print("📝 Parsing vision response...")
+                    # Try to extract key info from raw response
+                    raw = vision_result.get('raw_response', '')
+                    vision_confidence = 70  # Default moderate confidence
+                else:
+                    vision_confidence = vision_result.get('confidence_rating', vision_result.get('confidence', 0))
                 
-                try:
-                    # Get automated response with element type awareness
-                    response = handler.handle(question_data['question_text'], question_data['element_type'])
+                print(f"👁️ Vision Type: {vision_result.get('question_type', 'unknown')}")
+                print(f"👁️ Vision Confidence: {vision_confidence}%")
+                if vision_result.get('question_text'):
+                    print(f"👁️ Question: {vision_result['question_text'][:80]}...")
+            else:
+                vision_result = {}
+                vision_confidence = 0
+            
+            # Check for multi-question page FIRST
+            if MultiQuestionBrain.is_multi_question(vision_result):
+                print("🔍 MULTI-QUESTION PAGE DETECTED!")
+                
+                mq_handler = MultiQuestionHandler(kb)
+                confidence = mq_handler.calculate_confidence(vision_result)
+                
+                print(f"📊 Multi-Question Confidence: {confidence:.3f}")
+                
+                if confidence >= 0.60:  # Lower threshold for multi-question
+                    print("🚀 ATTEMPTING MULTI-QUESTION AUTOMATION...")
                     
-                    if response and response.response_value:
-                        print(f"🎯 AUTO-RESPONSE: {response.response_value}")
-                        print("⏳ Applying response to form...")
+                    response = mq_handler.handle(vision_result)
+                    
+                    if response.success and response.responses:
+                        print(f"📝 Generated {len(response.responses)} responses")
                         
-                        # Apply based on element type
-                        success = False
+                        # Apply all responses
+                        success = await MultiQuestionUI.apply_responses(
+                            survey_page, 
+                            response.responses
+                        )
                         
-                        if question_data['element_type'] == 'radio':
-                            # Handle different types of radio questions
-                            if 'age' in question_data['question_text'].lower():
-                                # Age range radio buttons
-                                print(f"🎯 Selecting age range: {response.response_value}")
-                                
-                                # Try multiple selectors for age ranges
-                                selectors = [
-                                    f'label:has-text("{response.response_value}")',
-                                    f'input[type="radio"][value="{response.response_value}"]',
-                                    f'label:has-text("{response.response_value.replace("-", " to ")}")',  # "45-54" → "45 to 54"
-                                    f'span:has-text("{response.response_value}") input[type="radio"]',
-                                    f'label:has-text("{response.response_value.replace("-", " - ")}")'  # "45-54" → "45 - 54"
-                                ]
-                                
-                                for selector in selectors:
-                                    try:
-                                        await survey_page.click(selector)
-                                        print(f"✅ Selected age range using: {selector}")
-                                        success = True
-                                        break
-                                    except:
-                                        continue
-                                        
-                                if not success:
-                                    print("⚠️ Could not find age range radio button")
-                            else:
-                                # Regular radio buttons (gender, etc.)
-                                try:
-                                    await survey_page.click(f'input[type="radio"][value="{response.response_value}"]')
-                                    success = True
-                                except:
-                                    try:
-                                        # Try clicking by label text
-                                        await survey_page.click(f'label:has-text("{response.response_value}")')
-                                        success = True
-                                    except:
-                                        print("⚠️ Could not find radio button to click")
-                                    
-                        elif question_data['element_type'] in ['text_input', 'text']:
-                            # Fill visible text input - enhanced for age fields
-                            try:
-                                # Try specific selectors for age inputs
-                                if 'age' in question_data['question_text'].lower():
-                                    filled = False
-                                    age_selectors = [
-                                        'input[placeholder="Number"]',
-                                        'input[placeholder*="Number"]',
-                                        'input[type="number"]:visible',
-                                        'fieldset:has-text("age") input[type="text"]'
-                                    ]
-                                    for selector in age_selectors:
-                                        try:
-                                            await survey_page.fill(selector, str(response.response_value))
-                                            filled = True
-                                            success = True
-                                            break
-                                        except:
-                                            continue
-                                    
-                                    if not filled:
-                                        # Fallback to general input
-                                        await survey_page.fill('input[type="text"]:visible, input[type="number"]:visible', str(response.response_value))
-                                        success = True
-                                else:
-                                    # General text input
-                                    await survey_page.fill('input[type="text"]:visible, input[type="number"]:visible, input:not([type]):visible', str(response.response_value))
-                                    success = True
-                            except:
-                                print("⚠️ Could not find text input to fill")
-                                
-                        elif question_data['element_type'] == 'checkbox':
-                            print("⚠️ Checkbox automation not yet implemented")
-                        
-                        elif question_data['element_type'] == 'select' or 'state' in question_data['question_text'].lower():
-                            # Dropdown/select handling
-                            print(f"🎯 Selecting dropdown option: {response.response_value}")
-                            
-                            try:
-                                # Select the option
-                                await survey_page.select_option('select:visible', value=response.response_value)
-                                success = True
-                                print(f"✅ Selected dropdown option: {response.response_value}")
-                            except:
-                                try:
-                                    # Try by label (for full state names)
-                                    state_mappings = {
-                                        'NSW': 'New South Wales',
-                                        'VIC': 'Victoria', 
-                                        'QLD': 'Queensland',
-                                        'WA': 'Western Australia',
-                                        'SA': 'South Australia',
-                                        'TAS': 'Tasmania',
-                                        'ACT': 'Australian Capital Territory',
-                                        'NT': 'Northern Territory'
-                                    }
-                                    
-                                    full_name = state_mappings.get(response.response_value, response.response_value)
-                                    await survey_page.select_option('select:visible', label=full_name)
-                                    success = True
-                                    print(f"✅ Selected dropdown option: {full_name}")
-                                except:
-                                    print("⚠️ Could not select dropdown option")
-                            
                         if success:
                             automated_count += 1
-                            print(f"✅ AUTOMATED SUCCESSFULLY! (Total: {automated_count}) 🎉")
+                            print(f"✅ MULTI-QUESTION AUTOMATED! (Total: {automated_count}) 🎉")
                             
-                            # Record success
-                            learner.cm.record_automation_result(
-                                handler_name, question_data['question_type'],
-                                confidence, True
-                            )
+                            # Store pattern
+                            if vision_confidence > 80:
+                                pattern_id = await learner.vision.store_pattern(
+                                    screenshot_path,
+                                    vision_result,
+                                    {
+                                        'responses': response.responses,
+                                        'success': True,
+                                        'type': 'multi_question'
+                                    }
+                                )
+                                print(f"💾 Stored multi-question pattern: {pattern_id}")
                             
-                            # Save immediately
-                            learner.kb.save()
-                            
-                            # Wait and click next
-                            await survey_page.wait_for_timeout(2000)
-                            print("📍 Clicking Next...")
-                            await survey_page.click('button:has-text("Next"), button:has-text("Continue"), input[type="submit"]:visible')
+                            # Click next and continue to next iteration
+                            await survey_page.wait_for_timeout(1000)
+                            await survey_page.click('button:has-text("Next"), button:has-text("Continue")')
                             await survey_page.wait_for_timeout(1000)
                             
-                            # Check for completion
+                            # Check for completion - ENHANCED
                             try:
                                 new_content = await survey_page.inner_text('body')
-                                if any(word in new_content.lower() for word in ['thank you', 'complete', 'points earned']):
+                                completion_indicators = [
+                                    'thank you', 'thanks for completing', 'survey complete',
+                                    'points have been added', 'points earned', 'congratulations',
+                                    'survey has been completed', 'successfully completed',
+                                    'reward', 'credited to your account'
+                                ]
+                                
+                                if any(indicator in new_content.lower() for indicator in completion_indicators):
                                     print("\n🎉 SURVEY COMPLETE!")
+                                    
+                                    # Extract points
+                                    try:
+                                        points_match = re.search(r'(\d+)\s*points?', new_content.lower())
+                                        if points_match:
+                                            survey_points = int(points_match.group(1))
+                                            print(f"💰 Points earned: {survey_points}")
+                                    except:
+                                        survey_points = 100
+                                    
+                                    # 📊 LOG THE COMPLETED SURVEY
+                                    survey_duration = int(time.time() - survey_start_time)
+                                    
+                                    reporter.log_survey_completion(
+                                        platform="MyOpinions",
+                                        survey_id=f"survey_{int(time.time())}",
+                                        topic=survey_topic,
+                                        points=survey_points,
+                                        duration_seconds=survey_duration,
+                                        questions_total=question_num,
+                                        questions_automated=automated_count,
+                                        vision_api_calls=vision_calls_count,
+                                        pattern_matches=pattern_matches_count
+                                    )
+                                    
+                                    reporter.print_session_report()
                                     break
                             except:
                                 pass
                             
-                            continue  # Skip manual input
+                            continue  # Skip to next question (important!)
+                        else:
+                            print("⚠️ Some fields couldn't be automated, falling back to single-question logic")
+                else:
+                    print("📝 Multi-question confidence too low, falling back to single-question logic")
+
+            # Analyze question with DOM methods
+            question_data = await learner._extract_comprehensive_details(survey_page)
+            handler_name = learner._get_handler_name(question_data['question_type'])
+            
+            # ENHANCE with vision insights
+            if vision_confidence > 70:
+                print("✨ Enhancing with vision insights...")
+                if vision_result.get('question_text') and len(vision_result['question_text']) > len(question_data['question_text']):
+                    question_data['question_text'] = vision_result['question_text']
+            
+            # Check automation possibility
+            handler = handlers.get(handler_name)
+            if handler:
+                confidence = handler.calculate_confidence(
+                    question_data['question_type'],
+                    question_data['question_text']
+                )
+                
+                # BOOST confidence if vision agrees!
+                if vision_confidence > 80:
+                    confidence = min(confidence + 0.15, 0.95)
+                    print(f"🚀 Vision boost: +15% confidence!")
+                
+                threshold = learner.cm.get_dynamic_threshold(handler_name, question_data['question_type'])
+                should_automate, reason = learner.cm.should_attempt_automation(
+                    handler_name, confidence, question_data['question_type']
+                )
+                
+                print(f"\n🤖 AUTOMATION CHECK:")
+                print(f"   Handler: {handler_name}")
+                print(f"   Type: {question_data['question_type']}")
+                print(f"   Element: {question_data['element_type']}")
+                print(f"   Vision says: {vision_result.get('question_type', 'unknown')} ({vision_confidence}%)")
+                if question_data['question_type'] == 'age' and 'age_format' in question_data.get('page_structure', {}):
+                    print(f"   Age Format: {question_data['page_structure']['age_format']}")
+                print(f"   Confidence: {confidence:.3f} vs Threshold: {threshold:.3f}")
+                print(f"   Decision: {'✅ AUTOMATE!' if should_automate else '❌ Manual'}")
+                print(f"   Reason: {reason}")
+                
+                if should_automate and confidence >= threshold:
+                    print("\n🚀 ATTEMPTING AUTOMATION...")
+                    
+                    try:
+                        # Get automated response with element type awareness
+                        response = handler.handle(question_data['question_text'], question_data['element_type'])
+                        
+                        if response and response.response_value:
+                            print(f"🎯 AUTO-RESPONSE: {response.response_value}")
+                            print("⏳ Applying response to form...")
                             
-                except Exception as e:
-                    print(f"❌ Automation failed: {str(e)}")
-                    print("📝 Falling back to manual...")
+                            # Apply based on element type
+                            success = False
+                            
+                            if question_data['element_type'] == 'radio':
+                                # Handle different types of radio questions
+                                if 'age' in question_data['question_text'].lower():
+                                    # Age range radio buttons
+                                    print(f"🎯 Selecting age range: {response.response_value}")
+                                    
+                                    # Try multiple selectors for age ranges
+                                    selectors = [
+                                        f'label:has-text("{response.response_value}")',
+                                        f'input[type="radio"][value="{response.response_value}"]',
+                                        f'label:has-text("{response.response_value.replace("-", " to ")}")',  # "45-54" → "45 to 54"
+                                        f'span:has-text("{response.response_value}") input[type="radio"]',
+                                        f'label:has-text("{response.response_value.replace("-", " - ")}")'  # "45-54" → "45 - 54"
+                                    ]
+                                    
+                                    for selector in selectors:
+                                        try:
+                                            await survey_page.click(selector)
+                                            print(f"✅ Selected age range using: {selector}")
+                                            success = True
+                                            break
+                                        except:
+                                            continue
+                                            
+                                    if not success:
+                                        print("⚠️ Could not find age range radio button")
+                                else:
+                                    # Regular radio buttons (gender, etc.)
+                                    try:
+                                        await survey_page.click(f'input[type="radio"][value="{response.response_value}"]')
+                                        success = True
+                                    except:
+                                        try:
+                                            # Try clicking by label text
+                                            await survey_page.click(f'label:has-text("{response.response_value}")')
+                                            success = True
+                                        except:
+                                            print("⚠️ Could not find radio button to click")
+                                        
+                            elif question_data['element_type'] in ['text_input', 'text']:
+                                # Fill visible text input - enhanced for age fields
+                                try:
+                                    # Try specific selectors for age inputs
+                                    if 'age' in question_data['question_text'].lower():
+                                        filled = False
+                                        age_selectors = [
+                                            'input[placeholder="Number"]',
+                                            'input[placeholder*="Number"]',
+                                            'input[type="number"]:visible',
+                                            'fieldset:has-text("age") input[type="text"]'
+                                        ]
+                                        for selector in age_selectors:
+                                            try:
+                                                await survey_page.fill(selector, str(response.response_value))
+                                                filled = True
+                                                success = True
+                                                break
+                                            except:
+                                                continue
+                                        
+                                        if not filled:
+                                            # Fallback to general input
+                                            await survey_page.fill('input[type="text"]:visible, input[type="number"]:visible', str(response.response_value))
+                                            success = True
+                                    else:
+                                        # General text input
+                                        await survey_page.fill('input[type="text"]:visible, input[type="number"]:visible, input:not([type]):visible', str(response.response_value))
+                                        success = True
+                                except:
+                                    print("⚠️ Could not find text input to fill")
+                                    
+                            elif question_data['element_type'] == 'checkbox':
+                                # FIXED - Check if response is a number
+                                if response.response_value.isdigit():
+                                    print(f"⚠️ Got index ({response.response_value}) instead of text, skipping automation")
+                                    success = False
+                                else:
+                                    try:
+                                        await survey_page.click(f'label:has-text("{response.response_value}")')
+                                        success = True
+                                    except:
+                                        print("⚠️ Could not find checkbox to click")
+                                        success = False
+                            
+                            elif question_data['element_type'] == 'select' or 'state' in question_data['question_text'].lower():
+                                # Dropdown/select handling
+                                print(f"🎯 Selecting dropdown option: {response.response_value}")
+                                
+                                try:
+                                    # Select the option
+                                    await survey_page.select_option('select:visible', value=response.response_value)
+                                    success = True
+                                    print(f"✅ Selected dropdown option: {response.response_value}")
+                                except:
+                                    try:
+                                        # Try by label (for full state names)
+                                        state_mappings = {
+                                            'NSW': 'New South Wales',
+                                            'VIC': 'Victoria', 
+                                            'QLD': 'Queensland',
+                                            'WA': 'Western Australia',
+                                            'SA': 'South Australia',
+                                            'TAS': 'Tasmania',
+                                            'ACT': 'Australian Capital Territory',
+                                            'NT': 'Northern Territory'
+                                        }
+                                        
+                                        full_name = state_mappings.get(response.response_value, response.response_value)
+                                        await survey_page.select_option('select:visible', label=full_name)
+                                        success = True
+                                        print(f"✅ Selected dropdown option: {full_name}")
+                                    except:
+                                        print("⚠️ Could not select dropdown option")
+                                
+                            if success:
+                                automated_count += 1
+                                print(f"✅ AUTOMATED SUCCESSFULLY! (Total: {automated_count}) 🎉")
+                                
+                                # STORE VISUAL PATTERN!
+                                if vision_confidence > 80:
+                                    pattern_id = await learner.vision.store_pattern(
+                                        screenshot_path,
+                                        vision_result,
+                                        {
+                                            'response_value': response.response_value,
+                                            'success': True,
+                                            'element_type': question_data['element_type']
+                                        }
+                                    )
+                                    print(f"💾 Stored visual pattern: {pattern_id}")
+                                
+                                # Record success
+                                learner.cm.record_automation_result(
+                                    handler_name, question_data['question_type'],
+                                    confidence, True
+                                )
+                                
+                                # Save immediately
+                                learner.kb.save()
+                                
+                                # Wait and click next
+                                await survey_page.wait_for_timeout(1000)
+                                print("📍 Clicking Next...")
+                                await survey_page.click('button:has-text("Next"), button:has-text("Continue"), input[type="submit"]:visible')
+                                await survey_page.wait_for_timeout(1000)
+                                
+                                # Check for completion - ENHANCED
+                                try:
+                                    new_content = await survey_page.inner_text('body')
+                                    completion_indicators = [
+                                        'thank you', 'thanks for completing', 'survey complete',
+                                        'points have been added', 'points earned', 'congratulations',
+                                        'survey has been completed', 'successfully completed',
+                                        'reward', 'credited to your account'
+                                    ]
+                                    
+                                    if any(indicator in new_content.lower() for indicator in completion_indicators):
+                                        print("\n🎉 SURVEY COMPLETE!")
+                                        
+                                        # Extract points
+                                        try:
+                                            points_match = re.search(r'(\d+)\s*points?', new_content.lower())
+                                            if points_match:
+                                                survey_points = int(points_match.group(1))
+                                                print(f"💰 Points earned: {survey_points}")
+                                        except:
+                                            survey_points = 100
+                                        
+                                        # 📊 LOG THE COMPLETED SURVEY
+                                        survey_duration = int(time.time() - survey_start_time)
+                                        
+                                        reporter.log_survey_completion(
+                                            platform="MyOpinions",
+                                            survey_id=f"survey_{int(time.time())}",
+                                            topic=survey_topic,
+                                            points=survey_points,
+                                            duration_seconds=survey_duration,
+                                            questions_total=question_num,
+                                            questions_automated=automated_count,
+                                            vision_api_calls=vision_calls_count,
+                                            pattern_matches=pattern_matches_count
+                                        )
+                                        
+                                        reporter.print_session_report()
+                                        break
+                                except:
+                                    pass
+                                
+                                continue  # Skip manual input
+                                
+                    except Exception as e:
+                        print(f"❌ Automation failed: {str(e)}")
+                        print("📝 Falling back to manual...")
+            
+            # Manual capture flow
+            input("\n✋ Press Enter AFTER answering but BEFORE clicking Next >>> ")
+            
+            # Capture and learn WITH VISION GUIDANCE
+            learning_entry = await learner.capture_and_learn(survey_page, question_num, vision_result)
+            
+            # Display results
+            print("\n📊 CAPTURED LEARNING DATA:")
+            print(f"  📝 Question: {learning_entry['question_text'][:80]}...")
+            print(f"  🏷️ Type: {learning_entry['question_type']}")
+            print(f"  🎯 Element: {learning_entry['element_type']}")
+            print(f"  👁️ Vision Type: {learning_entry.get('vision_type', 'N/A')}")
+            print(f"  👁️ Vision Confidence: {learning_entry.get('vision_confidence', 0)}%")
+            if learning_entry.get('age_format'):
+                print(f"  📍 Age Format: {learning_entry['age_format']}")
+            print(f"  💡 Strategy: {learning_entry['strategy_used']}")
+            print(f"  ✅ Your Response: {learning_entry['response_value']}")
+            if learning_entry.get('response_values') and len(learning_entry['response_values']) > 1:
+                print(f"     All values: {', '.join(learning_entry['response_values'])}")
+            print(f"  📊 Confidence: {learning_entry['confidence_score']:.3f}")
+            print(f"  ⏱️ Capture Time: {learning_entry['execution_time']:.2f}s")
+            print(f"  🔑 Learning Key: learning_{int(learning_entry['timestamp'])}_{question_num}")
+            
+            # STORE VISUAL PATTERN for manual captures too!
+            if vision_confidence > 70 and learning_entry.get('response_value'):
+                pattern_id = await learner.vision.store_pattern(
+                    screenshot_path,
+                    vision_result,
+                    {
+                        'response_value': learning_entry['response_value'],
+                        'response_values': learning_entry.get('response_values', []),
+                        'success': True,
+                        'element_type': learning_entry['element_type'],
+                        'capture_type': 'manual_learning'
+                    }
+                )
+                print(f"\n💾 Stored visual pattern from manual capture: {pattern_id}")
+            
+            print("\n💾 SAVED TO:")
+            print(f"  📁 personas/quenito/knowledge_base.json")
+            print(f"  📍 Section: detailed_intervention_learning")
+            print(f"  👁️ Visual patterns: personas/quenito/visual_patterns/")
+            
+            # Show confidence update
+            handler = learner._get_handler_name(learning_entry['question_type'])
+            print(f"\n🎯 Confidence Update:")
+            print(f"  Handler: {handler}")
+            print(f"  Question Type: {learning_entry['question_type']}")
+            print(f"  New Pattern: {learning_entry['question_type']}_{learning_entry['element_type']}")
+            
+            # AUTO-SAVE PROGRESS EVERY 5 QUESTIONS
+            if question_num % 5 == 0:
+                print("\n💾 Auto-saving progress...")
+                reporter.save_session()
+            
+            input("\n👉 Now click Next/Continue in browser, then press Enter >>> ")
+            
+            # Check for completion - ENHANCED
+            try:
+                new_content = await survey_page.inner_text('body')
+                completion_indicators = [
+                    'thank you', 'thanks for completing', 'survey complete',
+                    'points have been added', 'points earned', 'congratulations',
+                    'survey has been completed', 'successfully completed',
+                    'reward', 'credited to your account'
+                ]
+                
+                if any(indicator in new_content.lower() for indicator in completion_indicators):
+                    print("\n🎉 SURVEY COMPLETE!")
+                    
+                    # Extract points
+                    try:
+                        points_match = re.search(r'(\d+)\s*points?', new_content.lower())
+                        if points_match:
+                            survey_points = int(points_match.group(1))
+                            print(f"💰 Points earned: {survey_points}")
+                    except:
+                        survey_points = 100
+                    
+                    # 📊 LOG THE COMPLETED SURVEY
+                    survey_duration = int(time.time() - survey_start_time)
+                    
+                    reporter.log_survey_completion(
+                        platform="MyOpinions",
+                        survey_id=f"survey_{int(time.time())}",
+                        topic=survey_topic,
+                        points=survey_points,
+                        duration_seconds=survey_duration,
+                        questions_total=question_num,
+                        questions_automated=automated_count,
+                        vision_api_calls=vision_calls_count,
+                        pattern_matches=pattern_matches_count
+                    )
+                    
+                    reporter.print_session_report()
+                    break
+            except:
+                pass
+                
+    except KeyboardInterrupt:
+        print("\n\n⚠️ Survey interrupted by user")
+        print("📊 Saving final reports...")
         
-        # Manual capture flow
-        input("\n✋ Press Enter AFTER answering but BEFORE clicking Next >>> ")
+        # SAVE REPORTS EVEN ON INTERRUPT!
+        if question_num > 0:
+            # Log partial survey
+            survey_duration = int(time.time() - survey_start_time)
+            
+            reporter.log_survey_completion(
+                platform="MyOpinions",
+                survey_id=f"survey_{int(time.time())}_partial",
+                topic=survey_topic,
+                points=survey_points or 0,
+                duration_seconds=survey_duration,
+                questions_total=question_num,
+                questions_automated=automated_count,
+                vision_api_calls=vision_calls_count,
+                pattern_matches=pattern_matches_count
+            )
+            
+            # Print reports
+            reporter.print_session_report()
+            reporter.print_weekly_summary()
+            
+    except Exception as e:
+        print(f"\n❌ Error occurred: {str(e)}")
+        print("📊 Saving reports before exit...")
         
-        # Capture and learn
-        learning_entry = await learner.capture_and_learn(survey_page, question_num)
+        # Save what we can
+        if 'reporter' in locals() and question_num > 0:
+            reporter.print_session_report()
+            
+    finally:
+        # ALWAYS run final summary
+        print("\n" + "="*50)
+        print("📊 LEARNING SESSION COMPLETE WITH VISION!")
+        print(f"✅ Questions captured: {question_num}")
+        print(f"🤖 Questions automated: {automated_count}")
+        if question_num > 0:
+            print(f"📈 Automation rate: {(automated_count/question_num)*100:.1f}%")
+        print(f"👁️ Vision API Calls: {vision_calls_count} (${vision_calls_count * 0.001:.3f})")
+        print(f"🎯 Pattern Matches: {pattern_matches_count}")
+        print(f"👁️ Visual patterns stored: Check personas/quenito/visual_patterns/")
+        print(f"📁 All data saved to: personas/quenito/knowledge_base.json")
+        print("\n🧠 Next survey will use these learned patterns + visual recognition!")
         
-        # Display results
-        print("\n📊 CAPTURED LEARNING DATA:")
-        print(f"  📝 Question: {learning_entry['question_text'][:80]}...")
-        print(f"  🏷️ Type: {learning_entry['question_type']}")
-        print(f"  🎯 Element: {learning_entry['element_type']}")
-        if learning_entry.get('age_format'):
-            print(f"  📍 Age Format: {learning_entry['age_format']}")
-        print(f"  💡 Strategy: {learning_entry['strategy_used']}")
-        print(f"  ✅ Your Response: {learning_entry['response_value']}")
-        if learning_entry.get('response_values') and len(learning_entry['response_values']) > 1:
-            print(f"     All values: {', '.join(learning_entry['response_values'])}")
-        print(f"  📊 Confidence: {learning_entry['confidence_score']:.3f}")
-        print(f"  ⏱️ Capture Time: {learning_entry['execution_time']:.2f}s")
-        print(f"  🔑 Learning Key: learning_{int(learning_entry['timestamp'])}_{question_num}")
+        # 📊 PRINT FINAL REPORTS
+        if 'reporter' in locals():
+            reporter.print_session_report()
+            reporter.print_weekly_summary()
+            
+            # 📊 Show lifetime stats if available
+            lifetime = reporter.get_lifetime_stats()
+            if lifetime.get('total_earnings'):
+                print(f"""
+╔══════════════════════════════════════════════════════╗
+║               💰 LIFETIME STATS                       ║
+╚══════════════════════════════════════════════════════╝
+Total Earnings: ${lifetime['total_earnings']:.2f}
+Total Surveys:  {lifetime['total_surveys']}
+Days Active:    {lifetime['days_active']}
+Best Day Ever:  {lifetime.get('best_day', 'N/A')} (${lifetime.get('best_day_earnings', 0):.2f})
+""")
         
-        print("\n💾 SAVED TO:")
-        print(f"  📁 personas/quenito/knowledge_base.json")
-        print(f"  📍 Section: detailed_intervention_learning")
+        input("\n🏁 Press Enter to close >>> ")
         
-        # Show confidence update
-        handler = learner._get_handler_name(learning_entry['question_type'])
-        print(f"\n🎯 Confidence Update:")
-        print(f"  Handler: {handler}")
-        print(f"  Question Type: {learning_entry['question_type']}")
-        print(f"  New Pattern: {learning_entry['question_type']}_{learning_entry['element_type']}")
-        
-        input("\n👉 Now click Next/Continue in browser, then press Enter >>> ")
-        
-        # Check for completion
-        try:
-            new_content = await survey_page.inner_text('body')
-            if any(word in new_content.lower() for word in ['thank you', 'complete', 'points earned']):
-                print("\n🎉 SURVEY COMPLETE!")
-                break
-        except:
-            pass
-    
-    # Summary
-    print("\n" + "="*50)
-    print("📊 LEARNING SESSION COMPLETE")
-    print(f"✅ Questions captured: {question_num}")
-    print(f"🤖 Questions automated: {automated_count}")
-    print(f"📈 Automation rate: {(automated_count/question_num)*100:.1f}%")
-    print(f"📁 All data saved to: personas/quenito/knowledge_base.json")
-    print("\n🧠 Next survey will use these learned patterns!")
-    
-    input("\n🏁 Press Enter to close >>> ")
-    await browser.close()
+        # Close browser
+        if 'browser' in locals():
+            await browser.close()
 
 if __name__ == "__main__":
     asyncio.run(run_integrated_learning())
