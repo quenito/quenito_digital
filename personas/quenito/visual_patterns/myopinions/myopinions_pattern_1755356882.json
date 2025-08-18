@@ -1,0 +1,39 @@
+{
+  "id": "myopinions_pattern_1755356882",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:08:02.279563",
+  "screenshot": "vision_data/question_25_1755356882.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which of the following have you heard of before today?",
+    "clickable_elements": [
+      "Renewable gasses will be blended into the existing gas network which avoids the cost and hassle of changing appliances for years to come",
+      "Renewable gas is created from renewable sources like solar, wind and organic waste",
+      "Renewable gas is a sustainable zero-emission source of energy",
+      "Renewable gasses can be stored within the existing gas network for use at any time, including when the sun is not shining, or the wind is not blowing",
+      "Renewable gas enables customers to continue to choose and use gas appliances - for cooking, hot water and heating",
+      "Renewable gas can help Australia achieve its zero-emission target more efficiently",
+      "Renewable gas can complement and support other renewable energy options like solar and wind",
+      "There is a future for gas, one that transitions to renewable, zero-carbon sources over time",
+      "Renewable gas is a clean, reliable and responsive renewable energy option",
+      "None of these"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 25,
+    "timestamp": 1755356882.1476877,
+    "session_id": "learning_1755355433",
+    "question_text": "Which of the following have you heard of before today?",
+    "question_type": "multi_select",
+    "response_value": "1",
+    "response_values": [
+      "1"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

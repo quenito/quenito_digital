@@ -1,0 +1,42 @@
+{
+  "id": "myopinions_pattern_1755353168",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T00:06:08.704890",
+  "screenshot": "vision_data/question_37_1755353168.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "exact_question_text": "What meat(s) did you eat on this occasion?",
+    "clickable_elements": [
+      "Seafood (other than fish)",
+      "Bacon",
+      "Chicken",
+      "Lamb",
+      "Fish",
+      "Duck",
+      "Beef",
+      "Veal",
+      "Pork",
+      "Ham",
+      "Other meat",
+      "No meat / vegetarian"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 37,
+    "timestamp": 1755353168.543759,
+    "session_id": "learning_1755350815",
+    "question_text": "Your most recent DINNER which was EATEN AT RESTAURANT / CAF\u00c9 / FOOD OUTLET.\n\nApproximately how much was spent PER PERSON on the FOOD component of the meal?",
+    "question_type": "general",
+    "response_value": "$31-40 per person",
+    "response_values": [
+      "$31-40 per person",
+      "3 others"
+    ],
+    "vision_confidence": 95,
+    "vision_type": "checkbox"
+  }
+}

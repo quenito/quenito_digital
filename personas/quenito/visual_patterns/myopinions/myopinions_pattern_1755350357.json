@@ -1,0 +1,22 @@
+{
+  "id": "myopinions_pattern_1755350357",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T23:19:17.982233",
+  "screenshot": "vision_data/question_2_1755350357.png",
+  "vision_analysis": {
+    "question_type": "unknown",
+    "question_text": "unknown",
+    "clickable_elements": [],
+    "continue_button_visible": false,
+    "confidence_rating": 0
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 2,
+    "timestamp": 1755350357.944878,
+    "session_id": "learning_1755348729",
+    "question_text": "Question text not found",
+    "question_type": "general"
+  }
+}

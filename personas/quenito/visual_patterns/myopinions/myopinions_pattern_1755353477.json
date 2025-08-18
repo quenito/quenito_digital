@@ -1,0 +1,50 @@
+{
+  "id": "myopinions_pattern_1755353477",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T00:11:17.191452",
+  "screenshot": "vision_data/question_45_1755353477.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "exact_question_text": "Approximately how much was spent PER PERSON on the FOOD component of the meal?",
+    "clickable_elements": [
+      "$0-5 per person",
+      "$6-10 per person",
+      "$11-15 per person",
+      "$16-20 per person",
+      "$21-30 per person",
+      "$31-40 per person",
+      "$41-60 per person",
+      "$61-80 per person",
+      "$81-100 per person",
+      "$101-150 per person",
+      "$151 + per person",
+      "Just myself",
+      "1 other",
+      "2 others",
+      "3 others",
+      "4 others",
+      "5 others",
+      "6-10 others",
+      "11-20 others",
+      "21+ others"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 45,
+    "timestamp": 1755353477.0330205,
+    "session_id": "learning_1755350815",
+    "question_text": "Your 2nd most recent DINNER which was EATEN AT RESTAURANT / CAF\u00c9 / FOOD OUTLET.\n\nApproximately how much was spent PER PERSON on the FOOD component of the meal?",
+    "question_type": "general",
+    "response_value": "$31-40 per person",
+    "response_values": [
+      "$31-40 per person",
+      "3 others"
+    ],
+    "vision_confidence": 95,
+    "vision_type": "radio"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "myopinions_pattern_1755372121",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:22:01.783545",
+  "screenshot": "vision_data/question_2_1755372121.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Are you ...",
+    "clickable_elements": [
+      "Male",
+      "Female",
+      "Another gender (specify, if you'd like to)"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "45 years old, Male, NSW, 2217, $100,000 to $149,999",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

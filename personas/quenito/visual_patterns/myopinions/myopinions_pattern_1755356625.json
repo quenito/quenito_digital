@@ -1,0 +1,32 @@
+{
+  "id": "myopinions_pattern_1755356625",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:03:45.637178",
+  "screenshot": "vision_data/question_22_1755356625.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Have you recently seen or heard any advertising or promotion about Renewable gas generally and/or sources of renewable gas like Hydrogen or Bio Methane?",
+    "clickable_elements": [
+      "Yes",
+      "No",
+      "Don't know/not sure"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 22,
+    "timestamp": 1755356625.4286685,
+    "session_id": "learning_1755355433",
+    "question_text": "Have you recently seen or heard any advertising or promotion about Renewable gas generally and/or sources of renewable gas like Hydrogen or Bio Methane?",
+    "question_type": "general",
+    "response_value": "No",
+    "response_values": [
+      "No"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "myopinions_pattern_1755352647",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T23:57:27.364874",
+  "screenshot": "vision_data/question_19_1755352647.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Which of these best describes the type of meal you had?",
+    "clickable_elements": [
+      "Buffet / Banquet (wide selection of food)",
+      "Burger / Slider",
+      "Dessert only",
+      "Fish / Seafood",
+      "Meat - Fried (e.g. schnitzel, chicken wings/drumsticks)",
+      "Meat - Grilled (e.g. steak, chicken, chop, cutlets, etc.)",
+      "Meat - Roast (e.g. chicken, lamb, pork, beef, etc.)",
+      "Meat - Skewered / Kebabs",
+      "Meat dish - Other (e.g. stew, curry, meatballs)",
+      "Pastry dish (savory e.g. pies, sausage rolls, quiche)",
+      "Pizza",
+      "Salad",
+      "Sandwich / Wrap / Roll / Yeros/ Burrito",
+      "Share plates (incl. appetisers, snacks, yum cha, tapas)",
+      "Soup",
+      "Stir-fry",
+      "Sushi",
+      "Breakfast / brunch style meal (e.g. bacon, eggs, etc.)",
+      "Vegetarian - other",
+      "Other (please specify)"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 19,
+    "timestamp": 1755352647.2215838,
+    "session_id": "learning_1755350815",
+    "question_text": "Your 2nd most recent LUNCH which was EATEN AT RESTAURANT / CAF\u00c9 / FOOD OUTLET.\n\nWhich of these best describes the type of meal you had?",
+    "question_type": "multi_select",
+    "response_value": "Meat - Fried / Deep fried (e.g. schnitzel, chicken wings/drumsticks)",
+    "response_values": [
+      "Meat - Fried / Deep fried (e.g. schnitzel, chicken wings/drumsticks)"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

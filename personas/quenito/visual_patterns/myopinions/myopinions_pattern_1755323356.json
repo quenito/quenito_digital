@@ -1,0 +1,37 @@
+{
+  "id": "myopinions_pattern_1755323356",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T15:49:16.226473",
+  "screenshot": "vision_data/question_17_1755323356.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which of the following have you personally done in the last two years (if any)?",
+    "clickable_elements": [
+      "Been self-employed or worked in paid employment for an organisation in the tourism sector",
+      "Worked as a volunteer for an organisation in the tourism sector (e.g. for an event, or ongoing)",
+      "Worked for another organisation that provides services for visitors, or services for tourism businesses",
+      "Been involved in developing an activity or attraction for locals and visitors (e.g. an event, a new cycle/walking trail, a museum)",
+      "Hosted visitors you know in your home (such as friends or visiting family members)",
+      "Provided paid accommodation for visitors in your home/a property you own (e.g. through Airbnb, Bachcare, or similar)",
+      "Recommended studying or working in tourism to someone you know",
+      "Made an investment in an organisation that provides services for visitors, or services for tourism businesses",
+      "Participated in a public consultation or planning process affecting tourism (e.g. making a submission, attending a public meeting)",
+      "Taken part in a local tourism activity/visited a local tourism attraction",
+      "Taken part in a tourism activity elsewhere domestically/visited a tourism attraction elsewhere domestically",
+      "Recommended a local or domestic tourism activity or attraction to someone you know",
+      "Interacted with someone you don't know who was visiting your region \u2013 outside of work activity (e.g. providing directions, taking photos for them)",
+      "Studied tourism or taken tourism-related classes (at high school, university or other tertiary institute)",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "MultiSelectHandler",
+    "response_value": "None of the above",
+    "confidence": 0.55,
+    "reason": "automated_successfully"
+  }
+}

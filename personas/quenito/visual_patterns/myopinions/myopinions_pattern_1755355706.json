@@ -1,0 +1,35 @@
+{
+  "id": "myopinions_pattern_1755355706",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T00:48:26.921278",
+  "screenshot": "vision_data/question_2_1755355706.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "exact_question_text": "Thinking about where you currently live, are you\u2026?",
+    "clickable_elements": [
+      "Living in free accommodation (including with family)",
+      "Renting, and not looking to buy a home in the next 12 months",
+      "Renting, but looking to purchase a home in the next 12 months",
+      "Living in your own home, with a mortgage",
+      "Living in your own home that you own outright (i.e. no mortgage)",
+      "Living in temporary accommodation while renovating your own home"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 2,
+    "timestamp": 1755355706.7659016,
+    "session_id": "learning_1755355433",
+    "question_text": "Thinking about where you currently live, are you\u2026?",
+    "question_type": "general",
+    "response_value": "Living in your own home, with a mortgage",
+    "response_values": [
+      "Living in your own home, with a mortgage"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

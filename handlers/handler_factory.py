@@ -47,33 +47,73 @@ class HandlerFactory:
         self.knowledge_base = knowledge_base
         self.intervention_manager = intervention_manager
         
-        # Initialize all handlers with centralized intelligence
-        self.handlers = {
-            'demographics': DemographicsHandler(None, knowledge_base, intervention_manager),
-            'brand_familiarity': BrandFamiliarityHandler(None, knowledge_base, intervention_manager),
-            'rating_matrix': RatingMatrixHandler(None, knowledge_base, intervention_manager),
-            'multi_select': MultiSelectHandler(None, knowledge_base, intervention_manager),
-            'multi_question': MultiQuestionHandler(None, knowledge_base, intervention_manager),            'trust_rating': TrustRatingHandler(None, knowledge_base, intervention_manager),
-            'recency_activities': RecencyActivitiesHandler(None, knowledge_base, intervention_manager),
-            'research_required': ResearchRequiredHandler(None, knowledge_base, intervention_manager),
-            'unknown': UnknownHandler(None, knowledge_base, intervention_manager)
-        }
-
-    def _update_handlers_page(self, page):
-        """Update page reference for all handlers"""
-        print("🔄 Updating page reference for all handlers...")
+        # FIX: Initialize handlers with correct signatures - most only need knowledge_base
+        print("🏭 Initializing handlers...")
+        self.handlers = {}
         
-        for name, handler in self.handlers.items():
-            # Update the handler's page
-            handler.page = page
+        # Initialize each handler with appropriate arguments
+        try:
+            self.handlers['demographics'] = DemographicsHandler(knowledge_base)
+            print("   ✅ Demographics handler initialized")
+        except Exception as e:
+            print(f"   ⚠️ Demographics handler failed: {e}")
             
-            # Update UI module's page if it exists
-            if hasattr(handler, 'ui') and handler.ui:
-                handler.ui.page = page
-                print(f"✅ Updated {name} handler and UI module with page")
-            else:
-                print(f"✅ Updated {name} handler with page")
+        try:
+            self.handlers['brand_familiarity'] = BrandFamiliarityHandler(knowledge_base)
+            print("   ✅ Brand Familiarity handler initialized")
+        except Exception as e:
+            print(f"   ⚠️ Brand Familiarity handler failed: {e}")
+            
+        try:
+            self.handlers['rating_matrix'] = RatingMatrixHandler(knowledge_base)
+            print("   ✅ Rating Matrix handler initialized")
+        except Exception as e:
+            print(f"   ⚠️ Rating Matrix handler failed: {e}")
+            
+        try:
+            self.handlers['multi_select'] = MultiSelectHandler(knowledge_base)
+            print("   ✅ Multi Select handler initialized")
+        except Exception as e:
+            print(f"   ⚠️ Multi Select handler failed: {e}")
+            
+        try:
+            self.handlers['multi_question'] = MultiQuestionHandler(knowledge_base)
+            print("   ✅ Multi Question handler initialized")
+        except Exception as e:
+            print(f"   ⚠️ Multi Question handler failed: {e}")
+            
+        try:
+            self.handlers['trust_rating'] = TrustRatingHandler(knowledge_base)
+            print("   ✅ Trust Rating handler initialized")
+        except Exception as e:
+            print(f"   ⚠️ Trust Rating handler failed: {e}")
+            
+        try:
+            self.handlers['recency_activities'] = RecencyActivitiesHandler(knowledge_base)
+            print("   ✅ Recency Activities handler initialized")
+        except Exception as e:
+            print(f"   ⚠️ Recency Activities handler failed: {e}")
+            
+        try:
+            self.handlers['research_required'] = ResearchRequiredHandler(knowledge_base)
+            print("   ✅ Research Required handler initialized")
+        except Exception as e:
+            print(f"   ⚠️ Research Required handler failed: {e}")
+            
+        # Unknown handler might need different args
+        try:
+            self.handlers['unknown'] = UnknownHandler(knowledge_base)
+            print("   ✅ Unknown handler initialized")
+        except:
+            try:
+                # Fallback to old signature if needed
+                self.handlers['unknown'] = UnknownHandler(None, knowledge_base, intervention_manager)
+                print("   ✅ Unknown handler initialized (with old signature)")
+            except Exception as e:
+                print(f"   ⚠️ Unknown handler failed: {e}")
 
+        # Store the intervention manager for handlers that might need it
+        self.intervention_manager = intervention_manager
         
         # Handler statistics for performance tracking (enhanced with centralized data)
         self.handler_stats = {
@@ -88,13 +128,31 @@ class HandlerFactory:
         # ❌ OLD: self.confidence_thresholds = {"demographics": 0.30, ...}
         # ✅ NEW: All thresholds now managed by knowledge_base.confidence_manager
         
-        print("🏭 Handler Factory v3.0 initialized with Centralized Confidence!")
+        print(f"🏭 Handler Factory v3.0 initialized with {len(self.handlers)} handlers!")
         print("🎯 Dynamic thresholds: Learning-based optimization active!")
         print("🧠 Intelligence: Cross-handler learning enabled!")
         
         # Display current dynamic thresholds for transparency
         self._display_current_thresholds()
-    
+
+    def _update_handlers_page(self, page):
+        """Update page reference for all handlers that have a page attribute"""
+        print("🔄 Updating page reference for handlers...")
+        
+        for name, handler in self.handlers.items():
+            try:
+                # Only update if handler has a page attribute
+                if hasattr(handler, 'page'):
+                    handler.page = page
+                    print(f"   ✅ Updated {name} handler with page")
+                
+                # Update UI module's page if it exists
+                if hasattr(handler, 'ui') and handler.ui and hasattr(handler.ui, 'page'):
+                    handler.ui.page = page
+                    print(f"   ✅ Updated {name} UI module with page")
+                    
+            except Exception as e:
+                print(f"   ⚠️ Could not update {name}: {e}")
 
     def _display_current_thresholds(self) -> None:
         """Display current dynamic confidence thresholds for debugging."""
@@ -294,6 +352,52 @@ class HandlerFactory:
         
         return adjusted_confidence
 
+    def get_handler_for_question(self, question_text: str, question_type: str = None):
+        """Get the best handler for a question - ENHANCED"""
+        
+        # Priority override for demographics questions
+        if question_type in ['gender', 'age', 'postcode', 'state', 'income', 'employment']:
+            return self.handlers.get('demographics')
+        
+        # Quick mapping based on question type
+        if question_type:
+            type_to_handler = {
+                'demographics_age': 'demographics',
+                'demographics_gender': 'demographics',
+                'demographics_postcode': 'demographics',
+                'brand_awareness': 'brand_familiarity',
+                'rating_scale': 'rating_matrix',
+                'multi_select': 'multi_select',
+            }
+            
+            handler_name = type_to_handler.get(question_type)
+            if handler_name and handler_name in self.handlers:
+                return self.handlers[handler_name]
+        
+        # Fallback to confidence-based selection
+        best_handler = None
+        best_confidence = 0
+        
+        for name, handler in self.handlers.items():
+            if name == 'unknown':  # Skip unknown for automatic selection
+                continue
+                
+            # Get confidence from handler
+            try:
+                # Check if handler has calculate_confidence method
+                if hasattr(handler, 'calculate_confidence'):
+                    confidence = handler.calculate_confidence(question_type or '', question_text)
+                    if confidence > best_confidence:
+                        best_confidence = confidence
+                        best_handler = handler
+            except:
+                continue
+        
+        # Return best handler or unknown
+        if best_handler and best_confidence > 0.3:  # Minimum threshold
+            return best_handler
+        else:
+            return self.handlers.get('unknown')
 
     def get_last_selected_handler_name(self) -> str:
         """Get the name of the last selected handler for tracking purposes."""
@@ -433,16 +537,3 @@ class HandlerFactory:
         print(f"\n🧠 INTELLIGENCE STATUS: Centralized confidence learning ACTIVE")
         print(f"🚀 NEXT EVOLUTION: Dynamic thresholds improving automation rates!")
         print("="*80)
-
-
-# ✅ CENTRALIZED CONFIDENCE ARCHITECTURE COMPLETE!
-# 
-# 🎯 BENEFITS ACHIEVED:
-# - ✅ Removed all hardcoded confidence thresholds
-# - ✅ Dynamic learning-based threshold optimization
-# - ✅ Consistent confidence decisions across all handlers  
-# - ✅ Self-improving automation rates over time
-# - ✅ Cross-handler intelligence sharing
-# - ✅ Professional enterprise-ready confidence management
-#
-# 🚀 READY FOR: Phase 3 dynamic confidence with 95%+ automation rates!

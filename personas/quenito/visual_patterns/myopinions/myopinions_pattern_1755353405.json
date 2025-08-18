@@ -1,0 +1,46 @@
+{
+  "id": "myopinions_pattern_1755353405",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T00:10:05.288501",
+  "screenshot": "vision_data/question_42_1755353405.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Which of these best describes the type of cuisine you had?",
+    "clickable_elements": [
+      "Greek",
+      "Italian",
+      "French",
+      "Spanish",
+      "Other European",
+      "Thai",
+      "Indian",
+      "Japanese",
+      "Vietnamese",
+      "Korean",
+      "Chinese",
+      "Other Asian / South East Asian",
+      "Australian",
+      "American",
+      "Mexican",
+      "Middle Eastern/Lebanese/Turkish",
+      "Other"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 42,
+    "timestamp": 1755353405.2321405,
+    "session_id": "learning_1755350815",
+    "question_text": "Your 2nd most recent DINNER which was EATEN AT RESTAURANT / CAF\u00c9 / FOOD OUTLET.\n\nWhich of these best describes the type of cuisine you had?",
+    "question_type": "multi_select",
+    "response_value": "Thai",
+    "response_values": [
+      "Thai"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

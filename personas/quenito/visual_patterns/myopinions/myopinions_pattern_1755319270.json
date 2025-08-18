@@ -1,0 +1,26 @@
+{
+  "id": "myopinions_pattern_1755319270",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T14:41:10.724878",
+  "screenshot": "vision_data/question_2_1755319270.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "question_text": "Thank you for participating in this survey about travel and tourism. We are interested in your opinions regardless of whether you have travelled recently or not.",
+    "clickable_elements": [],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 2,
+    "timestamp": 1755319270.6730473,
+    "session_id": "learning_1755318841",
+    "question_text": "Question text not found",
+    "question_type": "general",
+    "response_value": "",
+    "response_values": [],
+    "vision_confidence": 90,
+    "vision_type": "text"
+  }
+}

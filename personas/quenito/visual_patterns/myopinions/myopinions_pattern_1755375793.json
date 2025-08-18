@@ -1,0 +1,27 @@
+{
+  "id": "myopinions_pattern_1755375793",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T06:23:13.710679",
+  "screenshot": "vision_data/question_95_1755375793.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "How would you describe your financial position? Please select one only",
+    "clickable_elements": [
+      "Very comfortable - money isn't an issue and we can afford the nicer things in life",
+      "Comfortable - money isn't an issue, but we do try and save money when we can",
+      "Uncomfortable - money is an issue, but we get by day today",
+      "Very uncomfortable - money is an issue and we struggle to get by day to day",
+      "Rather not say"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Comfortable - money isn't an issue, but we do try and save money when we can",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

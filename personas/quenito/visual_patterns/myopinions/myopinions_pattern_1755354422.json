@@ -1,0 +1,33 @@
+{
+  "id": "myopinions_pattern_1755354422",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T00:27:02.758131",
+  "screenshot": "vision_data/question_57_1755354422.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Thinking back to the following meal occasion(s), was PORK on the main menu or on the specials menu only?",
+    "clickable_elements": [
+      "On main menu",
+      "On specials menu only",
+      "Not sure"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 57,
+    "timestamp": 1755354422.6764977,
+    "session_id": "learning_1755350815",
+    "question_text": "Thinking back to the following meal occasion(s), was PORK on the main menu or on the specials menu only?",
+    "question_type": "general",
+    "response_value": "On main menu",
+    "response_values": [
+      "On main menu",
+      "On main menu"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

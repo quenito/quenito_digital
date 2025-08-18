@@ -1,0 +1,21 @@
+{
+  "id": "myopinions_pattern_1755374395",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:59:55.055520",
+  "screenshot": "vision_data/question_55_1755374395.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "question_text": "Which aged care/retirement home brands have you heard of?",
+    "clickable_elements": [],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Somewhat familiar with aged care/retirement home brands.",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

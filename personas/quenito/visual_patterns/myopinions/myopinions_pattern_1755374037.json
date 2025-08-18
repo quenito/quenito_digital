@@ -1,0 +1,28 @@
+{
+  "id": "myopinions_pattern_1755374037",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:53:57.230532",
+  "screenshot": "vision_data/question_43_1755374037.png",
+  "vision_analysis": {
+    "question_type": "not specified",
+    "question_text": "This section is about In-Home Care",
+    "clickable_elements": [],
+    "continue_button_visible": true,
+    "confidence_rating": 80
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 43,
+    "timestamp": 1755374036.9861817,
+    "session_id": "learning_1755371916",
+    "question_text": "Which in-home care providers have you heard of?",
+    "question_type": "general",
+    "response_value": "united age care",
+    "response_values": [
+      "united age care"
+    ],
+    "vision_confidence": 80,
+    "vision_type": "not specified"
+  }
+}

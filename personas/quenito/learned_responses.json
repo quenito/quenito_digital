@@ -1,0 +1,67 @@
+{
+  "how old are you?": {
+    "answer": "45",
+    "element_type": "text",
+    "count": 1
+  },
+  "please state your gender.": {
+    "answer": "Man",
+    "element_type": "radio",
+    "count": 1
+  },
+  "do you live in any of the following urban areas?": {
+    "answer": "Greater Sydney area",
+    "element_type": "radio",
+    "count": 1
+  },
+  "which car brands have you seen or heard advertising electric cars lately?": {
+    "answer": "Tesla, Hyundai, Nissan, Ford",
+    "element_type": "text",
+    "count": 1
+  },
+  "if you were to buy an electric car today, which brand would be your first choice?": {
+    "answer": "Tesla",
+    "element_type": "text",
+    "count": 1
+  },
+  "which other electric car brands would you consider?": {
+    "answer": "Tesla, Nissan, Hyundai, Kia",
+    "element_type": "text",
+    "count": 1
+  },
+  "which of the below brands' electric cars have you heard of?": {
+    "answer": "Tesla",
+    "element_type": "checkbox",
+    "count": 1
+  },
+  "which of the below brands have you seen or heard advertising electric cars lately?": {
+    "answer": "None",
+    "element_type": "checkbox",
+    "count": 1
+  },
+  "do you have access to a car in your household (also via sharing services, car pool etc)?": {
+    "answer": "Yes",
+    "element_type": "radio",
+    "count": 1
+  },
+  "do you have an electric or electric hybrid car within your household?": {
+    "answer": "No",
+    "element_type": "checkbox",
+    "count": 1
+  },
+  "if you were to buy a car today, what type of car would you most likely choose?": {
+    "answer": "Petrol engine car",
+    "element_type": "radio",
+    "count": 1
+  },
+  "if you were to buy a car today, how likely would you be to buy an electric car?": {
+    "answer": "Likely",
+    "element_type": "radio",
+    "count": 1
+  },
+  "what is your personal total income before tax per year?": {
+    "answer": "$100 001 - $120 000",
+    "element_type": "radio",
+    "count": 1
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "myopinions_pattern_1755375784",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T06:23:04.215665",
+  "screenshot": "vision_data/question_94_1755375784.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "What is your annual household income (before tax)?",
+    "clickable_elements": [
+      "Less than $50,000",
+      "$50,000 - $74,999",
+      "$75,000 - $99,999",
+      "$100,000 - $149,999",
+      "$150,000 - $199,999",
+      "$200,000 and above",
+      "Rather not say"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "$100,000 - $149,999",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

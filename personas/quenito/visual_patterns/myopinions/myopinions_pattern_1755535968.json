@@ -1,0 +1,36 @@
+{
+  "id": "myopinions_pattern_1755535968",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T02:52:48.213875",
+  "screenshot": "vision_data/question_9_1755535968.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which of the below brands have you seen or heard advertising ELECTRIC CARS lately?",
+    "clickable_elements": [
+      "Polestar",
+      "Mercedes",
+      "Tesla",
+      "Genesis",
+      "Hyundai",
+      "BMW",
+      "Volvo",
+      "Volkswagen",
+      "Kia",
+      "Cupra",
+      "Porsche",
+      "Lexus",
+      "Audi",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 85
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "None",
+    "confidence": 0.9,
+    "reason": "llm_automated"
+  }
+}

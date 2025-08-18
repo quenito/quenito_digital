@@ -1,0 +1,36 @@
+{
+  "id": "myopinions_pattern_1755374607",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T06:03:27.027704",
+  "screenshot": "vision_data/question_62_1755374607.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which of the following four-wheel drive insurance brands have you heard of? (Note: this includes insurance for vehicles, caravans or camper trailers)",
+    "clickable_elements": [
+      "RAC",
+      "NRMA",
+      "Youi",
+      "AAMI",
+      "Allianz",
+      "Budget Direct",
+      "Club 4X4 Insurance",
+      "CIL Insurance",
+      "RACV",
+      "RACQ",
+      "Shannons",
+      "KT Insurance",
+      "Other (please specify)",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Somewhat familiar",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

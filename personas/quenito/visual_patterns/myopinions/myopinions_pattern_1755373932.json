@@ -1,0 +1,28 @@
+{
+  "id": "myopinions_pattern_1755373932",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:52:12.572085",
+  "screenshot": "vision_data/question_37_1755373932.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "exact_question_text": "This section is about New Builds",
+    "clickable_elements": [],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 37,
+    "timestamp": 1755373932.3727832,
+    "session_id": "learning_1755371916",
+    "question_text": "Which new build construction brands have you heard of?",
+    "question_type": "brand_awareness",
+    "response_value": "dont know",
+    "response_values": [
+      "dont know"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "text"
+  }
+}

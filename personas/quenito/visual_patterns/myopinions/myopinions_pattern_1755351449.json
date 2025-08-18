@@ -1,0 +1,31 @@
+{
+  "id": "myopinions_pattern_1755351449",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T23:37:29.068027",
+  "screenshot": "vision_data/question_1_1755351449.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Are you\u2026? Please select one only",
+    "clickable_elements": [
+      "Male",
+      "Female"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 100
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 1,
+    "timestamp": 1755351448.992089,
+    "session_id": "learning_1755350815",
+    "question_text": "Question text not found",
+    "question_type": "general",
+    "response_value": "Male",
+    "response_values": [
+      "Male"
+    ],
+    "vision_confidence": 100,
+    "vision_type": "radio"
+  }
+}

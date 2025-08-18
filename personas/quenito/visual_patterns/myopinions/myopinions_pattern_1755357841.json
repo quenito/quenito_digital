@@ -1,0 +1,35 @@
+{
+  "id": "myopinions_pattern_1755357841",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:24:01.455523",
+  "screenshot": "vision_data/question_31_1755357841.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Which of the following best describes the property that you are living in?",
+    "clickable_elements": [
+      "Standalone / detached house",
+      "Strata house (e.g. villa, townhouse)",
+      "Duplex (non-strata house)",
+      "Strata apartment (e.g., high-rise apartments)",
+      "Non-strata apartment (e.g. units)",
+      "Other (please specify):"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 31,
+    "timestamp": 1755357841.3041356,
+    "session_id": "learning_1755355433",
+    "question_text": "Which of the following best describes the property that you are living in?",
+    "question_type": "multi_select",
+    "response_value": "Duplex (non-strata house)",
+    "response_values": [
+      "Duplex (non-strata house)"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "myopinions_pattern_1755374779",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T06:06:19.207449",
+  "screenshot": "vision_data/question_64_1755374779.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which of the following four-wheel drive insurance brands have you used? (Note: this includes insurance for vehicles, caravans or camper trailers)",
+    "clickable_elements": [
+      "Allianz",
+      "RACV",
+      "Budget Direct",
+      "Youi",
+      "RAC",
+      "NRMA",
+      "Somewhat familiar",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Somewhat familiar",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "myopinions_pattern_1755354760",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T00:32:40.265346",
+  "screenshot": "vision_data/question_63_1755354760.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "exact_question_text": "Sorry! We closed the survey early because it doesn't seem like you're part of the target group it's looking to research.",
+    "clickable_elements": [
+      "120 points",
+      "170 points",
+      "350 points",
+      "15,000 points",
+      "Go to my account",
+      "START SURVEY",
+      "START OFFER"
+    ],
+    "continue_button_visible": false,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 63,
+    "timestamp": 1755354760.1867309,
+    "session_id": "learning_1755350815",
+    "question_text": "Question text not found",
+    "question_type": "general",
+    "response_value": "",
+    "response_values": [],
+    "vision_confidence": 90,
+    "vision_type": "text"
+  }
+}

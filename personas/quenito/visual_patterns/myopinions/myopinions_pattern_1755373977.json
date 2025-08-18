@@ -1,0 +1,24 @@
+{
+  "id": "myopinions_pattern_1755373977",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:52:57.246702",
+  "screenshot": "vision_data/question_41_1755373977.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "exact_question_text": "Which brands of new build construction would you consider using? Please select all that apply",
+    "clickable_elements": [
+      "Somewhat familiar",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Somewhat familiar",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

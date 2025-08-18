@@ -1,0 +1,26 @@
+{
+  "id": "myopinions_pattern_1755358191",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:29:51.309837",
+  "screenshot": "vision_data/question_38_1755358191.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "question_text": "Thanks for completing the survey",
+    "clickable_elements": [],
+    "continue_button_visible": false,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 38,
+    "timestamp": 1755358191.2512205,
+    "session_id": "learning_1755355433",
+    "question_text": "Question text not found",
+    "question_type": "general",
+    "response_value": "",
+    "response_values": [],
+    "vision_confidence": 90,
+    "vision_type": "text"
+  }
+}

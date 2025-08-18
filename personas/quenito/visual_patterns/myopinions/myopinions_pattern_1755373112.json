@@ -1,0 +1,38 @@
+{
+  "id": "myopinions_pattern_1755373112",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:38:32.162578",
+  "screenshot": "vision_data/question_18_1755373112.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which health insurance comparison websites would you consider using?",
+    "clickable_elements": [
+      "Finder",
+      "CHOICE",
+      "iSelect",
+      "Canstar",
+      "Compare the Market",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 18,
+    "timestamp": 1755373112.0828695,
+    "session_id": "learning_1755371916",
+    "question_text": "Which health insurance comparison websites would you consider using?",
+    "question_type": "general",
+    "response_value": "1",
+    "response_values": [
+      "1",
+      "1",
+      "1",
+      "1"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

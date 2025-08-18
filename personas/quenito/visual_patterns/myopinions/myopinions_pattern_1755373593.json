@@ -1,0 +1,39 @@
+{
+  "id": "myopinions_pattern_1755373593",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:46:33.538368",
+  "screenshot": "vision_data/question_34_1755373593.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Do you feel Finder ...?",
+    "clickable_elements": [
+      "Is for people like me",
+      "Provides unbiased recommendations",
+      "Is a brand I trust",
+      "Is passionate about what they do",
+      "Offers expert advice",
+      "Has good customer service",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 34,
+    "timestamp": 1755373593.4643996,
+    "session_id": "learning_1755371916",
+    "question_text": "Do you feel Finder ...?",
+    "question_type": "general",
+    "response_value": "1",
+    "response_values": [
+      "1",
+      "1",
+      "1",
+      "1"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

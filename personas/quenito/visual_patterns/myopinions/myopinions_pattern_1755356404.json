@@ -1,0 +1,37 @@
+{
+  "id": "myopinions_pattern_1755356404",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:00:04.346607",
+  "screenshot": "vision_data/question_14_1755356404.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "How old are each of these gas applications that you have?",
+    "clickable_elements": [
+      "Less than a year",
+      "1\u20135 years",
+      "6\u201310 years",
+      "11\u201315 years",
+      "16+ years",
+      "Gas hot water",
+      "Gas cook top/stove"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 14,
+    "timestamp": 1755356404.1939192,
+    "session_id": "learning_1755355433",
+    "question_text": "How old are each of these gas appliances that you have?\n\nIf you have more than 1 of any appliance, answer for the newest one. Please take your best guess if unsure.",
+    "question_type": "demographics_age",
+    "response_value": "6\u201310 years",
+    "response_values": [
+      "6\u201310 years",
+      "6\u201310 years"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

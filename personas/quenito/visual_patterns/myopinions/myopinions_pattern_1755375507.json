@@ -1,0 +1,39 @@
+{
+  "id": "myopinions_pattern_1755375507",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T06:18:27.665954",
+  "screenshot": "vision_data/question_83_1755375507.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "exact_question_text": "Do you feel Allianz ...? Please select all that apply",
+    "clickable_elements": [
+      "Has great customer service",
+      "Is value for money",
+      "Is a brand I trust",
+      "Will support me when I make a claim",
+      "Insures my vehicle for off-road adventures",
+      "Covers my modifications for what they are worth",
+      "Is for people like me",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 83,
+    "timestamp": 1755375507.5209348,
+    "session_id": "learning_1755371916",
+    "question_text": "Do you feel Allianz ...?",
+    "question_type": "general",
+    "response_value": "1",
+    "response_values": [
+      "1",
+      "1",
+      "1"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

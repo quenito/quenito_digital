@@ -1,0 +1,24 @@
+{
+  "id": "myopinions_pattern_1755374091",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:54:51.448719",
+  "screenshot": "vision_data/question_46_1755374091.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Have you looked into any of these in-home care providers before? Please select all that apply",
+    "clickable_elements": [
+      "Somewhat familiar",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Somewhat familiar",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

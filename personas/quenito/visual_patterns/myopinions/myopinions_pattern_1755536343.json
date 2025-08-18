@@ -1,0 +1,29 @@
+{
+  "id": "myopinions_pattern_1755536343",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T02:59:03.900032",
+  "screenshot": "vision_data/question_16_1755536343.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "If you were to buy a car today, what type of car would you most likely choose?",
+    "clickable_elements": [
+      "Petrol engine car",
+      "Diesel engine car",
+      "Hybrid car",
+      "Plugin hybrid car",
+      "Electric car",
+      "Other",
+      "Not applicable / Don't know"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Petrol engine car",
+    "confidence": 0.9,
+    "reason": "llm_automated"
+  }
+}

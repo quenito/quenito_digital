@@ -1,0 +1,31 @@
+{
+  "id": "myopinions_pattern_1755374171",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:56:11.202737",
+  "screenshot": "vision_data/question_47_1755374171.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which in-home care providers would you consider using?",
+    "clickable_elements": [
+      "Somewhat familiar",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 47,
+    "timestamp": 1755374171.080186,
+    "session_id": "learning_1755371916",
+    "question_text": "Which in-home care providers would you consider using?",
+    "question_type": "general",
+    "response_value": "1",
+    "response_values": [
+      "1"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

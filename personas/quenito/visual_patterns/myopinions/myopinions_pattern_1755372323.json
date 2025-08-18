@@ -1,0 +1,42 @@
+{
+  "id": "myopinions_pattern_1755372323",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:25:23.951162",
+  "screenshot": "vision_data/question_6_1755372323.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which of the following food and drink brands are you aware of?",
+    "clickable_elements": [
+      "Golden Circle",
+      "Muffin Break",
+      "McDonalds",
+      "Ze Pickle",
+      "Nexba",
+      "KFC",
+      "Coca-Cola",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 6,
+    "timestamp": 1755372323.8539577,
+    "session_id": "learning_1755371916",
+    "question_text": "Which of the following food and drink brands are you aware of?",
+    "question_type": "brand_awareness",
+    "response_value": "1",
+    "response_values": [
+      "1",
+      "1",
+      "1",
+      "1",
+      "1",
+      "1"
+    ],
+    "vision_confidence": 95,
+    "vision_type": "checkbox"
+  }
+}

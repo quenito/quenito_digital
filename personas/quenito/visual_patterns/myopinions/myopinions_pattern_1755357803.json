@@ -1,0 +1,39 @@
+{
+  "id": "myopinions_pattern_1755357803",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:23:23.923904",
+  "screenshot": "vision_data/question_29_1755357803.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "What is your annual household income (pre-tax)?",
+    "clickable_elements": [
+      "Under $40,000",
+      "$40,000 - $59,999",
+      "$60,000 - $79,999",
+      "$80,000 - $99,999",
+      "$100,000 - $119,999",
+      "$120,000 - $149,999",
+      "$150,000 - $179,999",
+      "$180,000 - $199,999",
+      "$200,000 or more",
+      "Prefer not to say"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 29,
+    "timestamp": 1755357803.7954729,
+    "session_id": "learning_1755355433",
+    "question_text": "What is your annual household income (pre-tax)?",
+    "question_type": "demographics_age",
+    "response_value": "Under $40,000",
+    "response_values": [
+      "Under $40,000"
+    ],
+    "vision_confidence": 95,
+    "vision_type": "radio"
+  }
+}

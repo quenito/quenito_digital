@@ -1,0 +1,47 @@
+{
+  "id": "myopinions_pattern_1755323169",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T15:46:09.815926",
+  "screenshot": "vision_data/question_14_1755323169.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "exact_question_text": "On which of the following would you like your local tourism industry to most focus in the future (select up to three options)?",
+    "clickable_elements": [
+      "Protecting or enhancing cultural heritage sites",
+      "Attracting higher quality visitors (e.g. visitors who stay longer or spend more)",
+      "Attracting more domestic visitors",
+      "Attracting more international visitors",
+      "Developing/promoting more 'authentic' and/or indigenous experiences for visitors to my community",
+      "Involving visitors in the regeneration of my local environment (e.g. restore native species and ecosystems)",
+      "Creating employment for people in my community",
+      "Encouraging visitors to adopt more sustainable travel practices",
+      "Improving the profitability of tourism businesses",
+      "Encouraging visitors to travel more widely so that more communities benefit",
+      "Improving community infrastructure (e.g. roads, waste water treatment, toilet facilities)",
+      "Improving safety for visitors",
+      "Reducing the impact of visitors on my local environment",
+      "More regular consultation/engagement with my community",
+      "Improving safety for my community",
+      "Encouraging visitors to travel outside of the peak season",
+      "None of these",
+      "Other (please specify)"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 14,
+    "timestamp": 1755323169.7755132,
+    "session_id": "learning_1755318841",
+    "question_text": "Question text not found",
+    "question_type": "general",
+    "response_value": "99506",
+    "response_values": [
+      "99506"
+    ],
+    "vision_confidence": 95,
+    "vision_type": "checkbox"
+  }
+}

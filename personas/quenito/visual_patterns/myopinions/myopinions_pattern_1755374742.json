@@ -1,0 +1,37 @@
+{
+  "id": "myopinions_pattern_1755374742",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T06:05:42.424076",
+  "screenshot": "vision_data/question_63_1755374742.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "How well do you know ...?",
+    "clickable_elements": [
+      "I know them very well",
+      "I know a little about them",
+      "I only know the name"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 63,
+    "timestamp": 1755374742.2467859,
+    "session_id": "learning_1755371916",
+    "question_text": "How well do you know ...?",
+    "question_type": "general",
+    "response_value": "I know a little about them",
+    "response_values": [
+      "I know a little about them",
+      "I know a little about them",
+      "I know a little about them",
+      "I know a little about them",
+      "I know a little about them",
+      "I know a little about them"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

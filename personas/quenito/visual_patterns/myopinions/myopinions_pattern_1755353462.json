@@ -1,0 +1,42 @@
+{
+  "id": "myopinions_pattern_1755353462",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T00:11:02.765770",
+  "screenshot": "vision_data/question_44_1755353462.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "What meat(s) did you eat on this occasion?",
+    "clickable_elements": [
+      "Chicken",
+      "Lamb",
+      "Duck",
+      "Fish",
+      "Seafood (other than fish)",
+      "Ham",
+      "Veal",
+      "Bacon",
+      "Beef",
+      "Pork",
+      "Other meat",
+      "No meat / vegetarian"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 44,
+    "timestamp": 1755353462.6612315,
+    "session_id": "learning_1755350815",
+    "question_text": "Your 2nd most recent DINNER which was EATEN AT RESTAURANT / CAF\u00c9 / FOOD OUTLET.\n\nWhat meat(s) did you eat on this occasion?",
+    "question_type": "general",
+    "response_value": "1",
+    "response_values": [
+      "1",
+      "1"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

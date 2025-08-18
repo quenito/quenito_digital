@@ -1,0 +1,49 @@
+{
+  "id": "myopinions_pattern_1755353038",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T00:03:58.015800",
+  "screenshot": "vision_data/question_33_1755353038.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "What are the main reason/s you chose this outlet for this particular occasion?",
+    "clickable_elements": [
+      "Special occasion / celebration",
+      "Read or heard about it",
+      "Friend / family recommendation",
+      "Had a voucher / discount",
+      "Good value for money",
+      "Cheap / low cost",
+      "Chosen due to seating, atmosphere or location (food was secondary)",
+      "Was already drinking / socialising there (food was secondary)",
+      "All that was available",
+      "Easy to take away / eat on the go",
+      "Convenient location",
+      "Good service",
+      "Fast to obtain food",
+      "I like the food",
+      "Good menu / menu variety",
+      "Has healthy options",
+      "I specifically wanted / had craving for that type of food",
+      "Someone else decided / person I was with decided",
+      "Other (please specify)"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 33,
+    "timestamp": 1755353037.9526308,
+    "session_id": "learning_1755350815",
+    "question_text": "Your most recent DINNER which was EATEN AT RESTAURANT / CAF\u00c9 / FOOD OUTLET.\n\nWhat are the main reason/s you chose this outlet for this particular occasion?",
+    "question_type": "general",
+    "response_value": "1",
+    "response_values": [
+      "1",
+      "restaurant at resort we were staying at"
+    ],
+    "vision_confidence": 95,
+    "vision_type": "checkbox"
+  }
+}

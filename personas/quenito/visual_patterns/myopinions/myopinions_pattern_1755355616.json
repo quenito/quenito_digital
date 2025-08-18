@@ -1,0 +1,34 @@
+{
+  "id": "myopinions_pattern_1755355616",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T00:46:56.846451",
+  "screenshot": "vision_data/question_1_1755355616.png",
+  "vision_analysis": {
+    "question_type": "text and radio",
+    "exact_question_text": "Are you...?",
+    "clickable_elements": [
+      "Male",
+      "Female",
+      "Self-identify (please specify)"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 1,
+    "timestamp": 1755355616.7210927,
+    "session_id": "learning_1755355433",
+    "question_text": "Please type in your age in years:",
+    "question_type": "demographics_age",
+    "response_value": "Male",
+    "response_values": [
+      "Male",
+      "45",
+      "2217"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "text and radio"
+  }
+}

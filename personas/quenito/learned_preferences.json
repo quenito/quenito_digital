@@ -1,0 +1,79 @@
+{
+  "question_patterns": {},
+  "brand_responses": {},
+  "activity_responses": {},
+  "successful_answers": [
+    {
+      "timestamp": "2025-08-19T00:22:37.723037",
+      "question": "",
+      "answer": "Male",
+      "type": "radio"
+    },
+    {
+      "timestamp": "2025-08-19T00:22:47.429545",
+      "question": "",
+      "answer": "Male",
+      "type": "radio"
+    },
+    {
+      "timestamp": "2025-08-19T00:22:55.902184",
+      "question": "",
+      "answer": "Male",
+      "type": "radio"
+    },
+    {
+      "timestamp": "2025-08-19T00:23:05.147378",
+      "question": "",
+      "answer": "Male",
+      "type": "radio"
+    },
+    {
+      "timestamp": "2025-08-19T00:23:13.705394",
+      "question": "",
+      "answer": "Male",
+      "type": "radio"
+    },
+    {
+      "timestamp": "2025-08-19T00:23:22.294651",
+      "question": "",
+      "answer": "Male",
+      "type": "radio"
+    },
+    {
+      "timestamp": "2025-08-19T00:23:31.068549",
+      "question": "",
+      "answer": "Male",
+      "type": "radio"
+    },
+    {
+      "timestamp": "2025-08-19T00:23:38.644760",
+      "question": "",
+      "answer": "Male",
+      "type": "radio"
+    },
+    {
+      "timestamp": "2025-08-19T00:23:47.651196",
+      "question": "",
+      "answer": "Male",
+      "type": "radio"
+    },
+    {
+      "timestamp": "2025-08-19T00:23:55.055953",
+      "question": "",
+      "answer": "Male",
+      "type": "radio"
+    },
+    {
+      "timestamp": "2025-08-19T00:24:03.732243",
+      "question": "",
+      "answer": "Male",
+      "type": "radio"
+    },
+    {
+      "timestamp": "2025-08-19T00:24:11.873585",
+      "question": "",
+      "answer": "Male",
+      "type": "radio"
+    }
+  ]
+}

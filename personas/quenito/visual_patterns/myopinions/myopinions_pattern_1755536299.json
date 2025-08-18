@@ -1,0 +1,30 @@
+{
+  "id": "myopinions_pattern_1755536299",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T02:58:19.613260",
+  "screenshot": "vision_data/question_14_1755536299.png",
+  "vision_analysis": {
+    "question_type": "dropdown",
+    "question_text": "What is the approximate age of your car?",
+    "clickable_elements": [
+      "Select one..."
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 14,
+    "timestamp": 1755536299.4737635,
+    "session_id": "learning_1755535431",
+    "question_text": "What is the approximate age of your car?",
+    "question_type": "demographics_age",
+    "response_value": "10 years or more",
+    "response_values": [
+      "10 years or more"
+    ],
+    "vision_confidence": 95,
+    "vision_type": "dropdown"
+  }
+}
