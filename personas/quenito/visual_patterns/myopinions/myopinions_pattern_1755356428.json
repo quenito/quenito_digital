@@ -1,0 +1,33 @@
+{
+  "id": "myopinions_pattern_1755356428",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:00:28.175363",
+  "screenshot": "vision_data/question_15_1755356428.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "If you had to replace any of these gas appliances, would you choose another gas appliance, or switch to an electric one?",
+    "clickable_elements": [
+      "Another gas appliance",
+      "Switch to electric appliance",
+      "Unsure at this stage"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 15,
+    "timestamp": 1755356428.004097,
+    "session_id": "learning_1755355433",
+    "question_text": "If you had to replace any of these gas appliances, would you choose another gas appliance, or switch to an electric one?",
+    "question_type": "general",
+    "response_value": "Another gas appliance",
+    "response_values": [
+      "Another gas appliance",
+      "Another gas appliance"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

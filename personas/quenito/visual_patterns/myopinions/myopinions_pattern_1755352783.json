@@ -1,0 +1,49 @@
+{
+  "id": "myopinions_pattern_1755352783",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T23:59:43.101953",
+  "screenshot": "vision_data/question_25_1755352783.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "exact_question_text": "What are the main reason/s you chose this outlet for this particular occasion?",
+    "clickable_elements": [
+      "I like the food",
+      "Has healthy options",
+      "I specifically wanted / had craving for that type of food",
+      "Good menu / menu variety",
+      "Had a voucher / discount",
+      "Cheap / low cost",
+      "Good value for money",
+      "Friend / family recommendation",
+      "Read or heard about it",
+      "Special occasion / celebration",
+      "Fast to obtain food",
+      "Good service",
+      "Chosen due to seating, atmosphere or location (food was secondary)",
+      "All that was available",
+      "Easy to take away / eat on the go",
+      "Convenient location",
+      "Was already drinking / socialising there (food was secondary)",
+      "Someone else decided / person I was with decided",
+      "Other (please specify)"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 25,
+    "timestamp": 1755352783.0055537,
+    "session_id": "learning_1755350815",
+    "question_text": "Your 3rd most recent LUNCH which was EATEN AT RESTAURANT / CAF\u00c9 / FOOD OUTLET.\n\nWhat are the main reason/s you chose this outlet for this particular occasion?",
+    "question_type": "general",
+    "response_value": "1",
+    "response_values": [
+      "1",
+      "beach side cafe at resort we were staying at"
+    ],
+    "vision_confidence": 95,
+    "vision_type": "checkbox"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "myopinions_pattern_1755524967",
+  "platform": "myopinions",
+  "timestamp": "2025-08-18T23:49:27.656112",
+  "screenshot": "vision_data/question_2_1755524967.png",
+  "vision_analysis": {
+    "question_type": "multiple choice",
+    "question_text": "Are you\u2026?",
+    "clickable_elements": [
+      "Male",
+      "Female",
+      "Identify another way"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "MultiQuestionHandler",
+    "response_value": "Multiple questions answered",
+    "confidence": 0.9,
+    "reason": "multi_question_automated"
+  }
+}

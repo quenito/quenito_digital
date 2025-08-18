@@ -1,0 +1,63 @@
+# Dockerfile for Quenito Survey Automation
+FROM mcr.microsoft.com/playwright/python:v1.40.0-focal
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg \
+    xvfb \
+    x11vnc \
+    fluxbox \
+    novnc \
+    websockify \
+    supervisor \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set up display for headful browser
+ENV DISPLAY=:99
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install Playwright browsers with dependencies
+RUN playwright install chromium
+RUN playwright install-deps chromium
+
+# Copy application code
+COPY . /app/
+
+# Create necessary directories
+RUN mkdir -p /app/personas/quenito/visual_patterns/myopinions \
+    /app/personas/quenito/visual_patterns/yougov \
+    /app/personas/quenito/reporting \
+    /app/browser_profiles/quenito_myopinions \
+    /app/vision_data \
+    /app/logs
+
+# Setup supervisor for running multiple processes
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Expose VNC port for remote viewing (optional)
+EXPOSE 5900
+EXPOSE 6080
+
+# Set permissions
+RUN chmod -R 755 /app
+
+# Create startup script
+RUN echo '#!/bin/bash\n\
+Xvfb :99 -screen 0 1920x1080x24 &\n\
+sleep 2\n\
+x11vnc -display :99 -forever -usepw -create &\n\
+websockify --web=/usr/share/novnc/ 6080 localhost:5900 &\n\
+cd /app\n\
+python quenito_learning_with_automation.py\n\
+' > /app/start.sh && chmod +x /app/start.sh
+
+# Default command
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

@@ -1,0 +1,32 @@
+{
+  "id": "myopinions_pattern_1755356681",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:04:41.361513",
+  "screenshot": "vision_data/question_23_1755356681.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Do you recall seeing or hearing any advertising about the future of Australian gas being renewable gas?",
+    "clickable_elements": [
+      "Yes",
+      "No",
+      "Don't know/not sure"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 23,
+    "timestamp": 1755356681.2680998,
+    "session_id": "learning_1755355433",
+    "question_text": "Do you recall seeing or hearing any advertising about the future of Australian gas being renewable gas?",
+    "question_type": "general",
+    "response_value": "No",
+    "response_values": [
+      "No"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "id": "myopinions_pattern_1755366259",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T03:44:19.460486",
+  "screenshot": "vision_data/question_9_1755366259.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "exact_question_text": "Which describes your current employment type?",
+    "clickable_elements": [
+      "Full-time",
+      "Part-time/casual",
+      "Consultant/contractor/freelance",
+      "Sole proprietor (no employees)",
+      "Business owner (with employees)",
+      "Home Duties (maternity/paternity leave; looking after children etc.)",
+      "Student",
+      "Unemployed",
+      "Retired",
+      "Other (please specify)",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Full-time",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

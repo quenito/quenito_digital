@@ -1,0 +1,33 @@
+{
+  "id": "myopinions_pattern_1755321486",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T15:18:06.239814",
+  "screenshot": "vision_data/question_4_1755321486.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Are you?",
+    "clickable_elements": [
+      "Male",
+      "Female",
+      "Another gender",
+      "Prefer not to say"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 4,
+    "timestamp": 1755321486.0836906,
+    "session_id": "learning_1755318841",
+    "question_text": "Question text not found",
+    "question_type": "general",
+    "response_value": "Male",
+    "response_values": [
+      "Male"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

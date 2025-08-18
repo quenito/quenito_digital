@@ -1,0 +1,25 @@
+{
+  "id": "myopinions_pattern_1755366240",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T03:44:00.680991",
+  "screenshot": "vision_data/question_6_1755366240.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "What gender do you identify with?",
+    "clickable_elements": [
+      "Male",
+      "Female",
+      "Gender fluid/diverse/non-binary"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Male",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

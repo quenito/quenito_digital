@@ -1,0 +1,28 @@
+{
+  "id": "myopinions_pattern_1755374891",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T06:08:11.467560",
+  "screenshot": "vision_data/question_76_1755374891.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "question_text": "Thinking about four-wheel drive insurance, what comes to mind when you think about...? (Note: this includes insurance for vehicles, caravans or camper trailers)",
+    "clickable_elements": [
+      "Allianz",
+      "Youi",
+      "NRMA",
+      "Budget Direct",
+      "RACV",
+      "RAC"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Comprehensive coverage, peace of mind, protection against accidents and damages, roadside assistance, and affordability.",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

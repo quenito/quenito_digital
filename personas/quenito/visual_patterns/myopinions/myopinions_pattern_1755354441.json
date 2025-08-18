@@ -1,0 +1,28 @@
+{
+  "id": "myopinions_pattern_1755354441",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T00:27:21.949229",
+  "screenshot": "vision_data/question_58_1755354441.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "question_text": "Finally, a few questions about yourself for classification purposes.",
+    "clickable_elements": [],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 58,
+    "timestamp": 1755354441.794192,
+    "session_id": "learning_1755350815",
+    "question_text": "What is your highest level of education?",
+    "question_type": "general",
+    "response_value": "Completed Year 12 of school",
+    "response_values": [
+      "Completed Year 12 of school"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "text"
+  }
+}

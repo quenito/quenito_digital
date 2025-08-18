@@ -1,0 +1,40 @@
+{
+  "id": "myopinions_pattern_1755323501",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T15:51:41.287901",
+  "screenshot": "vision_data/question_19_1755323501.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "exact_question_text": "To help with our quality control processes, please select '3' on the scale from 1 to 10 below",
+    "clickable_elements": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 19,
+    "timestamp": 1755323501.176714,
+    "session_id": "learning_1755318841",
+    "question_text": "Question text not found",
+    "question_type": "general",
+    "response_value": "3",
+    "response_values": [
+      "3",
+      "3"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

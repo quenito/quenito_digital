@@ -1,0 +1,27 @@
+{
+  "id": "myopinions_pattern_1755536354",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T02:59:14.807324",
+  "screenshot": "vision_data/question_17_1755536354.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "exact_question_text": "If you were to buy a car today, how likely would you be to buy an ELECTRIC CAR?",
+    "clickable_elements": [
+      "Very likely",
+      "Likely",
+      "Neither likely nor unlikely",
+      "Unlikely",
+      "Very unlikely"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Likely",
+    "confidence": 0.9,
+    "reason": "llm_automated"
+  }
+}

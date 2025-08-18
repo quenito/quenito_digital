@@ -1,0 +1,39 @@
+{
+  "id": "myopinions_pattern_1755373761",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:49:21.105393",
+  "screenshot": "vision_data/question_35_1755373761.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Do you feel Canstar ...?",
+    "clickable_elements": [
+      "Is passionate about what they do",
+      "Offers expert advice",
+      "Is for people like me",
+      "Provides unbiased recommendations",
+      "Is a brand I trust",
+      "Has good customer service",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 35,
+    "timestamp": 1755373761.0316865,
+    "session_id": "learning_1755371916",
+    "question_text": "Do you feel Canstar ...?",
+    "question_type": "general",
+    "response_value": "1",
+    "response_values": [
+      "1",
+      "1",
+      "1",
+      "1"
+    ],
+    "vision_confidence": 95,
+    "vision_type": "checkbox"
+  }
+}

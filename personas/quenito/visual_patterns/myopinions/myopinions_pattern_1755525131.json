@@ -1,0 +1,27 @@
+{
+  "id": "myopinions_pattern_1755525131",
+  "platform": "myopinions",
+  "timestamp": "2025-08-18T23:52:11.727175",
+  "screenshot": "vision_data/question_7_1755525131.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "exact_question_text": "How much influence do you have, or would you have, in deciding whether to get private health insurance and the type of policy you would choose?",
+    "clickable_elements": [
+      "Make the decision yourself",
+      "Strongly influence the decision",
+      "Have some influence on the decision",
+      "Have no influence on the decision",
+      "Don't Know"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "MultiQuestionHandler",
+    "response_value": "Multiple questions answered",
+    "confidence": 0.9,
+    "reason": "multi_question_automated"
+  }
+}

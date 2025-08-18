@@ -1,0 +1,48 @@
+{
+  "id": "myopinions_pattern_1755356738",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:05:38.730719",
+  "screenshot": "vision_data/question_24_1755356738.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "How do you feel about the following sources of energy?",
+    "clickable_elements": [
+      "Solar Power",
+      "Grid electricity",
+      "Natural Gas",
+      "Bio Gas / Bio Methane",
+      "Wind Power",
+      "Hydrogen",
+      "Renewable gas",
+      "Extremely positive",
+      "Somewhat positive",
+      "Neutral",
+      "Somewhat negative",
+      "Extremely negative",
+      "Don't know enough to have an opinion"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 24,
+    "timestamp": 1755356738.5236104,
+    "session_id": "learning_1755355433",
+    "question_text": "How do you feel about the following sources of energy?",
+    "question_type": "general",
+    "response_value": "Neutral",
+    "response_values": [
+      "Neutral",
+      "Somewhat positive",
+      "Somewhat positive",
+      "Don\u2019t know enough to have an opinion",
+      "Don\u2019t know enough to have an opinion",
+      "Don\u2019t know enough to have an opinion",
+      "Don\u2019t know enough to have an opinion"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

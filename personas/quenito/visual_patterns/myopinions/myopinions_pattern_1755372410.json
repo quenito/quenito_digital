@@ -1,0 +1,25 @@
+{
+  "id": "myopinions_pattern_1755372410",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:26:50.337206",
+  "screenshot": "vision_data/question_9_1755372410.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "In the past 2 years have you purchased or paid into a four-wheel drive vehicle, caravan or camper trailer insurance policy?",
+    "clickable_elements": [
+      "Yes",
+      "No, but I am open or likely to in the near future",
+      "No"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Yes",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

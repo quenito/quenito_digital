@@ -1,0 +1,40 @@
+{
+  "id": "myopinions_pattern_1755375589",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T06:19:49.833211",
+  "screenshot": "vision_data/question_84_1755375589.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Do you feel Budget Direct ...? Please select all that apply",
+    "clickable_elements": [
+      "Will support me when I make a claim",
+      "Covers my modifications for what they are worth",
+      "Is value for money",
+      "Has great customer service",
+      "Insures my vehicle for off-road adventures",
+      "Is for people like me",
+      "Is a brand I trust",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 84,
+    "timestamp": 1755375589.6839857,
+    "session_id": "learning_1755371916",
+    "question_text": "Do you feel Budget Direct ...?",
+    "question_type": "general",
+    "response_value": "1",
+    "response_values": [
+      "1",
+      "1",
+      "1",
+      "1"
+    ],
+    "vision_confidence": 95,
+    "vision_type": "checkbox"
+  }
+}

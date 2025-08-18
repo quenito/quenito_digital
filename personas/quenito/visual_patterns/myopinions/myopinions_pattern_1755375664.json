@@ -1,0 +1,24 @@
+{
+  "id": "myopinions_pattern_1755375664",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T06:21:04.318423",
+  "screenshot": "vision_data/question_90_1755375664.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Which is your preferred brand of insurance? Please select one only",
+    "clickable_elements": [
+      "Somewhat familiar",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Somewhat familiar",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

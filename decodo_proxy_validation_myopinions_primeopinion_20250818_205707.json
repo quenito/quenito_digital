@@ -1,0 +1,114 @@
+{
+  "connectivity": {
+    "success": true,
+    "proxy_ip": "163.47.70.80",
+    "response_time": 3.03
+  },
+  "geolocation": {
+    "is_australia": false,
+    "error": "403, message='Forbidden', url='http://user-quenito-country-au-city-sydney-sessionduration-60:2bMVyGu6_gepcV6g3n@gate.smartproxy.com:10001'"
+  },
+  "persona_matching": {
+    "matching_viable": false,
+    "postcode_precision_available": false,
+    "current_proxy_location": {
+      "city": "",
+      "state": "",
+      "postcode": "",
+      "targeting_precision": "UNKNOWN"
+    },
+    "compatible_personas": [],
+    "total_compatible_personas": 0,
+    "recommendation": "NEEDS_TARGETING_ADJUSTMENT"
+  },
+  "myopinions": {
+    "overall_pass": false,
+    "homepage": {
+      "success": true,
+      "status_code": 200,
+      "has_signup": true,
+      "has_login_link": true,
+      "no_geo_restrictions": false
+    },
+    "login_page": {
+      "success": false,
+      "status_code": 403,
+      "has_email_field": false,
+      "has_password_field": false,
+      "has_login_button": false,
+      "no_captcha_required": true
+    },
+    "dashboard": {
+      "success": true,
+      "status_code": 200,
+      "redirects_to_login": false,
+      "requires_auth": false
+    },
+    "login_flow": {
+      "login_endpoint_accessible": false,
+      "status_code": 403,
+      "no_geo_blocking": true,
+      "expected_auth_failure": false
+    }
+  },
+  "primeopinion": {
+    "no_vpn_detected": true,
+    "homepage": {
+      "success": true,
+      "status_code": 200,
+      "no_vpn_warning": true,
+      "has_login_option": true,
+      "content_length": 594249
+    },
+    "login": {
+      "success": true,
+      "status_code": 200,
+      "no_vpn_warning": true,
+      "has_login_form": false,
+      "loads_normally": true
+    },
+    "app_platform": {
+      "success": true,
+      "status_code": 200,
+      "no_vpn_warning": true,
+      "redirects_to_login": false,
+      "app_loads": true
+    },
+    "vpn_check": {
+      "no_vpn_detected": true,
+      "endpoints_tested": 3,
+      "results": [
+        {
+          "endpoint": "https://app.primeopinion.com/dashboard",
+          "status": 200,
+          "vpn_detected": false
+        },
+        {
+          "endpoint": "https://app.primeopinion.com/surveys",
+          "status": 200,
+          "vpn_detected": false
+        },
+        {
+          "endpoint": "https://app.primeopinion.com/profile",
+          "status": 200,
+          "vpn_detected": false
+        }
+      ]
+    }
+  },
+  "session_stickiness": {
+    "is_sticky": true,
+    "unique_ips": [
+      "163.47.70.80"
+    ],
+    "total_requests": 10,
+    "ip_changes": 0
+  },
+  "performance": {
+    "acceptable": true,
+    "avg_response_time": 3.54,
+    "success_rate": 1.0,
+    "total_tests": 5,
+    "successful_tests": 5
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "id": "myopinions_pattern_1755356515",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:01:55.753731",
+  "screenshot": "vision_data/question_19_1755356515.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "When do you think you might purchase these gas appliances?",
+    "clickable_elements": [
+      "Unsure at this stage",
+      "Yes, in the next year",
+      "Yes, in the next 2 years",
+      "Yes, in the next 3 years",
+      "Yes, in the next 4 years",
+      "Yes, in the next 5 years",
+      "Yes, in the next 6 - 8 years",
+      "Yes, in the next 9 - 10 years",
+      "Yes, in the next 11 - 20 years",
+      "Yes, but not in the next 20 years"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 19,
+    "timestamp": 1755356515.6932757,
+    "session_id": "learning_1755355433",
+    "question_text": "If you are / were no longer using any gas appliances, would you disconnect your home from the mains gas connection?",
+    "question_type": "general",
+    "response_value": "",
+    "response_values": [],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

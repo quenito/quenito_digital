@@ -1,0 +1,38 @@
+{
+  "id": "myopinions_pattern_1755357889",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:24:49.474357",
+  "screenshot": "vision_data/question_34_1755357889.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "exact_question_text": "When would you be most likely to install solar panels?",
+    "clickable_elements": [
+      "In the next year",
+      "In the next 2 years",
+      "In the next 3 years",
+      "In the next 4 years",
+      "In the next 5 years",
+      "In the next 6 - 8 years",
+      "In the next 9 - 10 years",
+      "In the next 11 - 20 years",
+      "Not in the next 20 years"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 100
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 34,
+    "timestamp": 1755357889.3414397,
+    "session_id": "learning_1755355433",
+    "question_text": "When would you be most likely to install solar panels?",
+    "question_type": "general",
+    "response_value": "In the next 2 years",
+    "response_values": [
+      "In the next 2 years"
+    ],
+    "vision_confidence": 100,
+    "vision_type": "radio"
+  }
+}

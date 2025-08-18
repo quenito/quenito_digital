@@ -1,0 +1,36 @@
+{
+  "id": "myopinions_pattern_1755374404",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T06:00:04.982101",
+  "screenshot": "vision_data/question_56_1755374404.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which of the following aged care/retirement home brands have you heard of?",
+    "clickable_elements": [
+      "Estia Health",
+      "Keyton",
+      "Anglicare",
+      "Australian Unity",
+      "Opal HealthCare",
+      "Aveo",
+      "Silver Chain",
+      "BaptistCare",
+      "Levande",
+      "Uniting",
+      "Bupa",
+      "Regis",
+      "Other (please specify)",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Somewhat familiar",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}
