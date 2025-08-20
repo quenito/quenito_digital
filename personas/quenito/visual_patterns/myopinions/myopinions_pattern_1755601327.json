@@ -1,0 +1,25 @@
+{
+  "id": "myopinions_pattern_1755601327",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T21:02:07.836164",
+  "screenshot": "vision_data/question_8_1755601327.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "exact_question_text": "As a consumer, how much responsibility do you feel you have to make a positive change in your life to reduce our impacts on the planet and climate?",
+    "clickable_elements": [
+      "A lot of responsibility",
+      "Some responsibility",
+      "No responsibility"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "A lot of responsibility",
+    "confidence": 0.9,
+    "reason": "llm_automated"
+  }
+}

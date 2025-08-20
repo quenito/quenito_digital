@@ -1,0 +1,27 @@
+{
+  "id": "myopinions_pattern_1755601804",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T21:10:04.107679",
+  "screenshot": "vision_data/question_15_1755601804.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "exact_question_text": "How important is a brand being an industry leader when choosing a tea/coffee brand?",
+    "clickable_elements": [
+      "Very important",
+      "Somewhat important",
+      "Neither important nor unimportant",
+      "Somewhat unimportant",
+      "Very unimportant"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Somewhat important",
+    "confidence": 0.9,
+    "reason": "llm_automated"
+  }
+}

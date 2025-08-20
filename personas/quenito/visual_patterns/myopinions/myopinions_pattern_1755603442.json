@@ -1,0 +1,27 @@
+{
+  "id": "myopinions_pattern_1755603442",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T21:37:22.372977",
+  "screenshot": "vision_data/question_37_1755603442.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "exact_question_text": "On a scale of 1 to 5, with 1 being 'Extremely poor' and 5 being 'Extremely good', how would you rate your experience taking part in this survey?",
+    "clickable_elements": [
+      "1 - Extremely poor",
+      "2",
+      "3",
+      "4",
+      "5 - Extremely good"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "4",
+    "confidence": 0.9,
+    "reason": "llm_automated"
+  }
+}

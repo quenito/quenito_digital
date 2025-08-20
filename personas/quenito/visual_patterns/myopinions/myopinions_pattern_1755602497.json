@@ -1,0 +1,39 @@
+{
+  "id": "myopinions_pattern_1755602497",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T21:21:37.027035",
+  "screenshot": "vision_data/question_26_1755602497.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "exact_question_text": "What specific words / actions mentioned in this statement would you say stand out to you?",
+    "clickable_elements": [
+      "Real value",
+      "Multiyear commitments",
+      "Long-term relationships",
+      "Decades",
+      "Other, please specify...",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 26,
+    "timestamp": 1755602496.891669,
+    "session_id": "learning_1755600945",
+    "question_text": "What specific words / actions mentioned in this statement would you say stand out to you?\n\nWe are in this for the long term\nThrough our Sourcing Approach, we engage in multiyear commitments with producers, allowing them to plan and develop their business. We don\u2019t change suppliers frequently to chase lower prices, because we believe that real value is held in long-term relationships and have worked with many of our key suppliers for decades.\n\nPlease select all that apply",
+    "question_type": "demographics_age",
+    "response_value": "Selected",
+    "response_values": [
+      "Selected",
+      "Selected",
+      "Selected",
+      "Selected",
+      "English"
+    ],
+    "vision_confidence": 95,
+    "vision_type": "checkbox"
+  }
+}

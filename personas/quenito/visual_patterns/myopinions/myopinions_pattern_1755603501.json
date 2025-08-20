@@ -1,0 +1,25 @@
+{
+  "id": "myopinions_pattern_1755603501",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T21:38:21.383970",
+  "screenshot": "vision_data/question_41_1755603501.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Which devices do you own?",
+    "clickable_elements": [
+      "iOS",
+      "Android",
+      "Desktop"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Yes",
+    "confidence": 0.9,
+    "reason": "llm_automated"
+  }
+}

@@ -79,12 +79,6 @@ class AutomationService:
         except TypeError:
             self.brand_association_handler = BrandAssociationHandler()
         
-        # Multi-question handler - DISABLED (broken - answers "No" to everything)
-        try:
-            self.multi_question_handler = MultiQuestionHandler(knowledge_base)
-        except TypeError:
-            self.multi_question_handler = MultiQuestionHandler()
-        
         print("\n   📊 AUTOMATION PRIORITY ORDER:")
         print("   🎯 PAGE ORCHESTRATOR - Handles structure & transitions")
         print("   1️⃣ LLM (GPT-4o-mini) - Handles 90% of questions")

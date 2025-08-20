@@ -1,0 +1,43 @@
+{
+  "id": "myopinions_pattern_1755601721",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T21:08:41.717779",
+  "screenshot": "vision_data/question_13_1755601721.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "What further actions would you expect from a brand that claims to be traceable?",
+    "clickable_elements": [
+      "Demonstrating how traceability enables them to reward farmers more effectively or ensure fair prices",
+      "Showing the journey of the product through the various stages of the supply chain (e.g., processing, shipping, roasting)",
+      "Sharing stories and profiles of the farmers or co-operatives at the origin",
+      "Highlighting how their traceability efforts contribute to their overall sustainability goals",
+      "Allowing customers to trace the specific batch or package they purchased back to its origin",
+      "Educating consumers on the importance of traceability and why it matters for sustainable and ethical sourcing",
+      "Other, please specify...",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 13,
+    "timestamp": 1755601721.583781,
+    "session_id": "learning_1755600945",
+    "question_text": "What further actions would you expect from a brand that claims to be traceable?\n\nWe can trace 100% of our tea and coffee\nWe believe that transparency is key to sourcing responsibly. All our tea and coffee is traceable down to the farm or co-operative where it was grown. We publish our entire supply chain on our website.\n\nPlease select all that apply",
+    "question_type": "brand_awareness",
+    "response_value": "Selected",
+    "response_values": [
+      "Selected",
+      "Selected",
+      "Selected",
+      "Selected",
+      "Selected",
+      "Selected",
+      "English"
+    ],
+    "vision_confidence": 95,
+    "vision_type": "checkbox"
+  }
+}

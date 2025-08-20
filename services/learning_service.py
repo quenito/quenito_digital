@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
 """
-🧠 Learning Service v2.0
-Clean learning capture without automation logic.
+🧠 QUENITO: Building a Digital Brain, Not Mechanical Parts
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+We're teaching Quenito to UNDERSTAND surveys, not just fill them.
+Every decision should make him smarter, not just more mechanical.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Learning Service - Growing smarter with every interaction
+Captures patterns, not rules. Builds understanding, not scripts.
 """
 from typing import Dict, Any, Optional
 import time
