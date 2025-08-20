@@ -63,5 +63,115 @@
     "answer": "$100 001 - $120 000",
     "element_type": "radio",
     "count": 1
+  },
+  "which of the following best describes your gender?": {
+    "answer": "Male",
+    "element_type": "radio",
+    "count": 4
+  },
+  "please choose australia from the below list.": {
+    "answer": "Australia",
+    "element_type": "radio",
+    "count": 1
+  },
+  "as a consumer, how much responsibility do you feel you have to make a positive change in your life to reduce our impacts on the planet and climate?": {
+    "answer": "A lot of responsibility",
+    "element_type": "radio",
+    "count": 1
+  },
+  "how important is traceability when choosing a tea/coffee brand?": {
+    "answer": "Somewhat important",
+    "element_type": "radio",
+    "count": 1
+  },
+  "does this statement make you trust the tea / coffee brand more?\n\nwe can trace 100% of our tea and coffee\nwe believe that transparency is key to sourcing responsibly. all our tea and coffee is traceable down to the farm or co-operative where it was grown. we publish our entire supply chain on our website.": {
+    "answer": "It makes me trust the brand somewhat more",
+    "element_type": "radio",
+    "count": 1
+  },
+  "how important is a brand being an industry leader when choosing a tea/coffee brand?": {
+    "answer": "Somewhat important",
+    "element_type": "radio",
+    "count": 1
+  },
+  "does this statement make you trust the tea / coffee brand more?\n\nwe are industry leaders and advocates\nwe don\u2019t buy all the tea in the market so a sustainable supply chain is not something that we can achieve alone, it takes advocacy and commitment from all those involved, to work together for real impact. we are leading members of the ethical tea partnership, world coffee research, the british coffee association and more and we encourage others to join this approach.": {
+    "answer": "It makes me trust the brand somewhat more",
+    "element_type": "radio",
+    "count": 1
+  },
+  "how important is a brand being environmentally responsible when choosing a tea/coffee brand?": {
+    "answer": "Somewhat important",
+    "element_type": "radio",
+    "count": 1
+  },
+  "does this statement make you trust the tea / coffee brand more?\n\nwe take responsibility for our environmental impact\nfor years we have invested in projects that successfully offset and balance our carbon output in our supply chain and operations. we have planted 9 million trees at home and in tea buying communities to take a proactive approach in combatting and mitigating the effects of climate change. we invest in training and materials to ensure that producers can face climate change head on, with farms that are both productive and sustainable, with our focus on a net zero approach.": {
+    "answer": "It makes me trust the brand somewhat more",
+    "element_type": "radio",
+    "count": 1
+  },
+  "thinking about the following message from a tea/coffee brand: we are in this for the long term.\n\nhow clear do you feel the below statement is in communicating this message?\n\nthrough our sourcing approach, we engage in multiyear commitments with producers, allowing them to plan and develop their business. we don\u2019t change suppliers frequently to chase lower prices, because we believe that real value is held in long-term relationships and have worked with many of our key suppliers for decades.": {
+    "answer": "Very clear",
+    "element_type": "radio",
+    "count": 1
+  },
+  "how important is a brand being long standing when choosing a tea/coffee brand?": {
+    "answer": "Somewhat important",
+    "element_type": "radio",
+    "count": 1
+  },
+  "does this statement make you trust the tea / coffee brand more?\n\nwe are in this for the long term\nthrough our sourcing approach, we engage in multiyear commitments with producers, allowing them to plan and develop their business. we don\u2019t change suppliers frequently to chase lower prices, because we believe that real value is held in long-term relationships and have worked with many of our key suppliers for decades.": {
+    "answer": "It makes me trust the brand somewhat more",
+    "element_type": "radio",
+    "count": 1
+  },
+  "how important is quality when choosing a tea/coffee brand?": {
+    "answer": "Very important",
+    "element_type": "radio",
+    "count": 1
+  },
+  "does this statement make you trust the tea / coffee brand more?\n\nwe reward quality\nwe believe that tea and coffee should be sustainable for everyone involved and that rewarding premium quality with better prices is the key to this. we work with suppliers, ngos and industry partners to make a proper, positive difference to farming communities we source from, from gender empowerment to improving incomes.": {
+    "answer": "It makes me trust the brand somewhat more",
+    "element_type": "radio",
+    "count": 1
+  },
+  "the survey is now over, thank you for participating.\n\non a scale of 1 to 5, with 1 being 'extremely poor' and 5 being 'extremely good', how would you rate your experience taking part in this survey?": {
+    "answer": "4",
+    "element_type": "radio",
+    "count": 1
+  },
+  "have you claimed your full 150 bonus points yet?": {
+    "answer": "Yes",
+    "element_type": "radio",
+    "count": 3
+  },
+  "do you or any of your immediate family work in the following industries?\nplease select all that apply.": {
+    "answer": "Retail",
+    "element_type": "checkbox",
+    "count": 1
+  },
+  "please type in your age in years:": {
+    "answer": "45",
+    "element_type": "text",
+    "count": 1
+  },
+  "are you...": {
+    "answer": "Male",
+    "element_type": "radio",
+    "count": 1
+  },
+  "please type in your postcode:": {
+    "answer": "2217",
+    "element_type": "text",
+    "count": 1
+  },
+  "which of the following best describes your current status? are you...\u00a0\nplease select one.": {
+    "answer": "Employed full-time",
+    "element_type": "radio",
+    "count": 1
+  },
+  "are you currently also studying a course? this could be anything from a short course, certificate, apprenticeship or a bachelor degree. please select one.": {
+    "answer": "No",
+    "element_type": "radio",
+    "count": 1
   }
 }

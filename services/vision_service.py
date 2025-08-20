@@ -1,77 +1,148 @@
 #!/usr/bin/env python3
 """
-👁️ Vision Service v2.0
-Wraps vision_mvp.py with clean service interface.
+🧠 QUENITO: Building a Digital Brain, Not Mechanical Parts
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Vision Service - Teaching Quenito to SEE patterns, not match templates
 """
-from typing import Dict, Any, Optional
+import json
+import base64
 import os
-import time
-from vision_mvp import QuenitoVision
+from typing import Dict, List, Optional
+from openai import AsyncOpenAI
+from dotenv import load_dotenv
 
 class VisionService:
-    """Clean service wrapper for vision capabilities"""
+    """
+    Enhanced vision service with structural page understanding
+    """
     
-    def __init__(self, platform: str = "myopinions", enabled: bool = True):
-        self.enabled = enabled
-        self.platform = platform
+    def __init__(self):
+        # Load environment variables - EXACTLY like LLM service!
+        load_dotenv()
         
-        if self.enabled:
-            self.vision = QuenitoVision(platform=platform)
-            # Migrate any old patterns
-            self.vision.migrate_existing_patterns()
-        else:
-            self.vision = None
+        # Initialize OpenAI client - EXACTLY like LLM service!
+        api_key = os.getenv("OPENAI_API_KEY")
+        if not api_key:
+            raise ValueError("OpenAI API key not found in environment variables")
+        
+        self.client = AsyncOpenAI(api_key=api_key)
+        self.enabled = True
+        
+        print("✅ Vision Service initialized with API key")
     
-    async def analyze_page(self, page, question_num: int) -> Optional[Dict[str, Any]]:
-        """Analyze current page with vision"""
-        if not self.enabled:
-            return None
+    async def analyze_page(self, screenshot_base64: str) -> Dict:
+        """
+        Comprehensive page analysis with structure detection
+        """
+        try:
+            analysis_prompt = """Analyze this survey page and provide detailed structural information.
+
+            CRITICAL DETECTIONS:
+            
+            1. PAGE TYPE IDENTIFICATION:
+               - "question_page" = Has actual questions to answer
+               - "multi_question" = Multiple questions on same page
+               - "transition_page" = Just instructions with Continue button
+               - "completion_page" = Survey complete/thank you page
+               - "matrix_page" = Rating grid or checkbox matrix
+            
+            2. FOR TRANSITION PAGES:
+               Look for phrases like:
+               - "We are now going to show you..."
+               - "In the next section..."
+               - "Please read the following..."
+            
+            3. FOR COMPLETION PAGES:
+               Look for:
+               - "Thank you for participating"
+               - "Survey complete"
+               - "Points have been credited"
+            
+            Return as JSON with page_type, is_transition, is_complete, questions list, etc."""
+            
+            response = await self.client.chat.completions.create(
+                model="gpt-4o-mini",  # or "gpt-4o" if you want to use the bigger model
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "You are analyzing survey pages to identify structure and question types."
+                    },
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": analysis_prompt},
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/png;base64,{screenshot_base64}",
+                                    "detail": "high"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                max_tokens=1000,
+                temperature=0.3
+            )
+            
+            result = json.loads(response.choices[0].message.content)
+            
+            # Log critical detections
+            if result.get('is_transition'):
+                print("🔄 TRANSITION PAGE DETECTED - Will skip to next")
+            if result.get('is_complete'):
+                print("✅ COMPLETION PAGE DETECTED - Survey finished!")
+                
+            return result
+            
+        except Exception as e:
+            print(f"❌ Vision analysis error: {e}")
+            return {
+                "page_type": "question_page",
+                "is_transition": False,
+                "is_complete": False,
+                "question_count": 1
+            }
+    
+    async def detect_element_type(self, screenshot_base64: str, element_description: str) -> str:
+        """
+        Specific element type detection when main analysis is uncertain
+        """
+        prompt = f"""
+        Look at this form element: {element_description}
+        
+        DETERMINE THE EXACT TYPE:
+        - If it has a dropdown arrow and shows years = "dropdown"
+        - If it has circular radio buttons = "radio"
+        - If it has square checkboxes = "checkbox"
+        - Birth year questions are ALWAYS dropdowns!
+        
+        Return only one word: dropdown, radio, checkbox, or text
+        """
         
         try:
-            # Take screenshot
-            screenshot_path = f"vision_data/question_{question_num}_{int(time.time())}.png"
-            os.makedirs("vision_data", exist_ok=True)
-            await page.screenshot(path=screenshot_path)
+            response = await self.client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": prompt},
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:image/png;base64,{screenshot_base64}",
+                                    "detail": "high"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                max_tokens=10,
+                temperature=0
+            )
             
-            # Analyze with vision
-            print("👁️ Analyzing with vision...")
-            result = await self.vision.analyze_screenshot(screenshot_path)
+            return response.choices[0].message.content.strip().lower()
             
-            return result
-        except Exception as e:
-            print(f"⚠️ Vision error: {e}")
-            return None
-    
-    async def store_success_pattern(self, page, question_num: int, 
-                                   vision_result: Dict, automation_result: Dict):
-        """Store successful automation pattern"""
-        if not self.enabled:
-            return
-        
-        screenshot_path = f"vision_data/question_{question_num}_{int(time.time())}.png"
-        await self.vision.store_pattern(
-            screenshot_path,
-            vision_result,
-            {
-                'success': True,
-                'automation_type': 'single_question',
-                **automation_result
-            }
-        )
-    
-    async def store_learning_pattern(self, page, question_num: int,
-                                    vision_result: Dict, learning_data: Dict):
-        """Store pattern from manual learning"""
-        if not self.enabled:
-            return
-        
-        screenshot_path = f"vision_data/question_{question_num}_{int(time.time())}.png"
-        await self.vision.store_pattern(
-            screenshot_path,
-            vision_result,
-            {
-                'success': True,
-                'capture_type': 'manual_learning',
-                **learning_data
-            }
-        )
+        except:
+            return "unknown"

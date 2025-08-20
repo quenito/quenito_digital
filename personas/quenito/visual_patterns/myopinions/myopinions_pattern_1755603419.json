@@ -1,0 +1,29 @@
+{
+  "id": "myopinions_pattern_1755603419",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T21:36:59.298015",
+  "screenshot": "vision_data/question_36_1755603419.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "exact_question_text": "Please take a moment to share with us your overall thoughts on Brands and sustainability - what would make you want to buy a brand for its green credentials and what would make you feel empowered to make change?",
+    "clickable_elements": [],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 36,
+    "timestamp": 1755603419.2013538,
+    "session_id": "learning_1755600945",
+    "question_text": "What year were you born in?",
+    "question_type": "general",
+    "response_value": "English",
+    "response_values": [
+      "English",
+      "1980"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "text"
+  }
+}

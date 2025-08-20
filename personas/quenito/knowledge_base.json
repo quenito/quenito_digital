@@ -344,6 +344,359 @@
       "response_values": [],
       "vision_confidence": 85,
       "vision_type": "N/A"
+    },
+    "learning_1755601148_6": {
+      "question_num": 6,
+      "timestamp": 1755601148.0736816,
+      "session_id": "learning_1755600945",
+      "question_text": "What sustainability initiatives or commitments do you look for from a brand when purchasing tea or coffee?\n\nPlease select all that apply",
+      "question_type": "brand_awareness",
+      "response_value": "Selected",
+      "response_values": [
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "English"
+      ],
+      "vision_confidence": 90,
+      "vision_type": "dropdown"
+    },
+    "learning_1755601299_7": {
+      "question_num": 7,
+      "timestamp": 1755601299.2991188,
+      "session_id": "learning_1755600945",
+      "question_text": "Which brands, if any, do you choose or admire for their commitment and work to sustainability?\n\nPlease select all that apply",
+      "question_type": "brand_awareness",
+      "response_value": "Selected",
+      "response_values": [
+        "Selected",
+        "English"
+      ],
+      "vision_confidence": 95,
+      "vision_type": "checkbox"
+    },
+    "learning_1755601445_9": {
+      "question_num": 9,
+      "timestamp": 1755601445.828737,
+      "session_id": "learning_1755600945",
+      "question_text": "Thinking about the following message from a tea/coffee brand: We can trace 100% of our tea/coffee\n\nWhat does Traceability mean to you?\n\nWe believe that transparency is key to sourcing responsibly. All our tea and coffee is traceable down to the farm or co-operative where it was grown. We publish our entire supply chain on our website.",
+      "question_type": "demographics_age",
+      "response_value": "Selected",
+      "response_values": [
+        "Selected",
+        "English"
+      ],
+      "vision_confidence": 85,
+      "vision_type": "text"
+    },
+    "learning_1755601607_11": {
+      "question_num": 11,
+      "timestamp": 1755601607.2783382,
+      "session_id": "learning_1755600945",
+      "question_text": "What specific words / actions mentioned in this statement would you say stand out to you?\n\nWe can trace 100% of our tea and coffee\nWe believe that transparency is key to sourcing responsibly. All our tea and coffee is traceable down to the farm or co-operative where it was grown. We publish our entire supply chain on our website.\n\nPlease select all that apply",
+      "question_type": "multi_select",
+      "response_value": "Selected",
+      "response_values": [
+        "Selected",
+        "Selected",
+        "Selected",
+        "English"
+      ],
+      "vision_confidence": 90,
+      "vision_type": "checkbox"
+    },
+    "learning_1755601721_13": {
+      "question_num": 13,
+      "timestamp": 1755601721.583781,
+      "session_id": "learning_1755600945",
+      "question_text": "What further actions would you expect from a brand that claims to be traceable?\n\nWe can trace 100% of our tea and coffee\nWe believe that transparency is key to sourcing responsibly. All our tea and coffee is traceable down to the farm or co-operative where it was grown. We publish our entire supply chain on our website.\n\nPlease select all that apply",
+      "question_type": "brand_awareness",
+      "response_value": "Selected",
+      "response_values": [
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "English"
+      ],
+      "vision_confidence": 95,
+      "vision_type": "checkbox"
+    },
+    "learning_1755601778_14": {
+      "question_num": 14,
+      "timestamp": 1755601778.5198169,
+      "session_id": "learning_1755600945",
+      "question_text": "Thinking about the following message from a tea/coffee brand: We are industry leaders and advocates\n\nHow clear do you feel the below statement is in communicating this message?\n\nWe don’t buy all the tea in the market so a sustainable supply chain is not something that we can achieve alone, it takes advocacy and commitment from all those involved, to work together for real impact. We are leading members of the Ethical Tea Partnership, World Coffee Research, the British Coffee Association and more and we encourage others to join this approach.",
+      "question_type": "demographics_age",
+      "response_value": "2",
+      "response_values": [
+        "2",
+        "English"
+      ],
+      "vision_confidence": 90,
+      "vision_type": "dropdown"
+    },
+    "learning_1755601936_16": {
+      "question_num": 16,
+      "timestamp": 1755601936.6358051,
+      "session_id": "learning_1755600945",
+      "question_text": "What specific words / actions mentioned in this statement would you say stand out to you?\n\nWe are industry leaders and advocates\nWe don’t buy all the tea in the market so a sustainable supply chain is not something that we can achieve alone, it takes advocacy and commitment from all those involved, to work together for real impact. We are leading members of the Ethical Tea Partnership, World Coffee Research, the British Coffee Association and more and we encourage others to join this approach.\n\nPlease select all that apply",
+      "question_type": "demographics_age",
+      "response_value": "Selected",
+      "response_values": [
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "English"
+      ],
+      "vision_confidence": 90,
+      "vision_type": "checkbox"
+    },
+    "learning_1755602147_18": {
+      "question_num": 18,
+      "timestamp": 1755602147.7408135,
+      "session_id": "learning_1755600945",
+      "question_text": "What further actions would you expect from a brand that claims to be an industry leader?\n\nWe are industry leaders and advocates\nWe don’t buy all the tea in the market so a sustainable supply chain is not something that we can achieve alone, it takes advocacy and commitment from all those involved, to work together for real impact. We are leading members of the Ethical Tea Partnership, World Coffee Research, the British Coffee Association and more and we encourage others to join this approach.\n\nPlease select all that apply",
+      "question_type": "demographics_age",
+      "response_value": "Selected",
+      "response_values": [
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "English"
+      ],
+      "vision_confidence": 90,
+      "vision_type": "checkbox"
+    },
+    "learning_1755602202_19": {
+      "question_num": 19,
+      "timestamp": 1755602202.622098,
+      "session_id": "learning_1755600945",
+      "question_text": "Thinking about the following message from a tea/coffee brand: We take responsibility for our environmental impact\n\nHow clear do you feel the below statement is in communicating this message?\n\nFor years we have invested in projects that successfully offset and balance our carbon output in our supply chain and operations. We have planted 9 million trees at home and in tea buying communities to take a proactive approach in combatting and mitigating the effects of climate change. We invest in training and materials to ensure that producers can face climate change head on, with farms that are both productive and sustainable, with our focus on a Net Zero approach.",
+      "question_type": "demographics_age",
+      "response_value": "1",
+      "response_values": [
+        "1",
+        "English"
+      ],
+      "vision_confidence": 80,
+      "vision_type": "dropdown"
+    },
+    "learning_1755602300_21": {
+      "question_num": 21,
+      "timestamp": 1755602300.840206,
+      "session_id": "learning_1755600945",
+      "question_text": "What specific words / actions mentioned in this statement would you say stand out to you?\n\nWe take responsibility for our environmental impact\nFor years we have invested in projects that successfully offset and balance our carbon output in our supply chain and operations. We have planted 9 million trees at home and in tea buying communities to take a proactive approach in combatting and mitigating the effects of climate change. We invest in training and materials to ensure that producers can face climate change head on, with farms that are both productive and sustainable, with our focus on a Net Zero approach.\n\nPlease select all that apply",
+      "question_type": "multi_select",
+      "response_value": "Selected",
+      "response_values": [
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "English"
+      ],
+      "vision_confidence": 95,
+      "vision_type": "checkbox"
+    },
+    "learning_1755602397_23": {
+      "question_num": 23,
+      "timestamp": 1755602397.8115604,
+      "session_id": "learning_1755600945",
+      "question_text": "What further actions would you expect from a brand that claims to be environmentally responsible?\n\nWe take responsibility for our environmental impact\nFor years we have invested in projects that successfully offset and balance our carbon output in our supply chain and operations. We have planted 9 million trees at home and in tea buying communities to take a proactive approach in combatting and mitigating the effects of climate change. We invest in training and materials to ensure that producers can face climate change head on, with farms that are both productive and sustainable, with our focus on a Net Zero approach.\n\nPlease select all that apply",
+      "question_type": "brand_awareness",
+      "response_value": "Selected",
+      "response_values": [
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "English"
+      ],
+      "vision_confidence": 90,
+      "vision_type": "checkbox"
+    },
+    "learning_1755602496_26": {
+      "question_num": 26,
+      "timestamp": 1755602496.891669,
+      "session_id": "learning_1755600945",
+      "question_text": "What specific words / actions mentioned in this statement would you say stand out to you?\n\nWe are in this for the long term\nThrough our Sourcing Approach, we engage in multiyear commitments with producers, allowing them to plan and develop their business. We don’t change suppliers frequently to chase lower prices, because we believe that real value is held in long-term relationships and have worked with many of our key suppliers for decades.\n\nPlease select all that apply",
+      "question_type": "demographics_age",
+      "response_value": "Selected",
+      "response_values": [
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "English"
+      ],
+      "vision_confidence": 95,
+      "vision_type": "checkbox"
+    },
+    "learning_1755602631_28": {
+      "question_num": 28,
+      "timestamp": 1755602631.5825129,
+      "session_id": "learning_1755600945",
+      "question_text": "What further actions would you expect from a brand that claims to be long-standing?\n\nWe are in this for the long term\nThrough our Sourcing Approach, we engage in multiyear commitments with producers, allowing them to plan and develop their business. We don’t change suppliers frequently to chase lower prices, because we believe that real value is held in long-term relationships and have worked with many of our key suppliers for decades.\n\nPlease select all that apply",
+      "question_type": "demographics_age",
+      "response_value": "Selected",
+      "response_values": [
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "English"
+      ],
+      "vision_confidence": 90,
+      "vision_type": "checkbox"
+    },
+    "learning_1755602652_29": {
+      "question_num": 29,
+      "timestamp": 1755602652.8574924,
+      "session_id": "learning_1755600945",
+      "question_text": "Thinking about the following message from a tea/coffee brand: We reward quality\n\nHow clear do you feel the below statement is in communicating this message?\n\nWe believe that tea and coffee should be sustainable for everyone involved and that rewarding premium quality with better prices is the key to this. We work with suppliers, NGOs and industry partners to make a proper, positive difference to farming communities we source from, from gender empowerment to improving incomes.",
+      "question_type": "demographics_age",
+      "response_value": "2",
+      "response_values": [
+        "2",
+        "English"
+      ],
+      "vision_confidence": 90,
+      "vision_type": "dropdown"
+    },
+    "learning_1755602738_31": {
+      "question_num": 31,
+      "timestamp": 1755602738.566698,
+      "session_id": "learning_1755600945",
+      "question_text": "What specific words / actions mentioned in this statement would you say stand out to you?\n\nWe reward quality.\nWe believe that tea and coffee should be sustainable for everyone involved and that rewarding premium quality with better prices is the key to this. We work with suppliers, NGOs and industry partners to make a proper, positive difference to farming communities we source from, from gender empowerment to improving incomes.\n\nPlease select all that apply",
+      "question_type": "demographics_gender",
+      "response_value": "Selected",
+      "response_values": [
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "English"
+      ],
+      "vision_confidence": 95,
+      "vision_type": "checkbox"
+    },
+    "learning_1755602894_33": {
+      "question_num": 33,
+      "timestamp": 1755602894.4951096,
+      "session_id": "learning_1755600945",
+      "question_text": "What further actions would you expect from a brand that claims to be high quality?\n\nWe reward quality\nWe believe that tea and coffee should be sustainable for everyone involved and that rewarding premium quality with better prices is the key to this. We work with suppliers, NGOs and industry partners to make a proper, positive difference to farming communities we source from, from gender empowerment to improving incomes.\n\nPlease select all that apply",
+      "question_type": "demographics_gender",
+      "response_value": "Selected",
+      "response_values": [
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "English"
+      ],
+      "vision_confidence": 90,
+      "vision_type": "checkbox"
+    },
+    "learning_1755603080_34": {
+      "question_num": 34,
+      "timestamp": 1755603080.0371063,
+      "session_id": "learning_1755600945",
+      "question_text": "Lastly, which of the following tea brands have you heard of?\n\nPlease select all the tea brands you are aware of",
+      "question_type": "brand_awareness",
+      "response_value": "Selected",
+      "response_values": [
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "Selected",
+        "English"
+      ],
+      "vision_confidence": 90,
+      "vision_type": "checkbox"
+    },
+    "learning_1755603226_35": {
+      "question_num": 35,
+      "timestamp": 1755603226.2210627,
+      "session_id": "learning_1755600945",
+      "question_text": "Please take a moment to share with us your overall thoughts on Brands and sustainability - what would make you want to buy a brand for its green credentials and what would make you feel empowered to make change?",
+      "question_type": "brand_awareness",
+      "response_value": "English",
+      "response_values": [
+        "English"
+      ],
+      "vision_confidence": 95,
+      "vision_type": "text"
+    },
+    "learning_1755603419_36": {
+      "question_num": 36,
+      "timestamp": 1755603419.2013538,
+      "session_id": "learning_1755600945",
+      "question_text": "What year were you born in?",
+      "question_type": "general",
+      "response_value": "English",
+      "response_values": [
+        "English",
+        "1980"
+      ],
+      "vision_confidence": 90,
+      "vision_type": "text"
+    },
+    "learning_1755603472_38": {
+      "question_num": 38,
+      "timestamp": 1755603472.9205043,
+      "session_id": "learning_1755600945",
+      "question_text": "Have you claimed your full 150 bonus points yet?",
+      "question_type": "general",
+      "response_value": "",
+      "response_values": [],
+      "vision_confidence": 0,
+      "vision_type": "unknown"
+    },
+    "learning_1755615390_1": {
+      "question_num": 1,
+      "timestamp": 1755615390.996913,
+      "session_id": "learning_1755615071",
+      "question_text": "Question text not found",
+      "question_type": "general",
+      "response_value": "45",
+      "response_values": [
+        "45"
+      ],
+      "vision_confidence": 0,
+      "vision_type": ""
+    },
+    "learning_1755617165_1": {
+      "question_num": 1,
+      "timestamp": 1755617165.3086286,
+      "session_id": "learning_1755616914",
+      "question_text": "Question text not found",
+      "question_type": "general",
+      "response_value": "Male",
+      "response_values": [
+        "Male"
+      ],
+      "vision_confidence": 0,
+      "vision_type": ""
     }
   },
   "brain_learning": {
@@ -363,7 +716,7 @@
   },
   "confidence_system": {
     "version": "3.0_dynamic",
-    "last_updated": "2025-08-19T03:00:02.451707",
+    "last_updated": "2025-08-20T01:26:05.448738",
     "global_settings": {
       "learning_rate": 0.1,
       "confidence_decay": 0.95,
@@ -376,12 +729,12 @@
     "handler_thresholds": {
       "LLM-GPT4o-mini": {
         "base_threshold": 0.5,
-        "dynamic_adjustment": -0.06500000000000003,
-        "current_threshold": 0.43499999999999994,
+        "dynamic_adjustment": -0.1550000000000001,
+        "current_threshold": 0.34499999999999986,
         "success_rate": 1.0,
-        "total_attempts": 13,
-        "successful_attempts": 13,
-        "last_success": "2025-08-19T02:59:27.419552",
+        "total_attempts": 31,
+        "successful_attempts": 31,
+        "last_success": "2025-08-19T21:37:22.372732",
         "trending": "excellent"
       }
     },

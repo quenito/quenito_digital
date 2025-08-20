@@ -1,0 +1,27 @@
+{
+  "id": "myopinions_pattern_1755602662",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T21:24:22.200132",
+  "screenshot": "vision_data/question_30_1755602662.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "How important is quality when choosing a tea/coffee brand?",
+    "clickable_elements": [
+      "Very important",
+      "Somewhat important",
+      "Neither important nor unimportant",
+      "Somewhat unimportant",
+      "Very unimportant"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Very important",
+    "confidence": 0.9,
+    "reason": "llm_automated"
+  }
+}

@@ -1,12 +1,20 @@
 #!/usr/bin/env python3
 """
-🤖 Automation Service v5.0 - LLM-FIRST ARCHITECTURE
-Clean automation with LLM as primary handler, specialized handlers for complex cases only.
+🧠 QUENITO: Building a Digital Brain, Not Mechanical Parts
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+We're teaching Quenito to UNDERSTAND surveys, not just fill them.
+Every decision should make him smarter, not just more mechanical.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Automation Service - Orchestrating intelligence, not mechanics
+Priority: LLM understanding > Mechanical handlers
 """
 from typing import Dict, Any, List, Optional
 import time
 from services.llm_automation_service import LLMAutomationService
 from services.knowledge_manager import knowledge
+from services.vision_service import VisionService
+from services.page_orchestrator import PageOrchestrator
 
 # Import all specialized handlers (most will be disabled)
 from services.demographics_handler import DemographicsHandler
@@ -14,7 +22,7 @@ from services.brand_selection_handler import BrandSelectionHandler
 from services.carousel_handler import CarouselBrandHandler
 from services.rating_handler import RatingScaleHandler
 from services.brand_association_handler import BrandAssociationHandler
-from services.multi_question_handler import MultiQuestionHandler
+
 
 class AutomationService:
     """Service for attempting automation - Multi-handler approach with smart routing!"""
@@ -22,6 +30,14 @@ class AutomationService:
     def __init__(self, knowledge_base):
         self.kb = knowledge_base
         self.confidence_manager = self.kb.confidence_manager
+        
+        # Initialize Vision Service
+        try:
+            self.vision_service = VisionService()
+            print("   👁️ Vision Service ENABLED for page analysis!")
+        except Exception as e:
+            self.vision_service = None
+            print(f"   ⚠️ Vision Service disabled: {e}")
         
         # Initialize LLM service - PRIORITY 1!
         try:
@@ -63,26 +79,113 @@ class AutomationService:
         except TypeError:
             self.brand_association_handler = BrandAssociationHandler()
         
-        # Multi-question handler - DISABLED (broken - answers "No" to everything)
-        try:
-            self.multi_question_handler = MultiQuestionHandler(knowledge_base)
-        except TypeError:
-            self.multi_question_handler = MultiQuestionHandler()
-        
         print("\n   📊 AUTOMATION PRIORITY ORDER:")
+        print("   🎯 PAGE ORCHESTRATOR - Handles structure & transitions")
         print("   1️⃣ LLM (GPT-4o-mini) - Handles 90% of questions")
         print("   2️⃣ Brand Selection - Complex matrices only")
         print("   3️⃣ Carousel - Complex UI patterns")
         print("   4️⃣ Brand Association - Complex matching")
         print("   ❌ Demographics - DISABLED (LLM handles)")
         print("   ❌ Rating Scales - DISABLED (LLM handles)")
-        print("   ❌ Multi-Question - DISABLED (broken)")
+        print("   ❌ Multi-Question - DISABLED (orchestrator handles)")
         print("")
+    
+    async def take_screenshot(self, page):
+        """Take screenshot and return base64 encoded string"""
+        try:
+            screenshot = await page.screenshot()
+            import base64
+            return base64.b64encode(screenshot).decode('utf-8')
+        except Exception as e:
+            print(f"   ⚠️ Screenshot error: {e}")
+            return None
+    
+    async def attempt_automation_with_orchestrator(self, page, handler_factory, 
+                                                  vision_result: Optional[Dict], 
+                                                  question_num: int) -> Dict[str, Any]:
+        """
+        NEW METHOD: Attempt automation with Page Orchestrator integration
+        Handles multi-question pages, transitions, and completion detection
+        """
+        
+        # Take screenshot for vision analysis
+        screenshot = await self.take_screenshot(page)
+        
+        # If we have vision service and screenshot, use orchestrator
+        if self.vision_service and screenshot:
+            print("\n🎯 PAGE ORCHESTRATOR ACTIVE")
+            
+            # Create orchestrator instance
+            orchestrator = PageOrchestrator(
+                self,
+                self.llm,
+                self.vision_service,
+                page
+            )
+            
+            # Let orchestrator handle the page
+            result = await orchestrator.handle_page(screenshot)
+            
+            # Check orchestrator result
+            if result.get('status') == 'complete':
+                # Survey is done!
+                print("🎉 SURVEY COMPLETED - Stopping automation")
+                return {
+                    'success': True,
+                    'handler_used': 'PageOrchestrator',
+                    'response_value': 'Survey Complete',
+                    'confidence': 1.0,
+                    'reason': 'survey_complete',
+                    'stop_automation': True
+                }
+                
+            elif result.get('status') == 'transition':
+                # Transition page handled
+                print("📄 Transition page handled")
+                return {
+                    'success': True,
+                    'handler_used': 'PageOrchestrator',
+                    'response_value': 'Transition',
+                    'confidence': 1.0,
+                    'reason': 'transition_page'
+                }
+                
+            elif result.get('status') == 'success':
+                # Multi-question page handled
+                automated_count = len(result.get('automated', []))
+                manual_count = len(result.get('manual', []))
+                
+                if automated_count > 0:
+                    return {
+                        'success': True,
+                        'handler_used': 'PageOrchestrator',
+                        'response_value': f'{automated_count} questions automated',
+                        'confidence': 0.9,
+                        'reason': 'multi_question_handled',
+                        'partial_manual': manual_count > 0
+                    }
+            
+            # If orchestrator says use standard flow, continue below
+            elif result.get('status') != 'use_standard_flow':
+                # Some other orchestrator result
+                return {
+                    'success': False,
+                    'handler_used': 'PageOrchestrator',
+                    'response_value': None,
+                    'confidence': 0,
+                    'reason': result.get('status', 'orchestrator_unknown')
+                }
+        
+        # Fall through to standard automation if orchestrator doesn't handle it
+        return await self.attempt_automation(page, handler_factory, vision_result, question_num)
     
     async def attempt_automation(self, page, handler_factory, 
                                 vision_result: Optional[Dict], 
                                 question_num: int) -> Dict[str, Any]:
-        """Attempt automation - LLM FIRST, then specialized handlers for complex cases"""
+        """
+        Original automation method - now called AFTER orchestrator check
+        Attempt automation - LLM FIRST, then specialized handlers for complex cases
+        """
         
         result = {
             'success': False,
@@ -192,43 +295,7 @@ class AutomationService:
             except Exception as e:
                 print(f"   ⚠️ LLM attempt error: {e}")
         
-        # 🎯 PRIORITY 2: DEMOGRAPHICS HANDLER - DISABLED! LLM handles these now
-        # Keeping code but commented out since LLM handles demographics better
-        """
-        demo_info = await self.demographics_handler.detect_demographics_question(page)
-        if demo_info['detected']:
-            print(f"   👤 Demographics detected: {demo_info['type']}")
-            success = await self.demographics_handler.handle_demographics_question(
-                page, 
-                demo_info['type']
-            )
-            if success:
-                return {
-                    'success': True,
-                    'handler_used': 'DemographicsHandler',
-                    'response_value': f"Demographics-{demo_info['type']}",
-                    'confidence': 0.95,
-                    'reason': 'demographics_automated'
-                }
-        """
-        
-        # 🎯 PRIORITY 3: CHECK MULTI-QUESTION PAGES - Still DISABLED (broken)
-        # TODO: Fix the handler to properly detect and handle multi-question pages
-        """
-        if await self.multi_question_handler.detect_multi_question_page(page):
-            print("   📋 Multi-question page detected!")
-            success = await self.multi_question_handler.handle_multi_question_page(page)
-            if success:
-                return {
-                    'success': True,
-                    'handler_used': 'MultiQuestionHandler',
-                    'response_value': 'Multiple questions answered',
-                    'confidence': 0.90,
-                    'reason': 'multi_question_automated'
-                }
-        """
-        
-        # 🎯 PRIORITY 4: CHECK BRAND AWARENESS/SELECTION (Keep - complex logic)
+        # 🎯 PRIORITY 2: CHECK BRAND AWARENESS/SELECTION (Keep - complex logic)
         if 'which of the following' in question_text.lower() or 'aware of' in question_text.lower():
             print("   🏢 Brand selection detected!")
             success = await self.brand_selection_handler.detect_and_handle_brand_selection(
@@ -244,7 +311,7 @@ class AutomationService:
                     'reason': 'brand_selection_automated'
                 }
         
-        # 🎯 PRIORITY 5: CHECK CAROUSEL PATTERN (Keep - complex UI)
+        # 🎯 PRIORITY 3: CHECK CAROUSEL PATTERN (Keep - complex UI)
         if await self.carousel_handler.detect_carousel_pattern(page):
             print("   🎠 Carousel pattern detected!")
             success = await self.carousel_handler.handle_carousel_brands(page)
@@ -257,23 +324,7 @@ class AutomationService:
                     'reason': 'carousel_automated'
                 }
         
-        # 🎯 PRIORITY 6: RATING SCALES - DISABLED! LLM handles these fine
-        """
-        scale_info = await self.rating_handler.detect_rating_scale(page)
-        if scale_info['detected']:
-            print(f"   📊 Rating scale detected: {scale_info['type']}")
-            success = await self.rating_handler.handle_rating_question(page, question_text)
-            if success:
-                return {
-                    'success': True,
-                    'handler_used': 'RatingHandler',
-                    'response_value': 'Rating selected',
-                    'confidence': 0.85,
-                    'reason': 'rating_automated'
-                }
-        """
-        
-        # 🎯 PRIORITY 7: CHECK BRAND ASSOCIATIONS (Keep - complex matching)
+        # 🎯 PRIORITY 4: CHECK BRAND ASSOCIATIONS (Keep - complex matching)
         if await self.brand_association_handler.detect_brand_association_question(page):
             print("   💭 Brand association detected!")
             success = await self.brand_association_handler.handle_brand_association_question(page)
@@ -338,7 +389,7 @@ class AutomationService:
             
             # Check for success field and response_value
             if response and hasattr(response, 'success') and response.success and response.response_value:
-                print(f"   🔍 Response value: {response.response_value}")
+                print(f"   📝 Response value: {response.response_value}")
                 
                 success = await self._apply_response(
                     page,

@@ -1,0 +1,24 @@
+{
+  "id": "myopinions_pattern_1755602417",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T21:20:17.964702",
+  "screenshot": "vision_data/question_24_1755602417.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "question_text": "Thanks for your responses so far! We are now going to show you the 4th statement and ask you some follow up questions.",
+    "clickable_elements": [
+      "English",
+      ">>"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Very clear",
+    "confidence": 0.9,
+    "reason": "llm_automated"
+  }
+}

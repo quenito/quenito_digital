@@ -1,0 +1,44 @@
+{
+  "id": "myopinions_pattern_1755602894",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T21:28:14.647805",
+  "screenshot": "vision_data/question_33_1755602894.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "What further actions would you expect from a brand that claims to be high quality?",
+    "clickable_elements": [
+      "Offering a consistent and superior taste/aroma profile that reflects their premium quality claims",
+      "Supporting farmers in adopting practices that improve the long-term health and productivity of their land for quality crops",
+      "Providing clear guidelines on how to best prepare their tea/coffee to maximize the quality experience",
+      "Engaging with consumers about their perceptions of quality and how it ties into sustainability",
+      "Detailed information about where and how the tea/coffee is grown (e.g. specific farms/cooperatives)",
+      "Information about the prices paid to farmers and how they compare to market rates",
+      "Clear explanation of how \"premium quality\" is defined and assessed",
+      "Showcasing certifications or awards that specifically relate to both quality and ethical sourcing",
+      "Other, please specify\u2026",
+      "None of the above"
+    ],
+    "continue_button_visible": false,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 33,
+    "timestamp": 1755602894.4951096,
+    "session_id": "learning_1755600945",
+    "question_text": "What further actions would you expect from a brand that claims to be high quality?\n\nWe reward quality\nWe believe that tea and coffee should be sustainable for everyone involved and that rewarding premium quality with better prices is the key to this. We work with suppliers, NGOs and industry partners to make a proper, positive difference to farming communities we source from, from gender empowerment to improving incomes.\n\nPlease select all that apply",
+    "question_type": "demographics_gender",
+    "response_value": "Selected",
+    "response_values": [
+      "Selected",
+      "Selected",
+      "Selected",
+      "Selected",
+      "Selected",
+      "English"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

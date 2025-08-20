@@ -1,0 +1,31 @@
+{
+  "id": "myopinions_pattern_1755602202",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T21:16:42.783380",
+  "screenshot": "vision_data/question_19_1755602202.png",
+  "vision_analysis": {
+    "question_type": "dropdown",
+    "question_text": "Select Language",
+    "clickable_elements": [
+      "English"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 80
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 19,
+    "timestamp": 1755602202.622098,
+    "session_id": "learning_1755600945",
+    "question_text": "Thinking about the following message from a tea/coffee brand: We take responsibility for our environmental impact\n\nHow clear do you feel the below statement is in communicating this message?\n\nFor years we have invested in projects that successfully offset and balance our carbon output in our supply chain and operations. We have planted 9 million trees at home and in tea buying communities to take a proactive approach in combatting and mitigating the effects of climate change. We invest in training and materials to ensure that producers can face climate change head on, with farms that are both productive and sustainable, with our focus on a Net Zero approach.",
+    "question_type": "demographics_age",
+    "response_value": "1",
+    "response_values": [
+      "1",
+      "English"
+    ],
+    "vision_confidence": 80,
+    "vision_type": "dropdown"
+  }
+}

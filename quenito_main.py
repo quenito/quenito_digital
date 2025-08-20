@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """
-🧠 Quenito Main Runner v2.1 - COMPLETE WITH ALL FIXES
-Clean, modular architecture for survey automation.
-Manual survey selection, automated question handling.
+🧠 QUENITO: Building a Digital Brain, Not Mechanical Parts
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+We're teaching Quenito to UNDERSTAND surveys, not just fill them.
+Every decision should make him smarter, not just more mechanical.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Main Orchestrator - The consciousness that guides Quenito's journey
 """
 import asyncio
 import json
@@ -38,7 +42,7 @@ class QuenitoRunner:
         self.intervention_manager = InterventionManager()
         
         # Initialize services (clean separation!)
-        self.vision = VisionService(platform=platform)
+        self.vision = VisionService()
         self.learning = LearningService(self.kb)
         self.automation = AutomationService(self.kb)
         self.reporter = QuenitoReporting()
@@ -60,10 +64,11 @@ class QuenitoRunner:
     
     async def run(self):
         """Main entry point - simplified flow!"""
-        print(f"🧠 QUENITO SURVEY AUTOMATION v2.1 - {self.persona_name.upper()}")
+        print(f"🧠 QUENITO SURVEY AUTOMATION v2.2 - {self.persona_name.upper()}")
         print("=" * 50)
         print("📋 SIMPLIFIED MODE: Manual survey selection")
         print("🎯 FOCUS: Social Topics (80% automation target)")
+        print("🎬 PAGE ORCHESTRATOR: ENABLED")
         print("=" * 50)
         
         # Start session
@@ -115,14 +120,14 @@ class QuenitoRunner:
         context = browser_manager.browser.contexts[0]
         
         # Wait for survey tab to potentially open with multiple attempts
-        print("\n📑 Detecting survey tab...")
+        print("\n🔍 Detecting survey tab...")
         survey_page = None
         
         for attempt in range(5):
             await asyncio.sleep(2)  # Give time for tabs to open
             all_pages = context.pages
             
-            print(f"\n📑 Attempt {attempt + 1}: Found {len(all_pages)} tab(s)")
+            print(f"\n🔍 Attempt {attempt + 1}: Found {len(all_pages)} tab(s)")
             
             # List all tabs
             for i, page in enumerate(all_pages, 1):
@@ -198,17 +203,22 @@ class QuenitoRunner:
             pass
         
         print("\n" + "="*50)
-        print("🚀 STARTING AUTOMATION")
+        print("🚀 STARTING AUTOMATION WITH ORCHESTRATOR")
         print("="*50)
         
         # Process survey questions
         await self._process_survey(survey_page)
     
     async def _process_survey(self, page):
-        """Main survey processing loop - starts from first real question"""
+        """Main survey processing loop - NOW WITH PAGE ORCHESTRATOR!"""
         
         # Create page orchestrator for multi-question handling
-        orchestrator = PageOrchestrator(self.handler_factory, page, self.kb)
+        orchestrator = PageOrchestrator(
+            self.automation,      # automation_service
+            self.automation.llm,  # llm_service  
+            self.vision,         # vision_service
+            page                 # page
+        )
         
         while True:
             self.stats["questions_total"] += 1
@@ -219,55 +229,64 @@ class QuenitoRunner:
             
             # Step 1: Vision Analysis (optional but recommended)
             vision_result = None
-            if self.vision.enabled:
-                vision_result = await self.vision.analyze_page(page, question_num)
-                self.stats["vision_calls"] += 1
-                
-                # Display vision insights
-                if vision_result:
-                    print(f"👁️ Vision: {vision_result.get('question_type', 'unknown')} "
-                          f"({vision_result.get('confidence_rating', 0)}% confident)")
+            if self.vision and self.vision.enabled:
+                # Take screenshot first
+                try:
+                    screenshot = await page.screenshot()
+                    import base64
+                    screenshot_base64 = base64.b64encode(screenshot).decode('utf-8')
+                    vision_result = await self.vision.analyze_page(screenshot_base64)
+                    self.stats["vision_calls"] += 1
+                except Exception as e:
+                    print(f"   ⚠️ Vision analysis skipped: {e}")
+                    vision_result = None
             
-            # Step 2: Try Multi-Question Handling FIRST
-            multi_handled = await orchestrator.handle_multi_question_page()
-            if multi_handled > 0:
-                self.stats["multi_questions_handled"] += 1
-                self.stats["questions_automated"] += multi_handled
-                print(f"✅ Multi-question page handled! ({multi_handled} questions)")
-                
-                # Check if survey complete
-                if await self._check_survey_complete(page):
-                    break
-                
-                # Continue to next page
-                await page.wait_for_timeout(1500)
-                continue
-            
-            # Step 3: Try Single-Question Automation
-            automation_result = await self.automation.attempt_automation(
+            # Step 3: 🎯 USE THE NEW ORCHESTRATOR METHOD!
+            automation_result = await self.automation.attempt_automation_with_orchestrator(
                 page=page,
                 handler_factory=self.handler_factory,
                 vision_result=vision_result,
                 question_num=question_num
             )
             
+            # 🛑 CHECK FOR SURVEY COMPLETION SIGNAL
+            if automation_result.get('stop_automation'):
+                print("\n🎉 SURVEY COMPLETE DETECTED BY ORCHESTRATOR!")
+                self._log_survey_completion()
+                break
+            
             if automation_result.get('success'):
                 self.stats["questions_automated"] += 1
-                print(f"✅ AUTOMATED! (Total: {self.stats['questions_automated']})")
+                
+                # Handle multi-question pages
+                if automation_result.get('handler_used') == 'PageOrchestrator':
+                    if automation_result.get('partial_manual'):
+                        print(f"⚠️ Partial automation - some fields needed manual input")
+                    print(f"✅ ORCHESTRATOR HANDLED! (Total automated: {self.stats['questions_automated']})")
+                else:
+                    print(f"✅ AUTOMATED! (Total: {self.stats['questions_automated']})")
                 
                 # Store pattern if vision was confident
-                if vision_result and vision_result.get('confidence_rating', 0) > 80:
-                    await self.vision.store_success_pattern(
-                        page, question_num, vision_result, automation_result
-                    )
-                    self.stats["pattern_matches"] += 1
-                
-                # Check completion
+                # if vision_result and vision_result.get('confidence_rating', 0) > 80:
+                #    await self.vision.store_success_pattern(
+                #         page, question_num, vision_result, automation_result
+                #    )
+                #     self.stats["pattern_matches"] += 1
+                # 
+                # Check completion (backup check)
                 if await self._check_survey_complete(page):
                     break
                 
-                # Click next
-                await self._click_next(page)
+                # Special handling for transition pages
+                if automation_result.get('reason') == 'transition_page':
+                    print("📄 Transition page - moving to next section")
+                    await page.wait_for_timeout(2000)
+                    continue
+                
+                # Click next (unless it was a transition that already clicked)
+                if automation_result.get('reason') != 'transition_page':
+                    await self._click_next(page)
+                
                 await page.wait_for_timeout(1500)
                 continue
             
@@ -291,11 +310,11 @@ class QuenitoRunner:
                 if learning_data.get('response_values'):
                     print(f"   All values: {', '.join(learning_data['response_values'])}")
                 
-                # Store pattern for future learning
-                if vision_result:
-                    await self.vision.store_learning_pattern(
-                        page, question_num, vision_result, learning_data
-                    )
+            # Store pattern for future learning
+            #    if vision_result:
+            #        await self.vision.store_learning_pattern(
+            #            page, question_num, vision_result, learning_data
+            #        )
             
             # User clicks next
             input("\n👉 Now click Next/Continue, then press Enter >>> ")

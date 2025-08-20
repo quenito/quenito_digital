@@ -1,5 +1,15 @@
-# services/knowledge_manager.py
+#!/usr/bin/env python3
+"""
+🧠 QUENITO: Building a Digital Brain, Not Mechanical Parts
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+We're teaching Quenito to UNDERSTAND surveys, not just fill them.
+Every decision should make him smarter, not just more mechanical.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+Knowledge Manager - The NEW brain manager (LLM-first architecture)
+Singleton pattern ensuring ONE consistent memory across all services.
+Manages personas/quenito/knowledge_base.json - Quenito's actual memories.
+"""
 import json
 from pathlib import Path
 from typing import Any, Dict, List, Optional
