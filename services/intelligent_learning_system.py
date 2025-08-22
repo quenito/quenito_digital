@@ -7,7 +7,8 @@ A proper learning architecture that knows what to learn and when to use it
 """
 import json
 import os
-import hashlib
+import re
+import shutil
 from typing import Dict, Any, Optional, List
 from datetime import datetime
 from pathlib import Path
@@ -126,7 +127,9 @@ class IntelligentLearningSystem:
                     "are you male or female",
                     "what is your gender",
                     "please indicate your gender",
-                    "gender identity"
+                    "gender identity",
+                    "please select your gender",
+                    "i am"
                 ],
                 "response": "Male",
                 "confidence": 1.0
@@ -136,7 +139,8 @@ class IntelligentLearningSystem:
                     "work in any of the following industries",
                     "employed in any of these",
                     "household work in",
-                    "family members work"
+                    "family members work",
+                    "work for any of the following"
                 ],
                 "response_logic": "if_retail_exists_select_else_none_of_above",
                 "confidence": 0.95
@@ -146,7 +150,8 @@ class IntelligentLearningSystem:
                     "children aged under 18",
                     "children living in your household",
                     "do you have any children",
-                    "kids at home"
+                    "kids at home",
+                    "children under 18"
                 ],
                 "response": "Yes",
                 "confidence": 1.0
@@ -155,9 +160,41 @@ class IntelligentLearningSystem:
                 "patterns": [
                     "which age group",
                     "age range",
-                    "how old are you"
+                    "how old are you",
+                    "please select your age",
+                    "what is your age"
                 ],
                 "response_logic": "select_range_containing_45",
+                "confidence": 1.0
+            },
+            "marital_status": {
+                "patterns": [
+                    "marital status",
+                    "are you married",
+                    "relationship status",
+                    "married or single"
+                ],
+                "response": "Married",
+                "confidence": 1.0
+            },
+            "employment": {
+                "patterns": [
+                    "employment status",
+                    "are you employed",
+                    "working status",
+                    "currently employed"
+                ],
+                "response": "Full-time",
+                "confidence": 1.0
+            },
+            "location": {
+                "patterns": [
+                    "where do you live",
+                    "current location",
+                    "which state",
+                    "postcode"
+                ],
+                "response_logic": "sydney_nsw_2217",
                 "confidence": 1.0
             }
         }
@@ -171,17 +208,32 @@ class IntelligentLearningSystem:
         """
         Main decision flow for answering questions
         Priority: Exact match → Pattern match → LLM → Learn from manual
+        PROPERLY LABELS SOURCE!
         """
         
         # Step 1: Check exact match (highest confidence)
         exact_match = self._check_exact_match(question, element_type)
         if exact_match:
             print(f"   💡 EXACT MATCH: {exact_match['answer']}")
+            
+            # Increment success count and boost confidence
+            q_normalized = question.lower().strip()
+            if q_normalized in self.learned_responses:
+                self.learned_responses[q_normalized]["success_count"] += 1
+                self.learned_responses[q_normalized]["last_used"] = datetime.now().isoformat()
+                
+                # Boost confidence with each successful use (up to 0.99)
+                current_confidence = self.learned_responses[q_normalized].get("confidence", 0.85)
+                self.learned_responses[q_normalized]["confidence"] = min(current_confidence + 0.02, 0.99)
+                
+                # Save immediately
+                self._save_json(self.learned_responses_path, self.learned_responses)
+            
             return {
                 "success": True,
                 "value": exact_match["answer"],
-                "confidence": 0.99,
-                "source": "exact_match"
+                "confidence": exact_match.get("confidence", 0.95),
+                "source": "exact_match"  # ✅ Properly labeled!
             }
         
         # Step 2: Check pattern match (high confidence)
@@ -191,16 +243,15 @@ class IntelligentLearningSystem:
             return {
                 "success": True,
                 "value": pattern_match["answer"],
-                "confidence": 0.95,
-                "source": "pattern_match"
+                "confidence": pattern_match.get("confidence", 0.95),
+                "source": "pattern_match"  # ✅ Properly labeled!
             }
         
-        # Step 3: Use LLM with knowledge base context
-        # (This would call the existing LLM service)
-        return None  # Let LLM service handle it
+        # Step 3: No match found - let LLM handle it
+        return None
     
     def _check_exact_match(self, question: str, element_type: str) -> Optional[Dict]:
-        """Check for exact question match"""
+        """Check for exact question match - WITH IMPROVED CONFIDENCE HANDLING"""
         q_normalized = question.lower().strip()
         
         # Must be a substantial question (not "..." or empty)
@@ -211,14 +262,24 @@ class IntelligentLearningSystem:
         if q_normalized in self.learned_responses:
             learned = self.learned_responses[q_normalized]
             
-            # Validate element type matches
-            if learned.get("element_type") == element_type:
-                # Check confidence and usage count
-                if learned.get("confidence", 0) >= 0.9 and learned.get("success_count", 0) >= 1:
-                    return {
-                        "answer": learned["answer"],
-                        "confidence": learned.get("confidence", 0.95)
-                    }
+            # Validate element type matches (or is similar enough)
+            type_matches = (
+                learned.get("element_type") == element_type or
+                learned.get("element_type") == "unknown" or
+                element_type == "unknown"
+            )
+            
+            if type_matches:
+                # For recently learned items (success_count >= 1), use them!
+                if learned.get("success_count", 0) >= 1:
+                    # Trust anything we've successfully used before
+                    min_confidence = 0.80 if learned.get("success_count", 0) == 1 else 0.85
+                    
+                    if learned.get("confidence", 0) >= min_confidence:
+                        return {
+                            "answer": learned["answer"],
+                            "confidence": learned.get("confidence", 0.85)
+                        }
         
         return None
     
@@ -248,7 +309,6 @@ class IntelligentLearningSystem:
                         if options:
                             for opt in options:
                                 # Check if 45 is in this range
-                                import re
                                 numbers = re.findall(r'\d+', opt)
                                 if len(numbers) >= 2:
                                     try:
@@ -274,7 +334,7 @@ class IntelligentLearningSystem:
                                     answer: str,
                                     element_type: str,
                                     confidence: float):
-        """Record a successful automation for learning"""
+        """Record a successful automation for learning - IMPROVED"""
         
         # Add to session
         self.current_session["automated"].append({
@@ -294,26 +354,25 @@ class IntelligentLearningSystem:
             print(f"   ⚠️ Skipping learning 'Male' for non-gender question")
             return
         
-        # Update learned responses (only high confidence)
-        if confidence >= 0.85:
+        # Update learned responses (with LOWER initial threshold)
+        if confidence >= 0.80:  # Lowered from 0.85
             q_normalized = question.lower().strip()
             
             if q_normalized in self.learned_responses:
                 # Update existing
                 self.learned_responses[q_normalized]["success_count"] += 1
                 self.learned_responses[q_normalized]["last_used"] = datetime.now().isoformat()
-                # Boost confidence slightly with each success
-                self.learned_responses[q_normalized]["confidence"] = min(
-                    self.learned_responses[q_normalized].get("confidence", 0.9) + 0.01,
-                    0.99
-                )
+                
+                # Keep the higher confidence between old and new
+                old_confidence = self.learned_responses[q_normalized].get("confidence", 0.85)
+                self.learned_responses[q_normalized]["confidence"] = max(old_confidence, confidence)
             else:
-                # Add new
+                # Add new with proper initial values
                 self.learned_responses[q_normalized] = {
                     "answer": answer,
                     "element_type": element_type,
                     "confidence": confidence,
-                    "success_count": 1,
+                    "success_count": 1,  # Start at 1 since it was successful
                     "first_seen": datetime.now().isoformat(),
                     "last_used": datetime.now().isoformat()
                 }
@@ -354,6 +413,14 @@ class IntelligentLearningSystem:
         
         print(f"   💾 Session saved: {len(self.current_session['automated'])} automated, "
               f"{len(self.current_session['manual'])} manual")
+        
+        # Reset session for next survey
+        self.current_session = {
+            "timestamp": datetime.now().isoformat(),
+            "automated": [],
+            "manual": [],
+            "failed": []
+        }
     
     def _analyze_session_for_patterns(self):
         """Analyze session to identify new patterns"""
@@ -498,7 +565,6 @@ def migrate_existing_learning():
                 cleaned_kb[key] = value
         
         # Backup original
-        import shutil
         shutil.copy(kb_path, kb_path.with_suffix('.backup.json'))
         
         # Save cleaned version

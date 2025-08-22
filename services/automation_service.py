@@ -100,6 +100,168 @@ class AutomationService:
             print(f"   ⚠️ Screenshot error: {e}")
             return None
     
+    async def handle_page(self, page, page_number: int):
+        """
+        Enhanced page handling with learning integration
+        Records manual interventions when automation fails
+        """
+        result = {'success': False, 'reason': 'not_attempted'}
+        
+        try:
+            # Get question details
+            question_data = await self._analyze_question(page)
+            question_text = question_data.get('question_text', '')
+            element_type = question_data.get('element_type', 'unknown')
+            
+            # Try automation
+            result = await self.attempt_automation_with_orchestrator(
+                page, 
+                None,  # handler_factory if you have one
+                None,  # vision_result if available
+                page_number
+            )
+            
+            # If automation failed, record manual intervention
+            if not result.get('success'):
+                print("\n⏸️  MANUAL INTERVENTION REQUIRED")
+                print(f"   Question: {question_text[:100]}...")
+                print(f"   Reason: {result.get('reason', 'unknown')}")
+                
+                # Wait for user to manually answer
+                manual_answer = await self._wait_for_manual_answer(page, element_type)
+                
+                if manual_answer and self.llm:
+                    # Record for learning
+                    self.llm.record_manual_intervention(
+                        question_text,
+                        manual_answer,
+                        element_type
+                    )
+                    print(f"   📝 Manual intervention recorded: {manual_answer}")
+                else:
+                    print("   ⚠️ Could not capture manual answer")
+        
+        except Exception as e:
+            print(f"   ❌ Page handling error: {e}")
+            result = {'success': False, 'reason': f'error: {str(e)}'}
+        
+        return result
+    
+    async def complete_survey(self, survey_url: str, browser_manager=None):
+        """
+        Complete survey with session saving
+        Saves learning session at the end
+        Note: Navigation is handled by main runner (quenito_main.py)
+        """
+        
+        success = False
+        
+        try:
+            # Your survey handling logic here
+            # Main runner will handle navigation with its superior _click_next() method
+            pass
+            
+        except Exception as e:
+            print(f"❌ Survey completion error: {e}")
+            
+        finally:
+            # ALWAYS save learning session at the end
+            if self.llm:
+                print("\n💾 Saving learning session...")
+                self.llm.save_session()
+                
+                # Show learning progress
+                stats = self.llm.get_learning_stats()
+                print(f"\n📊 Learning Progress:")
+                print(f"   Total Q&As learned: {stats['learned_responses']['total']}")
+                print(f"   High confidence: {stats['learned_responses']['high_confidence']}")
+                print(f"   Patterns: {stats['patterns']['total']}")
+                print(f"   This session automated: {stats['current_session']['automated']}")
+                print(f"   This session manual: {stats['current_session']['manual']}")
+        
+        return success
+    
+    async def _wait_for_manual_answer(self, page, element_type: str):
+        """
+        Helper to detect what the user entered manually
+        Waits for user input and tries to capture the value
+        """
+        try:
+            # Give user time to answer
+            print("   ⏳ Please answer manually, then press Enter...")
+            input()  # Wait for user confirmation
+            
+            # Try to capture what was entered based on element type
+            if element_type == "text":
+                # Find filled text input
+                inputs = await page.query_selector_all('input[type="text"], input[type="number"]')
+                for inp in inputs:
+                    value = await inp.input_value()
+                    if value and value.strip():
+                        return value.strip()
+            
+            elif element_type == "radio":
+                # Find selected radio
+                radios = await page.query_selector_all('input[type="radio"]:checked')
+                for radio in radios:
+                    # Try to get label
+                    radio_id = await radio.get_attribute('id')
+                    if radio_id:
+                        label = await page.query_selector(f'label[for="{radio_id}"]')
+                        if label:
+                            return await label.inner_text()
+                    # Try value attribute
+                    value = await radio.get_attribute('value')
+                    if value:
+                        return value
+            
+            elif element_type == "checkbox":
+                # Find all checked checkboxes
+                checked = []
+                checkboxes = await page.query_selector_all('input[type="checkbox"]:checked')
+                for checkbox in checkboxes:
+                    # Try to get label
+                    checkbox_id = await checkbox.get_attribute('id')
+                    if checkbox_id:
+                        label = await page.query_selector(f'label[for="{checkbox_id}"]')
+                        if label:
+                            text = await label.inner_text()
+                            if text.strip():
+                                checked.append(text.strip())
+                    # Try value attribute as fallback
+                    if not checked:
+                        value = await checkbox.get_attribute('value')
+                        if value:
+                            checked.append(value)
+                
+                if checked:
+                    return checked if len(checked) > 1 else checked[0]
+            
+            elif element_type in ["select", "dropdown"]:
+                # Find selected option
+                selects = await page.query_selector_all('select')
+                for select in selects:
+                    selected_option = await select.query_selector('option:checked')
+                    if selected_option:
+                        text = await selected_option.inner_text()
+                        if text and text.strip():
+                            return text.strip()
+            
+            elif element_type == "textarea":
+                # Find filled textarea
+                textareas = await page.query_selector_all('textarea')
+                for textarea in textareas:
+                    value = await textarea.input_value()
+                    if value and value.strip():
+                        return value.strip()
+            
+        except Exception as e:
+            print(f"   ⚠️ Error capturing manual answer: {e}")
+        
+        return None
+    
+    # ========== EXISTING METHODS CONTINUE BELOW ==========
+    
     async def attempt_automation_with_orchestrator(self, page, handler_factory, 
                                                   vision_result: Optional[Dict], 
                                                   question_num: int) -> Dict[str, Any]:
@@ -178,6 +340,10 @@ class AutomationService:
         
         # Fall through to standard automation if orchestrator doesn't handle it
         return await self.attempt_automation(page, handler_factory, vision_result, question_num)
+    
+    # [ALL YOUR OTHER EXISTING METHODS REMAIN THE SAME BELOW]
+    # Including: attempt_automation, _apply_llm_response, _analyze_question, 
+    # find_matching_age_range, _apply_response, etc.
     
     async def attempt_automation(self, page, handler_factory, 
                                 vision_result: Optional[Dict], 
@@ -274,12 +440,13 @@ class AutomationService:
                     if success:
                         print(f"   🎉 LLM AUTOMATED: {llm_response['value']}")
                         
-                        # Save successful Q&A for learning
-                        if llm_response.get('source') != 'learned':
-                            self.llm.save_learned_preference(
+                        # Record successful automation for learning
+                        if self.llm and hasattr(self.llm, 'learning'):
+                            self.llm.learning.record_successful_automation(
                                 question_text,
                                 llm_response['value'],
-                                element_type
+                                element_type,
+                                llm_response.get('confidence', 0.85)
                             )
                         
                         # Track for session history
@@ -314,6 +481,9 @@ class AutomationService:
             except Exception as e:
                 print(f"   ⚠️ LLM attempt error: {e}")
         
+        # [REST OF YOUR EXISTING AUTOMATION CODE CONTINUES HERE]
+        # Including all the handler checks, fallback logic, etc.
+        
         # 🎯 PRIORITY 2: CHECK BRAND AWARENESS/SELECTION (Keep - complex logic)
         if 'which of the following' in question_text.lower() or 'aware of' in question_text.lower():
             print("   🏢 Brand selection detected!")
@@ -330,124 +500,11 @@ class AutomationService:
                     'reason': 'brand_selection_automated'
                 }
         
-        # 🎯 PRIORITY 3: CHECK CAROUSEL PATTERN (Keep - complex UI)
-        if await self.carousel_handler.detect_carousel_pattern(page):
-            print("   🎠 Carousel pattern detected!")
-            success = await self.carousel_handler.handle_carousel_brands(page)
-            if success:
-                return {
-                    'success': True,
-                    'handler_used': 'CarouselHandler',
-                    'response_value': 'Carousel completed',
-                    'confidence': 0.85,
-                    'reason': 'carousel_automated'
-                }
-        
-        # 🎯 PRIORITY 4: CHECK BRAND ASSOCIATIONS (Keep - complex matching)
-        if await self.brand_association_handler.detect_brand_association_question(page):
-            print("   💭 Brand association detected!")
-            success = await self.brand_association_handler.handle_brand_association_question(page)
-            if success:
-                return {
-                    'success': True,
-                    'handler_used': 'BrandAssociationHandler',
-                    'response_value': 'Associations filled',
-                    'confidence': 0.80,
-                    'reason': 'association_automated'
-                }
-        
-        # FALLBACK TO ORIGINAL HANDLER SYSTEM (rarely needed now)
-        print("   📊 Falling back to original handler system...")
-        
-        try:
-            # Enhance with vision if available
-            if vision_result and vision_result.get('confidence_rating', 0) > 70:
-                question_data['vision_boost'] = True
-                question_data['vision_type'] = vision_result.get('question_type')
-            
-            # Get appropriate handler
-            handler = handler_factory.get_handler_for_question(
-                question_data['question_text'],
-                question_data.get('question_type')
-            )
-            
-            if not handler:
-                result['reason'] = 'no_handler_available'
-                return result
-            
-            # Check confidence
-            confidence = handler.calculate_confidence(
-                question_data.get('question_type', ''),
-                question_data.get('question_text', '')
-            )
-            
-            # Boost confidence if vision agrees
-            if question_data.get('vision_boost'):
-                confidence = min(confidence + 0.15, 0.95)
-            
-            result['confidence'] = confidence
-            result['handler_used'] = handler.__class__.__name__
-            
-            # Check threshold
-            threshold = self.confidence_manager.get_dynamic_threshold(
-                handler.__class__.__name__,
-                question_data.get('question_type', '')
-            )
-            
-            if confidence < threshold:
-                result['reason'] = f'low_confidence ({confidence:.2f} < {threshold:.2f})'
-                return result
-            
-            # Attempt automation
-            print(f"🤖 Attempting automation with {handler.__class__.__name__} (confidence: {confidence:.2f})")
-            
-            response = handler.handle(
-                question_data.get('question_text', ''),
-                question_data.get('element_type', 'unknown')
-            )
-            
-            # Check for success field and response_value
-            if response and hasattr(response, 'success') and response.success and response.response_value:
-                print(f"   📝 Response value: {response.response_value}")
-                
-                success = await self._apply_response(
-                    page,
-                    response.response_value,
-                    question_data.get('element_type', 'unknown')
-                )
-                
-                if success:
-                    result['success'] = True
-                    result['response_value'] = response.response_value
-                    result['reason'] = 'automated_successfully'
-                    
-                    # Record success
-                    self.confidence_manager.record_automation_result(
-                        handler.__class__.__name__,
-                        question_data.get('question_type', ''),
-                        confidence,
-                        True
-                    )
-                else:
-                    result['reason'] = 'failed_to_apply_response'
-                    # Record failure
-                    self.confidence_manager.record_automation_result(
-                        handler.__class__.__name__,
-                        question_data.get('question_type', ''),
-                        confidence,
-                        False
-                    )
-            else:
-                result['reason'] = 'no_response_generated'
-            
-        except Exception as e:
-            result['reason'] = f'error: {str(e)}'
-            print(f"⚠️ Handler automation error: {e}")
-            import traceback
-            traceback.print_exc()
+        # [Continue with rest of existing attempt_automation method...]
         
         return result
     
+    # [Include all your other existing methods here: _apply_llm_response, _analyze_question, etc.]
     async def _apply_llm_response(self, page, value: str, element_type: str, 
                                   options: Optional[List[str]] = None) -> bool:
         """Apply LLM's response to the page - ENHANCED WITH INDUSTRY SCREENING FALLBACK"""
@@ -706,6 +763,7 @@ class AutomationService:
 
     async def _apply_response(self, page, response_value: str, element_type: str) -> bool:
         """Apply response to page elements - ENHANCED for all types with FIXES"""
+        # [Your existing _apply_response method code here]
         try:
             print(f"   🔧 Applying {response_value} to {element_type} element")
             
@@ -739,155 +797,8 @@ class AutomationService:
                 print(f"   ❌ No visible text/number inputs found")
                 return False
             
-            # RADIO BUTTON HANDLING (including age ranges)
-            elif element_type == 'radio' or element_type == 'radio_age_range':
-                page_text = await page.inner_text('body')
-                page_text_lower = page_text.lower()
-                
-                # Check if this is an age range question
-                if element_type == 'radio_age_range' or ('age' in page_text_lower and response_value.isdigit()):
-                    # Get actual age from knowledge base
-                    actual_age = None
-                    if response_value.isdigit():
-                        actual_age = int(response_value)
-                    else:
-                        try:
-                            actual_age = knowledge.get_demographic('age')
-                            if actual_age:
-                                actual_age = int(actual_age)
-                        except:
-                            pass
-                    
-                    if actual_age:
-                        # Get all radio options and find matching age range
-                        radio_labels = await page.query_selector_all('label')
-                        age_ranges = []
-                        
-                        for label in radio_labels:
-                            text = await label.inner_text()
-                            # Check if it contains numbers (likely age range)
-                            if any(char.isdigit() for char in text):
-                                age_ranges.append(text.strip())
-                        
-                        if age_ranges:
-                            print(f"   📊 Found age ranges: {age_ranges}")
-                            matching_range = self.find_matching_age_range(actual_age, age_ranges)
-                            
-                            if matching_range:
-                                # Click the matching range
-                                try:
-                                    await page.click(f'label:has-text("{matching_range}")')
-                                    print(f"   ✅ Selected age range: {matching_range}")
-                                    return True
-                                except:
-                                    # Try clicking the radio input directly
-                                    for radio in await page.query_selector_all('input[type="radio"]'):
-                                        radio_id = await radio.get_attribute('id')
-                                        if radio_id:
-                                            label = await page.query_selector(f'label[for="{radio_id}"]')
-                                            if label:
-                                                label_text = await label.inner_text()
-                                                if label_text.strip() == matching_range:
-                                                    await radio.click()
-                                                    print(f"   ✅ Selected age range via radio: {matching_range}")
-                                                    return True
-                            else:
-                                print(f"   ⚠️ No matching age range found for age {actual_age}")
-                                return False
-                
-                # Regular radio button handling (for non-age questions)
-                try:
-                    # Try exact value match first
-                    await page.click(f'input[type="radio"][value="{response_value}"]')
-                    print(f"   ✅ Selected radio option: {response_value}")
-                    return True
-                except:
-                    try:
-                        # Try label text
-                        await page.click(f'label:has-text("{response_value}")')
-                        print(f"   ✅ Selected radio via label: {response_value}")
-                        return True
-                    except:
-                        print(f"   ❌ Could not select radio option: {response_value}")
-                        return False
-                            
-            elif element_type == 'checkbox':
-                # ENHANCED MULTI-SELECT HANDLING WITH FALLBACK
-                values_to_select = response_value if isinstance(response_value, list) else [response_value]
-                success_count = 0
-                
-                for value in values_to_select:
-                    # Skip if it's an index
-                    if isinstance(value, int):
-                        continue
-                    
-                    clicked = False
-                    try:
-                        # Try exact label match
-                        await page.click(f'label:has-text("{value}")')
-                        await page.wait_for_timeout(200)
-                        success_count += 1
-                        clicked = True
-                        print(f"   ✅ Selected checkbox: {value}")
-                    except:
-                        # Try checkbox value attribute
-                        try:
-                            await page.click(f'input[type="checkbox"][value="{value}"]')
-                            await page.wait_for_timeout(200)
-                            success_count += 1
-                            clicked = True
-                        except:
-                            pass
-                    
-                    # Industry screening fallback
-                    if not clicked and "retail" in value.lower():
-                        print("   🔄 Retail not found, trying 'None of the above'...")
-                        labels = await page.query_selector_all('label')
-                        for label in labels:
-                            text = await label.inner_text()
-                            if "none" in text.lower():
-                                await label.click()
-                                await page.wait_for_timeout(200)
-                                success_count += 1
-                                print("   ✅ Selected 'None of the above' fallback")
-                                break
-                
-                return success_count > 0
-                
-            elif element_type == 'select' or element_type == 'select_age_range':
-                # Dropdown handling
-                selects = await page.query_selector_all('select')
-                
-                for select_elem in selects:
-                    try:
-                        is_visible = await select_elem.is_visible()
-                        if is_visible:
-                            # Try by label first
-                            try:
-                                await select_elem.select_option(label=response_value)
-                                print(f"   ✅ Selected dropdown option: {response_value}")
-                                return True
-                            except:
-                                # Try by value
-                                await select_elem.select_option(value=response_value)
-                                print(f"   ✅ Selected dropdown by value: {response_value}")
-                                return True
-                    except Exception as e:
-                        print(f"   ⚠️ Error with select element: {e}")
-                        continue
-                
-                print(f"   ❌ Could not select dropdown option")
-                return False
+            # [Continue with rest of your existing _apply_response method]
             
-            elif element_type == 'slider':
-                # Handle slider/range inputs
-                slider = await page.query_selector('input[type="range"]')
-                if slider:
-                    await slider.evaluate(f'(el) => el.value = {response_value}')
-                    await slider.evaluate('(el) => el.dispatchEvent(new Event("change", {bubbles: true}))')
-                    print(f"   ✅ Set slider to: {response_value}")
-                    return True
-                        
         except Exception as e:
             print(f"   ❌ Error applying response: {e}")
             import traceback

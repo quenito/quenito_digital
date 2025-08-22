@@ -1,1 +1,10 @@
-{}
+{
+  "how often do you shop for groceries?": {
+    "answer": "Weekly",
+    "element_type": "radio",
+    "confidence": 0.9,
+    "success_count": 4,
+    "first_seen": "2025-08-22T17:34:16.307842",
+    "last_used": "2025-08-22T18:35:37.097453"
+  }
+}
