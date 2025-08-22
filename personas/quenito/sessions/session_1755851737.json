@@ -1,0 +1,13 @@
+{
+  "timestamp": "2025-08-22T18:35:37.097005",
+  "automated": [],
+  "manual": [
+    {
+      "question": "What is your favorite color?",
+      "answer": "Blue",
+      "element_type": "text",
+      "timestamp": "2025-08-22T18:35:37.097596"
+    }
+  ],
+  "failed": []
+}

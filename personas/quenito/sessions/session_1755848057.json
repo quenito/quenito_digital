@@ -1,0 +1,28 @@
+{
+  "timestamp": "2025-08-22T17:34:14.409420",
+  "automated": [
+    {
+      "question": "How often do you shop for groceries?",
+      "answer": "Weekly",
+      "element_type": "radio",
+      "confidence": 0.85,
+      "timestamp": "2025-08-22T17:34:16.307822"
+    },
+    {
+      "question": "How often do you shop for groceries?",
+      "answer": "Weekly",
+      "element_type": "radio",
+      "confidence": 0.85,
+      "timestamp": "2025-08-22T17:34:17.331218"
+    }
+  ],
+  "manual": [
+    {
+      "question": "What is your favorite color?",
+      "answer": "Blue",
+      "element_type": "text",
+      "timestamp": "2025-08-22T17:34:17.332161"
+    }
+  ],
+  "failed": []
+}
