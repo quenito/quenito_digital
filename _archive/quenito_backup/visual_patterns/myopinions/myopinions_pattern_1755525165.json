@@ -1,0 +1,27 @@
+{
+  "id": "myopinions_pattern_1755525165",
+  "platform": "myopinions",
+  "timestamp": "2025-08-18T23:52:45.375365",
+  "screenshot": "vision_data/question_8_1755525165.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Which of the following best describes your current relationship status?",
+    "clickable_elements": [
+      "Single, not in a relationship",
+      "In a relationship, but not living together (e.g. dating, new relationship)",
+      "In a committed relationship but living separately (e.g. partner deployed, working away)",
+      "In a relationship and living together (e.g. married, de facto)",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "MultiQuestionHandler",
+    "response_value": "Multiple questions answered",
+    "confidence": 0.9,
+    "reason": "multi_question_automated"
+  }
+}

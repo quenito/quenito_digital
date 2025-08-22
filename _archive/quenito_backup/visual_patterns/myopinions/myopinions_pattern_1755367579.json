@@ -1,0 +1,21 @@
+{
+  "id": "myopinions_pattern_1755367579",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T04:06:19.334057",
+  "screenshot": "vision_data/question_4_1755367579.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "exact_question_text": "How old are you?",
+    "clickable_elements": [],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "45",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

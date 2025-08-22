@@ -1,0 +1,26 @@
+{
+  "id": "myopinions_pattern_1755358173",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:29:33.878837",
+  "screenshot": "vision_data/question_37_1755358173.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "question_text": "Please type your answer into the box below.",
+    "clickable_elements": [],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 37,
+    "timestamp": 1755358173.7723303,
+    "session_id": "learning_1755355433",
+    "question_text": "That's the end of the survey - thank you for your time. If you have any comments about this survey, please type them into the box below.",
+    "question_type": "general",
+    "response_value": "",
+    "response_values": [],
+    "vision_confidence": 90,
+    "vision_type": "text"
+  }
+}

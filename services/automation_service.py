@@ -141,7 +141,7 @@ class AutomationService:
                 
             elif result.get('status') == 'transition':
                 # Transition page handled
-                print("📄 Transition page handled")
+                print("🔄 Transition page handled")
                 return {
                     'success': True,
                     'handler_used': 'PageOrchestrator',
@@ -206,9 +206,9 @@ class AutomationService:
         # 🎯 PRIORITY 1: TRY LLM FIRST! (Handles 90% of questions)
         if self.llm:
             try:
-                # Get options for radio/dropdown
+                # Get options for radio/dropdown/checkbox
                 options = []
-                if element_type in ["radio", "dropdown", "select"]:
+                if element_type in ["radio", "dropdown", "select", "checkbox"]:
                     if element_type == "radio":
                         labels = await page.query_selector_all('label')
                         for label in labels:
@@ -223,6 +223,24 @@ class AutomationService:
                                 text = await opt.inner_text()
                                 if text.strip() and text.strip() not in ['', 'Select', 'Please select', '--']:
                                     options.append(text.strip())
+                    elif element_type == "checkbox":
+                        # Get checkbox options
+                        checkboxes = await page.query_selector_all('input[type="checkbox"]')
+                        for checkbox in checkboxes:
+                            # Try to get label
+                            checkbox_id = await checkbox.get_attribute('id')
+                            if checkbox_id:
+                                label = await page.query_selector(f'label[for="{checkbox_id}"]')
+                                if label:
+                                    text = await label.inner_text()
+                                    if text.strip():
+                                        options.append(text.strip())
+                            # Also try parent label
+                            parent = await checkbox.evaluate_handle('el => el.parentElement')
+                            if parent:
+                                parent_text = await parent.inner_text()
+                                if parent_text.strip() and parent_text.strip() not in options:
+                                    options.append(parent_text.strip())
                 
                 if options:
                     print(f"   📋 Options: {options[:5]}...")  # First 5 options
@@ -249,7 +267,8 @@ class AutomationService:
                     success = await self._apply_llm_response(
                         page,
                         llm_response['value'],
-                        element_type
+                        element_type,
+                        options  # Pass options for fallback logic
                     )
                     
                     if success:
@@ -429,8 +448,9 @@ class AutomationService:
         
         return result
     
-    async def _apply_llm_response(self, page, value: str, element_type: str) -> bool:
-        """Apply LLM's response to the page - ENHANCED WITH FIX #2"""
+    async def _apply_llm_response(self, page, value: str, element_type: str, 
+                                  options: Optional[List[str]] = None) -> bool:
+        """Apply LLM's response to the page - ENHANCED WITH INDUSTRY SCREENING FALLBACK"""
         try:
             print(f"   🔧 Applying: {value} to {element_type}")
             
@@ -483,8 +503,7 @@ class AutomationService:
                             return True
                             
             elif element_type == "checkbox":
-                # 🔴 FIX #2: ENHANCED CHECKBOX HANDLING
-                # Handle both single values and lists
+                # ENHANCED CHECKBOX HANDLING WITH INDUSTRY SCREENING FALLBACK
                 values_to_select = value if isinstance(value, list) else [value]
                 success_count = 0
                 
@@ -495,11 +514,13 @@ class AutomationService:
                         continue
                     
                     # Try different selection methods
+                    clicked = False
                     try:
                         # Method 1: Click label with text
                         await page.click(f'label:has-text("{val}")')
                         await page.wait_for_timeout(200)
                         success_count += 1
+                        clicked = True
                         print(f"   ✅ Checked checkbox: {val}")
                     except:
                         # Method 2: Find checkbox by value
@@ -507,6 +528,7 @@ class AutomationService:
                             await page.click(f'input[type="checkbox"][value*="{val}"]')
                             await page.wait_for_timeout(200)
                             success_count += 1
+                            clicked = True
                             print(f"   ✅ Checked checkbox by value: {val}")
                         except:
                             # Method 3: Partial text match
@@ -517,8 +539,34 @@ class AutomationService:
                                     await label.click()
                                     await page.wait_for_timeout(200)
                                     success_count += 1
+                                    clicked = True
                                     print(f"   ✅ Checked checkbox via partial match: {val}")
                                     break
+                    
+                    # INDUSTRY SCREENING FALLBACK
+                    if not clicked and "retail" in val.lower():
+                        # Retail not found, look for "None of the above"
+                        print("   🔄 Retail not available, looking for 'None of the above'...")
+                        
+                        labels = await page.query_selector_all('label')
+                        for label in labels:
+                            text = await label.inner_text()
+                            if "none" in text.lower() and ("above" in text.lower() or "these" in text.lower()):
+                                await label.click()
+                                await page.wait_for_timeout(200)
+                                success_count += 1
+                                print("   ✅ Selected 'None of the above' (retail not in list)")
+                                break
+                        
+                        # Also check for checkboxes with value containing "none"
+                        if success_count == 0:
+                            try:
+                                await page.click('input[type="checkbox"][value*="none" i]')
+                                await page.wait_for_timeout(200)
+                                success_count += 1
+                                print("   ✅ Selected 'None' checkbox (retail not available)")
+                            except:
+                                pass
                 
                 return success_count > 0
                     
@@ -764,7 +812,7 @@ class AutomationService:
                         return False
                             
             elif element_type == 'checkbox':
-                # 🔴 FIX #2: PROPER MULTI-SELECT HANDLING
+                # ENHANCED MULTI-SELECT HANDLING WITH FALLBACK
                 values_to_select = response_value if isinstance(response_value, list) else [response_value]
                 success_count = 0
                 
@@ -773,11 +821,13 @@ class AutomationService:
                     if isinstance(value, int):
                         continue
                     
+                    clicked = False
                     try:
                         # Try exact label match
                         await page.click(f'label:has-text("{value}")')
                         await page.wait_for_timeout(200)
                         success_count += 1
+                        clicked = True
                         print(f"   ✅ Selected checkbox: {value}")
                     except:
                         # Try checkbox value attribute
@@ -785,8 +835,22 @@ class AutomationService:
                             await page.click(f'input[type="checkbox"][value="{value}"]')
                             await page.wait_for_timeout(200)
                             success_count += 1
+                            clicked = True
                         except:
                             pass
+                    
+                    # Industry screening fallback
+                    if not clicked and "retail" in value.lower():
+                        print("   🔄 Retail not found, trying 'None of the above'...")
+                        labels = await page.query_selector_all('label')
+                        for label in labels:
+                            text = await label.inner_text()
+                            if "none" in text.lower():
+                                await label.click()
+                                await page.wait_for_timeout(200)
+                                success_count += 1
+                                print("   ✅ Selected 'None of the above' fallback")
+                                break
                 
                 return success_count > 0
                 

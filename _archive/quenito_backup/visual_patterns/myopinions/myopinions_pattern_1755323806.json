@@ -1,0 +1,35 @@
+{
+  "id": "myopinions_pattern_1755323806",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T15:56:46.791822",
+  "screenshot": "vision_data/question_22_1755323806.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Finally, what best describes the area in which you live?",
+    "clickable_elements": [
+      "Major urban area (i.e. 100,000 or more residents)",
+      "Large urban area (i.e. 30,000-99,999 residents)",
+      "Medium urban area (i.e. 10,000-29,999 residents)",
+      "Small urban area (i.e. 1,000-9,999 residents)",
+      "Rural settlement",
+      "Rural other"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 22,
+    "timestamp": 1755323806.6510415,
+    "session_id": "learning_1755318841",
+    "question_text": "Question text not found",
+    "question_type": "general",
+    "response_value": "Major urban area (i.e. 100,000 or more residents)",
+    "response_values": [
+      "Major urban area (i.e. 100,000 or more residents)"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

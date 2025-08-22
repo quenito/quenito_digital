@@ -1,0 +1,41 @@
+{
+  "id": "myopinions_pattern_1755373952",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:52:32.759830",
+  "screenshot": "vision_data/question_38_1755373952.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which of the following new build construction brands have you heard of?",
+    "clickable_elements": [
+      "G.J. Gardner Homes",
+      "Coral Homes",
+      "Carlisle Homes",
+      "Clarendon Homes",
+      "Simonds",
+      "Metricon",
+      "Boutique Homes",
+      "Sherridon Homes",
+      "Burbank",
+      "Brighton Homes",
+      "McDonald Jones Homes",
+      "Hotondo Homes",
+      "Hickinbotham Homes",
+      "Masterton",
+      "Plantation Homes",
+      "Eden Brae Homes",
+      "Henley",
+      "Other (please specify)",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Somewhat familiar",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

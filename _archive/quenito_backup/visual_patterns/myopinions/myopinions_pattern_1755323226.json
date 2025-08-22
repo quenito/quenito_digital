@@ -1,0 +1,23 @@
+{
+  "id": "myopinions_pattern_1755323226",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T15:47:06.704212",
+  "screenshot": "vision_data/question_16_1755323226.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "question_text": "What other comments do you have, if any, on tourism in your community or Australia?",
+    "clickable_elements": [
+      "No comments"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "MultiSelectHandler",
+    "response_value": "None of the above",
+    "confidence": 0.55,
+    "reason": "automated_successfully"
+  }
+}

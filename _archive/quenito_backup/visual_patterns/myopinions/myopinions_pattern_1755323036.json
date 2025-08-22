@@ -1,0 +1,39 @@
+{
+  "id": "myopinions_pattern_1755323036",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T15:43:56.982625",
+  "screenshot": "vision_data/question_13_1755323036.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "In which of the following ways, if any, would you say you/your family are negatively impacted by tourism in your local area?",
+    "clickable_elements": [
+      "Changes in the character of my/our community",
+      "Too much pressure on my/our community\u2019s natural resources (e.g. through increased water and energy consumption)",
+      "More noise pollution",
+      "Contributes to climate change due to carbon footprint and emissions",
+      "Fewer services for local residents (e.g. shops, schools etc.)",
+      "Reduced sense of belonging in my/our community",
+      "More crime",
+      "Less opportunity to visit certain local attractions, landmarks and/or events",
+      "Tourism activity means that the price of housing has increased",
+      "None of these \u2013 my family haven't experienced any adverse impacts of tourism in our area"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 13,
+    "timestamp": 1755323036.875919,
+    "session_id": "learning_1755318841",
+    "question_text": "Question text not found",
+    "question_type": "general",
+    "response_value": "99420",
+    "response_values": [
+      "99420"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

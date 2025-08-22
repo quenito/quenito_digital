@@ -1,0 +1,30 @@
+{
+  "id": "myopinions_pattern_1755536271",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T02:57:51.423453",
+  "screenshot": "vision_data/question_13_1755536271.png",
+  "vision_analysis": {
+    "question_type": "dropdown",
+    "question_text": "What brand is your car?",
+    "clickable_elements": [
+      "Select one..."
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 13,
+    "timestamp": 1755536271.369591,
+    "session_id": "learning_1755535431",
+    "question_text": "What brand is your car?",
+    "question_type": "brand_awareness",
+    "response_value": "Nissan",
+    "response_values": [
+      "Nissan"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "dropdown"
+  }
+}

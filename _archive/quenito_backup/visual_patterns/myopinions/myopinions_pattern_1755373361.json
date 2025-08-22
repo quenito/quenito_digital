@@ -1,0 +1,38 @@
+{
+  "id": "myopinions_pattern_1755373361",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:42:41.962576",
+  "screenshot": "vision_data/question_32_1755373361.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Do you feel iSelect ...?",
+    "clickable_elements": [
+      "Is passionate about what they do",
+      "Offers expert advice",
+      "Provides unbiased recommendations",
+      "Has good customer service",
+      "Is for people like me",
+      "Is a brand I trust",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 32,
+    "timestamp": 1755373361.8969982,
+    "session_id": "learning_1755371916",
+    "question_text": "Do you feel iSelect ...?",
+    "question_type": "general",
+    "response_value": "1",
+    "response_values": [
+      "1",
+      "1",
+      "1"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

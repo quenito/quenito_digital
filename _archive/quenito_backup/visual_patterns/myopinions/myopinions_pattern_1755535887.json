@@ -1,0 +1,32 @@
+{
+  "id": "myopinions_pattern_1755535887",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T02:51:27.009948",
+  "screenshot": "vision_data/question_4_1755535887.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "question_text": "You will now receive some questions about ELECTRIC CARS. By electric cars we mean cars that are solely powered by electricity (not any kind of hybrid cars). We would like you to consider all brands that produce electric cars, this includes traditional brands that have electric cars as part of their offering as well as brands that only produce electric cars.",
+    "clickable_elements": [],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 4,
+    "timestamp": 1755535886.7934198,
+    "session_id": "learning_1755535431",
+    "question_text": "Which car brands can you name that sell ELECTRIC CARS?",
+    "question_type": "brand_awareness",
+    "response_value": "BYD",
+    "response_values": [
+      "BYD",
+      "TESLA",
+      "Nissan",
+      "Toyota",
+      "KIA"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "text"
+  }
+}

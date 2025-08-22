@@ -1,0 +1,31 @@
+{
+  "id": "myopinions_pattern_1755356145",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T00:55:45.456892",
+  "screenshot": "vision_data/question_7_1755356145.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "exact_question_text": "Which of the following brands are you aware of? Please select as many as apply.",
+    "clickable_elements": [],
+    "continue_button_visible": false,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 7,
+    "timestamp": 1755356145.3178322,
+    "session_id": "learning_1755355433",
+    "question_text": "Which of the following brands are you aware of?",
+    "question_type": "brand_awareness",
+    "response_value": "1",
+    "response_values": [
+      "1",
+      "1",
+      "1",
+      "1"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

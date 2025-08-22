@@ -1,0 +1,49 @@
+{
+  "id": "myopinions_pattern_1755322953",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T15:42:33.791497",
+  "screenshot": "vision_data/question_12_1755322953.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "In which of the following ways, if any, would you say you/your family benefit from tourism activity in your local area?",
+    "clickable_elements": [
+      "Encourages protection of significant cultural and heritage sites in my/our area",
+      "Has encouraged more sustainable behaviour in my/our community",
+      "Opportunities to learn more about my/our own culture",
+      "Has inspired me/us to travel internationally",
+      "My/our community is a more vibrant and friendly place to live",
+      "Has given me/my family a greater sense of belonging to our community",
+      "Improved quality of life",
+      "Has increased awareness of climate change in my/our community",
+      "Has encouraged a greater appreciation of our historic buildings and culturally significant sites",
+      "Opportunities to get involved with/attend local festivals and cultural events",
+      "Opportunities to learn more about other cultures",
+      "Has inspired me/us to travel within Australia",
+      "A greater variety of goods and services being available than otherwise would be",
+      "Encourages protection of my/our local natural environment",
+      "Opportunities for employment/income",
+      "More local businesses opening, or being able to stay open",
+      "Improved services for my/our community",
+      "Enables me/my family to share our culture and values with the rest of the world",
+      "None of these \u2013 I/my family haven't benefited from tourism in our area",
+      "Other (please specify):"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 12,
+    "timestamp": 1755322953.6909049,
+    "session_id": "learning_1755318841",
+    "question_text": "Question text not found",
+    "question_type": "general",
+    "response_value": "99396",
+    "response_values": [
+      "99396"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "myopinions_pattern_1755373960",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:52:40.477241",
+  "screenshot": "vision_data/question_39_1755373960.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which of the following new build construction brands have you built with? Please select all that apply",
+    "clickable_elements": [
+      "Somewhat familiar",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Somewhat familiar",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

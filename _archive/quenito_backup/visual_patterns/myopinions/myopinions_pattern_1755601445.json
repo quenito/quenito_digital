@@ -1,0 +1,32 @@
+{
+  "id": "myopinions_pattern_1755601445",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T21:04:05.891813",
+  "screenshot": "vision_data/question_9_1755601445.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "question_text": "We are now going to show you 5 statements. We would like you to imagine the statements are from a popular tea/coffee brand in your country. We are going to ask you some follow up questions about each statement. This survey should take you around 10 minutes to complete. Please click the arrow to proceed.",
+    "clickable_elements": [
+      "English",
+      ">>"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 85
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 9,
+    "timestamp": 1755601445.828737,
+    "session_id": "learning_1755600945",
+    "question_text": "Thinking about the following message from a tea/coffee brand: We can trace 100% of our tea/coffee\n\nWhat does Traceability mean to you?\n\nWe believe that transparency is key to sourcing responsibly. All our tea and coffee is traceable down to the farm or co-operative where it was grown. We publish our entire supply chain on our website.",
+    "question_type": "demographics_age",
+    "response_value": "Selected",
+    "response_values": [
+      "Selected",
+      "English"
+    ],
+    "vision_confidence": 85,
+    "vision_type": "text"
+  }
+}

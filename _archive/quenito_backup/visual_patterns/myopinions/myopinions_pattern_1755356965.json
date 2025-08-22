@@ -1,0 +1,37 @@
+{
+  "id": "myopinions_pattern_1755356965",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:09:25.639354",
+  "screenshot": "vision_data/question_26_1755356965.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which of the following most improve your opinion of Renewable gas?",
+    "clickable_elements": [
+      "Renewable gasses will be blended into the existing gas network which avoids the cost and hassles of changing appliances for years to come",
+      "Renewable gas is created from renewable sources like solar, wind and organic waste",
+      "Renewable gas is a sustainable zero-emission source of energy",
+      "Renewable gasses can be stored within the existing gas network for use at any time, including when the sun is not shining, or the wind is not blowing",
+      "Renewable gas uses existing infrastructure, which can reduce the need to invest billions of dollars into new infrastructure (e.g. new electricity grids or too many battery & wind farms etc)",
+      "Renewable gas enables customers to continue to choose and use gas appliances -for cooking, hot water and heating",
+      "Renewable gas can help Australia achieve its zero-emission target more efficiently",
+      "There is a future for gas, one that transitions to renewable, zero-carbon sources over time",
+      "Renewable gas is a clean, reliable and responsive renewable energy option",
+      "None of these"
+    ],
+    "continue_button_visible": false,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 26,
+    "timestamp": 1755356965.5192633,
+    "session_id": "learning_1755355433",
+    "question_text": "Which of the following most improve your opinion of Renewable gas?",
+    "question_type": "multi_select",
+    "response_value": "",
+    "response_values": [],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

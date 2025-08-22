@@ -1,0 +1,40 @@
+{
+  "id": "myopinions_pattern_1755375280",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T06:14:40.767464",
+  "screenshot": "vision_data/question_81_1755375280.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Do you feel Youi ...?",
+    "clickable_elements": [
+      "Is value for money",
+      "Insures my vehicle for off-road adventures",
+      "Covers my modifications for what they are worth",
+      "Has great customer service",
+      "Is a brand I trust",
+      "Is for people like me",
+      "Will support me when I make a claim",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 81,
+    "timestamp": 1755375280.6146488,
+    "session_id": "learning_1755371916",
+    "question_text": "Do you feel Youi ...?",
+    "question_type": "general",
+    "response_value": "1",
+    "response_values": [
+      "1",
+      "1",
+      "1",
+      "1"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

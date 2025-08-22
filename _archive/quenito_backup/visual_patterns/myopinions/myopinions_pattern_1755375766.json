@@ -1,0 +1,41 @@
+{
+  "id": "myopinions_pattern_1755375766",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T06:22:46.080158",
+  "screenshot": "vision_data/question_92_1755375766.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "In the past month which of the following media channels have you used, read, seen, or listened to? Select all that apply",
+    "clickable_elements": [
+      "LinkedIn",
+      "TikTok",
+      "Pinterest",
+      "Instagram",
+      "YouTube",
+      "Snapchat",
+      "X (formerly Twitter)",
+      "Facebook",
+      "Audio Content (Podcasts, streaming music, online radio)",
+      "TV",
+      "Radio",
+      "Paid streaming platforms (e.g. Netflix, Disney+)",
+      "On-demand TV",
+      "Newspaper/magazine (online)",
+      "Posters/billboards/public transport adverts",
+      "Email newsletters",
+      "Newspaper/magazine (printed)",
+      "Other Social media (please specify)",
+      "Other (please specify)"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "TV, streaming services, social media, online news articles, podcasts.",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

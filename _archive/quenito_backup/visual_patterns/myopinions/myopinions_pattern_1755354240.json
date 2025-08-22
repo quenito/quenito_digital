@@ -1,0 +1,46 @@
+{
+  "id": "myopinions_pattern_1755354240",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T00:24:00.386288",
+  "screenshot": "vision_data/question_51_1755354240.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Which of these best describes the type of meal you had?",
+    "clickable_elements": [
+      "Buffet / Banquet (wide selection of food)",
+      "Burger / Slider",
+      "Dessert only",
+      "Fish / Seafood",
+      "Meat - Fried / Deep fried (e.g. schnitzel, chicken wings/drumsticks)",
+      "Meat - Grilled (e.g. steak, chicken, chop, cutlets, etc.)",
+      "Meat - Roast (e.g. chicken, lamb, pork, beef, etc.)",
+      "Meat - Skewered / Kebabs",
+      "Meat dish - Other (e.g. stew, curry, meatballs)",
+      "Pastry dish (savory e.g. pies, sausage rolls, quiche)",
+      "Pizza",
+      "Salad",
+      "Sandwich / Wrap / Roll / Yeros/ Burrito",
+      "Share plates (incl. appetizers, snacks, yum cha, tapas)",
+      "Soup",
+      "Sushi",
+      "Breakfast / brunch style meal (e.g. bacon, eggs, etc.)",
+      "Vegetarian - other",
+      "Other (please specify)"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 51,
+    "timestamp": 1755354240.3408384,
+    "session_id": "learning_1755350815",
+    "question_text": "Your 3rd most recent DINNER which was EATEN AT RESTAURANT / CAF\u00c9 / FOOD OUTLET.\n\nWhat meat(s) did you eat on this occasion?",
+    "question_type": "general",
+    "response_value": "",
+    "response_values": [],
+    "vision_confidence": 95,
+    "vision_type": "radio"
+  }
+}

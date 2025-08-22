@@ -1,0 +1,33 @@
+{
+  "id": "myopinions_pattern_1755536367",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T02:59:27.419652",
+  "screenshot": "vision_data/question_18_1755536367.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "What is your personal total income before tax per year?",
+    "clickable_elements": [
+      "$0-20 000",
+      "$20 001 - $40 000",
+      "$40 001 - $60 000",
+      "$60 001 - $80 000",
+      "$80 001 - $100 000",
+      "$100 001 - $120 000",
+      "$120 001 - $140 000",
+      "$140 001 - $160 000",
+      "$160 001 or more",
+      "Do not wish to state",
+      "Don't know"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "$100 001 - $120 000",
+    "confidence": 0.9,
+    "reason": "llm_automated"
+  }
+}

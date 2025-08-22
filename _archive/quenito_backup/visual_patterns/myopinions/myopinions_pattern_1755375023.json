@@ -1,0 +1,35 @@
+{
+  "id": "myopinions_pattern_1755375023",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T06:10:23.495711",
+  "screenshot": "vision_data/question_79_1755375023.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Do you feel RACV ...?",
+    "clickable_elements": [
+      "Is value for money",
+      "Covers my modifications for what they are worth",
+      "Is a brand I trust",
+      "Insures my vehicle for off-road adventures",
+      "Is for people like me",
+      "Has great customer service",
+      "Will support me when I make a claim",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 79,
+    "timestamp": 1755375023.3263905,
+    "session_id": "learning_1755371916",
+    "question_text": "Do you feel RAC ...?",
+    "question_type": "general",
+    "response_value": "",
+    "response_values": [],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

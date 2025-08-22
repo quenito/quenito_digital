@@ -1,0 +1,34 @@
+{
+  "id": "myopinions_pattern_1755351465",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T23:37:45.780246",
+  "screenshot": "vision_data/question_2_1755351465.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Please select your age group.",
+    "clickable_elements": [
+      "Under 18 years",
+      "18-24 years",
+      "25-29 years",
+      "30-34 years",
+      "35-39 years",
+      "40-44 years",
+      "45-49 years",
+      "50-54 years",
+      "55-59 years",
+      "60-64 years",
+      "65-69 years",
+      "70 years and over"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 100
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "DemographicsHandler",
+    "response_value": "45",
+    "confidence": 0.95,
+    "reason": "automated_successfully"
+  }
+}

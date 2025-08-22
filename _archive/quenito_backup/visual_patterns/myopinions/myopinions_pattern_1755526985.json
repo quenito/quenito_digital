@@ -1,0 +1,24 @@
+{
+  "id": "myopinions_pattern_1755526985",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T00:23:05.148574",
+  "screenshot": "vision_data/question_5_1755526985.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "exact_question_text": "Are you...?",
+    "clickable_elements": [
+      "Female",
+      "Male"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Male",
+    "confidence": 0.85,
+    "reason": "llm_automated"
+  }
+}

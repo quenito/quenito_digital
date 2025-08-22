@@ -1,0 +1,21 @@
+{
+  "id": "myopinions_pattern_1755375619",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T06:20:19.612848",
+  "screenshot": "vision_data/question_85_1755375619.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "exact_question_text": "Which insurance brands have you heard of?",
+    "clickable_elements": [],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Somewhat familiar with major insurance brands like AAMI, NRMA, and Allianz.",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

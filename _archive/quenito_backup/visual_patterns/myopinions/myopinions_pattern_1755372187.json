@@ -1,0 +1,24 @@
+{
+  "id": "myopinions_pattern_1755372187",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:23:07.811460",
+  "screenshot": "vision_data/question_4_1755372187.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Where in New South Wales & ACT do you live?",
+    "clickable_elements": [
+      "Greater Sydney",
+      "Rest of NSW or ACT"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Greater Sydney",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

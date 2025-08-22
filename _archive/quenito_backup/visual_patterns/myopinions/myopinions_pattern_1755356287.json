@@ -1,0 +1,39 @@
+{
+  "id": "myopinions_pattern_1755356287",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T00:58:07.114598",
+  "screenshot": "vision_data/question_12_1755356287.png",
+  "vision_analysis": {
+    "question_type": "scale",
+    "question_text": "Thinking about your overall experience with natural gas, how likely would you be to recommend natural gas to your friends/family?",
+    "clickable_elements": [
+      "Very Unlikely",
+      "1",
+      "2",
+      "3",
+      "Neutral",
+      "4",
+      "5",
+      "6",
+      "Very Likely",
+      "7"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 12,
+    "timestamp": 1755356287.0225744,
+    "session_id": "learning_1755355433",
+    "question_text": "Thinking about your overall experience with natural gas, how likely would you be to recommend natural gas to your friends/family?",
+    "question_type": "general",
+    "response_value": "Very Likely7",
+    "response_values": [
+      "Very Likely7"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "scale"
+  }
+}

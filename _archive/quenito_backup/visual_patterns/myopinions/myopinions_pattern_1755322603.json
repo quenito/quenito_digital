@@ -1,0 +1,31 @@
+{
+  "id": "myopinions_pattern_1755322603",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T15:36:43.316389",
+  "screenshot": "vision_data/question_7_1755322603.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "And in the past 3 months, where (if anywhere) have you travelled?",
+    "clickable_elements": [
+      "I have travelled overseas (outside of New Zealand & Australia)",
+      "I have not travelled in the past 3 months"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 7,
+    "timestamp": 1755322603.2497947,
+    "session_id": "learning_1755318841",
+    "question_text": "Question text not found",
+    "question_type": "general",
+    "response_value": "133228",
+    "response_values": [
+      "133228"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}
