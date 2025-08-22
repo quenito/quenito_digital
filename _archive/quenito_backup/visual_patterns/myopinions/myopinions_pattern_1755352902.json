@@ -1,0 +1,34 @@
+{
+  "id": "myopinions_pattern_1755352902",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T00:01:42.880215",
+  "screenshot": "vision_data/question_30_1755352902.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Which of the following best describes where you ate on this occasion?",
+    "clickable_elements": [
+      "Close to friends/family I was eating with",
+      "Close to / conveniently located from my home",
+      "Close to / conveniently located from my work",
+      "Not close to me, I specifically travelled to eat there",
+      "Not close to me, I was in the area for something else"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 30,
+    "timestamp": 1755352902.7608755,
+    "session_id": "learning_1755350815",
+    "question_text": "Which of the following best describes where you ate on this occasion?",
+    "question_type": "multi_select",
+    "response_value": "Not close to me, I was in the area for something else",
+    "response_values": [
+      "Not close to me, I was in the area for something else"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

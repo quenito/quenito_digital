@@ -1,0 +1,31 @@
+{
+  "id": "myopinions_pattern_1755323644",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T15:54:04.063769",
+  "screenshot": "vision_data/question_21_1755323644.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "exact_question_text": "Who lives in the same household as you?",
+    "clickable_elements": [
+      "My husband, wife or partner",
+      "My mother and/or father",
+      "My children aged under 5",
+      "My children aged 5 to 14",
+      "My children aged 15 or older",
+      "Other family/relatives",
+      "Other person(s)",
+      "None of the above \u2013 I live alone",
+      "Would rather not say"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "MultiSelectHandler",
+    "response_value": "None of the above",
+    "confidence": 0.55,
+    "reason": "automated_successfully"
+  }
+}

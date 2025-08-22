@@ -1,0 +1,32 @@
+{
+  "id": "myopinions_pattern_1755356456",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:00:56.737382",
+  "screenshot": "vision_data/question_16_1755356456.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Will you be replacing any of these gas appliances as part of your renovations in the next 5 years?",
+    "clickable_elements": [
+      "Gas hot water",
+      "Gas cook top/stove",
+      "None of these"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 16,
+    "timestamp": 1755356456.6153858,
+    "session_id": "learning_1755355433",
+    "question_text": "Will you be replacing any of these gas appliances as part of your renovations in the next 5 years?",
+    "question_type": "general",
+    "response_value": "1",
+    "response_values": [
+      "1"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

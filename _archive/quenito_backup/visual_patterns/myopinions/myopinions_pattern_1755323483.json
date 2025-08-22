@@ -1,0 +1,32 @@
+{
+  "id": "myopinions_pattern_1755323483",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T15:51:23.870145",
+  "screenshot": "vision_data/question_18_1755323483.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "exact_question_text": "How familiar are you with each of the following New Zealand tourism experiences?",
+    "clickable_elements": [
+      "I have experienced this",
+      "I haven't experienced this",
+      "I don't know a lot about it",
+      "I haven't experienced this but I know a lot about it",
+      "I have never heard of this"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 18,
+    "timestamp": 1755323483.8331628,
+    "session_id": "learning_1755318841",
+    "question_text": "Question text not found",
+    "question_type": "general",
+    "response_value": "",
+    "response_values": [],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

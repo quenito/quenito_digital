@@ -1,0 +1,34 @@
+{
+  "id": "myopinions_pattern_1755357854",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:24:14.950742",
+  "screenshot": "vision_data/question_32_1755357854.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "How many bedrooms are there in your home?",
+    "clickable_elements": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5 or more"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 32,
+    "timestamp": 1755357854.8758552,
+    "session_id": "learning_1755355433",
+    "question_text": "How many bedrooms are there in your home?",
+    "question_type": "general",
+    "response_value": "5 or more",
+    "response_values": [
+      "5 or more"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

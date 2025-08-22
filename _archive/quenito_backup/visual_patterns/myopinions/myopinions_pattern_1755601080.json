@@ -1,0 +1,25 @@
+{
+  "id": "myopinions_pattern_1755601080",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T20:58:00.065280",
+  "screenshot": "vision_data/question_4_1755601080.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Which of the following best describes your gender?",
+    "clickable_elements": [
+      "Male",
+      "Female",
+      "Other gender"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Male",
+    "confidence": 0.9,
+    "reason": "llm_automated"
+  }
+}

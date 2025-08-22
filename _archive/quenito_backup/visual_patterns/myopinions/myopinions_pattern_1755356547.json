@@ -1,0 +1,31 @@
+{
+  "id": "myopinions_pattern_1755356547",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:02:27.409337",
+  "screenshot": "vision_data/question_20_1755356547.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "exact_question_text": "If you are / were no longer using any gas appliances, would you disconnect your home from the mains gas connection?",
+    "clickable_elements": [
+      "Yes",
+      "No"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 20,
+    "timestamp": 1755356547.2810884,
+    "session_id": "learning_1755355433",
+    "question_text": "If you are / were no longer using any gas appliances, would you disconnect your home from the mains gas connection?",
+    "question_type": "general",
+    "response_value": "Yes",
+    "response_values": [
+      "Yes"
+    ],
+    "vision_confidence": 95,
+    "vision_type": "radio"
+  }
+}

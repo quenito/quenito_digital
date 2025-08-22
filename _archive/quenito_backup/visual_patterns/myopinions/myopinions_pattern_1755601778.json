@@ -1,0 +1,31 @@
+{
+  "id": "myopinions_pattern_1755601778",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T21:09:38.654981",
+  "screenshot": "vision_data/question_14_1755601778.png",
+  "vision_analysis": {
+    "question_type": "dropdown",
+    "question_text": "We are now going to show you the 2nd statement and ask you some follow up questions.",
+    "clickable_elements": [
+      "English"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 14,
+    "timestamp": 1755601778.5198169,
+    "session_id": "learning_1755600945",
+    "question_text": "Thinking about the following message from a tea/coffee brand: We are industry leaders and advocates\n\nHow clear do you feel the below statement is in communicating this message?\n\nWe don\u2019t buy all the tea in the market so a sustainable supply chain is not something that we can achieve alone, it takes advocacy and commitment from all those involved, to work together for real impact. We are leading members of the Ethical Tea Partnership, World Coffee Research, the British Coffee Association and more and we encourage others to join this approach.",
+    "question_type": "demographics_age",
+    "response_value": "2",
+    "response_values": [
+      "2",
+      "English"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "dropdown"
+  }
+}

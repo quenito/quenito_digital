@@ -1,0 +1,43 @@
+{
+  "id": "myopinions_pattern_1755322901",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T15:41:41.306162",
+  "screenshot": "vision_data/question_11_1755322901.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Now thinking about domestic tourism only (i.e. Australians travelling within Australia), to what extent do you agree or disagree with each of the following\u2026",
+    "clickable_elements": [
+      "Strongly Disagree",
+      "Somewhat Disagree",
+      "Neither Agree nor Disagree",
+      "Somewhat Agree",
+      "Agree",
+      "Strongly Agree",
+      "Don't Know"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 11,
+    "timestamp": 1755322901.1280797,
+    "session_id": "learning_1755318841",
+    "question_text": "Question text not found",
+    "question_type": "general",
+    "response_value": "7 (Strongly Agree)",
+    "response_values": [
+      "7 (Strongly Agree)",
+      "Strongly Agree",
+      "7 (Strongly Agree)",
+      "Strongly Agree",
+      "2 (Disagree)",
+      "Disagree",
+      "2 (Disagree)",
+      "Disagree"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "myopinions_pattern_1755352324",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T23:52:04.949205",
+  "screenshot": "vision_data/question_9_1755352324.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "exact_question_text": "What are the main reason/s you chose this outlet for this particular occasion?",
+    "clickable_elements": [
+      "Was already drinking / socialising there (food was secondary)",
+      "All that was available",
+      "Easy to take away / eat on the go",
+      "Convenient location",
+      "I like the food",
+      "Has healthy options",
+      "I specifically wanted / had craving for that type of food",
+      "Good menu / menu variety",
+      "Read or heard about it",
+      "Friend / family recommendation",
+      "Chosen due to seating, atmosphere or location (food was secondary)",
+      "Special occasion / celebration",
+      "Had a voucher / discount",
+      "Cheap / low cost",
+      "Good value for money",
+      "Good service",
+      "Fast to obtain food",
+      "Someone else decided / person I was with decided",
+      "Other (please specify)"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 9,
+    "timestamp": 1755352324.8466206,
+    "session_id": "learning_1755350815",
+    "question_text": "Your most recent LUNCH which was EATEN AT RESTAURANT / CAF\u00c9 / FOOD OUTLET.\n\nWhat are the main reason/s you chose this outlet for this particular occasion?",
+    "question_type": "general",
+    "response_value": "1",
+    "response_values": [
+      "1",
+      "was a beach side restaurant on the resort we were staying at "
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": "myopinions_pattern_1755373019",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:36:59.885307",
+  "screenshot": "vision_data/question_17_1755373019.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "exact_question_text": "Have you looked into any of these health insurance comparison websites before? Please select all that apply",
+    "clickable_elements": [
+      "Finder",
+      "Compare the Market",
+      "iSelect",
+      "CHOICE",
+      "Canstar",
+      "None of the above"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 17,
+    "timestamp": 1755373019.813741,
+    "session_id": "learning_1755371916",
+    "question_text": "Have you looked into any of these health insurance comparison websites before?",
+    "question_type": "general",
+    "response_value": "1",
+    "response_values": [
+      "1",
+      "1"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

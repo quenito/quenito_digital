@@ -1,0 +1,40 @@
+{
+  "id": "myopinions_pattern_1755356481",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:01:21.457176",
+  "screenshot": "vision_data/question_17_1755356481.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Are you planning to purchase any of the following gas appliances?",
+    "clickable_elements": [
+      "Not planning to purchase any",
+      "Gas oven",
+      "Gas heated swimming pool",
+      "Gas home heating (e.g. ducted heating or underfloor heating)",
+      "Gas heated spa",
+      "Gas powered clothes dryer",
+      "Gas barbecue (Connected to the mains)",
+      "Gas outdoor heater or outdoor fireplace",
+      "Gas pizza oven",
+      "Gas portable heater",
+      "Gas flued heater/ gas log fire"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 17,
+    "timestamp": 1755356481.3114693,
+    "session_id": "learning_1755355433",
+    "question_text": "Are you planning to purchase any of the following gas appliances?",
+    "question_type": "general",
+    "response_value": "1",
+    "response_values": [
+      "1"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

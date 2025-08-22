@@ -1,0 +1,31 @@
+{
+  "id": "myopinions_pattern_1755366551",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T03:49:11.973658",
+  "screenshot": "vision_data/question_29_1755366551.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "exact_question_text": "Which of the following best describes your household?",
+    "clickable_elements": [
+      "Single person living alone",
+      "Single person living with friends",
+      "Couple with no children",
+      "Couple/single with young family (youngest child is aged 5 years or under)",
+      "Couple/single with middle aged family (youngest child is aged 6-12 years)",
+      "Couple/single with older family (youngest child is aged 13-18 years)",
+      "Couple/single with older family (youngest person is aged over 18 years)",
+      "Other (Please Specify)",
+      "Prefer not to say"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "None of these",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "myopinions_pattern_1755372419",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:26:59.864489",
+  "screenshot": "vision_data/question_10_1755372419.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "In the past 3 years, have you received or organised in-home care for yourself or someone close to you?",
+    "clickable_elements": [
+      "Yes",
+      "No, but I am open or likely to in the near future",
+      "No"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "No, but I am open or likely to in the near future",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

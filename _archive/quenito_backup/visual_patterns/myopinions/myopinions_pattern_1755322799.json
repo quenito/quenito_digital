@@ -1,0 +1,43 @@
+{
+  "id": "myopinions_pattern_1755322799",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T15:39:59.270029",
+  "screenshot": "vision_data/question_9_1755322799.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "exact_question_text": "Thinking more generally now about tourism activity (i.e. international visitors coming to Australia and Australians travelling within Australia), to what extent do you agree or disagree with each of the following\u2026",
+    "clickable_elements": [
+      "Strongly Disagree",
+      "Somewhat Disagree",
+      "Neither Agree nor Disagree",
+      "Somewhat Agree",
+      "Agree",
+      "Strongly Agree",
+      "Don't Know"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 9,
+    "timestamp": 1755322799.011523,
+    "session_id": "learning_1755318841",
+    "question_text": "Question text not found",
+    "question_type": "general",
+    "response_value": "7 (Strongly Agree)",
+    "response_values": [
+      "7 (Strongly Agree)",
+      "Strongly Agree",
+      "7 (Strongly Agree)",
+      "Strongly Agree",
+      "2 (Disagree)",
+      "Disagree",
+      "2 (Disagree)",
+      "Disagree"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "id": "myopinions_pattern_1755356181",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T00:56:21.862062",
+  "screenshot": "vision_data/question_8_1755356181.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "exact_question_text": "To the best of your knowledge, is natural gas available in your street?",
+    "clickable_elements": [
+      "Yes, my home is connected",
+      "Yes, but my home is not connected",
+      "No, it's not available",
+      "I'm not sure"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 8,
+    "timestamp": 1755356181.7797594,
+    "session_id": "learning_1755355433",
+    "question_text": "To the best of your knowledge, is natural gas available in your street?",
+    "question_type": "general",
+    "response_value": "Yes, my home is connected",
+    "response_values": [
+      "Yes, my home is connected"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

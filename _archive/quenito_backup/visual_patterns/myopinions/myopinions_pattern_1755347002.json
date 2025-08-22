@@ -1,0 +1,26 @@
+{
+  "id": "myopinions_pattern_1755347002",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T22:23:22.768143",
+  "screenshot": "vision_data/question_1_1755347002.png",
+  "vision_analysis": {
+    "question_type": "unknown",
+    "question_text": "unknown",
+    "clickable_elements": [],
+    "continue_button_visible": false,
+    "confidence_rating": 0
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 1,
+    "timestamp": 1755347002.6606982,
+    "session_id": "learning_1755346876",
+    "question_text": "Have you claimed your full 150 bonus points yet?",
+    "question_type": "general",
+    "response_value": "",
+    "response_values": [],
+    "vision_confidence": 0,
+    "vision_type": "unknown"
+  }
+}

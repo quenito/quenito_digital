@@ -1,0 +1,38 @@
+{
+  "id": "myopinions_pattern_1755375882",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T06:24:42.832250",
+  "screenshot": "vision_data/question_96_1755375882.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "How would you describe your household? Please select all that apply",
+    "clickable_elements": [
+      "Living by myself",
+      "Living with my partner only",
+      "Living with others",
+      "Family with children under 5",
+      "Family with children primary school aged",
+      "Family with children high school aged",
+      "Family with older children",
+      "Rather not say"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 95
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 96,
+    "timestamp": 1755375882.7608736,
+    "session_id": "learning_1755371916",
+    "question_text": "How would you describe your household?",
+    "question_type": "demographics_age",
+    "response_value": "1",
+    "response_values": [
+      "1",
+      "1"
+    ],
+    "vision_confidence": 95,
+    "vision_type": "checkbox"
+  }
+}

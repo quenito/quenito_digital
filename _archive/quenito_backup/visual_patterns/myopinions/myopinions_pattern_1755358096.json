@@ -1,0 +1,34 @@
+{
+  "id": "myopinions_pattern_1755358096",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T01:28:16.471368",
+  "screenshot": "vision_data/question_36_1755358096.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "To what extent do you agree or disagree with each of the following statements about your household's gas usage?",
+    "clickable_elements": [
+      "Strongly agree",
+      "Agree",
+      "Neither agree nor disagree",
+      "Disagree",
+      "Strongly disagree"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 36,
+    "timestamp": 1755358096.386626,
+    "session_id": "learning_1755355433",
+    "question_text": "To what extent do you agree or disagree with each of the following statements about your household's gas usage?",
+    "question_type": "demographics_age",
+    "response_value": "Strongly agree",
+    "response_values": [
+      "Strongly agree"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

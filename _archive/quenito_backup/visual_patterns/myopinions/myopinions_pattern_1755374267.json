@@ -1,0 +1,29 @@
+{
+  "id": "myopinions_pattern_1755374267",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:57:47.528639",
+  "screenshot": "vision_data/question_48_1755374267.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "question_text": "This section is about Life Insurance Providers",
+    "clickable_elements": [],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 48,
+    "timestamp": 1755374267.3954663,
+    "session_id": "learning_1755371916",
+    "question_text": "Which life insurance provider brands have you heard of?",
+    "question_type": "brand_awareness",
+    "response_value": "MLC",
+    "response_values": [
+      "MLC",
+      "AMMI"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "text"
+  }
+}

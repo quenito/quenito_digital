@@ -1,0 +1,28 @@
+{
+  "id": "myopinions_pattern_1755356119",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T00:55:19.102704",
+  "screenshot": "vision_data/question_6_1755356119.png",
+  "vision_analysis": {
+    "question_type": "text",
+    "question_text": "When thinking about appliances for cooking, hot water or to maintain a temperature of your home, what energy comes to mind first?",
+    "clickable_elements": [],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 6,
+    "timestamp": 1755356119.0217757,
+    "session_id": "learning_1755355433",
+    "question_text": "When thinking about appliances for cooking, hot water or to maintain a temperature of your home, what energy comes to mind first?",
+    "question_type": "general",
+    "response_value": "electricity",
+    "response_values": [
+      "electricity"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "text"
+  }
+}

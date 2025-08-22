@@ -3,6 +3,8 @@
 🧠 QUENITO: Building a Digital Brain, Not Mechanical Parts
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Vision Service - Teaching Quenito to SEE patterns, not match templates
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Fixed: Better error handling for API responses
 """
 import json
 import base64
@@ -33,6 +35,7 @@ class VisionService:
     async def analyze_page(self, screenshot_base64: str) -> Dict:
         """
         Comprehensive page analysis with structure detection
+        FIXED: Better error handling for empty/malformed responses
         """
         try:
             analysis_prompt = """Analyze this survey page and provide detailed structural information.
@@ -58,14 +61,30 @@ class VisionService:
                - "Survey complete"
                - "Points have been credited"
             
-            Return as JSON with page_type, is_transition, is_complete, questions list, etc."""
+            Return ONLY valid JSON with this structure:
+            {
+                "page_type": "question_page",
+                "is_transition": false,
+                "is_complete": false,
+                "question_count": 1,
+                "questions": [
+                    {
+                        "text": "question text here",
+                        "element_type": "radio/checkbox/text/dropdown",
+                        "id": 1
+                    }
+                ],
+                "confidence_rating": 85
+            }
+            
+            IMPORTANT: Return ONLY the JSON object, no markdown, no explanations."""
             
             response = await self.client.chat.completions.create(
-                model="gpt-4o-mini",  # or "gpt-4o" if you want to use the bigger model
+                model="gpt-4o-mini",
                 messages=[
                     {
                         "role": "system",
-                        "content": "You are analyzing survey pages to identify structure and question types."
+                        "content": "You are analyzing survey pages. Return ONLY valid JSON, no markdown or explanations."
                     },
                     {
                         "role": "user",
@@ -85,24 +104,79 @@ class VisionService:
                 temperature=0.3
             )
             
-            result = json.loads(response.choices[0].message.content)
+            # Get the content
+            content = response.choices[0].message.content
             
-            # Log critical detections
-            if result.get('is_transition'):
-                print("🔄 TRANSITION PAGE DETECTED - Will skip to next")
-            if result.get('is_complete'):
-                print("✅ COMPLETION PAGE DETECTED - Survey finished!")
+            # Check if response is empty
+            if not content or content.strip() == "":
+                print("⚠️ Empty vision response, using defaults")
+                return self._get_default_response()
+            
+            # Clean the content - remove markdown if present
+            content = content.strip()
+            
+            # Remove markdown code blocks if present
+            if "```json" in content:
+                # Extract JSON from markdown
+                json_start = content.find("```json") + 7
+                json_end = content.find("```", json_start)
+                if json_end > json_start:
+                    content = content[json_start:json_end].strip()
+            elif "```" in content:
+                # Remove generic markdown blocks
+                content = content.replace("```", "").strip()
+            
+            # Try to parse JSON
+            try:
+                result = json.loads(content)
                 
-            return result
+                # Validate the structure
+                if not isinstance(result, dict):
+                    print("⚠️ Invalid JSON structure (not a dict), using defaults")
+                    return self._get_default_response()
+                
+                # Ensure required fields exist
+                if "page_type" not in result:
+                    result["page_type"] = "question_page"
+                if "is_transition" not in result:
+                    result["is_transition"] = False
+                if "is_complete" not in result:
+                    result["is_complete"] = False
+                if "questions" not in result:
+                    result["questions"] = []
+                if "confidence_rating" not in result:
+                    result["confidence_rating"] = 70
+                
+                # Log critical detections
+                if result.get('is_transition'):
+                    print("🔄 TRANSITION PAGE DETECTED - Will skip to next")
+                if result.get('is_complete'):
+                    print("✅ COMPLETION PAGE DETECTED - Survey finished!")
+                    
+                return result
+                
+            except json.JSONDecodeError as e:
+                print(f"⚠️ JSON parsing error: {e}")
+                print(f"   Content was: {content[:200]}...")
+                return self._get_default_response()
             
         except Exception as e:
             print(f"❌ Vision analysis error: {e}")
-            return {
-                "page_type": "question_page",
-                "is_transition": False,
-                "is_complete": False,
-                "question_count": 1
-            }
+            return self._get_default_response()
+    
+    def _get_default_response(self) -> Dict:
+        """
+        Return a safe default response when vision fails
+        """
+        return {
+            "page_type": "question_page",
+            "is_transition": False,
+            "is_complete": False,
+            "question_count": 1,
+            "questions": [],
+            "confidence_rating": 0,
+            "error": True
+        }
     
     async def detect_element_type(self, screenshot_base64: str, element_description: str) -> str:
         """
@@ -142,7 +216,15 @@ class VisionService:
                 temperature=0
             )
             
-            return response.choices[0].message.content.strip().lower()
+            result = response.choices[0].message.content.strip().lower()
             
-        except:
+            # Validate the response
+            valid_types = ["dropdown", "radio", "checkbox", "text", "select", "textarea"]
+            if result in valid_types:
+                return result
+            else:
+                return "unknown"
+            
+        except Exception as e:
+            print(f"⚠️ Element detection error: {e}")
             return "unknown"

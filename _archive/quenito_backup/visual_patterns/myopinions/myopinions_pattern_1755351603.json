@@ -1,0 +1,36 @@
+{
+  "id": "myopinions_pattern_1755351603",
+  "platform": "myopinions",
+  "timestamp": "2025-08-16T23:40:03.297948",
+  "screenshot": "vision_data/question_4_1755351603.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "Which of the following best describes your household?",
+    "clickable_elements": [
+      "ADULT HOUSEHOLD / SINGLES all under 35",
+      "SINGLES 35",
+      "COUPLE / ADULTS 35-59",
+      "COUPLE / ADULTS 60+",
+      "FAMILY, oldest child under 6",
+      "FAMILY, oldest child 6-11",
+      "FAMILY, oldest child 12-17"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 4,
+    "timestamp": 1755351603.0893295,
+    "session_id": "learning_1755350815",
+    "question_text": "Which of the following best describes your household?",
+    "question_type": "demographics_age",
+    "response_value": "FAMILY, oldest child 6-11\nHouseholds with oldest child 6-11 years",
+    "response_values": [
+      "FAMILY, oldest child 6-11\nHouseholds with oldest child 6-11 years"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

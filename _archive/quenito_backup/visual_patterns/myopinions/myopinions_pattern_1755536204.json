@@ -1,0 +1,35 @@
+{
+  "id": "myopinions_pattern_1755536204",
+  "platform": "myopinions",
+  "timestamp": "2025-08-19T02:56:44.330601",
+  "screenshot": "vision_data/question_12_1755536204.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which type of car ownership do you have?",
+    "clickable_elements": [
+      "New",
+      "Used",
+      "Leasing",
+      "Company car",
+      "Sharing services, car pool etc",
+      "Don't know"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 12,
+    "timestamp": 1755536204.2598672,
+    "session_id": "learning_1755535431",
+    "question_text": "Which type of car ownership do you have?",
+    "question_type": "general",
+    "response_value": "1",
+    "response_values": [
+      "1"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "checkbox"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "id": "myopinions_pattern_1755366416",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T03:46:56.050250",
+  "screenshot": "vision_data/question_13_1755366416.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "In the past month have you held multiple jobs for different employers?",
+    "clickable_elements": [
+      "Yes \u2013 I worked more than 2 different jobs",
+      "Yes \u2013 I worked 2 different jobs",
+      "No \u2013 I only worked 1 job",
+      "No \u2013 I was not employed over the last month"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "capture_type": "manual_learning",
+    "question_num": 13,
+    "timestamp": 1755366415.9682803,
+    "session_id": "learning_1755366117",
+    "question_text": "In the past month have you held multiple jobs for different employers?\nPlease select one response\nYes \u2013 I worked more than 2 different jobs\nYes \u2013 I worked 2 different jobs\nNo \u2013 I only worked 1 job\nNo \u2013 I was not employed over the last month",
+    "question_type": "general",
+    "response_value": "No \u2013 I was not employed over the last month",
+    "response_values": [
+      "No \u2013 I was not employed over the last month"
+    ],
+    "vision_confidence": 90,
+    "vision_type": "radio"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "myopinions_pattern_1755372197",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:23:17.615604",
+  "screenshot": "vision_data/question_5_1755372197.png",
+  "vision_analysis": {
+    "question_type": "checkbox",
+    "question_text": "Which ethnic group(s) do you identify with? Please select all that apply",
+    "clickable_elements": [
+      "Australian",
+      "Indigenous Australian",
+      "New Zealander",
+      "Pacific Islander",
+      "British",
+      "Croatian",
+      "Danish",
+      "French",
+      "German",
+      "Greek",
+      "Irish",
+      "Italian",
+      "Spanish",
+      "Turkish",
+      "Other European",
+      "Chinese",
+      "Hong Konger",
+      "Filipino",
+      "Indian",
+      "Indonesian",
+      "Japanese",
+      "Korean"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "Australian",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}

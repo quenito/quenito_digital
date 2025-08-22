@@ -1,0 +1,25 @@
+{
+  "id": "myopinions_pattern_1755372430",
+  "platform": "myopinions",
+  "timestamp": "2025-08-17T05:27:10.518486",
+  "screenshot": "vision_data/question_11_1755372430.png",
+  "vision_analysis": {
+    "question_type": "radio",
+    "question_text": "In the past 10 years, have you moved into or placed a person in a retirement home or aged care facility? (Note: by this we mean retirement home/village/community, assisted-living residences, rest home care, and other aged care facilities) Please select one only",
+    "clickable_elements": [
+      "Yes",
+      "No, but I am open or likely to in the near future",
+      "No"
+    ],
+    "continue_button_visible": true,
+    "confidence_rating": 90
+  },
+  "automation": {
+    "success": true,
+    "automation_type": "single_question",
+    "handler_used": "LLM-GPT4o-mini",
+    "response_value": "No",
+    "confidence": 0.95,
+    "reason": "llm_automated"
+  }
+}
