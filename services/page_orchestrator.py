@@ -116,22 +116,21 @@ class PageOrchestrator:
                 "element_type": question.get('element_type', 'unknown'),
                 "context": llm_context
             })
-            
-            if response and response != "NEED_MANUAL":
-                # Fill the field
-                success = await self._fill_field(question, response)
-                if success:
-                    results["automated"].append(f"{question['text']}: {response}")
-                    print(f"✅ Automated: {response}")
-                    
-                    # Human-like delay between fields
-                    await asyncio.sleep(random.uniform(0.5, 1.5))
-                else:
-                    results["manual"].append(question)
-                    print(f"⚠️ Could not fill field")
+
+            # Extract the actual value from the response dictionary
+            if response and isinstance(response, dict) and response.get('success'):
+                response_value = response.get('value', '')
+            elif response and isinstance(response, str):
+                response_value = response
             else:
-                results["manual"].append(question)
-                print(f"⚠️ Manual input needed")
+                response_value = None
+
+            if response_value and response_value != "NEED_MANUAL":
+                # Fill the field with the extracted string value
+                success = await self._fill_field(question, response_value)
+                if success:
+                    results["automated"].append(f"{question['text']}: {response_value}")
+                    print(f"✅ Automated: {response_value}")
         
         # Handle manual interventions if needed
         if results["manual"]:
