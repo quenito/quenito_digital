@@ -19,7 +19,7 @@
       "family members work",
       "work for any of the following"
     ],
-    "response_logic": "if_retail_exists_select_else_none_of_above",
+    "response_logic": "if_retail_exists_select_else_none_of_these",
     "confidence": 0.95
   },
   "children": {

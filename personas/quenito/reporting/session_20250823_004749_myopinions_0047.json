@@ -1,0 +1,44 @@
+{
+  "surveys": [
+    {
+      "timestamp": 1755874189.0667133,
+      "platform": "myopinions",
+      "survey_id": "survey_1755874189",
+      "topic": "Social Topics",
+      "points": 0,
+      "duration_seconds": 119,
+      "questions_total": 1,
+      "questions_automated": 0,
+      "automation_rate": 0.0,
+      "vision_api_calls": 1,
+      "pattern_matches": 0,
+      "earnings_usd": 0.0
+    }
+  ],
+  "totals": {
+    "session_duration_seconds": 119,
+    "session_duration_formatted": "1m 59s",
+    "total_surveys": 1,
+    "total_points": 0,
+    "total_earnings": 0.0,
+    "hourly_rate": 0.0,
+    "total_questions": 1,
+    "total_automated": 0,
+    "automation_rate": 0.0,
+    "vision_api_calls": 1,
+    "vision_api_cost": 0.001,
+    "pattern_matches": 0,
+    "by_platform": {
+      "myopinions": {
+        "count": 1,
+        "points": 0,
+        "earnings": 0.0
+      }
+    },
+    "by_topic": {
+      "Social Topics": 1
+    },
+    "profit_after_api": -0.001
+  },
+  "hourly_rate": 0
+}

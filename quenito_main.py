@@ -22,7 +22,7 @@ from handlers.handler_factory import HandlerFactory
 from services.page_orchestrator import PageOrchestrator
 from services.vision_service import VisionService
 from services.learning_service import LearningService
-from services.automation_service import AutomationService
+from services.enhanced_automation_service import EnhancedAutomationService
 from reporting.quenito_reporting import QuenitoReporting
 from utils.intervention_manager import InterventionManager
 
@@ -44,7 +44,7 @@ class QuenitoRunner:
         # Initialize services (clean separation!)
         self.vision = VisionService()
         self.learning = LearningService(self.kb)
-        self.automation = AutomationService(self.kb)
+        self.automation = EnhancedAutomationService(self.kb)
         self.reporter = QuenitoReporting()
         
         # Initialize handlers

@@ -247,5 +247,234 @@
         "after_school_activities": "Yes"
       }
     }
+  },
+  "detailed_intervention_learning": {
+    "learning_1755875953_1": {
+      "question_num": 1,
+      "timestamp": 1755875953.2995963,
+      "session_id": "learning_1755874224",
+      "question_text": "Question text not found",
+      "question_type": "general",
+      "response_value": "45",
+      "response_values": [
+        "45"
+      ],
+      "vision_confidence": 85,
+      "vision_type": ""
+    },
+    "learning_1755877742_5": {
+      "question_num": 5,
+      "timestamp": 1755877742.8713894,
+      "session_id": "learning_1755874224",
+      "question_text": "Question text not found",
+      "question_type": "general",
+      "response_value": "",
+      "response_values": [],
+      "vision_confidence": 85,
+      "vision_type": ""
+    },
+    "learning_1755877769_6": {
+      "question_num": 6,
+      "timestamp": 1755877769.8939078,
+      "session_id": "learning_1755874224",
+      "question_text": "Question text not found",
+      "question_type": "general",
+      "response_value": "",
+      "response_values": [],
+      "vision_confidence": 85,
+      "vision_type": ""
+    },
+    "learning_1755877820_7": {
+      "question_num": 7,
+      "timestamp": 1755877820.3615773,
+      "session_id": "learning_1755874224",
+      "question_text": "Question text not found",
+      "question_type": "general",
+      "response_value": "",
+      "response_values": [],
+      "vision_confidence": 90,
+      "vision_type": ""
+    },
+    "learning_1755881532_1": {
+      "question_num": 1,
+      "timestamp": 1755881532.5295842,
+      "session_id": "learning_1755880817",
+      "question_text": "Where do you live?",
+      "question_type": "general",
+      "response_value": "Sydney Metro area",
+      "response_values": [
+        "Sydney Metro area"
+      ],
+      "vision_confidence": 85,
+      "vision_type": ""
+    },
+    "learning_1755881821_7": {
+      "question_num": 7,
+      "timestamp": 1755881821.3265018,
+      "session_id": "learning_1755880817",
+      "question_text": "When was the last time you purchased…",
+      "question_type": "general",
+      "response_value": "1 to 5 years ago",
+      "response_values": [
+        "1 to 5 years ago",
+        "In the last year"
+      ],
+      "vision_confidence": 90,
+      "vision_type": ""
+    },
+    "learning_1755881894_9": {
+      "question_num": 9,
+      "timestamp": 1755881894.1094508,
+      "session_id": "learning_1755880817",
+      "question_text": "When is the next time you’re likely to purchase…",
+      "question_type": "general",
+      "response_value": "In 1 to 5 years’ time",
+      "response_values": [
+        "In 1 to 5 years’ time",
+        "In the next year"
+      ],
+      "vision_confidence": 90,
+      "vision_type": ""
+    },
+    "learning_1755882078_10": {
+      "question_num": 10,
+      "timestamp": 1755882078.444999,
+      "session_id": "learning_1755880817",
+      "question_text": "Which of the following mattress and bedroom furniture retailers have you heard of before today?",
+      "question_type": "multi_select",
+      "response_value": "1",
+      "response_values": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "vision_confidence": 90,
+      "vision_type": ""
+    },
+    "learning_1755882257_11": {
+      "question_num": 11,
+      "timestamp": 1755882257.6269963,
+      "session_id": "learning_1755880817",
+      "question_text": "Now we’d like to ask you about mattresses only.\n\nWhich mattress retailers have you visited – either online or in person - in the past 12 months?",
+      "question_type": "general",
+      "response_value": "1",
+      "response_values": [
+        "1",
+        "1",
+        "1"
+      ],
+      "vision_confidence": 90,
+      "vision_type": ""
+    },
+    "learning_1755882359_12": {
+      "question_num": 12,
+      "timestamp": 1755882359.3849857,
+      "session_id": "learning_1755880817",
+      "question_text": "And which of these have you purchased a mattress from in the past 12 months?",
+      "question_type": "multi_select",
+      "response_value": "1",
+      "response_values": [
+        "1"
+      ],
+      "vision_confidence": 85,
+      "vision_type": ""
+    },
+    "learning_1755882629_13": {
+      "question_num": 13,
+      "timestamp": 1755882629.1822405,
+      "session_id": "learning_1755880817",
+      "question_text": "If you had to award one of these as your most preferred mattress retailer, who would win?",
+      "question_type": "general",
+      "response_value": "Koala{@imageURL::Koala.jpg@}",
+      "response_values": [
+        "Koala{@imageURL::Koala.jpg@}"
+      ],
+      "vision_confidence": 90,
+      "vision_type": ""
+    },
+    "learning_1755906768_14": {
+      "question_num": 14,
+      "timestamp": 1755906768.7166808,
+      "session_id": "learning_1755880817",
+      "question_text": "The next time you do buy a mattress, do you think you’ll buy it online or in store?",
+      "question_type": "general",
+      "response_value": "Not sure 4",
+      "response_values": [
+        "Not sure 4"
+      ],
+      "vision_confidence": 90,
+      "vision_type": ""
+    },
+    "learning_1755906968_17": {
+      "question_num": 17,
+      "timestamp": 1755906968.56323,
+      "session_id": "learning_1755880817",
+      "question_text": "Now we’re talking about bedroom furniture only - like beds, bedside tables, dressers and tallboys.\n\nWhich bedroom furniture retailers have you visited – either online or in person - in the past 12 months?",
+      "question_type": "general",
+      "response_value": "1",
+      "response_values": [
+        "1",
+        "1",
+        "1"
+      ],
+      "vision_confidence": 85,
+      "vision_type": ""
+    }
+  },
+  "brain_learning": {
+    "intervention_history": [],
+    "success_patterns": {},
+    "strategy_preferences": {},
+    "confidence_calibration": {},
+    "handler_performance": {},
+    "failure_analysis": [],
+    "learning_history": [],
+    "pattern_evolution": {},
+    "learning_metrics": {
+      "total_interventions": 0,
+      "automation_improvement_rate": 0.0,
+      "last_learning_session": null
+    }
+  },
+  "confidence_system": {
+    "version": "3.0_dynamic",
+    "last_updated": "2025-08-23T09:56:08.652961",
+    "global_settings": {
+      "learning_rate": 0.1,
+      "confidence_decay": 0.95,
+      "success_boost": 0.05,
+      "failure_penalty": -0.02,
+      "min_threshold": 0.1,
+      "max_threshold": 0.95,
+      "manual_intervention_threshold": 0.3
+    },
+    "handler_thresholds": {
+      "LLM-GPT4o-mini": {
+        "base_threshold": 0.5,
+        "dynamic_adjustment": -0.05500000000000002,
+        "current_threshold": 0.44499999999999995,
+        "success_rate": 1.0,
+        "total_attempts": 11,
+        "successful_attempts": 11,
+        "last_success": "2025-08-23T09:53:20.892568",
+        "trending": "excellent"
+      }
+    },
+    "question_type_modifiers": {},
+    "dynamic_confidence_rules": {},
+    "learning_patterns": {
+      "successful_combinations": {},
+      "failure_patterns": {}
+    }
   }
 }
