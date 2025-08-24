@@ -1,0 +1,17 @@
+{
+  "timestamp": "2025-08-23T13:14:35.132864",
+  "persona": "quenito",
+  "platform": "myopinions",
+  "stats": {
+    "questions_total": 40,
+    "questions_automated": 21,
+    "multi_questions_handled": 0,
+    "vision_calls": 40,
+    "pattern_matches": 0,
+    "survey_start": "2025-08-23T12:33:26.627613",
+    "survey_topic": "Social Topics",
+    "survey_points": 0
+  },
+  "duration_seconds": 2468,
+  "automation_rate": 52.5
+}
