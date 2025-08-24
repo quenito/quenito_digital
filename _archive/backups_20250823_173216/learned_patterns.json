@@ -1,0 +1,59 @@
+{
+  "gender": {
+    "patterns": [
+      "are you male or female",
+      "what is your gender",
+      "which gender do you belong"
+    ],
+    "response": "Male",
+    "confidence": 1.0
+  },
+  "age": {
+    "patterns": [
+      "how old are you",
+      "what is your age",
+      "birth year"
+    ],
+    "response_logic": "return_age_or_birth_year",
+    "confidence": 1.0
+  },
+  "children": {
+    "patterns": [
+      "children under 18",
+      "children aged under",
+      "kids in household",
+      "do you have children"
+    ],
+    "response": "Yes",
+    "response_logic": "check_if_needs_ages",
+    "confidence": 0.95
+  },
+  "location": {
+    "patterns": [
+      "what is your postcode",
+      "where do you live",
+      "suburb",
+      "city"
+    ],
+    "response_logic": "return_location_field",
+    "confidence": 1.0
+  },
+  "industry_screening": {
+    "patterns": [
+      "work in any of the following industries",
+      "employed in any of these",
+      "family members work"
+    ],
+    "response_logic": "if_retail_exists_select_else_none",
+    "confidence": 0.95
+  },
+  "brand_awareness": {
+    "patterns": [
+      "which brands have you heard of",
+      "brands are you aware of",
+      "heard of the following brands"
+    ],
+    "response_logic": "select_known_brands",
+    "confidence": 0.9
+  }
+}

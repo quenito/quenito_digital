@@ -1,0 +1,154 @@
+{
+  "how often do you shop for groceries?": {
+    "answer": "Weekly",
+    "element_type": "radio",
+    "confidence": 0.9,
+    "success_count": 4,
+    "first_seen": "2025-08-22T17:34:16.307842",
+    "last_used": "2025-08-22T18:35:37.097453"
+  },
+  "what is your postcode?": {
+    "answer": "2217",
+    "element_type": "text",
+    "confidence": 0.9500000000000001,
+    "success_count": 12,
+    "first_seen": "2025-08-23T02:54:14.091279",
+    "last_used": "2025-08-23T12:37:24.017772"
+  },
+  "and the last time you purchased bedroom furniture did you\u2026": {
+    "answer": "Buy it in store",
+    "element_type": "radio",
+    "confidence": 0.85,
+    "success_count": 2,
+    "first_seen": "2025-08-23T02:57:35.652994",
+    "last_used": "2025-08-23T02:57:36.028385"
+  },
+  "if you had to award one of these as your most preferred mattress retailer, who would win?": {
+    "answer": "Koala",
+    "element_type": "radio",
+    "confidence": 0.85,
+    "success_count": 1,
+    "first_seen": "2025-08-23T03:06:16.214982",
+    "last_used": "2025-08-23T03:06:16.214989"
+  },
+  "and did you visit these bedroom furniture retailers...": {
+    "answer": "No, I did not visit these bedroom furniture retailers.",
+    "element_type": "radio",
+    "confidence": 0.85,
+    "success_count": 1,
+    "first_seen": "2025-08-23T09:56:26.231097",
+    "last_used": "2025-08-23T09:56:26.231101"
+  },
+  "which gender do you belong to?": {
+    "answer": "Male",
+    "element_type": "radio",
+    "confidence": 0.89,
+    "success_count": 3,
+    "first_seen": "2025-08-23T12:36:08.224333",
+    "last_used": "2025-08-23T12:36:46.116172"
+  },
+  "what is your birth year?": {
+    "answer": "1980",
+    "element_type": "text",
+    "confidence": 0.89,
+    "success_count": 3,
+    "first_seen": "2025-08-23T12:36:09.145596",
+    "last_used": "2025-08-23T12:36:46.325540"
+  },
+  "which of the following best describes your sexuality?": {
+    "answer": "Heterosexual",
+    "element_type": "radio",
+    "confidence": 0.89,
+    "success_count": 3,
+    "first_seen": "2025-08-23T12:36:09.853056",
+    "last_used": "2025-08-23T12:36:46.346299"
+  },
+  "in which country do you currently reside? (country of residence)": {
+    "answer": "Australia",
+    "element_type": "dropdown",
+    "confidence": 0.89,
+    "success_count": 3,
+    "first_seen": "2025-08-23T12:36:12.406345",
+    "last_used": "2025-08-23T12:36:46.622556"
+  },
+  "in which state (or federal territory) do you currently live in?": {
+    "answer": "New South Wales",
+    "element_type": "radio",
+    "confidence": 0.85,
+    "success_count": 2,
+    "first_seen": "2025-08-23T12:36:59.842236",
+    "last_used": "2025-08-23T12:37:00.190982"
+  },
+  "do you live in any of this cities?": {
+    "answer": "Sydney",
+    "element_type": "select",
+    "confidence": 0.85,
+    "success_count": 1,
+    "first_seen": "2025-08-23T12:37:35.674897",
+    "last_used": "2025-08-23T12:37:35.674904"
+  },
+  "if you add up the income from all sources, what is your average gross household income per year? (gross income means amounts as you receive it, which is normally before tax and contributions to social insurance, pension and superannuation.)": {
+    "answer": "AUD 200,000 - 499,999",
+    "element_type": "select",
+    "confidence": 0.85,
+    "success_count": 1,
+    "first_seen": "2025-08-23T12:38:55.962384",
+    "last_used": "2025-08-23T12:38:55.962386"
+  },
+  "if you add up the income from all sources, what is your average net household income per month? (net income means amounts as you receive it, which is normally after tax and contributions to social insurance and pension.)": {
+    "answer": "AUD 6,000 - 7,999",
+    "element_type": "select",
+    "confidence": 0.85,
+    "success_count": 2,
+    "first_seen": "2025-08-23T12:41:37.330861",
+    "last_used": "2025-08-23T12:42:39.399389"
+  },
+  "how likely are you to purchase packaged food products (like those previously mentioned) in the next 30 days?": {
+    "answer": "Likely",
+    "element_type": "radio",
+    "confidence": 0.85,
+    "success_count": 2,
+    "first_seen": "2025-08-23T13:11:05.624320",
+    "last_used": "2025-08-23T13:11:05.994210"
+  },
+  "what is your current marital status?": {
+    "answer": "Married",
+    "element_type": "radio",
+    "confidence": 1.0,
+    "success_count": 1,
+    "first_seen": "2025-08-23T13:12:51.306657",
+    "last_used": "2025-08-23T13:12:51.306669"
+  },
+  "what is the highest level of education you have completed?": {
+    "answer": "Completed Secondary School (Year 12 or equivalent)",
+    "element_type": "radio",
+    "confidence": 0.85,
+    "success_count": 2,
+    "first_seen": "2025-08-23T13:13:02.156608",
+    "last_used": "2025-08-23T13:13:02.532321"
+  },
+  "how many children do you have under the age of 18?": {
+    "answer": "2",
+    "element_type": "radio",
+    "confidence": 0.85,
+    "success_count": 2,
+    "first_seen": "2025-08-23T13:13:13.315117",
+    "last_used": "2025-08-23T13:13:13.674706"
+  },
+  "what is the birthyear of your first/oldest child who is currently under 18 years old?": {
+    "answer": "6",
+    "element_type": "text",
+    "confidence": 0.9500000000000001,
+    "success_count": 6,
+    "first_seen": "2025-08-23T13:13:26.934151",
+    "last_used": "2025-08-23T13:14:32.369360"
+  },
+  "what is the birthyear of your second child who is currently under 18 years old?": {
+    "answer": "3",
+    "element_type": "text",
+    "confidence": 0.9500000000000001,
+    "success_count": 6,
+    "first_seen": "2025-08-23T13:13:27.957427",
+    "last_used": "2025-08-23T13:14:32.527244"
+  }
+}

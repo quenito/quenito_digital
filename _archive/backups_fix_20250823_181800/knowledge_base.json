@@ -1,0 +1,128 @@
+{
+  "identity": {
+    "name": "Matt",
+    "age": 45,
+    "birth_year": 1980,
+    "gender": "Male"
+  },
+  "location": {
+    "city": "Sydney",
+    "state": "NSW",
+    "postcode": "2217",
+    "suburb": "Kingsgrove",
+    "country": "Australia"
+  },
+  "family": {
+    "marital_status": "Married",
+    "spouse": "Partner",
+    "children_count": 2,
+    "children_ages": [
+      3,
+      6
+    ],
+    "children_genders": [
+      "Female",
+      "Female"
+    ]
+  },
+  "work": {
+    "employer": "Woolworths",
+    "role": "Data Analyst",
+    "industry": "Retail",
+    "years_experience": 10
+  },
+  "preferences": {
+    "brands": {
+      "supermarket": [
+        "Woolworths",
+        "Coles"
+      ],
+      "energy_provider": "Origin Energy",
+      "telco": "Telstra",
+      "bank": [
+        "Commonwealth Bank",
+        "ING"
+      ],
+      "insurance": {
+        "car": "NRMA",
+        "home": "AAMI",
+        "health": "Medibank",
+        "life": "TAL"
+      },
+      "streaming": [
+        "Netflix",
+        "Disney+",
+        "Kayo",
+        "ABC Kids"
+      ],
+      "airlines": "Qantas",
+      "petrol": "Shell",
+      "technology": [
+        "Apple",
+        "Samsung"
+      ],
+      "comparison_sites": [
+        "Canstar",
+        "Compare the Market"
+      ],
+      "children_products": [
+        "Huggies",
+        "Bellamy's",
+        "Bonds"
+      ],
+      "education": [
+        "ABC Reading Eggs",
+        "Mathletics"
+      ]
+    },
+    "shopping": {
+      "frequency": "Weekly",
+      "online_shopping": "2-3 times per month",
+      "preferred_payment": "Credit card",
+      "loyalty_programs": [
+        "Woolworths Rewards",
+        "Flybuys",
+        "Qantas Frequent Flyer"
+      ],
+      "family_shopping": {
+        "baby_products": "Chemist Warehouse",
+        "kids_clothes": "Target, Kmart",
+        "school_supplies": "Officeworks"
+      }
+    },
+    "activities": {
+      "weekend": [
+        "Watched TV",
+        "Family time"
+      ],
+      "interests": [
+        "Technology",
+        "Data",
+        "Automation"
+      ]
+    },
+    "media": {
+      "news_sources": [
+        "ABC News",
+        "SMH",
+        "news.com.au"
+      ],
+      "social_media": [
+        "LinkedIn",
+        "Facebook"
+      ],
+      "radio": "2GB",
+      "tv": "Free to air and streaming",
+      "kids_content": [
+        "ABC Kids",
+        "Disney+",
+        "YouTube Kids"
+      ]
+    }
+  },
+  "demographics": {
+    "income_bracket": "AUD 100,000 - 120,000",
+    "household_income": "AUD 200,000 - 250,000",
+    "sexuality": "Heterosexual"
+  }
+}

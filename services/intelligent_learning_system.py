@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-🧠 QUENITO: Intelligent Learning System
+🧠 QUENITO: Intelligent Learning System (FIXED VERSION)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-A proper learning architecture that knows what to learn and when to use it
+Fixed to work with proper file structures and save manual interventions correctly
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 """
 import json
@@ -17,6 +17,7 @@ from pathlib import Path
 class IntelligentLearningSystem:
     """
     Manages the complete learning loop for Quenito
+    FIXED: Works with wrapped structures and saves manual interventions to sessions
     """
     
     def __init__(self, persona_name: str = "quenito"):
@@ -33,13 +34,20 @@ class IntelligentLearningSystem:
         self.base_path.mkdir(parents=True, exist_ok=True)
         self.session_path.mkdir(exist_ok=True)
         
-        # Load all knowledge stores
+        # Load all knowledge stores WITH PROPER STRUCTURE
         self.knowledge_base = self._load_json(self.knowledge_base_path, self._get_default_knowledge())
-        self.learned_responses = self._load_json(self.learned_responses_path, {})
-        self.learned_patterns = self._load_json(self.learned_patterns_path, self._get_default_patterns())
+        
+        # Load learned responses WITH wrapper structure
+        lr_data = self._load_json(self.learned_responses_path, {"responses": {}, "metadata": {}})
+        self.learned_responses = lr_data.get("responses", {})
+        
+        # Load learned patterns WITH wrapper structure
+        lp_data = self._load_json(self.learned_patterns_path, {"patterns": self._get_default_patterns(), "metadata": {}})
+        self.learned_patterns = lp_data.get("patterns", self._get_default_patterns())
         
         # Session tracking
         self.current_session = {
+            "session_id": f"session_{int(datetime.now().timestamp())}",
             "timestamp": datetime.now().isoformat(),
             "automated": [],
             "manual": [],
@@ -49,7 +57,8 @@ class IntelligentLearningSystem:
         print(f"🧠 Intelligent Learning System initialized")
         print(f"   📚 Knowledge base: Core identity loaded")
         print(f"   💡 Learned responses: {len(self.learned_responses)} exact Q&As")
-        print(f"   🎯 Learned patterns: {len(self.learned_patterns)} patterns")
+        print(f"   🎯 Learned patterns: {len(self.learned_patterns)} pattern categories")
+        print(f"   📁 Sessions directory: {self.session_path}")
     
     def _load_json(self, path: Path, default: Dict) -> Dict:
         """Load JSON file or return default"""
@@ -66,31 +75,53 @@ class IntelligentLearningSystem:
         with open(path, 'w') as f:
             json.dump(data, f, indent=2)
     
+    def _save_learned_responses(self):
+        """Save learned responses with proper wrapper structure"""
+        data = {
+            "responses": self.learned_responses,
+            "metadata": {
+                "last_updated": datetime.now().isoformat(),
+                "total_responses": len(self.learned_responses),
+                "version": "1.0"
+            }
+        }
+        self._save_json(self.learned_responses_path, data)
+    
+    def _save_learned_patterns(self):
+        """Save learned patterns with proper wrapper structure"""
+        data = {
+            "patterns": self.learned_patterns,
+            "metadata": {
+                "last_updated": datetime.now().isoformat(),
+                "total_patterns": sum(len(v) if isinstance(v, list) else 1 for v in self.learned_patterns.values()),
+                "version": "1.0"
+            }
+        }
+        self._save_json(self.learned_patterns_path, data)
+    
     def _get_default_knowledge(self) -> Dict:
-        """Matt's core identity - NEVER changes"""
+        """Matt's core identity with PROPER STRUCTURE"""
         return {
-            "identity": {
+            "personal": {
                 "name": "Matt",
+                "full_name": "Matt",
+                "nickname": "Quenito"
+            },
+            "demographics": {
                 "age": 45,
                 "birth_year": 1980,
                 "birth_month": "March",
-                "gender": "Male"
-            },
-            "location": {
-                "city": "Sydney",
-                "state": "NSW",
-                "postcode": "2217",
-                "country": "Australia"
-            },
-            "family": {
+                "gender": "Male",
                 "marital_status": "Married",
                 "children": True,
                 "children_count": 2,
                 "children_ages": [3, 6],
                 "children_genders": ["Female", "Female"],
-                "household_size": 4
-            },
-            "work": {
+                "household_size": 4,
+                "city": "Sydney",
+                "state": "NSW",
+                "postcode": "2217",
+                "country": "Australia",
                 "employment_status": "Full-time",
                 "industry": "Retail",
                 "company": "Woolworths",
@@ -99,30 +130,37 @@ class IntelligentLearningSystem:
                 "income_household": "$200,000-$499,999"
             },
             "preferences": {
-                "brands": {
-                    "supermarkets": ["Woolworths", "Coles", "Aldi"],
-                    "banks": ["Commonwealth Bank", "Westpac"],
-                    "insurance": ["Medibank Private"],
-                    "airlines": ["Qantas", "Virgin"],
-                    "tech": ["Apple", "Samsung", "Google"]
-                },
-                "shopping": {
-                    "frequency": "Weekly",
-                    "online_shopping": True,
-                    "preferred_time": "Evening"
-                },
-                "media": {
-                    "news": ["ABC News", "Sydney Morning Herald"],
-                    "streaming": ["Netflix", "Disney+"],
-                    "social": ["Facebook", "LinkedIn"]
-                }
+                "supermarkets": ["Woolworths", "Coles", "Aldi"],
+                "banks": ["Commonwealth Bank", "Westpac"],
+                "insurance": ["Medibank Private"],
+                "airlines": ["Qantas", "Virgin"],
+                "tech": ["Apple", "Samsung", "Google"],
+                "shopping_frequency": "Weekly",
+                "online_shopping": True,
+                "news": ["ABC News", "Sydney Morning Herald"],
+                "streaming": ["Netflix", "Disney+"],
+                "social_media": ["Facebook", "LinkedIn"]
+            },
+            "behavior": {
+                "survey_style": "thoughtful",
+                "response_pattern": "consistent"
+            },
+            "metadata": {
+                "version": "1.0",
+                "last_updated": datetime.now().isoformat(),
+                "persona": "quenito"
+            },
+            "learning_stats": {
+                "total_responses_learned": 0,
+                "total_patterns_identified": 0,
+                "last_learning_session": None
             }
         }
     
     def _get_default_patterns(self) -> Dict:
-        """Default question patterns"""
+        """Default question patterns as LISTS"""
         return {
-            "gender": {
+            "gender": [{
                 "patterns": [
                     "are you male or female",
                     "what is your gender",
@@ -133,8 +171,8 @@ class IntelligentLearningSystem:
                 ],
                 "response": "Male",
                 "confidence": 1.0
-            },
-            "industry_screening": {
+            }],
+            "industry_screening": [{
                 "patterns": [
                     "work in any of the following industries",
                     "employed in any of these",
@@ -144,8 +182,8 @@ class IntelligentLearningSystem:
                 ],
                 "response_logic": "if_retail_exists_select_else_none_of_above",
                 "confidence": 0.95
-            },
-            "children": {
+            }],
+            "children": [{
                 "patterns": [
                     "children aged under 18",
                     "children living in your household",
@@ -155,8 +193,8 @@ class IntelligentLearningSystem:
                 ],
                 "response": "Yes",
                 "confidence": 1.0
-            },
-            "age_range": {
+            }],
+            "age": [{
                 "patterns": [
                     "which age group",
                     "age range",
@@ -166,28 +204,8 @@ class IntelligentLearningSystem:
                 ],
                 "response_logic": "select_range_containing_45",
                 "confidence": 1.0
-            },
-            "marital_status": {
-                "patterns": [
-                    "marital status",
-                    "are you married",
-                    "relationship status",
-                    "married or single"
-                ],
-                "response": "Married",
-                "confidence": 1.0
-            },
-            "employment": {
-                "patterns": [
-                    "employment status",
-                    "are you employed",
-                    "working status",
-                    "currently employed"
-                ],
-                "response": "Full-time",
-                "confidence": 1.0
-            },
-            "location": {
+            }],
+            "location": [{
                 "patterns": [
                     "where do you live",
                     "current location",
@@ -196,7 +214,8 @@ class IntelligentLearningSystem:
                 ],
                 "response_logic": "sydney_nsw_2217",
                 "confidence": 1.0
-            }
+            }],
+            "brand_awareness": []  # Empty list for future patterns
         }
     
     # ========== DECISION FLOW ==========
@@ -208,7 +227,6 @@ class IntelligentLearningSystem:
         """
         Main decision flow for answering questions
         Priority: Exact match → Pattern match → LLM → Learn from manual
-        PROPERLY LABELS SOURCE!
         """
         
         # Step 1: Check exact match (highest confidence)
@@ -219,21 +237,23 @@ class IntelligentLearningSystem:
             # Increment success count and boost confidence
             q_normalized = question.lower().strip()
             if q_normalized in self.learned_responses:
-                self.learned_responses[q_normalized]["success_count"] += 1
-                self.learned_responses[q_normalized]["last_used"] = datetime.now().isoformat()
-                
-                # Boost confidence with each successful use (up to 0.99)
-                current_confidence = self.learned_responses[q_normalized].get("confidence", 0.85)
-                self.learned_responses[q_normalized]["confidence"] = min(current_confidence + 0.02, 0.99)
-                
-                # Save immediately
-                self._save_json(self.learned_responses_path, self.learned_responses)
+                response_data = self.learned_responses[q_normalized]
+                if isinstance(response_data, dict):
+                    response_data["success_count"] = response_data.get("success_count", 0) + 1
+                    response_data["last_used"] = datetime.now().isoformat()
+                    
+                    # Boost confidence with each successful use (up to 0.99)
+                    current_confidence = response_data.get("confidence", 0.85)
+                    response_data["confidence"] = min(current_confidence + 0.02, 0.99)
+                    
+                    # Save immediately WITH WRAPPER
+                    self._save_learned_responses()
             
             return {
                 "success": True,
                 "value": exact_match["answer"],
                 "confidence": exact_match.get("confidence", 0.95),
-                "source": "exact_match"  # ✅ Properly labeled!
+                "source": "exact_match"
             }
         
         # Step 2: Check pattern match (high confidence)
@@ -244,17 +264,17 @@ class IntelligentLearningSystem:
                 "success": True,
                 "value": pattern_match["answer"],
                 "confidence": pattern_match.get("confidence", 0.95),
-                "source": "pattern_match"  # ✅ Properly labeled!
+                "source": "pattern_match"
             }
         
         # Step 3: No match found - let LLM handle it
         return None
     
     def _check_exact_match(self, question: str, element_type: str) -> Optional[Dict]:
-        """Check for exact question match - WITH IMPROVED CONFIDENCE HANDLING"""
+        """Check for exact question match"""
         q_normalized = question.lower().strip()
         
-        # Must be a substantial question (not "..." or empty)
+        # Must be a substantial question
         if len(q_normalized) < 20:
             return None
         
@@ -262,24 +282,26 @@ class IntelligentLearningSystem:
         if q_normalized in self.learned_responses:
             learned = self.learned_responses[q_normalized]
             
-            # Validate element type matches (or is similar enough)
-            type_matches = (
-                learned.get("element_type") == element_type or
-                learned.get("element_type") == "unknown" or
-                element_type == "unknown"
-            )
-            
-            if type_matches:
-                # For recently learned items (success_count >= 1), use them!
-                if learned.get("success_count", 0) >= 1:
-                    # Trust anything we've successfully used before
-                    min_confidence = 0.80 if learned.get("success_count", 0) == 1 else 0.85
-                    
-                    if learned.get("confidence", 0) >= min_confidence:
-                        return {
-                            "answer": learned["answer"],
-                            "confidence": learned.get("confidence", 0.85)
-                        }
+            # Handle both dict and string responses
+            if isinstance(learned, dict):
+                # Check element type compatibility
+                type_matches = (
+                    learned.get("element_type") == element_type or
+                    learned.get("element_type") == "unknown" or
+                    element_type == "unknown"
+                )
+                
+                if type_matches and learned.get("confidence", 0) >= 0.80:
+                    return {
+                        "answer": learned.get("answer", learned.get("value", "")),
+                        "confidence": learned.get("confidence", 0.85)
+                    }
+            elif isinstance(learned, str):
+                # Simple string response (legacy format)
+                return {
+                    "answer": learned,
+                    "confidence": 0.85
+                }
         
         return None
     
@@ -289,41 +311,45 @@ class IntelligentLearningSystem:
         q_lower = question.lower()
         
         # Check each pattern category
-        for category, pattern_data in self.learned_patterns.items():
-            patterns = pattern_data.get("patterns", [])
-            
-            # Check if question matches any pattern
-            for pattern in patterns:
-                if pattern in q_lower:
-                    # Special logic for some patterns
-                    if pattern_data.get("response_logic") == "if_retail_exists_select_else_none_of_above":
-                        # Industry screening logic
-                        if options:
-                            if any("retail" in opt.lower() for opt in options):
-                                return {"answer": "Retail", "confidence": 0.95}
-                            elif any("none" in opt.lower() for opt in options):
-                                return {"answer": "None of the above", "confidence": 0.95}
+        for category, pattern_list in self.learned_patterns.items():
+            if not isinstance(pattern_list, list):
+                continue
+                
+            for pattern_data in pattern_list:
+                if not isinstance(pattern_data, dict):
+                    continue
                     
-                    elif pattern_data.get("response_logic") == "select_range_containing_45":
-                        # Age range logic
-                        if options:
-                            for opt in options:
-                                # Check if 45 is in this range
-                                numbers = re.findall(r'\d+', opt)
-                                if len(numbers) >= 2:
-                                    try:
-                                        if int(numbers[0]) <= 45 <= int(numbers[1]):
-                                            return {"answer": opt, "confidence": 0.95}
-                                    except:
-                                        pass
-                    
-                    else:
-                        # Direct response
-                        if "response" in pattern_data:
-                            return {
-                                "answer": pattern_data["response"],
-                                "confidence": pattern_data.get("confidence", 0.9)
-                            }
+                patterns = pattern_data.get("patterns", [])
+                
+                # Check if question matches any pattern
+                for pattern in patterns:
+                    if pattern in q_lower:
+                        # Special logic for some patterns
+                        if pattern_data.get("response_logic") == "if_retail_exists_select_else_none_of_above":
+                            if options:
+                                if any("retail" in opt.lower() for opt in options):
+                                    return {"answer": "Retail", "confidence": 0.95}
+                                elif any("none" in opt.lower() for opt in options):
+                                    return {"answer": "None of the above", "confidence": 0.95}
+                        
+                        elif pattern_data.get("response_logic") == "select_range_containing_45":
+                            if options:
+                                for opt in options:
+                                    numbers = re.findall(r'\d+', opt)
+                                    if len(numbers) >= 2:
+                                        try:
+                                            if int(numbers[0]) <= 45 <= int(numbers[1]):
+                                                return {"answer": opt, "confidence": 0.95}
+                                        except:
+                                            pass
+                        
+                        else:
+                            # Direct response
+                            if "response" in pattern_data:
+                                return {
+                                    "answer": pattern_data["response"],
+                                    "confidence": pattern_data.get("confidence", 0.9)
+                                }
         
         return None
     
@@ -334,7 +360,7 @@ class IntelligentLearningSystem:
                                     answer: str,
                                     element_type: str,
                                     confidence: float):
-        """Record a successful automation for learning - IMPROVED"""
+        """Record a successful automation for learning"""
         
         # Add to session
         self.current_session["automated"].append({
@@ -354,32 +380,37 @@ class IntelligentLearningSystem:
             print(f"   ⚠️ Skipping learning 'Male' for non-gender question")
             return
         
-        # Update learned responses (with LOWER initial threshold)
-        if confidence >= 0.80:  # Lowered from 0.85
+        # Update learned responses
+        if confidence >= 0.80:
             q_normalized = question.lower().strip()
             
             if q_normalized in self.learned_responses:
                 # Update existing
-                self.learned_responses[q_normalized]["success_count"] += 1
-                self.learned_responses[q_normalized]["last_used"] = datetime.now().isoformat()
-                
-                # Keep the higher confidence between old and new
-                old_confidence = self.learned_responses[q_normalized].get("confidence", 0.85)
-                self.learned_responses[q_normalized]["confidence"] = max(old_confidence, confidence)
+                response_data = self.learned_responses[q_normalized]
+                if isinstance(response_data, dict):
+                    response_data["success_count"] = response_data.get("success_count", 0) + 1
+                    response_data["last_used"] = datetime.now().isoformat()
+                    response_data["confidence"] = max(response_data.get("confidence", 0.85), confidence)
             else:
-                # Add new with proper initial values
+                # Add new
                 self.learned_responses[q_normalized] = {
                     "answer": answer,
                     "element_type": element_type,
                     "confidence": confidence,
-                    "success_count": 1,  # Start at 1 since it was successful
+                    "success_count": 1,
                     "first_seen": datetime.now().isoformat(),
                     "last_used": datetime.now().isoformat()
                 }
             
-            # Save immediately
-            self._save_json(self.learned_responses_path, self.learned_responses)
+            # Save immediately WITH WRAPPER
+            self._save_learned_responses()
             print(f"   💾 Learned: {question[:40]}... → {answer}")
+            
+            # Update learning stats in knowledge base
+            if "learning_stats" in self.knowledge_base:
+                self.knowledge_base["learning_stats"]["total_responses_learned"] = len(self.learned_responses)
+                self.knowledge_base["learning_stats"]["last_learning_session"] = datetime.now().isoformat()
+                self._save_json(self.knowledge_base_path, self.knowledge_base)
     
     # ========== LEARNING FROM MANUAL ==========
     
@@ -387,9 +418,9 @@ class IntelligentLearningSystem:
                                   question: str,
                                   answer: Any,
                                   element_type: str):
-        """Record manual intervention for review and learning"""
+        """Record manual intervention to SESSION FILE, not knowledge base"""
         
-        # Add to session
+        # Add to current session
         self.current_session["manual"].append({
             "question": question,
             "answer": answer,
@@ -397,25 +428,32 @@ class IntelligentLearningSystem:
             "timestamp": datetime.now().isoformat()
         })
         
-        # Manual interventions go to session file for review
-        # They are NOT automatically trusted
-        print(f"   📝 Manual intervention recorded for review")
+        # Save session immediately to prevent loss
+        self._save_current_session()
+        
+        print(f"   📝 Manual intervention saved to session file")
+    
+    def _save_current_session(self):
+        """Save current session to file"""
+        session_file = self.session_path / f"{self.current_session['session_id']}.json"
+        self._save_json(session_file, self.current_session)
     
     # ========== SESSION MANAGEMENT ==========
     
     def save_session(self):
-        """Save current session for analysis"""
-        session_file = self.session_path / f"session_{int(datetime.now().timestamp())}.json"
-        self._save_json(session_file, self.current_session)
+        """Save and finalize current session"""
+        # Save final session state
+        self._save_current_session()
         
         # Analyze session for patterns
         self._analyze_session_for_patterns()
         
-        print(f"   💾 Session saved: {len(self.current_session['automated'])} automated, "
+        print(f"   💾 Session finalized: {len(self.current_session['automated'])} automated, "
               f"{len(self.current_session['manual'])} manual")
         
         # Reset session for next survey
         self.current_session = {
+            "session_id": f"session_{int(datetime.now().timestamp())}",
             "timestamp": datetime.now().isoformat(),
             "automated": [],
             "manual": [],
@@ -425,7 +463,7 @@ class IntelligentLearningSystem:
     def _analyze_session_for_patterns(self):
         """Analyze session to identify new patterns"""
         
-        # Look for repeated manual interventions (might be a pattern)
+        # Look for repeated manual interventions
         manual_answers = {}
         for item in self.current_session["manual"]:
             answer = item["answer"]
@@ -434,11 +472,11 @@ class IntelligentLearningSystem:
             else:
                 manual_answers[answer] = 1
         
-        # If same answer given 3+ times manually, it might be a preference
+        # If same answer given 3+ times manually, it might be a pattern
         for answer, count in manual_answers.items():
             if count >= 3:
                 print(f"   🔍 Pattern detected: '{answer}' used {count} times manually")
-                # Could add to learned patterns after review
+                # This could be reviewed and added to patterns later
     
     # ========== CLEANUP ==========
     
@@ -454,15 +492,18 @@ class IntelligentLearningSystem:
                 removed.append(question)
                 continue
             
-            # Skip if success rate is too low
-            if data.get("success_count", 0) < 1:
-                removed.append(question)
-                continue
-            
-            # Skip "Male" for non-gender questions
-            if data.get("answer") == "Male" and "gender" not in question and "sex" not in question:
-                removed.append(question)
-                continue
+            # Handle both dict and string responses
+            if isinstance(data, dict):
+                # Skip if success rate is too low
+                if data.get("success_count", 0) < 1:
+                    removed.append(question)
+                    continue
+                
+                # Skip "Male" for non-gender questions
+                answer = data.get("answer", data.get("value", ""))
+                if answer == "Male" and "gender" not in question and "sex" not in question:
+                    removed.append(question)
+                    continue
             
             # Keep good ones
             cleaned[question] = data
@@ -470,7 +511,7 @@ class IntelligentLearningSystem:
         if removed:
             print(f"   🧹 Cleaned {len(removed)} problematic entries")
             self.learned_responses = cleaned
-            self._save_json(self.learned_responses_path, self.learned_responses)
+            self._save_learned_responses()
     
     # ========== STATISTICS ==========
     
@@ -479,20 +520,21 @@ class IntelligentLearningSystem:
         return {
             "knowledge_base": {
                 "categories": len(self.knowledge_base),
-                "last_updated": self.knowledge_base.get("last_updated", "unknown")
+                "last_updated": self.knowledge_base.get("metadata", {}).get("last_updated", "unknown")
             },
             "learned_responses": {
                 "total": len(self.learned_responses),
                 "high_confidence": sum(1 for r in self.learned_responses.values() 
-                                     if r.get("confidence", 0) >= 0.95),
+                                     if isinstance(r, dict) and r.get("confidence", 0) >= 0.95),
                 "frequently_used": sum(1 for r in self.learned_responses.values() 
-                                     if r.get("success_count", 0) >= 5)
+                                     if isinstance(r, dict) and r.get("success_count", 0) >= 5)
             },
             "patterns": {
-                "total": len(self.learned_patterns),
+                "total": sum(len(v) if isinstance(v, list) else 1 for v in self.learned_patterns.values()),
                 "categories": list(self.learned_patterns.keys())
             },
             "current_session": {
+                "id": self.current_session["session_id"],
                 "automated": len(self.current_session["automated"]),
                 "manual": len(self.current_session["manual"]),
                 "failed": len(self.current_session["failed"])
@@ -542,52 +584,8 @@ class LLMServiceWithIntelligentLearning:
         return llm_response
 
 
-# ========== STANDALONE UTILITIES ==========
-
-def migrate_existing_learning():
-    """
-    Migrate existing learning files to new structure
-    """
-    print("🔄 Migrating existing learning data...")
-    
-    persona_path = Path("personas/quenito")
-    
-    # Clean up knowledge_base.json (remove individual Q&As)
-    kb_path = persona_path / "knowledge_base.json"
-    if kb_path.exists():
-        with open(kb_path, 'r') as f:
-            kb = json.load(f)
-        
-        # Remove learning_* entries
-        cleaned_kb = {}
-        for key, value in kb.items():
-            if not key.startswith("learning_"):
-                cleaned_kb[key] = value
-        
-        # Backup original
-        shutil.copy(kb_path, kb_path.with_suffix('.backup.json'))
-        
-        # Save cleaned version
-        with open(kb_path, 'w') as f:
-            json.dump(cleaned_kb, f, indent=2)
-        
-        print(f"   ✅ Cleaned knowledge_base.json")
-    
-    # Clean learned_responses.json
-    lr_path = persona_path / "learned_responses.json"
-    if lr_path.exists():
-        learning = IntelligentLearningSystem()
-        learning.cleanup_learned_responses()
-        print(f"   ✅ Cleaned learned_responses.json")
-    
-    print("✅ Migration complete!")
-
-
 if __name__ == "__main__":
-    # Run migration when executed directly
-    migrate_existing_learning()
-    
-    # Show stats
+    # Test the system
     learning = IntelligentLearningSystem()
     stats = learning.get_learning_stats()
     print("\n📊 Learning System Status:")

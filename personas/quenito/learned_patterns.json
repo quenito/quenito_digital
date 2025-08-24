@@ -1,77 +1,567 @@
 {
-  "gender": {
-    "patterns": [
-      "are you male or female",
-      "what is your gender",
-      "please indicate your gender",
-      "gender identity",
-      "please select your gender",
-      "i am"
+  "patterns": {
+    "gender": [
+      {
+        "patterns": [
+          "gender",
+          "are you male or female",
+          "i'm a",
+          "i am a",
+          "sex",
+          "man or woman",
+          "which best describes you",
+          "identify with most",
+          "identify as",
+          "describe yourself as",
+          "what is gender"
+        ],
+        "response": "Male",
+        "confidence": 0.99,
+        "description": "Any question asking about gender/sex"
+      }
     ],
-    "response": "Male",
-    "confidence": 1.0
+    "age_exact": [
+      {
+        "patterns": [
+          "what is your age",
+          "how old are you",
+          "please enter your age",
+          "your age in years",
+          "age:",
+          "type in your age",
+          "age as of today"
+        ],
+        "response": "45",
+        "confidence": 0.99,
+        "description": "Questions asking for exact age"
+      }
+    ],
+    "age_range": [
+      {
+        "patterns": [
+          "age group",
+          "age range",
+          "which age bracket",
+          "select your age",
+          "age group applies",
+          "includes your age",
+          "age group you fall"
+        ],
+        "response_logic": "select_range_containing_45",
+        "confidence": 0.95,
+        "description": "Questions asking for age ranges"
+      }
+    ],
+    "birth_year": [
+      {
+        "patterns": [
+          "birth year",
+          "year of birth",
+          "born in",
+          "year were you born",
+          "what year",
+          "4-digit birth year"
+        ],
+        "response": "1980",
+        "confidence": 0.99,
+        "description": "Questions asking for birth year"
+      }
+    ],
+    "birth_month": [
+      {
+        "patterns": [
+          "i was born in",
+          "birth month",
+          "month of birth",
+          "month were you born"
+        ],
+        "response": "March",
+        "confidence": 0.99,
+        "description": "Questions asking for birth month"
+      }
+    ],
+    "postcode": [
+      {
+        "patterns": [
+          "postcode",
+          "postal code",
+          "post code",
+          "zip code",
+          "home postcode",
+          "residential postcode",
+          "4-digit postcode",
+          "home address postcode"
+        ],
+        "response": "2217",
+        "confidence": 0.99,
+        "description": "Any postcode/zipcode question"
+      }
+    ],
+    "country": [
+      {
+        "patterns": [
+          "which country",
+          "country do you",
+          "where were you born",
+          "country of residence",
+          "currently reside",
+          "country do you live"
+        ],
+        "response": "Australia",
+        "confidence": 0.99,
+        "description": "Country questions"
+      }
+    ],
+    "state": [
+      {
+        "patterns": [
+          "which state",
+          "what state",
+          "state or territory",
+          "currently live in",
+          "which area do you live",
+          "area do you live in",
+          "select the state"
+        ],
+        "response": "New South Wales",
+        "confidence": 0.99,
+        "description": "Australian state questions"
+      }
+    ],
+    "city": [
+      {
+        "patterns": [
+          "which city",
+          "what city",
+          "live in any of",
+          "metropolitan area",
+          "urban area",
+          "region in which you live",
+          "select the city"
+        ],
+        "response": "Sydney",
+        "confidence": 0.99,
+        "description": "City/location questions"
+      }
+    ],
+    "household_income": [
+      {
+        "patterns": [
+          "household income",
+          "annual income",
+          "yearly income",
+          "gross income",
+          "before tax",
+          "family income",
+          "combined household",
+          "pre-tax income",
+          "monthly household income"
+        ],
+        "response_logic": "select_200k_to_499k_range",
+        "confidence": 0.95,
+        "description": "Household income questions"
+      }
+    ],
+    "personal_income": [
+      {
+        "patterns": [
+          "your personal income",
+          "individual income",
+          "your income",
+          "personal annual income"
+        ],
+        "response": "$100,000 to $149,999",
+        "confidence": 0.95,
+        "description": "Personal income questions"
+      }
+    ],
+    "marital_status": [
+      {
+        "patterns": [
+          "marital status",
+          "married",
+          "relationship status",
+          "civil partnership",
+          "single or married"
+        ],
+        "response": "Married/civil partnership",
+        "confidence": 0.99,
+        "description": "Marital status questions"
+      }
+    ],
+    "children": [
+      {
+        "patterns": [
+          "how many children",
+          "number of children",
+          "children under 18",
+          "kids at home",
+          "dependent children"
+        ],
+        "response": "2",
+        "confidence": 0.99,
+        "description": "Number of children questions"
+      }
+    ],
+    "children_presence": [
+      {
+        "patterns": [
+          "do you have children",
+          "any children",
+          "have kids",
+          "parent or guardian",
+          "children in household"
+        ],
+        "response": "Yes",
+        "confidence": 0.99,
+        "description": "Whether has children"
+      }
+    ],
+    "household_composition": [
+      {
+        "patterns": [
+          "household situation",
+          "who lives with",
+          "household composition",
+          "family structure",
+          "living arrangement",
+          "describe the household",
+          "who lives in your household"
+        ],
+        "response": "Couple family with children",
+        "confidence": 0.95,
+        "description": "Household composition questions"
+      }
+    ],
+    "industry_screening": [
+      {
+        "patterns": [
+          "work in any of the following industries",
+          "employed in any of these",
+          "household work in",
+          "family members work",
+          "work for any of the following",
+          "industry do you work",
+          "anyone in your household work",
+          "immediate family work"
+        ],
+        "response_logic": "if_retail_exists_select_else_none_of_above",
+        "confidence": 0.95,
+        "description": "Industry screening questions"
+      }
+    ],
+    "financial_position": [
+      {
+        "patterns": [
+          "financial position",
+          "financial situation",
+          "money situation",
+          "describe your finances",
+          "comfortable with money",
+          "getting along financially"
+        ],
+        "response": "Comfortable - money isn't an issue, but we do try and save money when we can",
+        "confidence": 0.90,
+        "description": "Financial comfort level questions"
+      }
+    ],
+    "employment_status": [
+      {
+        "patterns": [
+          "employment status",
+          "work status",
+          "are you employed",
+          "current employment",
+          "current occupation"
+        ],
+        "response": "Full-time",
+        "confidence": 0.95,
+        "description": "Employment status questions"
+      }
+    ],
+    "occupation": [
+      {
+        "patterns": [
+          "occupation",
+          "what do you do",
+          "job title",
+          "your profession",
+          "current job title"
+        ],
+        "response": "Data Analyst",
+        "confidence": 0.95,
+        "description": "Job/occupation questions"
+      }
+    ],
+    "job_role": [
+      {
+        "patterns": [
+          "current role",
+          "job role",
+          "position at company",
+          "what role",
+          "role at your company"
+        ],
+        "response": "Professional (e.g. Accountant, Analyst)",
+        "confidence": 0.95,
+        "description": "Job role classification"
+      }
+    ],
+    "education_level": [
+      {
+        "patterns": [
+          "highest education",
+          "education level",
+          "level of education",
+          "educational qualification",
+          "education achieved"
+        ],
+        "response": "High school education",
+        "confidence": 0.95,
+        "description": "Education level questions"
+      }
+    ],
+    "suburb": [
+      {
+        "patterns": [
+          "suburb",
+          "which suburb",
+          "suburb do you live"
+        ],
+        "response": "Kogarah",
+        "confidence": 0.95,
+        "description": "Suburb location questions"
+      }
+    ],
+    "home_ownership": [
+      {
+        "patterns": [
+          "own or rent",
+          "home ownership",
+          "housing situation",
+          "property ownership"
+        ],
+        "response": "Own with mortgage",
+        "confidence": 0.95,
+        "description": "Home ownership status"
+      }
+    ],
+    "children_ages": [
+      {
+        "patterns": [
+          "age of children",
+          "children age groups",
+          "dependent children age",
+          "how old are your children",
+          "what age are your children"
+        ],
+        "response_logic": "1 child 0-4, 1 child 5-12",
+        "confidence": 0.95,
+        "description": "Children age distribution"
+      }
+    ],
+    "shopping_frequency": [
+      {
+        "patterns": [
+          "how often shop",
+          "shopping frequency",
+          "shop for groceries",
+          "purchase frequency"
+        ],
+        "response": "Weekly",
+        "confidence": 0.90,
+        "description": "Shopping frequency questions"
+      }
+    ],
+    "technology_disadvantages": [
+      {
+        "patterns": [
+          "disadvantages of technology",
+          "technology problems",
+          "tech downsides"
+        ],
+        "response": "too much dependence and can also make some people less sociable",
+        "confidence": 0.85,
+        "description": "Open text about technology disadvantages"
+      }
+    ],
+    "satisfaction_rating": [
+      {
+        "patterns": [
+          "how satisfied",
+          "satisfaction level",
+          "rate satisfaction",
+          "satisfaction score"
+        ],
+        "response_logic": "select_7_on_10_scale",
+        "confidence": 0.85,
+        "description": "Satisfaction rating questions"
+      }
+    ],
+    "likelihood_rating": [
+      {
+        "patterns": [
+          "how likely",
+          "likelihood",
+          "would you recommend",
+          "chance of"
+        ],
+        "response_logic": "select_8_on_10_scale",
+        "confidence": 0.85,
+        "description": "Likelihood rating questions"
+      }
+    ],
+    "financial_wellbeing": [
+      {
+        "patterns": [
+          "getting along financially",
+          "better off",
+          "worse off",
+          "financial wellbeing"
+        ],
+        "response": "Better-off",
+        "confidence": 0.85,
+        "description": "Financial wellbeing questions"
+      }
+    ],
+    "date_of_birth_split": [
+      {
+        "patterns": [
+          "date of birth",
+          "birth date",
+          "when were you born"
+        ],
+        "response_logic": "month=March, year=1980",
+        "confidence": 0.95,
+        "description": "Date of birth with split fields"
+      }
+    ],
+    "vehicle_ownership": [
+      {
+        "patterns": [
+          "car ownership",
+          "vehicle type",
+          "how did you acquire",
+          "type of car ownership"
+        ],
+        "response": "New",
+        "confidence": 0.75,
+        "description": "Vehicle ownership questions"
+      }
+    ],
+    "household_composition_multi": [
+      {
+        "patterns": [
+          "describe your household",
+          "household composition",
+          "who lives in"
+        ],
+        "response": ["Family with children under 5", "Family with children primary school aged"],
+        "confidence": 0.90,
+        "description": "Multiple household selections"
+      }
+    ],
+    "location_type": [
+      {
+        "patterns": [
+          "do you live",
+          "type of area",
+          "metropolitan",
+          "rural or urban"
+        ],
+        "response": "In a large metropolitan city",
+        "confidence": 0.95,
+        "description": "Location type questions"
+      }
+    ],
+    "children_age_slider": [
+      {
+        "patterns": [
+          "age are your children",
+          "children age slider",
+          "how old are your kids"
+        ],
+        "response_logic": "slider_position_child1=6, slider_position_child2=3",
+        "confidence": 0.95,
+        "description": "Slider interface for children ages"
+      }
+    ],
+    "location_hierarchy": [
+      {
+        "patterns": [
+          "where do you live",
+          "your location",
+          "residential details"
+        ],
+        "response_logic": "postcode=2217, state=NSW, city=KOGARAH, type=metropolitan",
+        "confidence": 0.95,
+        "description": "Complete location hierarchy"
+      }
+    ],
+    "dropdown_autocomplete": [
+      {
+        "patterns": [
+          "select the city",
+          "choose from list",
+          "type to search"
+        ],
+        "response_logic": "search_and_select",
+        "confidence": 0.90,
+        "description": "Dropdown with autocomplete search"
+      }
+    ],
+    "visual_card_selection": [
+      {
+        "patterns": [
+          "select one of these",
+          "choose a card",
+          "visual options"
+        ],
+        "response_logic": "identify_and_click_card",
+        "confidence": 0.85,
+        "description": "Visual card-based selection"
+      }
+    ],
+    "multi_slider": [
+      {
+        "patterns": [
+          "adjust sliders",
+          "multiple values",
+          "set each slider"
+        ],
+        "response_logic": "set_multiple_slider_positions",
+        "confidence": 0.90,
+        "description": "Multiple slider interface"
+      }
+    ],
+    "region_specific": [
+      {
+        "patterns": [
+          "which region",
+          "regional location",
+          "area of the country"
+        ],
+        "response": "Sydney Metropolitan",
+        "confidence": 0.95,
+        "description": "Regional classification"
+      }
+    ],
+    "household_members": [
+      {
+        "patterns": [
+          "who lives with you",
+          "household members",
+          "people in your home"
+        ],
+        "response": ["Partner/spouse", "Children"],
+        "confidence": 0.95,
+        "description": "Multiple household member selection"
+      }
+    ]
   },
-  "industry_screening": {
-    "patterns": [
-      "work in any of the following industries",
-      "employed in any of these",
-      "household work in",
-      "family members work",
-      "work for any of the following"
-    ],
-    "response_logic": "if_retail_exists_select_else_none_of_these",
-    "confidence": 0.95
-  },
-  "children": {
-    "patterns": [
-      "children aged under 18",
-      "children living in your household",
-      "do you have any children",
-      "kids at home",
-      "children under 18"
-    ],
-    "response": "Yes",
-    "confidence": 1.0
-  },
-  "age_range": {
-    "patterns": [
-      "which age group",
-      "age range",
-      "how old are you",
-      "please select your age",
-      "what is your age"
-    ],
-    "response_logic": "select_range_containing_45",
-    "confidence": 1.0
-  },
-  "marital_status": {
-    "patterns": [
-      "marital status",
-      "are you married",
-      "relationship status",
-      "married or single"
-    ],
-    "response": "Married",
-    "confidence": 1.0
-  },
-  "employment": {
-    "patterns": [
-      "employment status",
-      "are you employed",
-      "working status",
-      "currently employed"
-    ],
-    "response": "Full-time",
-    "confidence": 1.0
-  },
-  "location": {
-    "patterns": [
-      "where do you live",
-      "current location",
-      "which state",
-      "postcode"
-    ],
-    "response_logic": "sydney_nsw_2217",
-    "confidence": 1.0
+  "metadata": {
+    "last_updated": "2025-08-24T19:00:00.000000",
+    "total_patterns": 43,
+    "version": "3.0"
   }
 }

@@ -1,0 +1,77 @@
+{
+  "gender": {
+    "patterns": [
+      "are you male or female",
+      "what is your gender",
+      "please indicate your gender",
+      "gender identity",
+      "please select your gender",
+      "i am"
+    ],
+    "response": "Male",
+    "confidence": 1.0
+  },
+  "industry_screening": {
+    "patterns": [
+      "work in any of the following industries",
+      "employed in any of these",
+      "household work in",
+      "family members work",
+      "work for any of the following"
+    ],
+    "response_logic": "if_retail_exists_select_else_none_of_these",
+    "confidence": 0.95
+  },
+  "children": {
+    "patterns": [
+      "children aged under 18",
+      "children living in your household",
+      "do you have any children",
+      "kids at home",
+      "children under 18"
+    ],
+    "response": "Yes",
+    "confidence": 1.0
+  },
+  "age_range": {
+    "patterns": [
+      "which age group",
+      "age range",
+      "how old are you",
+      "please select your age",
+      "what is your age"
+    ],
+    "response_logic": "select_range_containing_45",
+    "confidence": 1.0
+  },
+  "marital_status": {
+    "patterns": [
+      "marital status",
+      "are you married",
+      "relationship status",
+      "married or single"
+    ],
+    "response": "Married",
+    "confidence": 1.0
+  },
+  "employment": {
+    "patterns": [
+      "employment status",
+      "are you employed",
+      "working status",
+      "currently employed"
+    ],
+    "response": "Full-time",
+    "confidence": 1.0
+  },
+  "location": {
+    "patterns": [
+      "where do you live",
+      "current location",
+      "which state",
+      "postcode"
+    ],
+    "response_logic": "sydney_nsw_2217",
+    "confidence": 1.0
+  }
+}
