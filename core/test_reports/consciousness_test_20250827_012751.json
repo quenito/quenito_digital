@@ -1,0 +1,93 @@
+{
+  "session": {
+    "session_id": "20250827_012751",
+    "start_time": "2025-08-27T01:27:51.393964",
+    "temperature": 0.7,
+    "model": "gpt-4o-mini"
+  },
+  "summary": {
+    "total_tests": 3,
+    "avg_confidence": 0.9166666666666666,
+    "question_types": {},
+    "confidence_distribution": {
+      "100%": 1,
+      "90-99%": 1,
+      "80-89%": 1,
+      "70-79%": 0,
+      "<70%": 0
+    }
+  },
+  "tests": [
+    {
+      "screenshot": "screenshots/prime_opinion_q1_before.png",
+      "question": "Which age group applies to you?",
+      "options": [
+        "Under 18",
+        "18-24",
+        "25-34",
+        "35-44",
+        "45-54",
+        "55-64",
+        "65+"
+      ],
+      "llm_answer": "45-54",
+      "reasoning": "I'm currently 45 years old, so the age group that applies to me is '45-54'. This aligns perfectly with my demographics and life stage. As a family-oriented person, I am focused on ensuring the well-being and future of my two daughters, which is a priority for me at this age. It also reflects my experiences and responsibilities as a parent and a professional. Therefore, this option is the most relevant and accurate for me.",
+      "confidence": 1.0
+    },
+    {
+      "screenshot": "screenshots/prime_opinion_q2_before.png",
+      "question": "How would a friend describe you?",
+      "options": [
+        "Impulsive",
+        "Innovative",
+        "Competitive",
+        "Thoughtful",
+        "Rule breaker",
+        "Strong",
+        "Humble",
+        "Fun-loving",
+        "Caring",
+        "Connected",
+        "Responsible",
+        "Charismatic",
+        "Open minded",
+        "Curious",
+        "Clever"
+      ],
+      "llm_answer": "Caring",
+      "reasoning": "As a family man with two young daughters, my friends would likely see me as someone who prioritizes my family's well-being and happiness. I put family health first, which aligns with being caring. I also help disadvantaged kids in the community, reflecting my concern for others. While I enjoy sports and have a fun side, my core values and daily actions focus on looking after my loved ones and supporting those in need, making 'Caring' the most fitting description.",
+      "confidence": 0.85
+    },
+    {
+      "screenshot": "screenshots/prime_opinion_q3_before.png",
+      "question": "Which of these values are important to you? Please select a maximum of 6 that you truly live your life by and think about in the decisions you make.",
+      "options": [
+        "Security",
+        "Adventure",
+        "Generosity",
+        "Authenticity",
+        "Kindness",
+        "Respect",
+        "Tradition",
+        "Optimism",
+        "Courage",
+        "Leadership",
+        "Growth",
+        "Integrity",
+        "Family",
+        "Achievement",
+        "Loyalty"
+      ],
+      "llm_answer": [
+        "Security",
+        "Family",
+        "Respect",
+        "Generosity",
+        "Integrity",
+        "Tradition"
+      ],
+      "reasoning": "As a 45-year-old family man with two young daughters, security is paramount in my life. I prioritize the safety and well-being of my family above all else. Family is deeply intertwined with my values; everything I do revolves around providing for and being present with my wife and kids. Respect is crucial, both in our family dynamics and in how I engage with others in the community. Generosity is important to me as I believe in helping those who are disadvantaged, especially kids, aligning with my community-focused values. Integrity is something I strive for, ensuring I act in a way that upholds my principles. Finally, tradition holds weight in my life as I appreciate the values and customs passed down and instill them in my children. These selections reflect my practical, family-first mindset and the way I navigate my daily life.",
+      "confidence": 0.9
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "brand_awareness": {
+    "recognition_levels": {
+      "know_very_well": "I use/buy regularly or work with",
+      "know_well": "Familiar with, have used before",
+      "know_somewhat": "Heard of, know what they do",
+      "know_name_only": "Recognize name but nothing else",
+      "never_heard": "Don't know this brand"
+    },
+    
+    "categories": {
+      "supermarkets": {
+        "know_very_well": ["Woolworths", "Coles"],
+        "know_well": ["ALDI", "IGA"],
+        "know_somewhat": ["Harris Farm", "Foodworks"]
+      },
+      
+      "banks": {
+        "know_very_well": ["Commonwealth Bank", "ING"],
+        "know_well": ["ANZ", "NAB", "Westpac"],
+        "know_somewhat": ["St George", "Bank of Queensland", "Macquarie"]
+      },
+      
+      "insurance": {
+        "know_very_well": ["NRMA", "AAMI", "Medibank"],
+        "know_well": ["Allianz", "HCF", "NIB"],
+        "know_somewhat": ["Budget Direct", "Youi", "Bupa"]
+      },
+      
+      "beer_alcohol": {
+        "know_very_well": ["Balter", "Carlton", "VB"],
+        "know_well": ["Tooheys", "XXXX", "Corona", "Great Northern"],
+        "know_somewhat": ["Stone & Wood", "Young Henrys", "4 Pines"]
+      },
+      
+      "fast_food": {
+        "know_very_well": ["McDonald's", "KFC"],
+        "know_well": ["Hungry Jack's", "Subway", "Domino's"],
+        "know_somewhat": ["Red Rooster", "Pizza Hut", "Guzman y Gomez"]
+      },
+      
+      "automotive": {
+        "know_very_well": ["Nissan", "Toyota"],
+        "know_well": ["Mazda", "Holden", "Ford", "Mitsubishi"],
+        "know_somewhat": ["Hyundai", "Kia", "Volkswagen", "Tesla"]
+      },
+      
+      "retail": {
+        "know_very_well": ["Kmart", "Target", "Bunnings"],
+        "know_well": ["Big W", "Officeworks", "Cotton On"],
+        "know_somewhat": ["Myer", "David Jones", "Uniqlo"]
+      },
+      
+      "technology": {
+        "know_very_well": ["Samsung", "Apple", "Lenovo"],
+        "know_well": ["Sony", "Microsoft", "Google"],
+        "know_somewhat": ["LG", "Dell", "HP"]
+      },
+      
+      "streaming": {
+        "know_very_well": ["Netflix", "Amazon Prime", "Disney+", "Kayo"],
+        "know_well": ["Stan", "Paramount+", "YouTube Premium"],
+        "know_somewhat": ["Binge", "Apple TV+", "Foxtel Now"]
+      },
+      
+      "telco": {
+        "know_very_well": ["Telstra"],
+        "know_well": ["Optus", "Vodafone"],
+        "know_somewhat": ["TPG", "iiNet", "Aussie Broadband"]
+      },
+      
+      "sports_teams": {
+        "know_very_well": ["All NRL teams", "F1 teams", "Australian Cricket"],
+        "passionate_about": ["Specific NRL team TBD", "Red Bull Racing"],
+        "follow_casually": ["Wallabies", "Socceroos"]
+      }
+    },
+    
+    "response_logic": {
+      "owned_brands": "I know them very well",
+      "work_for": "I know everything about them",
+      "customer_of": "I know them well",
+      "competitors": "I'm familiar with them",
+      "never_used": "I've heard of them",
+      "category_irrelevant": "Don't know much about this"
+    }
+  }
+}

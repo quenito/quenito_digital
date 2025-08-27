@@ -4,7 +4,9 @@
     "full_name": "Matt",
     "nickname": "Quenito",
     "birth_country": "Australia",
-    "languages": ["English"]
+    "languages": [
+      "English"
+    ]
   },
   "demographics": {
     "age": 45,
@@ -14,9 +16,18 @@
     "marital_status": "Married/civil partnership",
     "children": true,
     "children_count": 2,
-    "children_ages": [3, 6],
-    "children_age_ranges": ["Under 5", "5-12"],
-    "children_genders": ["Female", "Female"],
+    "children_ages": [
+      3,
+      6
+    ],
+    "children_age_ranges": [
+      "Under 5",
+      "5-12"
+    ],
+    "children_genders": [
+      "Female",
+      "Female"
+    ],
     "children_details": [
       {
         "age_range": "Under 5",
@@ -39,7 +50,9 @@
     ],
     "household_description": "Couple with young children",
     "pets": "Yes",
-    "pet_types": ["Dog"],
+    "pet_types": [
+      "Dog"
+    ],
     "home_ownership": "Own with mortgage",
     "city": "Sydney",
     "suburb": "Kogarah",
@@ -64,40 +77,87 @@
     "income_bracket": "High",
     "highest_education": "High school education",
     "education_completed_year": 1997,
-    "certifications": ["Data Analytics", "Business Intelligence"]
+    "certifications": [
+      "Data Analytics",
+      "Business Intelligence"
+    ]
   },
   "preferences": {
-    "supermarkets": ["Woolworths", "Coles"],
+    "supermarkets": [
+      "Woolworths",
+      "Coles"
+    ],
     "energy_provider": "Origin Energy",
     "telco": "Telstra",
-    "banks": ["Commonwealth Bank", "ING"],
+    "banks": [
+      "Commonwealth Bank",
+      "ING"
+    ],
     "insurance": {
       "car": "NRMA",
       "home": "AAMI",
       "health": "Medibank",
       "life": "TAL"
     },
-    "streaming": ["Netflix","Amazon Prime", "Disney+", "Kayo", "ABC Kids"],
+    "streaming": [
+      "Netflix",
+      "Amazon Prime",
+      "Disney+",
+      "Kayo",
+      "ABC Kids"
+    ],
     "airlines": "Qantas",
     "petrol": "Caltex",
-    "technology": ["Lenovo", "Samsung","Sony"],
-    "comparison_sites": ["Canstar", "Compare the Market"],
-    "children_products": ["Huggies", "Bellamy's", "Bonds"],
-    "education_services": ["ABC Reading Eggs", "Mathletics"],
+    "technology": [
+      "Lenovo",
+      "Samsung",
+      "Sony"
+    ],
+    "comparison_sites": [
+      "Canstar",
+      "Compare the Market"
+    ],
+    "children_products": [
+      "Huggies",
+      "Bellamy's",
+      "Bonds"
+    ],
+    "education_services": [
+      "ABC Reading Eggs",
+      "Mathletics"
+    ],
     "shopping_frequency": "Weekly",
     "online_shopping": "2-3 times per month",
     "preferred_payment": "Credit card",
-    "loyalty_programs": ["Woolworths Rewards", "Flybuys", "Qantas Frequent Flyer"],
+    "loyalty_programs": [
+      "Woolworths Rewards",
+      "Flybuys",
+      "Qantas Frequent Flyer"
+    ],
     "family_shopping": {
       "baby_products": "Chemist Warehouse",
       "kids_clothes": "Target, Kmart",
       "school_supplies": "Officeworks"
     },
-    "news_sources": ["ABC News", "SMH", "news.com.au"],
-    "social_media": ["LinkedIn", "Facebook"],
-    "radio": ["2GB","ABC Radio"],
+    "news_sources": [
+      "ABC News",
+      "SMH",
+      "news.com.au"
+    ],
+    "social_media": [
+      "LinkedIn",
+      "Facebook"
+    ],
+    "radio": [
+      "2GB",
+      "ABC Radio"
+    ],
     "tv": "Free to air and streaming",
-    "kids_content": ["ABC Kids", "Disney+", "YouTube Kids"],
+    "kids_content": [
+      "ABC Kids",
+      "Disney+",
+      "YouTube Kids"
+    ],
     "financial_products": [
       "Mortgage",
       "Credit cards",
@@ -106,17 +166,32 @@
       "Life insurance",
       "Health insurance"
     ],
-    "financial_responsibilities": ["Mortgage payments", "School fees"]
+    "financial_responsibilities": [
+      "Mortgage payments",
+      "School fees"
+    ]
   },
   "behavior": {
     "survey_style": "thoughtful",
     "response_pattern": "consistent",
-    "satisfaction_range": [6, 8],
+    "satisfaction_range": [
+      6,
+      8
+    ],
     "satisfaction_typical": 7,
-    "likelihood_range": [7, 9],
+    "likelihood_range": [
+      7,
+      9
+    ],
     "likelihood_typical": 8,
-    "nps_range": [7, 8],
-    "importance_range": [6, 8],
+    "nps_range": [
+      7,
+      8
+    ],
+    "importance_range": [
+      6,
+      8
+    ],
     "agreement_tendency": "Agree",
     "frequency_typical": "Sometimes",
     "quality_bias": 7,
@@ -166,9 +241,9 @@
     "profile_completeness": "comprehensive"
   },
   "learning_stats": {
-    "total_responses_learned": 18,
+    "total_responses_learned": 113,
     "total_patterns_identified": 6,
-    "last_learning_session": null,
+    "last_learning_session": "2025-08-25T01:11:10.744757",
     "knowledge_coverage": {
       "demographics": "95%",
       "preferences": "80%",

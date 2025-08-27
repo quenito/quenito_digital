@@ -1,0 +1,93 @@
+{
+  "session": {
+    "session_id": "20250827_010230",
+    "start_time": "2025-08-27T01:02:30.019594",
+    "temperature": 0.7,
+    "model": "gpt-4o-mini"
+  },
+  "summary": {
+    "total_tests": 3,
+    "avg_confidence": 0.9166666666666666,
+    "question_types": {},
+    "confidence_distribution": {
+      "100%": 1,
+      "90-99%": 1,
+      "80-89%": 1,
+      "70-79%": 0,
+      "<70%": 0
+    }
+  },
+  "tests": [
+    {
+      "screenshot": "screenshots/prime_opinion_q1_before.png",
+      "question": "Which age group applies to you?",
+      "options": [
+        "Under 18",
+        "18-24",
+        "25-34",
+        "35-44",
+        "45-54",
+        "55-64",
+        "65+"
+      ],
+      "llm_answer": "45-54",
+      "reasoning": "As a 45-year-old, this option accurately reflects my age. I value family and practicality, and it's important for me to be honest about my demographic. Being in this age group also allows me to relate to others who prioritize family life and financial security, which aligns with my core values.",
+      "confidence": 1.0
+    },
+    {
+      "screenshot": "screenshots/prime_opinion_q2_before.png",
+      "question": "How would a friend describe you?",
+      "options": [
+        "Impulsive",
+        "Innovative",
+        "Competitive",
+        "Thoughtful",
+        "Rule breaker",
+        "Strong",
+        "Humble",
+        "Fun-loving",
+        "Caring",
+        "Connected",
+        "Responsible",
+        "Charismatic",
+        "Open minded",
+        "Curious",
+        "Clever"
+      ],
+      "llm_answer": "Caring",
+      "reasoning": "I prioritize my family's health and well-being above all else, which reflects my caring nature. My focus on helping disadvantaged kids in the community and looking after my mates further emphasizes this trait. While I can be practical and frugal, I always strive to make sure those I care about are supported and taken care of. I believe my friends would recognize this about me.",
+      "confidence": 0.85
+    },
+    {
+      "screenshot": "screenshots/prime_opinion_q3_before.png",
+      "question": "Which of these values are important to you? Please select a maximum of 6 that you truly live your life by and think about in the decisions you make.",
+      "options": [
+        "Security",
+        "Adventure",
+        "Generosity",
+        "Authenticity",
+        "Kindness",
+        "Respect",
+        "Tradition",
+        "Optimism",
+        "Courage",
+        "Leadership",
+        "Growth",
+        "Integrity",
+        "Family",
+        "Achievement",
+        "Loyalty"
+      ],
+      "llm_answer": [
+        "Security",
+        "Family",
+        "Respect",
+        "Generosity",
+        "Integrity",
+        "Tradition"
+      ],
+      "reasoning": "As a 45-year-old married father of two, my primary focus is on family and ensuring their health and security. Security is essential for providing a stable environment for my daughters, while family is the core of my life and decisions. Respect is crucial in my relationships and interactions, especially when it comes to teaching my children values. I believe in generosity, both in terms of helping others and being there for my mates. Integrity guides my actions, ensuring I do the right thing even when it's tough. Lastly, tradition plays a role in my family life, as I value the lessons and customs passed down through generations, especially when it comes to instilling values in my kids.",
+      "confidence": 0.9
+    }
+  ]
+}

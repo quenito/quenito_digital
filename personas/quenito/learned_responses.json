@@ -16,7 +16,7 @@
       "first_seen": "2025-08-23T02:54:14.091279",
       "last_used": "2025-08-23T12:37:24.017772"
     },
-    "and the last time you purchased bedroom furniture did youÃ¢â‚¬Â¦": {
+    "and the last time you purchased bedroom furniture did you\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\u00a6": {
       "answer": "Buy it in store",
       "element_type": "radio",
       "confidence": 0.85,
@@ -315,7 +315,7 @@
     "in your opinion, describe some of the disadvantages of technology": {
       "answer": "too much dependence and can also make some people less sociable",
       "element_type": "text",
-      "confidence": 0.90,
+      "confidence": 0.9,
       "success_count": 1,
       "first_seen": "2025-08-23T19:00:00.000000",
       "last_used": "2025-08-23T19:00:00.000000"
@@ -345,7 +345,10 @@
       "last_used": "2025-08-23T19:00:00.000000"
     },
     "how many dependent children do you have in each of these age groups?": {
-      "answer": {"0-4 yrs": "1", "5-12 yrs": "1"},
+      "answer": {
+        "0-4 yrs": "1",
+        "5-12 yrs": "1"
+      },
       "element_type": "dropdown_multiple",
       "confidence": 0.95,
       "success_count": 1,
@@ -371,7 +374,7 @@
     "do you or any members of your household, relatives or close friends work in any of the following industries?": {
       "answer": "None of these",
       "element_type": "checkbox",
-      "confidence": 0.90,
+      "confidence": 0.9,
       "success_count": 1,
       "first_seen": "2025-08-23T19:00:00.000000",
       "last_used": "2025-08-23T19:00:00.000000"
@@ -427,7 +430,7 @@
     "do you or anyone else living in this household currently work in any of the following industries?": {
       "answer": "None of the above/Other Industries",
       "element_type": "checkbox",
-      "confidence": 0.90,
+      "confidence": 0.9,
       "success_count": 1,
       "first_seen": "2025-08-23T19:00:00.000000",
       "last_used": "2025-08-23T19:00:00.000000"
@@ -555,7 +558,7 @@
     "which region do you live in?": {
       "answer": "Victoria",
       "element_type": "dropdown",
-      "confidence": 0.90,
+      "confidence": 0.9,
       "success_count": 1,
       "first_seen": "2025-08-24T19:00:00.000000",
       "last_used": "2025-08-24T19:00:00.000000"
@@ -578,14 +581,14 @@
     },
     "what year were you born?": {
       "answer": "1980",
-      "element_type": "dropdown",
       "confidence": 0.95,
-      "success_count": 1,
-      "first_seen": "2025-08-24T19:00:00.000000",
-      "last_used": "2025-08-24T19:00:00.000000"
+      "element_type": "text"
     },
     "what age are your children?": {
-      "answer": {"child_1": "6", "child_2": "3"},
+      "answer": {
+        "child_1": "6",
+        "child_2": "3"
+      },
       "element_type": "slider_multiple",
       "confidence": 0.95,
       "success_count": 1,
@@ -601,7 +604,10 @@
       "last_used": "2025-08-24T19:00:00.000000"
     },
     "who lives in your household?": {
-      "answer": ["Partner/spouse", "Children"],
+      "answer": [
+        "Partner/spouse",
+        "Children"
+      ],
       "element_type": "checkbox_multiple",
       "confidence": 0.95,
       "success_count": 1,
@@ -633,7 +639,10 @@
       "last_used": "2025-08-24T19:00:00.000000"
     },
     "how many (if any) children are there in your household in these age groups?": {
-      "answer": {"0 to 5 years old": "1", "6 to 12 years old": "1"},
+      "answer": {
+        "0 to 5 years old": "1",
+        "6 to 12 years old": "1"
+      },
       "element_type": "dropdown_multiple",
       "confidence": 0.95,
       "success_count": 1,
@@ -641,7 +650,10 @@
       "last_used": "2025-08-24T19:00:00.000000"
     },
     "what is your date of birth?": {
-      "answer": {"month": "March", "year": "1980"},
+      "answer": {
+        "month": "March",
+        "year": "1980"
+      },
       "element_type": "dropdown_split",
       "confidence": 0.95,
       "success_count": 1,
@@ -649,17 +661,241 @@
       "last_used": "2025-08-24T19:00:00.000000"
     },
     "where do you live?": {
-      "answer": {"postcode": "2217", "state": "NSW", "city": "KOGARAH"},
+      "answer": {
+        "postcode": "2217",
+        "state": "NSW",
+        "city": "KOGARAH"
+      },
       "element_type": "multi_field",
       "confidence": 0.95,
       "success_count": 1,
       "first_seen": "2025-08-24T19:00:00.000000",
       "last_used": "2025-08-24T19:00:00.000000"
+    },
+    "which of the following activities did you do last weekend? please select all that apply.": {
+      "answer": [
+        "Watched TV"
+      ],
+      "confidence": 0.95,
+      "element_type": "checkbox_multiple"
+    },
+    "please answer a few quick questions to help us make sure you're a match for our survey. [media checklist]": {
+      "answer": [
+        "Engage in social media (Facebook, Twitter, etc.)",
+        "Listen to music services",
+        "Listen to podcasts",
+        "Read newspapers, books, or magazines",
+        "Use search engines, e.g., Google or Bing",
+        "Watch Television or films, including streaming services"
+      ],
+      "confidence": 0.95,
+      "element_type": "checkbox_multiple"
+    },
+    "which of the following commercial tv channels do you watch regularly? please select all that apply.": {
+      "answer": [
+        "Seven",
+        "Nine",
+        "ABC"
+      ],
+      "confidence": 0.9,
+      "element_type": "checkbox_multiple"
+    },
+    "which of the following best describes the number of employees at your company including all locations?": {
+      "answer": "10,000 or more",
+      "confidence": 0.95,
+      "element_type": "radio"
+    },
+    "how do you access the survey? do you use a ...": {
+      "answer": "PC/laptop",
+      "confidence": 0.95,
+      "element_type": "radio"
+    },
+    "ethnicity background questions": {
+      "answer": "Australian",
+      "confidence": 0.95,
+      "element_type": "radio"
+    },
+    "which of the following best describes you when it comes to being the decision maker for your household for each of the following...? [tablet/ipad/galaxy tab]": {
+      "answer": "I am the sole decision maker",
+      "confidence": 0.95,
+      "element_type": "radio"
+    },
+    "have you heard of didi?": {
+      "answer": "No",
+      "confidence": 0.95,
+      "element_type": "radio"
+    },
+    "have you read, heard or seen anything relating to didi recently?": {
+      "answer": "No",
+      "confidence": 0.95,
+      "element_type": "radio"
+    },
+    "in the last 3 months, have you read, seen or heard information about didi through:": {
+      "answer": "None of the above",
+      "confidence": 0.95,
+      "element_type": "checkbox"
+    },
+    "next, we would like you to think about didi as if it were a person. please select any of the following which you associate with didi:": {
+      "answer": "Progressive",
+      "confidence": 0.95,
+      "element_type": "checkbox_single"
+    },
+    "do you feel koala...?": {
+      "answer": "None of the above",
+      "confidence": 0.9,
+      "element_type": "checkbox"
+    },
+    "have you purchased any products from koala in the past 12 months?": {
+      "answer": "No",
+      "confidence": 0.95,
+      "element_type": "radio"
+    },
+    "which of the following furniture brands have you heard of?": {
+      "answer": [
+        "Freedom",
+        "Harvey Norman",
+        "Koala"
+      ],
+      "confidence": 0.9,
+      "element_type": "checkbox_multiple"
+    },
+    "thinking about brands of furniture, what comes to mind when you think about...?": {
+      "answer": {
+        "Nick Scali": "premium",
+        "Koala": "new and trendy",
+        "Freedom": "Good quality and good deals",
+        "Coco Republic": "premium",
+        "Lounge Lovers": "premium",
+        "Harvey Norman": "Good quality and good deals"
+      },
+      "confidence": 0.95,
+      "element_type": "text_multiple"
+    },
+    "do you, or does anyone in your household, work in any of the following industries? you can select as many as apply.": {
+      "answer": "None of these",
+      "confidence": 0.97,
+      "element_type": "checkbox",
+      "success_count": 1,
+      "last_used": "2025-08-25T01:01:22.762772"
+    },
+    "on a scale of 0-10, how likely are you to recommend wilson parking australia to a friend or colleague?": {
+      "answer": "7",
+      "confidence": 0.9,
+      "element_type": "scale"
+    },
+    "overall, how would you rate your experience with wilson parking australia in the past 12 months?": {
+      "answer": "Neutral",
+      "confidence": 0.95,
+      "element_type": "radio"
+    },
+    "wilson parking customer experience matrix": {
+      "answer": "Good",
+      "confidence": 0.95,
+      "element_type": "matrix_all",
+      "applies_to": [
+        "Proximity to destination/customer needs",
+        "Use of technology to enhance service",
+        "Availability of support channels",
+        "Ease of use",
+        "Consistency in response times",
+        "Personalized towards exact needs"
+      ]
+    },
+    "hcf statement evaluations": {
+      "answer": "Not Sure",
+      "confidence": 0.95,
+      "element_type": "radio_matrix"
+    },
+    "australian concerns matrix [concern levels]": {
+      "answer": {
+        "Rent prices": "Not concerned at all",
+        "Occupational instability": "Not concerned at all",
+        "default_all_others": "Slightly concerned"
+      },
+      "confidence": 0.9,
+      "element_type": "matrix_grid"
+    },
+    "below is a list of things that some people do. please select from the list those things you have done in the last 12 months.": {
+      "answer": [
+        "I have regularly read articles from major newspapers (either in print or online)",
+        "I have shared my opinion with friends about current events"
+      ],
+      "confidence": 0.95,
+      "element_type": "checkbox_multiple"
+    },
+    "what is your postcode? (enter a 4-digit postcode; for example, 2000)": {
+      "answer": "2217",
+      "confidence": 0.95,
+      "element_type": "text"
+    },
+    "which gender do you most identify with?": {
+      "answer": "Male",
+      "element_type": "radio",
+      "confidence": 0.99,
+      "success_count": 1,
+      "first_seen": "2025-08-25T01:01:08.197411",
+      "last_used": "2025-08-25T01:01:08.197425"
+    },
+    "do you, or does anyone in your household, work in any of the following industries?\u00a0 you can select as many as apply.": {
+      "answer": "None of the above",
+      "element_type": "checkbox",
+      "confidence": 0.95,
+      "success_count": 1,
+      "first_seen": "2025-08-25T01:02:54.672627",
+      "last_used": "2025-08-25T01:02:54.672635"
+    },
+    "and how old are you:": {
+      "answer": "45",
+      "element_type": "select",
+      "confidence": 0.99,
+      "success_count": 4,
+      "first_seen": "2025-08-25T01:04:08.359144",
+      "last_used": "2025-08-25T01:05:32.729009"
+    },
+    "you said you would consider taking a flight in the next 12 months, which of these destinations would you want to fly to? select all that apply": {
+      "answer": "I'd consider flying to the following destinations: \n\n- Bali; \n- New Zealand; \n- Japan; \n- Fiji; \n- Thailand.",
+      "element_type": "checkbox",
+      "confidence": 0.85,
+      "success_count": 1,
+      "first_seen": "2025-08-25T01:08:48.893355",
+      "last_used": "2025-08-25T01:08:48.893363"
+    },
+    "you said you would consider taking a flight in the next 12 months,\u00a0which of these destinations would you want to fly to?\nselect all that apply": {
+      "answer": "I would consider flying to the following destinations: \n\n- Bali; \n- New Zealand; \n- Japan; \n- Fiji; \n- Thailand.",
+      "element_type": "checkbox",
+      "confidence": 0.89,
+      "success_count": 6,
+      "first_seen": "2025-08-25T01:08:52.403566",
+      "last_used": "2025-08-25T01:09:20.918204"
+    },
+    "please select the countries you have visited:": {
+      "answer": "I haven't provided specific travel information in my profile, so I can't accurately list the countries I've visited. However, if I were to travel, I would likely consider popular destinations within Australia and possibly some international locations. If you have specific countries in mind, I can share my thoughts on them!",
+      "element_type": "checkbox",
+      "confidence": 0.87,
+      "success_count": 2,
+      "first_seen": "2025-08-25T01:09:06.025360",
+      "last_used": "2025-08-25T01:09:19.034061"
+    },
+    "and when you fly internationally, which of these statements best describes you?": {
+      "answer": "I prefer to book my flights well in advance to get the best deals.",
+      "element_type": "radio",
+      "confidence": 0.89,
+      "success_count": 3,
+      "first_seen": "2025-08-25T01:09:57.639196",
+      "last_used": "2025-08-25T01:11:22.940472"
+    },
+    "and when you fly\u00a0internationally, which of these statements best describes you?": {
+      "answer": "I consider full service and low-cost airlines, For leisure travel (e.g. holiday or visiting friends and family), For business travel",
+      "element_type": "radio",
+      "confidence": 0.89,
+      "success_count": 5,
+      "first_seen": "2025-08-25T01:09:58.833384",
+      "last_used": "2025-08-25T01:11:23.258916"
     }
   },
   "metadata": {
-    "last_updated": "2025-08-24T19:00:00.000000",
-    "total_responses": 123,
-    "version": "3.0"
+    "last_updated": "2025-08-25T01:11:23.258940",
+    "total_responses": 113,
+    "version": "1.0"
   }
 }

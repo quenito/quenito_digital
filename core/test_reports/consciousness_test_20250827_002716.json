@@ -1,0 +1,38 @@
+{
+  "session": {
+    "session_id": "20250827_002716",
+    "start_time": "2025-08-27T00:27:16.829556",
+    "temperature": 0.7,
+    "model": "gpt-4o-mini"
+  },
+  "summary": {
+    "total_tests": 1,
+    "avg_confidence": 1.0,
+    "question_types": {},
+    "confidence_distribution": {
+      "100%": 1,
+      "90-99%": 0,
+      "80-89%": 0,
+      "70-79%": 0,
+      "<70%": 0
+    }
+  },
+  "tests": [
+    {
+      "screenshot": "screenshots/prime_opinion_q1_before.png",
+      "question": "Which age group applies to you?",
+      "options": [
+        "Under 18",
+        "18-24",
+        "25-34",
+        "35-44",
+        "45-54",
+        "55-64",
+        "65+"
+      ],
+      "llm_answer": "45-54",
+      "reasoning": "As a 45-year-old, the age group that applies to me is clearly '45-54'. It aligns perfectly with my current age, and since I'm married with two young daughters, I see this age range as a time when family and stability are key focuses in life. It\u2019s a practical choice that matches my identity.",
+      "confidence": 1.0
+    }
+  ]
+}
