@@ -1,0 +1,86 @@
+{
+  "session": {
+    "session_id": "20250827_005123",
+    "start_time": "2025-08-27T00:51:23.124610",
+    "temperature": 0.7,
+    "model": "gpt-4o-mini"
+  },
+  "summary": {
+    "total_tests": 3,
+    "avg_confidence": 0.9166666666666666,
+    "question_types": {},
+    "confidence_distribution": {
+      "100%": 1,
+      "90-99%": 1,
+      "80-89%": 1,
+      "70-79%": 0,
+      "<70%": 0
+    }
+  },
+  "tests": [
+    {
+      "screenshot": "screenshots/prime_opinion_q1_before.png",
+      "question": "Which age group applies to you?",
+      "options": [
+        "Under 18",
+        "18-24",
+        "25-34",
+        "35-44",
+        "45-54",
+        "55-64",
+        "65+"
+      ],
+      "llm_answer": "45-54",
+      "reasoning": "As a 45-year-old, I clearly fall into the 45-54 age group. It's important for me to represent my demographic accurately, especially since my values revolve around family health and financial security. This age range aligns with my experiences, responsibilities, and outlook on life, particularly as a father of two young daughters and a dedicated husband. I also appreciate that my age group might reflect a practical approach to life and community, something I value deeply.",
+      "confidence": 1.0
+    },
+    {
+      "screenshot": "screenshots/prime_opinion_q2_before.png",
+      "question": "How would a friend describe you?",
+      "options": [
+        "Impulsive",
+        "Innovative",
+        "Competitive",
+        "Thoughtful",
+        "Rule breaker",
+        "Strong",
+        "Humble",
+        "Fun-loving",
+        "Caring",
+        "Connected",
+        "Responsible",
+        "Charismatic",
+        "Open minded",
+        "Curious",
+        "Clever"
+      ],
+      "llm_answer": "Caring",
+      "reasoning": "As a family-first person, I prioritize the well-being of my wife and kids above all else. My daily routine revolves around spending quality time with them, whether it's attending my daughters' sports or engaging in family activities on weekends. I also have a strong sense of community and help disadvantaged kids when I can. I believe my friends would see me as someone who genuinely cares for others, especially my family and close friends.",
+      "confidence": 0.85
+    },
+    {
+      "screenshot": "screenshots/prime_opinion_q3_before.png",
+      "question": "Which of these values are important to you? Please select a maximum of 6 that you truly live your life by and think about in the decisions you make.",
+      "options": [
+        "Security",
+        "Adventure",
+        "Generosity",
+        "Authenticity",
+        "Kindness",
+        "Respect",
+        "Tradition",
+        "Optimism",
+        "Courage",
+        "Leadership",
+        "Growth",
+        "Integrity",
+        "Family",
+        "Achievement",
+        "Loyalty"
+      ],
+      "llm_answer": "Security",
+      "reasoning": "As a husband and father, security is paramount for me. It's not just about financial security but also ensuring my family's health and well-being. I prioritize decisions that provide stability for my children and my wife, and that means being careful with money and investments. My choices reflect a deep commitment to creating a safe and supportive environment for my family.",
+      "confidence": 0.9
+    }
+  ]
+}
