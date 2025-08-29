@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouGov Demographics Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background: #f8f8f8;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .logo {
+            text-align: center;
+            color: #e60000;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        .question-group {
+            margin-bottom: 35px;
+        }
+        .question {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        .radio-option input[type="radio"] {
+            margin-right: 10px;
+        }
+        .radio-option label {
+            cursor: pointer;
+        }
+        input[type="text"], select {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .next-button {
+            background: #4a5e7a;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 30px auto 0;
+            display: block;
+        }
+        .next-button:hover {
+            background: #3a4e6a;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: none;
+        }
+        .success.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">YouGov</div>
+        
+        <form id="demographicsForm">
+            <!-- Gender Question -->
+            <div class="question-group">
+                <div class="question">Which gender do you belong to?</div>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="male" name="gender" value="Male">
+                        <label for="male">Male</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="female" name="gender" value="Female">
+                        <label for="female">Female</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Birth Year Question -->
+            <div class="question-group">
+                <div class="question">What is your birth year?</div>
+                <input type="text" id="birth_year" name="birth_year" 
+                       placeholder="e.g., 1980" maxlength="4" pattern="[0-9]{4}">
+            </div>
+            
+            <!-- Sexuality Question -->
+            <div class="question-group">
+                <div class="question">Which of the following best describes your sexuality?</div>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="lesbian" name="sexuality" value="Lesbian">
+                        <label for="lesbian">Lesbian</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="gay" name="sexuality" value="Gay">
+                        <label for="gay">Gay</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="bisexual" name="sexuality" value="Bisexual">
+                        <label for="bisexual">Bisexual</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="heterosexual" name="sexuality" value="Heterosexual">
+                        <label for="heterosexual">Heterosexual</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="prefer_not" name="sexuality" value="Prefer not to say">
+                        <label for="prefer_not">Prefer not to say</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Country Question -->
+            <div class="question-group">
+                <div class="question">In which country do you currently reside? (Country of residence)</div>
+                <select id="country" name="country">
+                    <option value="">Please select a country</option>
+                    <option value="Australia">Australia</option>
+                    <option value="United States">United States</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Canada">Canada</option>
+                    <option value="New Zealand">New Zealand</option>
+                    <option value="Germany">Germany</option>
+                    <option value="France">France</option>
+                    <option value="Japan">Japan</option>
+                    <option value="China">China</option>
+                    <option value="India">India</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="next-button">Next →</button>
+        </form>
+        
+        <div id="success" class="success">
+            <strong>✅ All questions answered successfully!</strong>
+            <div id="summary"></div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('demographicsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const summary = [];
+            for (let [key, value] of formData.entries()) {
+                summary.push(`${key}: ${value}`);
+            }
+            document.getElementById('summary').innerHTML = '<p>' + summary.join('<br>') + '</p>';
+            document.getElementById('success').classList.add('show');
+        });
+    </script>
+</body>
+</html>

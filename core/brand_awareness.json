@@ -28,9 +28,9 @@
       },
       
       "beer_alcohol": {
-        "know_very_well": ["Balter", "Carlton", "VB"],
+        "know_very_well": ["Balter", "Young Henrys"],
         "know_well": ["Tooheys", "XXXX", "Corona", "Great Northern"],
-        "know_somewhat": ["Stone & Wood", "Young Henrys", "4 Pines"]
+        "know_somewhat": ["Stone & Wood", "VB", "4 Pines"]
       },
       
       "fast_food": {
@@ -58,8 +58,8 @@
       },
       
       "streaming": {
-        "know_very_well": ["Netflix", "Amazon Prime", "Disney+", "Kayo"],
-        "know_well": ["Stan", "Paramount+", "YouTube Premium"],
+        "know_very_well": ["Netflix", "Amazon Prime", "Disney+", "Kayo","YouTube Premium"],
+        "know_well": ["Stan", "Paramount+"],
         "know_somewhat": ["Binge", "Apple TV+", "Foxtel Now"]
       },
       
