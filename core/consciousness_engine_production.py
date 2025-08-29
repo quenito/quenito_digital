@@ -35,28 +35,45 @@ class ConsciousnessEngine:
             messages=[{
                 "role": "user",
                 "content": [
-                    {"type": "text", "text": """Analyze this survey screenshot and extract the question and options. 
+                    {"type": "text", "text": """Analyze this survey screenshot and extract the question, any subheadings/instructions, and options.
 
-For GRID/MATRIX questions (where each row needs its own answer):
-- Set "question_type" to "grid"
-- List items needing answers in "grid_items" 
-- List column options in "options"
+    IMPORTANT: Capture BOTH the main question AND any subheading or instruction text that appears below it.
 
-For MULTI-SELECT questions (select multiple from a list):
-- Set "question_type" to "multi_select"
-- List all options in "options"
+    Identify the question type:
+    - DROPDOWN/SELECT: If you see dropdown menus, select boxes, or fields with arrows indicating dropdowns
+    - GRID/MATRIX: If you see a table/grid where each row needs its own answer
+    - MULTI-SELECT: If instructions say "select multiple" or "select up to X" with checkboxes
+    - SINGLE-SELECT: If there are radio buttons for choosing one option
 
-For SINGLE-SELECT questions:
-- Set "question_type" to "single_select"
-- List all options in "options"
+    For DROPDOWN questions (date of birth, location selectors, etc):
+    - Set "question_type" to "dropdown"
+    - List the dropdown fields in "dropdown_fields" (e.g., ["Month", "Year"] or ["Country", "State", "City"])
+    - If there are visible options, list them in "options"
 
-Return ONLY valid JSON in this exact format:
-{
-    "question": "the exact question text",
-    "question_type": "grid|multi_select|single_select",
-    "options": ["option1", "option2", "option3"],
-    "grid_items": ["item1", "item2"] // only for grid questions
-}"""},
+    For GRID/MATRIX questions:
+    - Set "question_type" to "grid"
+    - List items needing answers in "grid_items" 
+    - List column options in "options"
+
+    For MULTI-SELECT questions:
+    - Set "question_type" to "multi_select"
+    - List all options in "options"
+    - Include selection limit in "selection_limit"
+
+    For SINGLE-SELECT questions:
+    - Set "question_type" to "single_select"
+    - List all options in "options"
+
+    Return ONLY valid JSON:
+    {
+        "question": "the main question text",
+        "subheading": "any instruction text (if present)",
+        "question_type": "dropdown|grid|multi_select|single_select",
+        "dropdown_fields": ["field1", "field2"], // only for dropdown type
+        "options": ["option1", "option2"], // if options are visible
+        "selection_limit": 6, // only for multi-select
+        "grid_items": ["item1", "item2"] // only for grid
+    }"""},
                     {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{base64_image}"}}
                 ]
             }],
@@ -65,30 +82,40 @@ Return ONLY valid JSON in this exact format:
         
         content = response.choices[0].message.content
         
-        # Clean up the response if needed
         try:
             if "```json" in content:
                 content = content.split("```json")[1].split("```")[0]
             elif "```" in content:
                 content = content.split("```")[1].split("```")[0]
                 
-            return json.loads(content)
+            result = json.loads(content)
+            
+            # Log detection for debugging
+            if result.get('question_type') == 'dropdown':
+                print(f"✅ Dropdown question detected with fields: {result.get('dropdown_fields', [])}")
+            
+            return result
         except json.JSONDecodeError as e:
             print(f"Failed to parse JSON response: {content}")
             return {
                 "question": "Parse error",
-                "options": None,
+                "question_type": "unknown",
                 "raw_response": content,
                 "error": "Could not parse JSON response"
             }
     
-    async def reason_and_answer(self, question: str, options: List[str] = None, question_type: str = None, grid_items: List[str] = None) -> Dict:
+    async def reason_and_answer(self, question: str, options: List[str] = None, question_type: str = None, grid_items: List[str] = None, subheading: str = None, selection_limit: int = None) -> Dict:
         """Core reasoning engine - this is where Matt thinks"""
         
-        # Detect question type patterns
-        is_multi_select = question_type == "multi_select" or any(phrase in question.lower() for phrase in [
+        # Combine question with subheading for full context
+        full_question = question
+        if subheading:
+            full_question = f"{question}\n{subheading}"
+        
+        # Detect question type patterns from both question and subheading
+        is_multi_select = question_type == "multi_select" or any(phrase in full_question.lower() for phrase in [
             'select up to', 'maximum of', 'choose multiple', 'select all', 
-            'check all', 'select a maximum'
+            'check all', 'select a maximum', 'select at least'
         ])
         
         is_grid = question_type == "grid" or any(phrase in question.lower() for phrase in [
@@ -129,16 +156,30 @@ Respond with JSON only:
 }}"""
 
         elif is_multi_select:
-            # Multi-select prompt (already working)
+            # Multi-select prompt with selection limit awareness
+            limit_instruction = ""
+            if selection_limit:
+                limit_instruction = f"\nIMPORTANT: You must select EXACTLY {selection_limit} options."
+            elif subheading and "maximum" in subheading.lower():
+                limit_instruction = f"\nIMPORTANT: Follow the selection instructions: {subheading}"
+            
             prompt = f"""You are Matt, a 45-year-old data analyst from Sydney, Australia. 
 Here is your complete consciousness and identity:
 
 {json.dumps(self.consciousness, indent=2)}
 
 Survey Question: {question}
+{f'Instructions: {subheading}' if subheading else ''}
 Available Options: {options}
 
-This is a MULTI-SELECT question. You must select multiple options as specified in the question.
+This is a MULTI-SELECT question. {limit_instruction}
+
+For personality/values questions, select options that truly reflect who you are:
+- Family-focused father of two young daughters
+- Practical, efficiency-driven but values human connection
+- Data analyst who enjoys solving puzzles
+- Right-leaning practical voter
+- Sports enthusiast (NRL, F1, NASCAR)
 
 Respond with JSON only:
 {{
@@ -191,7 +232,9 @@ Respond with JSON only:
             screenshot_data['question'],
             screenshot_data.get('options'),
             screenshot_data.get('question_type'),
-            screenshot_data.get('grid_items')
+            screenshot_data.get('grid_items'),
+            screenshot_data.get('subheading'),
+            screenshot_data.get('selection_limit')
         )
         
         # Store for analysis

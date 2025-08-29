@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alcohol Consumption Survey Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .survey-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .instructions {
+            color: #666;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #f8f8f8;
+            padding: 12px 8px;
+            text-align: center;
+            font-size: 13px;
+            border: 1px solid #ddd;
+            font-weight: normal;
+        }
+        td {
+            padding: 12px 8px;
+            border: 1px solid #ddd;
+        }
+        td:first-child {
+            font-weight: 500;
+            background: #fafafa;
+            width: 30%;
+        }
+        .radio-cell {
+            text-align: center;
+        }
+        input[type="radio"] {
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+        .button-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+        button {
+            padding: 12px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        .submit-btn {
+            background: #007bff;
+            color: white;
+        }
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+        .clear-btn {
+            background: #6c757d;
+            color: white;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f4fd;
+            border-radius: 4px;
+            display: none;
+        }
+        .results.show {
+            display: block;
+        }
+        .results h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+    </style>
+</head>
+<body>
+    <div class="survey-container">
+        <h2>Alcohol Consumption Survey</h2>
+        <p class="instructions">
+            For each of the following categories of alcohol, please tell us how recently, if ever, you consumed this category of alcohol.
+        </p>
+        <p class="instructions">
+            Please consider all the different types of alcohol you have had, either at home or away from home (e.g. at a bar or friend's house).
+        </p>
+        
+        <form id="alcoholForm">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Within the last week</th>
+                        <th>Within the past month<br>(but not in the last week)</th>
+                        <th>Within the past six months</th>
+                        <th>Within the past year</th>
+                        <th>Not within the past year, or never</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Beer</td>
+                        <td class="radio-cell"><input type="radio" name="beer" value="week" data-item="Beer"></td>
+                        <td class="radio-cell"><input type="radio" name="beer" value="month" data-item="Beer"></td>
+                        <td class="radio-cell"><input type="radio" name="beer" value="six_months" data-item="Beer"></td>
+                        <td class="radio-cell"><input type="radio" name="beer" value="year" data-item="Beer"></td>
+                        <td class="radio-cell"><input type="radio" name="beer" value="never" data-item="Beer"></td>
+                    </tr>
+                    <tr>
+                        <td>Spirits</td>
+                        <td class="radio-cell"><input type="radio" name="spirits" value="week" data-item="Spirits"></td>
+                        <td class="radio-cell"><input type="radio" name="spirits" value="month" data-item="Spirits"></td>
+                        <td class="radio-cell"><input type="radio" name="spirits" value="six_months" data-item="Spirits"></td>
+                        <td class="radio-cell"><input type="radio" name="spirits" value="year" data-item="Spirits"></td>
+                        <td class="radio-cell"><input type="radio" name="spirits" value="never" data-item="Spirits"></td>
+                    </tr>
+                    <tr>
+                        <td>Red wine (incl. Rose)</td>
+                        <td class="radio-cell"><input type="radio" name="red_wine" value="week" data-item="Red wine (incl. Rose)"></td>
+                        <td class="radio-cell"><input type="radio" name="red_wine" value="month" data-item="Red wine (incl. Rose)"></td>
+                        <td class="radio-cell"><input type="radio" name="red_wine" value="six_months" data-item="Red wine (incl. Rose)"></td>
+                        <td class="radio-cell"><input type="radio" name="red_wine" value="year" data-item="Red wine (incl. Rose)"></td>
+                        <td class="radio-cell"><input type="radio" name="red_wine" value="never" data-item="Red wine (incl. Rose)"></td>
+                    </tr>
+                    <tr>
+                        <td>White wine (incl. Dessert Wine)</td>
+                        <td class="radio-cell"><input type="radio" name="white_wine" value="week" data-item="White wine (incl. Dessert Wine)"></td>
+                        <td class="radio-cell"><input type="radio" name="white_wine" value="month" data-item="White wine (incl. Dessert Wine)"></td>
+                        <td class="radio-cell"><input type="radio" name="white_wine" value="six_months" data-item="White wine (incl. Dessert Wine)"></td>
+                        <td class="radio-cell"><input type="radio" name="white_wine" value="year" data-item="White wine (incl. Dessert Wine)"></td>
+                        <td class="radio-cell"><input type="radio" name="white_wine" value="never" data-item="White wine (incl. Dessert Wine)"></td>
+                    </tr>
+                    <tr>
+                        <td>Sparkling wine</td>
+                        <td class="radio-cell"><input type="radio" name="sparkling_wine" value="week" data-item="Sparkling wine"></td>
+                        <td class="radio-cell"><input type="radio" name="sparkling_wine" value="month" data-item="Sparkling wine"></td>
+                        <td class="radio-cell"><input type="radio" name="sparkling_wine" value="six_months" data-item="Sparkling wine"></td>
+                        <td class="radio-cell"><input type="radio" name="sparkling_wine" value="year" data-item="Sparkling wine"></td>
+                        <td class="radio-cell"><input type="radio" name="sparkling_wine" value="never" data-item="Sparkling wine"></td>
+                    </tr>
+                    <tr>
+                        <td>Other wine</td>
+                        <td class="radio-cell"><input type="radio" name="other_wine" value="week" data-item="Other wine"></td>
+                        <td class="radio-cell"><input type="radio" name="other_wine" value="month" data-item="Other wine"></td>
+                        <td class="radio-cell"><input type="radio" name="other_wine" value="six_months" data-item="Other wine"></td>
+                        <td class="radio-cell"><input type="radio" name="other_wine" value="year" data-item="Other wine"></td>
+                        <td class="radio-cell"><input type="radio" name="other_wine" value="never" data-item="Other wine"></td>
+                    </tr>
+                    <tr>
+                        <td>Cider</td>
+                        <td class="radio-cell"><input type="radio" name="cider" value="week" data-item="Cider"></td>
+                        <td class="radio-cell"><input type="radio" name="cider" value="month" data-item="Cider"></td>
+                        <td class="radio-cell"><input type="radio" name="cider" value="six_months" data-item="Cider"></td>
+                        <td class="radio-cell"><input type="radio" name="cider" value="year" data-item="Cider"></td>
+                        <td class="radio-cell"><input type="radio" name="cider" value="never" data-item="Cider"></td>
+                    </tr>
+                    <tr>
+                        <td>Other alcohol type (incl. Alcoholic Ginger Beer & Seltzer)</td>
+                        <td class="radio-cell"><input type="radio" name="other_alcohol" value="week" data-item="Other alcohol type (incl. Alcoholic Ginger Beer & Seltzer)"></td>
+                        <td class="radio-cell"><input type="radio" name="other_alcohol" value="month" data-item="Other alcohol type (incl. Alcoholic Ginger Beer & Seltzer)"></td>
+                        <td class="radio-cell"><input type="radio" name="other_alcohol" value="six_months" data-item="Other alcohol type (incl. Alcoholic Ginger Beer & Seltzer)"></td>
+                        <td class="radio-cell"><input type="radio" name="other_alcohol" value="year" data-item="Other alcohol type (incl. Alcoholic Ginger Beer & Seltzer)"></td>
+                        <td class="radio-cell"><input type="radio" name="other_alcohol" value="never" data-item="Other alcohol type (incl. Alcoholic Ginger Beer & Seltzer)"></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="button-container">
+                <button type="button" class="clear-btn" onclick="clearForm()">Clear</button>
+                <button type="submit" class="submit-btn">Submit</button>
+            </div>
+        </form>
+        
+        <div id="results" class="results">
+            <h3>Form Submitted Successfully!</h3>
+            <div id="resultsContent"></div>
+        </div>
+    </div>
+    
+    <script>
+        function clearForm() {
+            document.getElementById('alcoholForm').reset();
+            document.getElementById('results').classList.remove('show');
+        }
+        
+        document.getElementById('alcoholForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const results = [];
+            
+            for (let [key, value] of formData.entries()) {
+                const label = key.replace(/_/g, ' ').charAt(0).toUpperCase() + key.slice(1).replace(/_/g, ' ');
+                const timeframe = {
+                    'week': 'Within the last week',
+                    'month': 'Within the past month',
+                    'six_months': 'Within the past six months',
+                    'year': 'Within the past year',
+                    'never': 'Not within the past year, or never'
+                }[value];
+                results.push(`${label}: ${timeframe}`);
+            }
+            
+            document.getElementById('resultsContent').innerHTML = '<ul>' + 
+                results.map(r => `<li>${r}</li>`).join('') + '</ul>';
+            document.getElementById('results').classList.add('show');
+        });
+    </script>
+</body>
+</html>

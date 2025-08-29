@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Rating Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .progress-bar {
+            height: 30px;
+            background: linear-gradient(to right, #2196F3 0%, #2196F3 13%, #e0e0e0 13%);
+            border-radius: 4px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .progress-text {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #333;
+            font-weight: bold;
+        }
+        h2 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .instruction {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .rating-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .brand-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            align-items: center;
+            gap: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .brand-info {
+            text-align: center;
+        }
+        .brand-logo {
+            width: 120px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+        .brand-name {
+            font-size: 12px;
+            color: #666;
+        }
+        .rating-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .rating-label {
+            font-size: 12px;
+            color: #999;
+            margin: 0 10px;
+        }
+        .stars {
+            display: flex;
+            gap: 10px;
+        }
+        .star {
+            font-size: 28px;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.5s;
+        }
+        .star:hover {
+            color: #ffb400;
+        }
+        .star.filled {
+            color: #ffb400;
+        }
+        .navigation {
+            margin-top: 40px;
+            text-align: center;
+        }
+        button {
+            padding: 12px 30px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .result {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: none;
+        }
+        .result.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="progress-bar">
+            <span class="progress-text">13%</span>
+        </div>
+        
+        <h2>Considering everything you know about the following brands / retailers, what is your overall opinion of each?</h2>
+        <p class="instruction">1 = Part 1 - Excellent</p>
+        
+        <div class="rating-grid">
+            <!-- Officeworks -->
+            <div class="brand-row">
+                <div class="brand-info">
+                    <div class="brand-logo">Officeworks</div>
+                    <div class="brand-name">Officeworks</div>
+                </div>
+                <div class="rating-container">
+                    <span class="rating-label">Poor</span>
+                    <div class="stars" data-brand="Officeworks">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                    <span class="rating-label">Excellent</span>
+                </div>
+            </div>
+            
+            <!-- Shell -->
+            <div class="brand-row">
+                <div class="brand-info">
+                    <div class="brand-logo" style="background: #ffcc00;">Shell</div>
+                    <div class="brand-name">Shell</div>
+                </div>
+                <div class="rating-container">
+                    <span class="rating-label">Poor</span>
+                    <div class="stars" data-brand="Shell">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                    <span class="rating-label">Excellent</span>
+                </div>
+            </div>
+            
+            <!-- McDonald's -->
+            <div class="brand-row">
+                <div class="brand-info">
+                    <div class="brand-logo" style="background: #ffcc00; color: #c00;">McDonald's</div>
+                    <div class="brand-name">McDonald's</div>
+                </div>
+                <div class="rating-container">
+                    <span class="rating-label">Poor</span>
+                    <div class="stars" data-brand="McDonald's">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                    <span class="rating-label">Excellent</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <button onclick="submitRatings()">Continue →</button>
+        </div>
+        
+        <div id="result" class="result">
+            <strong>✅ Ratings Submitted!</strong>
+            <p id="ratingSummary"></p>
+        </div>
+    </div>
+    
+    <script>
+        const ratings = {};
+        
+        document.querySelectorAll('.stars').forEach(starsContainer => {
+            const brand = starsContainer.getAttribute('data-brand');
+            const stars = starsContainer.querySelectorAll('.star');
+            
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    const rating = parseInt(this.getAttribute('data-rating'));
+                    ratings[brand] = rating;
+                    
+                    // Update visual state
+                    stars.forEach((s, index) => {
+                        if (index < rating) {
+                            s.classList.add('filled');
+                        } else {
+                            s.classList.remove('filled');
+                        }
+                    });
+                });
+            });
+        });
+        
+        function submitRatings() {
+            const summary = Object.entries(ratings)
+                .map(([brand, rating]) => `${brand}: ${rating} stars`)
+                .join(', ');
+            
+            document.getElementById('ratingSummary').textContent = summary || 'No ratings provided';
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+</body>
+</html>
