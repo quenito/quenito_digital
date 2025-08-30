@@ -1,0 +1,51 @@
+{
+  "session_id": "20250829_214108",
+  "platform": "Prime Opinion",
+  "start_time": "2025-08-29T21:41:09.485218",
+  "end_time": "2025-08-29T21:55:28.684121",
+  "survey_url": "https://app.primeopinion.com.au/surveys",
+  "survey_title": "Prime Opinion",
+  "questions": [
+    {
+      "number": 1,
+      "text": "What happened?",
+      "type": "single_select",
+      "quenito_answer": "Unknown",
+      "matt_answer": "",
+      "confidence": 0,
+      "automated": false,
+      "time_seconds": 583.742888212204,
+      "match": null
+    }
+  ],
+  "comparison_results": [],
+  "metrics": {
+    "total_questions": 1,
+    "automated_questions": 0,
+    "manual_interventions": 1,
+    "ui_pattern_distribution": {
+      "single_select": 1
+    },
+    "time_per_question": [
+      583.742888212204
+    ],
+    "total_time": 583.742888212204,
+    "accuracy_score": 0.0,
+    "confidence_average": 0.0,
+    "automation_rate": 0.0,
+    "avg_time_per_question": 583.742888212204
+  },
+  "errors": [
+    {
+      "question": 1,
+      "error": "Page.wait_for_timeout: Target page, context or browser has been closed"
+    },
+    {
+      "question": 2,
+      "error": "Page.screenshot: Target page, context or browser has been closed"
+    }
+  ],
+  "ui_patterns_encountered": [
+    "single_select"
+  ]
+}

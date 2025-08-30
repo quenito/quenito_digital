@@ -1,0 +1,73 @@
+{
+  "session_id": "20250829_222711",
+  "platform": "Prime Opinion",
+  "start_time": "2025-08-29T22:27:12.191321",
+  "end_time": "2025-08-29T22:56:13.049551",
+  "survey_url": "https://www.myopinions.com.au/auth/dashboard",
+  "survey_title": null,
+  "questions": [
+    {
+      "number": 1,
+      "text": "Are you...?",
+      "type": "single_select",
+      "quenito_answer": "Male",
+      "matt_answer": "Male",
+      "confidence": 0,
+      "automated": false,
+      "time_seconds": 24.475212335586548,
+      "match": true
+    },
+    {
+      "number": 3,
+      "text": "Where do you live within Australia?",
+      "type": "dropdown",
+      "quenito_answer": "Unknown",
+      "matt_answer": "",
+      "confidence": 0,
+      "automated": false,
+      "time_seconds": 1441.3879210948944,
+      "match": null
+    }
+  ],
+  "comparison_results": [],
+  "metrics": {
+    "total_questions": 2,
+    "automated_questions": 0,
+    "manual_interventions": 2,
+    "ui_pattern_distribution": {
+      "single_select": 1,
+      "dropdown": 4
+    },
+    "time_per_question": [
+      24.475212335586548,
+      1441.3879210948944
+    ],
+    "total_time": 1465.863133430481,
+    "accuracy_score": 0.5,
+    "confidence_average": 0.0,
+    "automation_rate": 0.0,
+    "avg_time_per_question": 732.9315667152405
+  },
+  "errors": [
+    {
+      "question": 2,
+      "error": "invalid literal for int() with base 10: 'march'"
+    },
+    {
+      "question": 2,
+      "error": "invalid literal for int() with base 10: 'march'"
+    },
+    {
+      "question": 2,
+      "error": "invalid literal for int() with base 10: 'march'"
+    },
+    {
+      "question": 3,
+      "error": "Page.wait_for_timeout: Target page, context or browser has been closed"
+    }
+  ],
+  "ui_patterns_encountered": [
+    "single_select",
+    "dropdown"
+  ]
+}
