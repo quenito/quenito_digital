@@ -1,0 +1,31 @@
+{
+  "session_id": "20250830_004106",
+  "platform": "Prime Opinion",
+  "start_time": "2025-08-30T00:41:07.115543",
+  "end_time": "2025-08-30T00:52:19.888138",
+  "survey_url": "https://app.primeopinion.com.au/surveys",
+  "survey_title": "Prime Opinion",
+  "questions": [],
+  "comparison_results": [],
+  "metrics": {
+    "total_questions": 0,
+    "automated_questions": 0,
+    "manual_interventions": 0,
+    "ui_pattern_distribution": {},
+    "time_per_question": [],
+    "total_time": 0,
+    "accuracy_score": 0,
+    "confidence_average": 0
+  },
+  "errors": [
+    {
+      "question": 1,
+      "error": "Timeout 30000ms exceeded."
+    },
+    {
+      "question": 1,
+      "error": "Timeout 30000ms exceeded."
+    }
+  ],
+  "ui_patterns_encountered": []
+}

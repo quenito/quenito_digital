@@ -8,7 +8,7 @@ from consciousness_engine_production import ConsciousnessEngine
 
 class ConsciousnessTestRunner:
     def __init__(self):
-        self.engine = ConsciousnessEngine(consciousness_path="matt_consciousness_v2.json")
+        self.engine = ConsciousnessEngine(consciousness_path="matt_consciousness_v3.json")
         self.test_results = []
         self.test_session = {
             "session_id": datetime.now().strftime("%Y%m%d_%H%M%S"),
