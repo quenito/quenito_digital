@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  quenito:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: quenito-production
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - MODEL_VERSION=claude-sonnet-4-20250514
+      - API_PROVIDER=anthropic
+    ports:
+      - "5900:5900"  # VNC
+      - "8080:8080"  # Monitoring API
+    volumes:
+      - ./consciousness:/app/consciousness:ro
+      - ./logs:/app/logs:rw
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
