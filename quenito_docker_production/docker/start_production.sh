@@ -20,9 +20,9 @@ echo "Starting VNC server on port 5900..."
 x11vnc -display :99 -forever -shared -passwd quenito123 -rfbport 5900 &
 sleep 2
 
-# Launch Firefox
-echo "Starting Firefox..."
-firefox --new-window about:blank &
+# Launch Chrome instead of Firefox
+echo "Starting Google Chrome..."
+google-chrome --no-sandbox --disable-gpu --disable-dev-shm-usage --window-size=1024,768 --new-window about:blank &
 sleep 3
 
 # Start monitoring API (optional)
@@ -34,5 +34,6 @@ sleep 2
 echo "========================================="
 echo "Ready for manual setup!"
 echo "VNC: vnc://localhost:5900 (password: quenito123)"
+echo "Browser: Google Chrome (ready)"
 echo "========================================="
 cd /app && python3 orchestrator.py

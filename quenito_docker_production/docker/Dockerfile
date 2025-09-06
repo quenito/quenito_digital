@@ -16,13 +16,21 @@ RUN apt-get update && apt-get install -y \
     net-tools netcat \
     wget software-properties-common
 
-# Install Firefox from Mozilla PPA (not snap)
-RUN add-apt-repository -y ppa:mozillateam/ppa && \
-    echo 'Package: firefox*' > /etc/apt/preferences.d/mozilla-firefox && \
-    echo 'Pin: release o=LP-PPA-mozillateam' >> /etc/apt/preferences.d/mozilla-firefox && \
-    echo 'Pin-Priority: 1001' >> /etc/apt/preferences.d/mozilla-firefox && \
-    apt-get update && \
-    apt-get install -y firefox
+# Install Chrome
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg \
+    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list \
+    && apt-get update \
+    && apt-get install -y google-chrome-stable \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set Chrome as default browser
+RUN update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/google-chrome-stable 200 && \
+    update-alternatives --install /usr/bin/gnome-www-browser gnome-www-browser /usr/bin/google-chrome-stable 200 && \
+    update-alternatives --set x-www-browser /usr/bin/google-chrome-stable && \
+    update-alternatives --set gnome-www-browser /usr/bin/google-chrome-stable
 
 # Python dependencies
 COPY docker/requirements.txt /tmp/
@@ -46,3 +54,4 @@ WORKDIR /app
 EXPOSE 5900 8080
 
 CMD ["/usr/local/bin/start_production.sh"]
+
