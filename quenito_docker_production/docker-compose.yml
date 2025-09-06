@@ -16,6 +16,7 @@ services:
     volumes:
       - ./consciousness:/app/consciousness:ro
       - ./logs:/app/logs:rw
+      - ./age_test.html:/home/computeruse/age_test.html:ro 
     stdin_open: true
     tty: true
     restart: unless-stopped
